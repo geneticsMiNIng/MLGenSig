@@ -1,0 +1,159 @@
+---
+title: "Ekspresja"
+author: "Aleksandra Dąbrowska, Alicja Gosiewska"
+date: "13 marca 2017"
+output: html_document
+---
+
+
+
+```{r libraries, warning=FALSE, message=FALSE}
+library(RTCGA.mRNA)
+library(dplyr)
+```
+
+#Dane
+
+```{r}
+BRCA_exp <- RTCGA.mRNA::BRCA.mRNA
+BRCA_clin_subtype <- read.csv(file = paste(getwd(),"/data/BRCA_clinical_2.csv", sep =""),header=TRUE)
+```
+
+```{r}
+hist(unlist(BRCA_exp[,-1]), 
+     col="lightblue",
+     breaks = 50,
+     prob = TRUE,
+     main = "Expression distribution",
+     xlab = "Expression")
+```
+
+#Czyszczenie danych
+
+```{r cleaning, warning=FALSE, message=FALSE}
+BRCA_exp <- BRCA_exp[,sapply(BRCA_exp, function(x)any(!is.na(x)))]
+BRCA_exp$SAMPLE_BARCODE <- substr(BRCA_exp$bcr_patient_barcode, 1, 15)
+
+BRCA_clin_subtype <- BRCA_clin_subtype[,sapply(BRCA_clin_subtype, function(x)any(!is.na(x)))]
+
+BRCA_exp_sub <- left_join(BRCA_exp,BRCA_clin_subtype, by = "SAMPLE_BARCODE")
+BRCA_exp_sub <- BRCA_exp_sub[ , c( 1 ,(ncol(BRCA_exp_sub)-3):ncol(BRCA_exp_sub), 2:(ncol(BRCA_exp_sub)-4) )]
+
+#97 probek nie mialo dopasowania
+BRCA_exp_sub_noNA <- BRCA_exp_sub[!is.na(BRCA_exp_sub$PATIENT_BARCODE), ]
+
+table(BRCA_exp_sub_noNA$SUBTYPE)
+```
+
+#Porównanie LumA vs reszta
+
+```{r groups}
+BRCA_exp_LumA <- BRCA_exp_sub_noNA[which(BRCA_exp_sub_noNA$SUBTYPE=="LumA"),]
+BRCA_exp_other <- BRCA_exp_sub_noNA[which(BRCA_exp_sub_noNA$SUBTYPE!="LumA"),]
+```
+
+##Wygenerujmy średnie, odchylania standardowe dla wszystkich danych i grup.
+
+```{r statistics}
+n <- ncol(BRCA_exp_sub_noNA)
+result_df <- data.frame( name = colnames(BRCA_exp_sub_noNA)[6:n],
+                         mean_all = sapply(BRCA_exp_sub_noNA[,c(6:n)], FUN=mean, na.rm=TRUE),
+                         mean_LumA = sapply(BRCA_exp_LumA[,c(6:n)], FUN=mean, na.rm=TRUE),
+                         mean_other = sapply(BRCA_exp_other[,c(6:n)], FUN=mean, na.rm=TRUE),
+                         sd_all = sapply(BRCA_exp_sub_noNA[,c(6:n)], FUN=sd, na.rm=TRUE),
+                         sd_LumA = sapply(BRCA_exp_LumA[,c(6:n)], FUN=sd, na.rm=TRUE),
+                         sd_other = sapply(BRCA_exp_other[,c(6:n)], FUN=sd, na.rm=TRUE))
+
+head(result_df)
+```
+
+##Wizualizacje
+
+```{r plots}
+plot(result_df$mean_LumA, result_df$mean_other,
+     main="Comparison between means",
+     xlab="Means LumA",
+     ylab="Means others",
+     pch=20,
+     col = densCols(x=result_df$mean_LumA,
+                    y=result_df$mean_other))
+abline(a=0, b=1)
+
+
+plot(result_df$sd_LumA,
+     result_df$sd_other,
+     main="Group-wise standard deviation",
+     xlab="LumA sample sd",
+     ylab="Others sample sd", 
+     col=densCols(result_df$sd_LumA, result_df$sd_other)
+)
+abline(a=0, b=1)
+```
+
+#Test t-studenta
+
+```{r tstudent}
+t.test_stat <- function(x,y){
+  return(t.test(x,y, na.rm=TRUE)$statistic)
+  }  
+result_df$t_test <- mapply(t.test_stat, 
+                           BRCA_exp_LumA[,c(6:n)], 
+                           BRCA_exp_other[,c(6:n)])
+
+t.test_pval <- function(x,y){
+  return(t.test(x,y, na.rm=TRUE)$p.value)
+}  
+result_df$t_test_pval <- mapply(t.test_pval, 
+                           BRCA_exp_LumA[,c(6:n)], 
+                           BRCA_exp_other[,c(6:n)])
+
+
+result_df$d <- result_df$mean_LumA - result_df$mean_other
+head(result_df)
+```
+
+```{r}
+hist(result_df$t_test_pval, 
+     breaks=50,
+     col="lightblue",
+     main="P-value histogram", 
+     xlab="P-value", 
+     ylab="Number of probesets")
+```
+
+##Wizualizacja
+
+```{r}
+plot(result_df$d, 
+     xlab="d = mean_LumA - mean_other",
+     result_df$t_test_pval, ylab="Student p-value",
+     main = "Student p-value vs. effect size",
+     col=densCols(result_df$d, result_df$t_test_pval)
+)
+abline(v=0, col="black") 
+abline(h=0.05, col="red")
+```
+
+###Volcano plot
+
+```{r volcano}
+plot(result_df$d, xlab="d = mean_LumA - mean_other",
+     -log10(result_df$t_test_pval), ylab="-log10(p-value)",
+     main = "Volcano plot",
+     col=densCols(result_df$d, -log10(result_df$t_test_pval))
+)
+grid(lty="solid", col="darkgray")
+abline(v=0, col="lightblue") 
+abline(h=-log10(0.05), col="red")
+abline(v=-1, col="red")
+abline(v=1, col="red")
+
+```
+
+##10 najmniejszych p-value
+
+```{r pvalue}
+min_pval <- result_df[order(result_df$t_test_pval, decreasing = FALSE),]
+head(min_pval, n=10)
+
+```
