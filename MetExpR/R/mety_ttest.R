@@ -2,8 +2,8 @@
 #'
 #' @description Function \code{mety_test} computes statistics and p-values for metylation data
 #'
-#' @param data Strategia, przy ktorej ma byc badana gra
-#' @param condition Ile razy fukcja ma zagrac w SuperFarmera przy zadanej strategii, domyslnie 10000
+#' @param data data frame of zeros and ones. Rows coresponds to gene, columns to samples.
+#' @param condition vector of levels coresponding to order of samples in data.
 #'
 #' @return
 #'
