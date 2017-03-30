@@ -6,13 +6,23 @@
 #' @param condition vector of levels coresponding to order of samples in data.
 #'
 #' @return A data frame with the following columns:
-#'  \item{met.log.fold}{a}
-#'  \item{met.mean}{a}
-#'  \item{met.t.stat}{a}
-#'  \item{met.pval}{a}
-#'  \item{met.padj}{a}
-#'  \item{met.B}{a}
-#'  \item{id}{a}
+#'  \item{met.log.fold}{The log of the fold change.}
+#'  \item{met.mean}{The base mean.}
+#'  \item{met.t.stat}{The value of the t-test statistic.}
+#'  \item{met.pval}{The p value for rejecting the null hypothesis.}
+#'  \item{met.padj}{The adjusted p values}
+#'  \item{met.B}{something...}
+#'  \item{id}{he ID of the observable, taken from the row names of the counts slots.}
+#'
+#' @importFrom limma lmFit
+#' @importFrom limma eBayes
+#' @importFrom limma contrasts.fit
+#' @importFrom limma topTable
+#' @importFrom limma makeContrasts
+#' @importFrom DESeq estimateDispersions
+#' @importFrom DESeq estimateSizeFactors
+#' @importFrom DESeq nbinomTest
+#' @importFrom DESeq newCountDataSet
 #'
 #' @export
 
@@ -23,7 +33,7 @@ mety_ttest <-function(data, condition){
   contMatrix <- makeContrasts(form, levels=design)
   fit2 <- contrasts.fit(fit, contMatrix)
   fit2 <- eBayes(fit2)
-  DMPs <- topTable(fit2, num=Inf, coef=1)
+  DMPs <- topTable(fit2, number=Inf, coef=1)
   DMPs$id <- rownames(DMPs)
   colnames(DMPs) <- c("met.log.fold","met.mean","met.t.stat","met.pval","met.padj","met.B","id")
   return(DMPs)
