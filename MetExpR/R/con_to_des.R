@@ -1,6 +1,6 @@
 #' @title Function transforms 'condition' data format to 'design' data format
 #'
-#' @description a
+#' @description Transforming vector of levels corresponding to samples
 #'
 #' @param condition vector of level values
 #'
