@@ -12,17 +12,13 @@
 #'  \item{met.pval}{The p value for rejecting the null hypothesis.}
 #'  \item{met.padj}{The adjusted p values}
 #'  \item{met.B}{something...}
-#'  \item{id}{he ID of the observable, taken from the row names of the counts slots.}
+#'  \item{id}{the ID of the observable, taken from the row names of the counts slots.}
 #'
 #' @importFrom limma lmFit
 #' @importFrom limma eBayes
 #' @importFrom limma contrasts.fit
 #' @importFrom limma topTable
 #' @importFrom limma makeContrasts
-#' @importFrom DESeq estimateDispersions
-#' @importFrom DESeq estimateSizeFactors
-#' @importFrom DESeq nbinomTest
-#' @importFrom DESeq newCountDataSet
 #'
 #' @export
 

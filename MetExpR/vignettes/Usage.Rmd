@@ -12,7 +12,7 @@ vignette: >
 First load BRCA_mRNAseq and transpose it
 
 ```{r}
-BRCA_mRNAseq_t <- as.data.frame(t(BRCA_mRNAseq))
+#BRCA_mRNAseq_t <- as.data.frame(t(BRCA_mRNAseq))
 
 ```
 
@@ -26,13 +26,13 @@ condition
 
 expr_nbinom
 ```{r}
-expr_nbinom(BRCA_mRNAseq_t, condition)
+#expr_nbinom(BRCA_mRNAseq_t, condition)
 ```
 
 # mety_ttest
 data
 ```{r}
-BRCA_methylation <- RTCGA.methylation::BRCA.methylation
+#BRCA_methylation <- RTCGA.methylation::BRCA.methylation
 ```
 
 mapping to genes
@@ -44,12 +44,12 @@ mapping to genes
 expr_nbinom
 
 ```{r}
-expr_nbinom(BRCA_methylation, condition)
+#expr_nbinom(BRCA_methylation, condition)
 ```
 
 # Combining data
 ```{r}
-full_data()
+#full_data()
 ```
 # Plots
  log-log p-value
