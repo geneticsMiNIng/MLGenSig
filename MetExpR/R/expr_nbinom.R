@@ -14,18 +14,23 @@
 #'  \item{exp.log.fold}{The log2 of the fold change.}
 #'  \item{exp.pval}{The p value for rejecting the null hypothesis 'mean1==mean2'}
 #'  \item{exp.padj}{The adjusted p values (adjusted with 'p.adjust( pval, method="BH")')}
+#'  
+#' @importFrom DESeq estimateDispersions
+#' @importFrom DESeq estimateSizeFactors
+#' @importFrom DESeq nbinomTest
+#' @importFrom DESeq newCountDataSet
 #'
 #' @export
 
 expr_nbinom <- function(data, condition){
   levels <- unique(condition)
-  cds = newCountDataSet( data, condition )
+  cds <- newCountDataSet( data, condition )
   #normalisation
-  cds = estimateSizeFactors( cds )
+  cds <- estimateSizeFactors( cds )
   #variance
-  cds = estimateDispersions( cds )
+  cds <- estimateDispersions( cds )
   #negative binomial test
-  res = nbinomTest( cds, levels[1], levels[2])
+  res <- nbinomTest( cds, levels[1], levels[2])
   colnames(res) <- c("id","exp.mean","exp.mean.gr1","exp.mean.g2","exp.fold","exp.log.fold","exp.pval","exp.padj")
   return(res)
 }

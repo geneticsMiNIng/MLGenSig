@@ -19,7 +19,7 @@ A data frame with the following columns:
  \item{met.pval}{The p value for rejecting the null hypothesis.}
  \item{met.padj}{The adjusted p values}
  \item{met.B}{something...}
- \item{id}{he ID of the observable, taken from the row names of the counts slots.}
+ \item{id}{the ID of the observable, taken from the row names of the counts slots.}
 }
 \description{
 Function \code{mety_ttest} computes statistics and p-values for metylation data mapped to genes.
