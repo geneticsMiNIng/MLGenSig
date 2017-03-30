@@ -1,5 +1,5 @@
 Package: MetExpR
-Title: Package for analysing genes expression and CpG islands metylation.
+Title: Package for analysing genes expression and CpG islands metylation
 Version: 0.0.0.9001
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
@@ -7,5 +7,5 @@ Depends: R (>= 3.3.0)
 License: GPL
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr, roxygen2, ggplot2, stringr, DESeq, ggrepel, limma
+Imports: dplyr, roxygen2, ggplot2, stringr, DESeq, ggrepel, limma, grid
 RoxygenNote: 6.0.1
