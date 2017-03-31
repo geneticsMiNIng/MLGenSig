@@ -1,0 +1,95 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Package
+
+##About
+
+# Expression
+
+##What is it?
+
+## About dataset
+```{r}
+load("BRCA_mRNAseq_chr17.rda")
+```
+##Function expr_nbinom
+
+condition
+```{r, message=FALSE}
+library(repmis)
+source_data("https://github.com/agosiewska/MLGenSig/blob/master/MetExpR/data/BRCA_clinical_data.rda?raw=true")
+#head(BRCA_clinical_data)
+dict<-BRCA_clinical_data$SUBTYPE
+names(dict)<-BRCA_clinical_data$SAMPLE_BARCODE
+condition <- dict[substr(colnames(BRCA_mRNAseq_chr17), 0, 15)]
+condition<-as.character(condition)
+```
+
+Evaluation of expr_nbinom may take a few minutes
+```{r, echo=FALSE}
+load("testexpr.rda")
+```
+
+```{r,eval=FALSE}
+test.expr <- expr_nbinom(BRCA_mRNAseq_chr17, condition)
+```
+
+```{r}
+head(test.expr)
+```
+
+# Metylation
+
+##What is it?
+
+## About dataset
+
+```{r}
+#BRCA_methylation <- RTCGA.methylation::BRCA.methylation
+```
+
+mapping to genes
+
+```{r}
+
+```
+
+## Function mety_ttest
+
+```{r}
+
+```
+
+# Combining data
+```{r}
+#full_data()
+```
+# Plots
+
+## log-log p-value
+
+```{r}
+
+```
+## volcano
+```{r}
+
+```
+
+## metyl "road" + boxplots for expr
+
+```{r}
+
+```
+
+
+

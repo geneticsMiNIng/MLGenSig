@@ -12,6 +12,9 @@ vignette: >
 First load BRCA_mRNAseq and transpose it
 
 ```{r}
+library(repmis)
+
+#source_data("https://github.com/geneticsMiNIng/BRCA_TCGA/blob/master/BRCA_mRNAseq.rda?raw=true")
 #BRCA_mRNAseq_t <- as.data.frame(t(BRCA_mRNAseq))
 
 ```
