@@ -18,20 +18,34 @@ vignette: >
 ##What is it?
 
 ## About dataset
+
+In this vignette, we will work with the data set BRCA_mRNAseq_chr17, which contains information about gene expression.
+This data set contains per-gene read counts
+computed for genes from 17 chromosome for 100 patients with breast cancer.
 ```{r}
 load("BRCA_mRNAseq_chr17.rda")
 ```
-##Function expr_nbinom
 
-condition
+
+```{r}
+BRCA_mRNAseq_chr17[1:5,1:2]
+```
+
+##Function expr_nbinom
+Function expr_nbinom tests for differences between the base means of two conditions. 
+Beside a data set containing read counts, we need a description of the samples, which we keep in a factor, whose elements correspond to different gorups.
+
+In our example we will test for differential expression between groups with LumA breast cancer subtype and other subtypes of that cancer.
+We will use factor `conditions`, which consist of two values corresponds to subtype of breast cancer: LumA and other.
 ```{r, message=FALSE}
 library(repmis)
 source_data("https://github.com/agosiewska/MLGenSig/blob/master/MetExpR/data/BRCA_clinical_data.rda?raw=true")
 #head(BRCA_clinical_data)
-dict<-BRCA_clinical_data$SUBTYPE
+dict<-ifelse(BRCA_clinical_data$SUBTYPE=="LumA","LumA","other")
 names(dict)<-BRCA_clinical_data$SAMPLE_BARCODE
 condition <- dict[substr(colnames(BRCA_mRNAseq_chr17), 0, 15)]
 condition<-as.character(condition)
+head(condition,8)
 ```
 
 Evaluation of expr_nbinom may take a few minutes
@@ -43,6 +57,8 @@ load("testexpr.rda")
 test.expr <- expr_nbinom(BRCA_mRNAseq_chr17, condition)
 ```
 
+As a result we obtain a data frame contains among others: base mean, means for each group and p-value of test.
+
 ```{r}
 head(test.expr)
 ```
@@ -52,9 +68,10 @@ head(test.expr)
 ##What is it?
 
 ## About dataset
-
+Data set BRCA_methylation_chr17 contains information about methylation of CpG islands located on 17 chromosome for patienst with breast cancer.
 ```{r}
 #BRCA_methylation <- RTCGA.methylation::BRCA.methylation
+#load(BRCA_methylation)
 ```
 
 mapping to genes
