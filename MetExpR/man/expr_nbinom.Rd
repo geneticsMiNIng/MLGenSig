@@ -7,7 +7,7 @@
 expr_nbinom(data, condition)
 }
 \arguments{
-\item{data}{data frame of zeros and ones. Rows coresponds to gene, columns to samples.}
+\item{data}{data frame containing counts of ... Columns corresponds to genes, rows to samples.}
 
 \item{condition}{vector of levels coresponding to order of samples in data.}
 }
