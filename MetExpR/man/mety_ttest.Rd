@@ -7,7 +7,7 @@
 mety_ttest(data, condition)
 }
 \arguments{
-\item{data}{data frame of zeros and ones. Rows coresponds to genes, columns to samples.}
+\item{data}{data frame containing methylation. Columns coresponds to genes, rows to samples.}
 
 \item{condition}{vector of levels coresponding to order of samples in data.}
 }

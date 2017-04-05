@@ -2,8 +2,10 @@
 
 export(expr_nbinom)
 export(full_data)
+export(map_to_gene)
 export(mety_ttest)
 export(p_values_plot)
+export(test_diff)
 export(volcano_plot)
 importFrom(DESeq,estimateDispersions)
 importFrom(DESeq,estimateSizeFactors)
