@@ -29,7 +29,7 @@ mety_ttest <-function(data, condition){
   design <- con_to_des(condition)
   fit <- lmFit(data, design)
   forms <- paste0(colnames(design)[1],"-",colnames(design)[2])
-  contMatrix <- makeContrasts(forms, levels=design)
+  contMatrix <- makeContrasts(contrasts=forms, levels=design)
   fit2 <- contrasts.fit(fit, contMatrix)
   fit2 <- eBayes(fit2)
   DMPs <- topTable(fit2, number=Inf, coef=1)
