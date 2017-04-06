@@ -1,9 +1,10 @@
-#'Visualise the p-values of expression and methylation for genes.
+#'@title Visualise the p-values of expression and methylation for genes.
 #'
-#'Function \code{volcano_plot} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.
+#'@description Function \code{volcano_plot} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.
 #'
 #'
-#'@param dt data frame with p-values from testing difference in cancer groups.
+#'@param dt_expr data.frame, a result of `expr_nbinom` function.  
+#'@param dt_met data.frame, a result of `mety_ttest` function.
 #'@param type we can choose a plot for methylation of expression. 
 #'@param exp.log.fold logarithm of expression fold.
 #'@param met.log.fold logarithm of methylation fold.
@@ -24,7 +25,8 @@
 #'
 #'@export
 
-volcano_plot <- function(dt,type,exp.log.fold,exp.pval,met.log.fold,met.pval,id){
+volcano_plot <- function(dt_expr,dt_met,type,exp.log.fold,exp.pval,met.log.fold,met.pval,id){
+  dt <- full_data(dt_expr,dt_met)
   if(type=="expression"){
   plot1 <- ggplot(dt, aes(exp.log.fold, -log10(exp.pval))) + 
     geom_point() +

@@ -4,10 +4,13 @@
 \alias{volcano_plot}
 \title{Visualise the p-values of expression and methylation for genes.}
 \usage{
-volcano_plot(dt, type, exp.log.fold, exp.pval, met.log.fold, met.pval, id)
+volcano_plot(dt_expr, dt_met, type, exp.log.fold, exp.pval, met.log.fold,
+  met.pval, id)
 }
 \arguments{
-\item{dt}{data frame with p-values from testing difference in cancer groups.}
+\item{dt_expr}{data.frame, a result of `expr_nbinom` function.}
+
+\item{dt_met}{data.frame, a result of `mety_ttest` function.}
 
 \item{type}{we can choose a plot for methylation of expression.}
 
