@@ -26,7 +26,7 @@
 
 mety_ttest <-function(data, condition){
   data<-t(data)
-  design <- con_to_des(condition)
+  design <- con_to_des(condition=condition)
   fit <- lmFit(data, design)
   forms <- paste0(colnames(design)[1],"-",colnames(design)[2])
   contMatrix <- makeContrasts(contrasts=forms, levels=design)
