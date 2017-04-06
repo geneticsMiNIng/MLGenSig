@@ -126,7 +126,9 @@ volcano_plot(test.expr, names = 0.00005)
 ## methyl "road" + boxplots for expr
 
 ```{r}
-
+BRCA1_gene <- CpG_mean(BRCA_methylation_chr17, "BRCA1")
+head(BRCA1_gene)
+genereg_vs_met(BRCA_methylation_chr17, "BRCA1")
 ```
 
 
