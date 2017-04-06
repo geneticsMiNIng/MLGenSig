@@ -11,13 +11,13 @@ volcano_plot(data, line = NA, names = NA, log.fold, pval, id)
 
 \item{line}{p-value on which we draw a line.}
 
+\item{names}{p-value below which...}
+
 \item{log.fold}{logarithm of fold.}
 
 \item{pval}{p-value.}
 
 \item{id}{vector of genes symbols.}
-
-\item{name}{p-value below which...}
 }
 \value{
 plot
