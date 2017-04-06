@@ -1,7 +1,8 @@
 ---
 title: "Vignette Title"
-author: "Vignette Author"
+author: "Aleksandra Dąbrowska, Alicja Gosiewska"
 date: "`r Sys.Date()`"
+toc: yes
 output: pdf_document
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
@@ -10,20 +11,62 @@ vignette: >
 ---
 
 # Package
+Package ...   the detection of differentially expressed and methylated genes. 
 
-##About
 
-# Function test_diff
+# Standard Workflow
 
-## Expression
+In this vignette we will work with the data sets containing information about gene expression and methylation for patients with breast cancer. We will analyze differences between methylation and expression for patients with different subtypes of BRCA cancer.
 
-### What is it?
+## Function test_diff
 
-### About dataset
+The main function of the package is `test_diff`. It allows to find differences between genes methylation or expression, taking into account additional information about samples.
 
-In this vignette, we will work with the data set BRCA_mRNAseq_chr17, which contains information about gene expression.
-This data set contains per-gene read counts
-computed for genes from 17 chromosome for 100 patients with breast cancer.
+### Methylation
+Info about methylation...
+
+In this section, we will work with the methylation level data from TCGA database.  
+Data set `BRCA_methylation_chr17` contains information about methylation of CpG islands located on 17th chromosome for patienst with breast cancer.
+```{r}
+load("BRCA_methylation_chr17.rda")
+head(BRCA_methylation_chr17)[1:5,1:4]
+```
+
+In this analysis we would like to find genes with different methylation. At first we need to use function `map_to_gene`, which generates new data frame with CpG islands mapped to genes.
+
+```{r}
+library(MetExpR)
+BRCA_methylation_chr17_gen <- map_to_gene(BRCA_methylation_chr17[,-1]) 
+head(BRCA_methylation_chr17_gen)[1:5,1:4]
+```
+
+Function `test_diff` allows us to test for differences between the base means for two or more conditions. 
+
+Before we go to the testing, we need to define condition values for each sample. We would like to test for differences between LumA subtype and other subtypes of breast cancer, so we create vector, which each element corresponds to a sample.
+
+```{r}
+condition <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
+head(condition,8)
+```
+
+#### T-test
+
+One of the tools for testing differences between values is t-test. To use it in `test_diff` function, we set value of parameter `test` on "ttest".
+```{r}
+test.mety <- test_diff(BRCA_methylation_chr17_gen, condition, test="ttest")
+```
+
+As a result we obtain a data frame with columns corresponds to: id of gene, mean, logarithm of fold change, p-value for t-test, adjusted p-value (BH method). For more information about customizing this function see the help page for `test_diff`.
+
+```{r}
+head(test.mety)
+```
+
+### Expression
+Info about expression...
+
+In this section we will use data set BRCA_mRNAseq_chr17, which contains information about gene expression.
+This data set contains per-gene read counts computed for genes from 17th chromosome for 100 patients with breast cancer.
 ```{r}
 load("BRCA_mRNAseq_chr17.rda")
 ```
@@ -33,158 +76,40 @@ load("BRCA_mRNAseq_chr17.rda")
 BRCA_mRNAseq_chr17[1:5,1:5]
 ```
 
-### Nbinom test
-Testa for differences between the base means of two conditions. 
-Beside a data set containing read counts, we need a description of the samples, which we keep in a factor, whose elements correspond to different gorups.
+#### Nbinom test
+Negative binomial test is an another tool for finding differences between the base means of data having two or more conditions. 
+
+As in the t-test w need also a description of the samples, which we keep in a vector, whose elements correspond to different gorups.
 
 In our example we will test for differential expression between groups with LumA breast cancer subtype and other subtypes of that cancer.
-We will use factor `conditions`, which consist of two values corresponds to subtype of breast cancer: LumA and other.
+Again we will use vector `conditions`, which consist of two values corresponds to subtype of breast cancer: LumA and other.
 ```{r, message=FALSE}
 condition<-ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
 head(condition,8)
 ```
 
-Evaluation of expr_nbinom may take a few minutes
 ```{r, echo=FALSE}
 load("testexpr.rda")
 ```
 
+For using negative binomial test, in function `test_diff` we set value "nbinom" for parameter `test`.
+Evaluation for nbinorm may take a few minutes
 ```{r,eval=FALSE}
-test.expr <- test_diff(BRCA_mRNAseq_chr17[,-1], condition, "nbinom")
+test.expr <- test_diff(BRCA_mRNAseq_chr17[,-1], condition, test="nbinom")
 ```
 
-As a result we obtain a data frame contains among others: base mean, means for each group and p-value of test.
+As a result we obtain the following data frame:
 
 ```{r}
 head(test.expr)
 ```
 
-## Metylation
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-load("illumina_humanmethylation_27_data.rda")
-library(ggplot2)
-library(ggrepel)
-library(grid)
-full_data <- function(dt1,dt2){
-  test_expr <- dt1[which(dt1$id %in% rownames(dt2)) ,]
-  test_metyl <- dt2[which( rownames(dt2) %in% dt1$id) ,]
-  
-  data <- merge(test_expr,test_metyl,by="id")
-  return(data)
-}
-p_values_plot <- function(dt,exp.pval,met.pval,id){
-  plot1 <- ggplot(dt, aes(x=-log(exp.pval), y=-log(met.pval))) + 
-    geom_point()+
-    theme_bw()+
-    geom_text_repel(
-      data=subset(dt, -log(met.pval)>20 | -log(exp.pval)>20),
-      aes(label = id),
-      size = 3,
-      box.padding = unit(0.35, "lines"),
-      point.padding = unit(0.3, "lines")
-    )+
-    ggtitle("P-values comparison")
-  return(plot1)
-  
-}
-volcano_plot <- function(dt,type,exp.log.fold,exp.pval,met.log.fold,met.pval,id){
-  if(type=="expression"){
-  plot1 <- ggplot(dt, aes(exp.log.fold, -log10(exp.pval))) + 
-    geom_point() +
-    scale_color_manual(values = c("red", "grey")) +
-    theme_bw(base_size = 12) +
-    geom_text_repel(
-      data = subset(dt, exp.pval < 0.05 & met.pval < 0.05),
-      aes(label = id),
-      size = 3,
-      box.padding = unit(0.35, "lines"),
-      point.padding = unit(0.3, "lines")
-    )+
-    geom_hline(yintercept = -log10(0.05), col="red")+
-    ggtitle("Volcano plot of expression")
-  return(plot1)
-  }
-  if(type=="methylation"){
-    plot1 <- ggplot(dt, aes(met.log.fold, -log10(met.pval))) + 
-      geom_point() +
-      scale_color_manual(values = c("red", "grey")) +
-      theme_bw(base_size = 12) +
-      geom_text_repel(
-        data = subset(dt, exp.pval < 0.05 & met.pval < 0.05),
-        aes(label = id),
-        size = 3,
-        box.padding = unit(0.35, "lines"),
-        point.padding = unit(0.3, "lines")
-      )+
-      geom_hline(yintercept = -log10(0.05), col="red")+
-      ggtitle("Volcano plot of methylation")
-    return(plot1)
-  }
-  else{
-    cat("Wrong type of plot.")
-  }
-  
-  
-}
-map_to_gene <- function(data){
-  genom <- illumina_humanmethylation_27_data[,c(1,11)]
-  dict_cg <- as.vector(genom$Symbol)
-  names(dict_cg) <- genom$Name
-  rnames<-rownames(data)
-  colnames(data) <- dict_cg[colnames(data)]
-  data<-as.data.frame(lapply(split(as.list(data),f = colnames(data)),function(x) Reduce(`+`,x) / length(x)))
-  rownames(data) <- rnames
-  return(data)
-} 
-```
-
-### What is it?
-
-### About dataset
-Data set BRCA_methylation_chr17 contains information about methylation of CpG islands located on 17 chromosome for patienst with breast cancer.
-```{r}
-load("BRCA_methylation_chr17.rda")
-head(BRCA_methylation_chr17)[1:5,1:5]
-```
-
-mapping to genes using function `map_to_gene`
-
-```{r}
-BRCA_methylation_chr17_gen <- map_to_gene(BRCA_methylation_chr17[,-1]) 
-head(BRCA_methylation_chr17_gen)[1:5,1:5]
-```
-
-### ttest
-```{r, echo=FALSE}
-load("testmety.rda")
-```
-
-```{r, eval=FALSE}
-condition <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
-test.mety <- test_diff(BRCA_methylation_chr17_gen, condition)
-```
-
-As a result we obtain a data frame ...
-```{r}
-head(test.mety)
-```
-
-# Combining data
-
-We can combine results for both tests, for expression and methylation, to easily use functions designed to visualize those data. 
-
-
-```{r}
-test.both <- full_data(test.expr, test.mety)
-head(test.both)
-```
-# Plots
+# Visualization
 
 ## log-log p-value
 
 ```{r}
-p_values_plot(test.both)
+p_values_plot(test.expr, test.mety)
 ```
 
 ## volcano
@@ -192,17 +117,11 @@ p_values_plot(test.both)
 Volcan plot for expression
 
 ```{r}
-volcano_plot(test.both, type="expression")
+volcano_plot(test.expr, test.mety, type="expression")
 ```
 
-volcano plot for methylation
 
-```{r}
-volcano_plot(test.both, type="methylation")
-
-```
-
-## metyl "road" + boxplots for expr
+## methyl "road" + boxplots for expr
 
 ```{r}
 
