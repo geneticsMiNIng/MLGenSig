@@ -2,12 +2,12 @@
 % Please edit documentation in R/expr_nbinom.R
 \name{expr_nbinom}
 \alias{expr_nbinom}
-\title{expr_nbinom:  for gene expression}
+\title{expr_nbinom: negative binomial test for gene expression}
 \usage{
 expr_nbinom(data, condition)
 }
 \arguments{
-\item{data}{data frame containing counts of ... Columns corresponds to genes, rows to samples.}
+\item{data}{data frame containing the raw counts of sequencing reads. Columns corresponds to genes, rows to samples.}
 
 \item{condition}{vector of levels coresponding to order of samples in data.}
 }
@@ -15,13 +15,16 @@ expr_nbinom(data, condition)
 A data frame with the following columns:
  \item{id}{The ID of the observable, taken from the row names of the counts slots.}
  \item{exp.mean}{The base mean.}
- \item{exp.mean.gr1}{The base mean for the counts for the first condition.}
- \item{exp.mean.g2}{The base mean for the second condition.}
- \item{exp.fold}{The ratio mean1/mean2.}
  \item{exp.log.fold}{The log2 of the fold change.}
- \item{exp.pval}{The p value for rejecting the null hypothesis 'mean1==mean2'}
- \item{exp.padj}{The adjusted p values (adjusted with 'p.adjust( pval, method="BH")')}
+ \item{exp.pval}{The p-values for rejecting the null hypothesis about the means equality.}
+ \item{exp.padj}{The adjusted p-values (adjusted with 'p.adjust( pval, method="BH")')}
+ \item{exp.mean.gr1}{The base mean for the counts for the first condition.}
+ \item{exp.mean.gr2}{The base mean for the counts for the second condition.}
+ \item{exp.fold}{The ratio mean.gr1/mean.gr2.}
 }
 \description{
-Function \code{expr_nbinom} computes statistics and p-values for negative binomial Test
+Function \code{expr_nbinom} computes statistics and p-values for negative binomial test.
+}
+\seealso{
+mety_t
 }
