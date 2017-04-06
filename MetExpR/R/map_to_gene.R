@@ -3,7 +3,6 @@
 #' @description Function \code{map_to_gene} maps CpG islands to corresponding genes.
 #'
 #' @param data data frame ... Columns corresponds to genes, rows to samples.
-#' @param illumina_humanmethylation_27_data dataset containing informations about CpG islands
 #'
 #' @return A data frame with CpG islands mapped to genes. If there were more than one island corresponding to a gene, 
 #' value is a mean of those islands.
@@ -11,7 +10,7 @@
 #'
 #' @export
  
-map_to_gene <- function(data,illumina_humanmethylation_27_data){
+map_to_gene <- function(data){
   genom <- illumina_humanmethylation_27_data[,c(1,11)]
   dict_cg <- as.vector(genom$Symbol)
   names(dict_cg) <- genom$Name

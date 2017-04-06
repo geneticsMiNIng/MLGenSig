@@ -20,11 +20,13 @@ test_diff <- function(data, condition, test="ttest"){
   if(test=="ttest"){
      res <- mety_ttest(data, condition)
      res <- res[,c(7,2,1,4,5)]
+     colnames(res) <- c("id","mean","log.fold","pval","adj.pval")
   }
   if(test=="nbinom"){ 
     res <- expr_nbinom(data, condition)
     res <- res[,c(1,2,6,7,8)]
+    colnames(res) <- c("id","mean","log.fold","pval","adj.pval")
   }
-  colnames(res) <- c("id","mean","log.fold","pval","adj.pval")
+  
   return(res)
 }
