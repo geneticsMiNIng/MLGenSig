@@ -3,13 +3,11 @@
 #'@description Function \code{volcano_plot} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.
 #'
 #'
-#'@param dt_expr data.frame, a result of `expr_nbinom` function.  
-#'@param dt_met data.frame, a result of `mety_ttest` function.
-#'@param type we can choose a plot for methylation of expression. 
-#'@param exp.log.fold logarithm of expression fold.
-#'@param met.log.fold logarithm of methylation fold.
-#'@param exp.pval p-value for expression.
-#'@param met.pval p-value for methylation.
+#'@param data data.frame, a result of `expr_nbinom` function.
+#'@param line p-value on which we draw a line.
+#'@param names p-value below which...
+#'@param log.fold logarithm of fold.
+#'@param pval p-value.
 #'@param id vector of genes symbols.
 #'
 #'@return plot
@@ -25,43 +23,20 @@
 #'
 #'@export
 
-volcano_plot <- function(dt_expr,dt_met,type,exp.log.fold,exp.pval,met.log.fold,met.pval,id){
-  dt <- full_data(dt_expr,dt_met)
-  if(type=="expression"){
-  plot1 <- ggplot(dt, aes(exp.log.fold, -log10(exp.pval))) + 
+volcano_plot <- function(data, line=NA, names= NA, log.fold,pval,id){
+  plot <- ggplot(data, aes(log.fold, -log10(pval))) +
     geom_point() +
     scale_color_manual(values = c("red", "grey")) +
     theme_bw(base_size = 12) +
-    geom_text_repel(
-      data = subset(dt, exp.pval < 0.05 & met.pval < 0.05),
-      aes(label = id),
-      size = 3,
-      box.padding = unit(0.35, "lines"),
-      point.padding = unit(0.3, "lines")
-    )+
-    geom_hline(yintercept = -log10(0.05), col="red")+
-    ggtitle("Volcano plot of expression")
-  return(plot1)
-  }
-  if(type=="methylation"){
-    plot1 <- ggplot(dt, aes(met.log.fold, -log10(met.pval))) + 
-      geom_point() +
-      scale_color_manual(values = c("red", "grey")) +
-      theme_bw(base_size = 12) +
-      geom_text_repel(
-        data = subset(dt, exp.pval < 0.05 & met.pval < 0.05),
-        aes(label = id),
-        size = 3,
-        box.padding = unit(0.35, "lines"),
-        point.padding = unit(0.3, "lines")
-      )+
-      geom_hline(yintercept = -log10(0.05), col="red")+
-      ggtitle("Volcano plot of methylation")
-    return(plot1)
-  }
-  else{
-    cat("Wrong type of plot.")
-  }
-  
-  
+    ggtitle("Volcano plot")
+
+  if(!is.na(line)) plot <- plot + geom_hline(yintercept = -log10(line), col="red")
+  if(!is.na(names)) plot <- plot +     geom_text_repel(
+                                          data = subset(data, pval < names),
+                                          aes(label = id),
+                                          size = 3,
+                                          box.padding = unit(0.35, "lines"),
+                                          point.padding = unit(0.3, "lines")
+                                        )
+  return(plot)
 }

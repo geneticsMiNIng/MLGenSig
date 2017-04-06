@@ -117,7 +117,9 @@ p_values_plot(test.expr, test.mety)
 Volcan plot for expression
 
 ```{r}
-volcano_plot(test.expr, test.mety, type="expression")
+volcano_plot(test.expr)
+volcano_plot(test.expr, line = 0.05)
+volcano_plot(test.expr, names = 0.00005)
 ```
 
 
