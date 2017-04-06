@@ -4,10 +4,12 @@
 \alias{p_values_plot}
 \title{Visualise the p-values of expression and methylation for genes.}
 \usage{
-p_values_plot(dt, exp.pval, met.pval, id)
+p_values_plot(dt_expr, dt_met, exp.pval, met.pval, id)
 }
 \arguments{
-\item{dt}{data frame with p-values from testing difference in cancer groups.}
+\item{dt_expr}{data.frame, a result of `expr_nbinom` function.}
+
+\item{dt_met}{data.frame, a result of `mety_ttest` function.}
 
 \item{exp.pval}{p-value for expression.}
 
@@ -20,4 +22,7 @@ plot
 }
 \description{
 Function \code{p_values_plot} draws a plot with p-values from methylation and expression when we use the t-test. In this case we testing the hypothesis that the means in both groups of "cancer type" are equal.
+}
+\seealso{
+volcano_plot
 }

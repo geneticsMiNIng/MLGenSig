@@ -1,8 +1,9 @@
-#'Visualise the p-values of expression and methylation for genes.
+#'@title Visualise the p-values of expression and methylation for genes.
 #'
-#'Function \code{p_values_plot} draws a plot with p-values from methylation and expression when we use the t-test. In this case we testing the hypothesis that the means in both groups of "cancer type" are equal.
+#'@description Function \code{p_values_plot} draws a plot with p-values from methylation and expression when we use the t-test. In this case we testing the hypothesis that the means in both groups of "cancer type" are equal.
 #'
-#'@param dt data frame with p-values from testing difference in cancer groups.
+#'@param dt_expr data.frame, a result of `expr_nbinom` function.  
+#'@param dt_met data.frame, a result of `mety_ttest` function.
 #'@param exp.pval p-value for expression.
 #'@param met.pval p-value for methylation.
 #'@param id vector of genes symbols.
@@ -17,10 +18,12 @@
 #'@importFrom ggrepel geom_text_repel
 #'@importFrom grid unit
 #'
+#'@seealso volcano_plot
 #'
 #'@export
 
-p_values_plot <- function(dt,exp.pval,met.pval,id){
+p_values_plot <- function(dt_expr,dt_met,exp.pval,met.pval,id){
+  dt <- full_data(dt_expr,dt_met)
   plot1 <- ggplot(dt, aes(x=-log(exp.pval), y=-log(met.pval))) + 
     geom_point()+
     theme_bw()+

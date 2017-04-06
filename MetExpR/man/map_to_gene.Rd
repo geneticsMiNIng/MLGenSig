@@ -4,10 +4,12 @@
 \alias{map_to_gene}
 \title{mapping CpG islands to genes}
 \usage{
-map_to_gene(data)
+map_to_gene(data, illumina_humanmethylation_27_data)
 }
 \arguments{
 \item{data}{data frame ... Columns corresponds to genes, rows to samples.}
+
+\item{illumina_humanmethylation_27_data}{dataset containing informations about CpG islands}
 }
 \value{
 A data frame with CpG islands mapped to genes. If there were more than one island corresponding to a gene, 

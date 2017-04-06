@@ -2,25 +2,28 @@
 % Please edit documentation in R/mety_ttest.R
 \name{mety_ttest}
 \alias{mety_ttest}
-\title{mety_ttest: t test for metylation per each gene.}
+\title{mety_ttest: t test for methylation per each gene.}
 \usage{
 mety_ttest(data, condition)
 }
 \arguments{
-\item{data}{data frame containing methylation. Columns coresponds to genes, rows to samples.}
+\item{data}{data frame containing values of methylation: columns coresponds to genes, rows to samples.}
 
 \item{condition}{vector of levels coresponding to order of samples in data.}
 }
 \value{
 A data frame with the following columns:
- \item{met.log.fold}{The log of the fold change.}
- \item{met.mean}{The base mean.}
- \item{met.t.stat}{The value of the t-test statistic.}
- \item{met.pval}{The p value for rejecting the null hypothesis.}
- \item{met.padj}{The adjusted p values}
- \item{met.B}{something...}
- \item{id}{the ID of the observable, taken from the row names of the counts slots.}
+ \item{id}{The ID of the observable, taken from the row names of the counts slots.}
+ \item{mean}{The base mean.}
+ \item{log.fold}{The log of the fold change.}
+ \item{pval}{The p-values for rejecting the null hypothesis about the means equality.}
+ \item{padj}{The adjusted p-values.}
+ \item{t.stat}{The value of the t-test statistic.}
+ \item{B}{The log-odds that that gene is differentially expressed.}
 }
 \description{
-Function \code{mety_ttest} computes statistics and p-values for metylation data mapped to genes.
+Function \code{mety_ttest} computes statistics and p-values for methylation data mapped to genes.
+}
+\seealso{
+expr_nbinom
 }
