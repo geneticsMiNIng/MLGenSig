@@ -4,12 +4,14 @@
 \alias{p_values_plot}
 \title{Visualise the p-values of expression and methylation for genes.}
 \usage{
-p_values_plot(dt_expr, dt_met, exp.pval, met.pval, id)
+p_values_plot(dt_expr, dt_met, names = NA, exp.pval, met.pval, id)
 }
 \arguments{
 \item{dt_expr}{data.frame, a result of `expr_nbinom` function.}
 
 \item{dt_met}{data.frame, a result of `mety_ttest` function.}
+
+\item{names}{p-value below which...}
 
 \item{exp.pval}{p-value for expression.}
 

@@ -31,12 +31,19 @@ volcano_plot <- function(data, line=NA, names= NA, log.fold,pval,id){
     ggtitle("Volcano plot")
 
   if(!is.na(line)) plot <- plot + geom_hline(yintercept = -log10(line), col="red")
-  if(!is.na(names)) plot <- plot +     geom_text_repel(
+  if(!is.na(names) & names < 1) plot <- plot +     geom_text_repel(
                                           data = subset(data, pval < names),
                                           aes(label = id),
                                           size = 3,
                                           box.padding = unit(0.35, "lines"),
                                           point.padding = unit(0.3, "lines")
                                         )
+  if(!is.na(names) & names >= 1) plot <- plot + geom_text_repel(
+    data = head(data[order(data$pval), ], names),
+    aes(label = id),
+    size = 3,
+    box.padding = unit(0.35, "lines"),
+    point.padding = unit(0.3, "lines")
+  )
   return(plot)
 }
