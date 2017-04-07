@@ -10,8 +10,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Package
-Package ...   the detection of differentially expressed and methylated genes. 
+# Package (Abstract?)
+A basic task of the Package ... is the detection of differentially expressed and methylated genes.  The package ... uses the negative binomial test from `DESeq` package.
 
 
 # Standard Workflow
@@ -23,7 +23,11 @@ In this vignette we will work with the data sets containing information about ge
 The main function of the package is `test_diff`. It allows to find differences between genes methylation or expression, taking into account additional information about samples.
 
 ### Methylation
-Info about methylation...
+
+Methylation is a process by which methyl groups are added to the DNA molecule. It can change the activity of a DNA without changing the sequence. DNA methylation typically acts to repress gene transcription. But there exists a situations in which adding the methyl groups intensifies it.
+DNA methylation is associated with a lots of key processes including genomic imprinting, repression of transposable elements, aging and carcinogenesis.
+In our work we want to bind methylation process and carcinogenesis.
+
 
 In this section, we will work with the methylation level data from TCGA database.  
 Data set `BRCA_methylation_chr17` contains information about methylation of CpG islands located on 17th chromosome for patienst with breast cancer.
@@ -42,7 +46,9 @@ head(BRCA_methylation_chr17_gen)[1:5,1:4]
 
 Function `test_diff` allows us to test for differences between the base means for two or more conditions. 
 
-Before we go to the testing, we need to define condition values for each sample. We would like to test for differences between LumA subtype and other subtypes of breast cancer, so we create vector, which each element corresponds to a sample.
+In this case we have two conditions, connected with subtypes of breast cancer.
+
+Before we go to the testing, we need to define condition values for each sample. We would like to test for differences between `LumA` subtype and `other` subtypes of breast cancer, so we create vector, which each element corresponds to a sample. Our division to this two group relies on numbers of occurences each subtype. The `LumA` subtype is the most common, in case of breast cancer.
 
 ```{r}
 condition <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
@@ -51,7 +57,11 @@ head(condition,8)
 
 #### T-test
 
-One of the tools for testing differences between values is t-test. To use it in `test_diff` function, we set value of parameter `test` on "ttest".
+One of the tools for testing differences between values is t-test. The null hypothesis, we have consider is that, means in two groups are equal.
+
+
+
+To use it in `test_diff` function, we set value of parameter `test` on "ttest".
 ```{r}
 test.mety <- test_diff(BRCA_methylation_chr17_gen, condition, test="ttest")
 ```
@@ -62,10 +72,11 @@ As a result we obtain a data frame with columns corresponds to: id of gene, mean
 head(test.mety)
 ```
 
-### Expression
-Info about expression...
+### Expression 
 
-In this section we will use data set BRCA_mRNAseq_chr17, which contains information about gene expression.
+Gene expression is the process by which information from a gene is used in the synthesis of proteins. The process of gene expression is used by all known life.
+
+In this section we will use data set `BRCA_mRNAseq_chr17`, which contains information about gene expression.
 This data set contains per-gene read counts computed for genes from 17th chromosome for 100 patients with breast cancer.
 ```{r}
 load("BRCA_mRNAseq_chr17.rda")
@@ -77,7 +88,7 @@ BRCA_mRNAseq_chr17[1:5,1:5]
 ```
 
 #### Nbinom test
-Negative binomial test is an another tool for finding differences between the base means of data having two or more conditions. 
+Negative binomial distribution test is an another tool for finding differences between the base means of data having two or more conditions. 
 
 As in the t-test w need also a description of the samples, which we keep in a vector, whose elements correspond to different gorups.
 
@@ -93,7 +104,7 @@ load("testexpr.rda")
 ```
 
 For using negative binomial test, in function `test_diff` we set value "nbinom" for parameter `test`.
-Evaluation for nbinorm may take a few minutes
+Evaluation for nbinorm may take a few minutes.
 ```{r,eval=FALSE}
 test.expr <- test_diff(BRCA_mRNAseq_chr17[,-1], condition, test="nbinom")
 ```
@@ -108,13 +119,18 @@ head(test.expr)
 
 ## log-log p-value
 
+Firstly, we want to visualise the p-values for expression and methylation from negative binomial test and t-test respectively.
+
 ```{r}
 p_values_plot(test.expr, test.mety)
 ```
 
-## volcano
+The marked values are the genes with p-values, from methylation or expression, lower than 0.05.
 
-Volcan plot for expression
+## Volcano plot
+
+For identify changes in our data sets we use a volcano plot, some type of scatter-plot.
+In our package it plots logarithm of p-value versus logarithm of fold-change on the y and x axes, respectively. 
 
 ```{r}
 volcano_plot(test.expr)
@@ -122,14 +138,32 @@ volcano_plot(test.expr, line = 0.05)
 volcano_plot(test.expr, names = 0.00005)
 ```
 
+Function `volcano_plot` has parameters that allows to better analyze the results: `line` and `names`. The `line` parameter allows to set the horizontal line on plot on selected value. The `names` parameter signs those genes for which p-value are smaller than given value.
 
-## methyl "road" + boxplots for expr
+
+## Methylation and expression for one gene.
+
+In the end we want to present the distribution of methylation and expression for choosen gene `BRCA1`.
 
 ```{r}
+#library(easyGgplot2)
 BRCA1_gene <- CpG_mean(BRCA_methylation_chr17, "BRCA1")
 head(BRCA1_gene)
+
+#p1 <-genereg_vs_met(BRCA_methylation_chr17, "BRCA1")
+#p2 <-boxplot_gene_expr(BRCA_mRNAseq_chr17,"BRCA1")
+#ggplot2.multiplot(p1,p2)
+
+```
+
+First we visualise the mean value of methylation for each CpG island on this gene using function `genereg_vs_met`.
+
+```{r}
 genereg_vs_met(BRCA_methylation_chr17, "BRCA1")
 ```
 
+With function `boxplot_gene_expr`, we consider the distribution of expression from 100 probes.
 
-
+```{r}
+boxplot_gene_expr(BRCA_mRNAseq_chr17,"BRCA1")
+```
