@@ -3,7 +3,7 @@
 #' @description Function \code{genereg_vs_met} ...
 #'
 #' @param data data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.
-#' @param gen vector of levels coresponding to order of samples in data.
+#' @param gene vector of levels coresponding to order of samples in data.
 #'
 #' @return A plot.
 #'
@@ -14,12 +14,15 @@
 #'
 #' @export
 
-genereg_vs_met <-function(data, gen){
-  CpG <- CpG_mean(data, gen)
+genereg_vs_met <-function(data, gene){
+  CpG <- CpG_mean(data, gene)
   plot <- ggplot(CpG, aes(Name, mean, group=1)) +
             geom_point(size=4)+
             geom_line()+
-            theme_bw()
+            theme_bw()+
+          ggtitle(paste0("Methylation of gene ",gene))+
+          xlab(paste0("Gene ",gene))
+    
   return(plot)
-}
 
+}
