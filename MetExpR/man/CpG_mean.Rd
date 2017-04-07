@@ -4,12 +4,12 @@
 \alias{CpG_mean}
 \title{CpG_mean}
 \usage{
-CpG_mean(data, gen)
+CpG_mean(data, gene)
 }
 \arguments{
 \item{data}{data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.}
 
-\item{gen}{vector of levels coresponding to order of samples in data.}
+\item{gene}{vector of levels coresponding to order of samples in data.}
 }
 \value{
 A plot.
