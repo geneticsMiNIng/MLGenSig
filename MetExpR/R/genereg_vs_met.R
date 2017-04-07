@@ -11,6 +11,7 @@
 #'@importFrom ggplot2 ggplot
 #'@importFrom ggplot2 geom_line
 #'@importFrom ggplot2 theme_bw
+#'@importFrom ggplot2 element_text
 #'
 #' @export
 
@@ -21,7 +22,8 @@ genereg_vs_met <-function(data, gene){
             geom_line()+
             theme_bw()+
           ggtitle(paste0("Methylation of gene ",gene))+
-          xlab(paste0("Gene ",gene))
+          xlab(paste0("Gene ",gene))+ 
+          theme(axis.text.x = element_text(angle = 45, hjust = 1))
     
   return(plot)
 
