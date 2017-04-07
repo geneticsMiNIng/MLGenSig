@@ -4,7 +4,7 @@ Machine Learning for Genetic Signatures
 ## Installation 
 
 ```
-devtools::install_github("geneticsMiNIng/BlackBoxOpener/randomForestExplainer")
+devtools::install_github("geneticsMiNIng/MLGenSig/MetExpR")
 ```
 
 ## Vignette
