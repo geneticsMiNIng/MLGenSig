@@ -28,7 +28,7 @@ volcano_plot <- function(data, line=NA, names= NA, log.fold,pval,id){
     geom_point() +
     scale_color_manual(values = c("red", "grey")) +
     theme_bw(base_size = 12) +
-    ggtitle("Volcano plot")
+    ggtitle(paste0("Volcano plot of ",deparse(substitute(data))))
 
   if(!is.na(line)) plot <- plot + geom_hline(yintercept = -log10(line), col="red")
   if(!is.na(names) & names < 1) plot <- plot +     geom_text_repel(
