@@ -4,12 +4,14 @@
 \alias{genereg_vs_met}
 \title{genereg_vs_met}
 \usage{
-genereg_vs_met(data, gene)
+genereg_vs_met(data, gene, gr = NULL)
 }
 \arguments{
 \item{data}{data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.}
 
 \item{gene}{vector of levels coresponding to order of samples in data.}
+
+\item{gr}{group of subtype of cancer}
 }
 \value{
 A plot.

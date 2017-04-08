@@ -16,6 +16,8 @@
 #'@importFrom ggplot2 ggplot
 #'@importFrom ggplot2 aes
 #'@importFrom ggplot2 ggtitle
+#'@importFrom ggplot2 xlab
+#'@importFrom ggplot2 ylab
 #'@importFrom ggrepel geom_text_repel
 #'@importFrom grid unit
 #'
@@ -28,8 +30,9 @@ p_values_plot <- function(dt_expr,dt_met, names=NA, exp.pval,met.pval,id){
   plot <- ggplot(dt, aes(x=-log(exp.pval), y=-log(met.pval))) +
     geom_point()+
     theme_bw()+
-    ggtitle("P-values comparison")
-
+    ggtitle("P-values comparison")+
+    xlab(paste0("Log of p-value for ", deparse(substitute(dt_expr))))+
+    ylab(paste0("Log of p-value for ", deparse(substitute(dt_met))))
   if(!is.na(names) & names<1) plot <- plot + geom_text_repel(
                                               data=subset(dt, met.pval<names | exp.pval<names),
                                               aes(label = id),
