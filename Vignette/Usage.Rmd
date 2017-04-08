@@ -119,6 +119,11 @@ head(test.expr)
 
 # Visualization
 
+## em_plot
+```{r}
+em_plot(BRCA_mRNAseq_chr17[,-1], condition, names=5)
+```
+
 ## log-log p-value
 
 Firstly, we want to visualise the p-values for expression and methylation from negative binomial test and t-test respectively.
