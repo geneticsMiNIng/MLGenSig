@@ -3,8 +3,8 @@
 #'@description Function \code{p_values_plot} draws a plot with p-values from methylation and expression when we use the t-test. In this case we testing the hypothesis that the means in both groups of "cancer type" are equal.
 #'
 #'@param data1 data.frame
-#'@param condition condition fo groups
-#'@param names condition fo groups
+#'@param condition condition for groups
+#'@param names condition for groups
 #'
 #'@return plot
 #'
@@ -15,7 +15,10 @@
 #'@importFrom ggplot2 geom_abline
 #'@importFrom ggrepel geom_text_repel
 #'@importFrom grid unit
-#'@seealso vp_values_plot
+#'@importFrom utils head
+#'@importFrom utils tail
+#'
+#'@seealso p_values_plot
 #'
 #'@export
 
@@ -27,11 +30,14 @@ em_plot <- function(data1, condition, names=NA){
   data <- as.data.frame(meanA)
   data$id <- rownames(data)
   data$meanB <- meanB
-  plot <- ggplot(data, aes(x=meanA, y=meanB)) +
+  plot1 <- ggplot(data, aes(x=meanA, y=meanB)) +
     geom_point() +
     geom_abline(slope = 1)+
-    theme_bw()
-  if(!is.na(names)) plot <- plot + geom_text_repel(
+    theme_bw()+
+    ggtitle(paste0("Means in groups from ",deparse(substitute(data1))))+
+    xlab(paste0("Group ",unique(condition)[1]))+
+    ylab(paste0("Group ",unique(condition)[2]))
+  if(!is.na(names)) plot1 <- plot1 + geom_text_repel(
                                       data= tail(data[order(data$meanB-data$meanA), ], names),
                                       aes(label = id),
                                       size = 3,
@@ -39,6 +45,6 @@ em_plot <- function(data1, condition, names=NA){
                                       point.padding = unit(0.3, "lines")
                                     )
 
-  return(plot)
+  return(plot1)
 
 }

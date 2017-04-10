@@ -4,7 +4,6 @@
 #'
 #' @param data data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.
 #' @param gene vector of levels coresponding to order of samples in data.
-#' @param gr group of subtype of cancer
 #'
 #' @return A plot.
 #'
@@ -16,7 +15,7 @@
 #'
 #' @export
 
-genereg_vs_met <-function(data, gene, gr=NULL){
+genereg_vs_met <-function(data, gene){
   CpG <- CpG_mean(data, gene)
   plot <- ggplot(CpG, aes(Name, mean, group=1,col=CPG_ISLAND_LOCATIONS)) +
             geom_point(size=4)+

@@ -9,9 +9,9 @@ em_plot(data1, condition, names = NA)
 \arguments{
 \item{data1}{data.frame}
 
-\item{condition}{condition fo groups}
+\item{condition}{condition for groups}
 
-\item{names}{condition fo groups}
+\item{names}{condition for groups}
 }
 \value{
 plot
@@ -20,5 +20,5 @@ plot
 Function \code{p_values_plot} draws a plot with p-values from methylation and expression when we use the t-test. In this case we testing the hypothesis that the means in both groups of "cancer type" are equal.
 }
 \seealso{
-vp_values_plot
+p_values_plot
 }

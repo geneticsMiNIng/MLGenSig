@@ -235,16 +235,12 @@ BRCA_mRNAseq_chr17_other <- BRCA_mRNAseq_chr17[which(BRCA_mRNAseq_chr17$SUBTYPE!
 ```
 
 
+Two subtype groups of cancer in one plot.
 ```{r}
-lum <- boxplot_gene_expr(BRCA_mRNAseq_chr17_LumA,"BRCA1")
-oth <- boxplot_gene_expr(BRCA_mRNAseq_chr17_other, "BRCA1")
-
-# grid.arrange(lum,oth, ncol = 1, 
-#              layout_matrix = t(as.matrix(c(1,1,2,2))))
+genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1")
 
 
-lum
-par(new=TRUE)
-oth
 ```
+
+
 
