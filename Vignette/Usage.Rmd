@@ -237,6 +237,7 @@ BRCA_mRNAseq_chr17_other <- BRCA_mRNAseq_chr17[which(BRCA_mRNAseq_chr17$SUBTYPE!
 
 Two subtype groups of cancer in one plot.
 ```{r}
+condition <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
 genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1")
 
 

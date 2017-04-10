@@ -24,20 +24,21 @@ genereg_vs_met2 <-function(data,condition, gene){
   CpG_A$condition <- unique(condition)[1]
   CpG_B <- CpG_mean(dataB, gene)
   CpG_B$condition <- unique(condition)[2]
-  plot1 <- ggplot(CpG_A, aes(Name, mean, group=1,col=CPG_ISLAND_LOCATIONS)) +
-    geom_point(size=3)+
-    geom_line(col="black")+
-    geom_point(data=CpG_B,aes(Name, mean, group=1,fill=CPG_ISLAND_LOCATIONS))+
-    geom_line(data=CpG_B,aes(Name, mean, group=1))+
-    geom_text(data= CpG_A,aes(label = condition))+
-    geom_text(data=CpG_B, aes(label = condition))+
+  data2 <- rbind(CpG_A, CpG_B)
+
+  n <- length(unique(data2$CPG_ISLAND_LOCATIONS))
+  myPalette <- palette()[1:n]
+  names(myPalette) <- unique(data2$CPG_ISLAND_LOCATIONS)
+
+  plot1 <- ggplot(data2, aes(Name, mean, group=condition,colour=condition)) +
+    geom_line()+
+    geom_point(size=2)+
   theme_bw()+
     ggtitle(paste0("Methylation of gene ",gene))+
-    xlab(paste0("Gene ",gene))+ 
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
-          legend.position = "none")
+    xlab(paste0("Gene ",gene))+
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, colour=myPalette[as.character(data2$CPG_ISLAND_LOCATIONS)]),
+          legend.position = "top")
 
-  
   return(plot1)
-  
+
 }
