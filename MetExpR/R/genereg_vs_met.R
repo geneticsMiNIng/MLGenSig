@@ -17,17 +17,17 @@
 
 genereg_vs_met <-function(data, gene){
   CpG <- CpG_mean(data, gene)
-  plot <- ggplot(CpG, aes(Name, mean, group=1,col=CPG_ISLAND_LOCATIONS)) +
+  plot <- ggplot(CpG, aes(Name, mean, group=1,col=MapInfo)) +
             geom_point(size=4)+
             geom_line(col="black")+
             theme_bw()+
           ggtitle(paste0("Methylation of gene ",gene))+
-          xlab(paste0("Gene ",gene))+ 
+          xlab(paste0("Gene ",gene))+
           theme(axis.text.x = element_text(angle = 45, hjust = 1),
                 legend.position = "none")
-    
-          
-    
+
+
+
   return(plot)
 
 }

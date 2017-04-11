@@ -178,62 +178,8 @@ BRCA1_gene <- CpG_mean(BRCA_methylation_chr17, "BRCA1")
 head(BRCA1_gene)
 ```
 
-First we visualize the mean value of methylation for each CpG island on this gene using function `genereg_vs_met`.
-
-```{r}
-genereg_vs_met(BRCA_methylation_chr17, "BRCA1")
-```
-
-Same point color means that each probe has the same address.
-
-With function `boxplot_gene_expr`, we consider the distribution of expression from 100 probes.
-
-```{r}
-boxplot_gene_expr(BRCA_mRNAseq_chr17,"BRCA1")
-```
-
-It is easy to set both plots together.
-```{r}
-library(gridExtra)
-library(ggplot2)
-g <- genereg_vs_met(BRCA_methylation_chr17, "BRCA1") 
-b <- boxplot_gene_expr(BRCA_mRNAseq_chr17,"BRCA1")
-
-grid.arrange(g,b, ncol = 1, 
-             layout_matrix = t(as.matrix(c(1,1,1,2))))
-```
-
-
 
 ###Methylation and expression in groups.
-
-For both groups `LumA` and `other` we want to visualise distribution of methylation and expression. First plot describes data from `LumA` group, second from `other` group.
-
-```{r, include=FALSE}
-BRCA_methylation_chr17_LumA <- BRCA_methylation_chr17[which(BRCA_methylation_chr17$SUBTYPE=="LumA"),]
-
-BRCA_methylation_chr17_other <- BRCA_methylation_chr17[which(BRCA_methylation_chr17$SUBTYPE!="LumA"),]
-
-```
-
-```{r}
-lum <- genereg_vs_met(BRCA_methylation_chr17_LumA, "BRCA1")
-other <- genereg_vs_met(BRCA_methylation_chr17_other, "BRCA1")
-
-grid.arrange(lum,other, ncol = 1, 
-             layout_matrix = t(as.matrix(c(1,1,2,2))))
-
-```
-
-
-```{r, include=FALSE}
-
-BRCA_mRNAseq_chr17_LumA <- BRCA_mRNAseq_chr17[which(BRCA_mRNAseq_chr17$SUBTYPE=="LumA"),]
-
-BRCA_mRNAseq_chr17_other <- BRCA_mRNAseq_chr17[which(BRCA_mRNAseq_chr17$SUBTYPE!="LumA"),]
-
-```
-
 
 Two subtype groups of cancer in one plot.
 ```{r}
@@ -244,4 +190,17 @@ genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1")
 ```
 
 
+
+```{r}
+library(gridExtra)
+library(ggplot2)
+g <- genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1")
+
+conditionm <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA", "other")
+b1 <- boxplot_gene_expr2(BRCA_mRNAseq_chr17,conditionm,"BRCA1")
+
+grid.arrange(g,b1, ncol = 1, 
+             layout_matrix = t(as.matrix(c(1,1,1,2))))
+
+```
 
