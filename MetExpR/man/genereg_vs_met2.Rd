@@ -14,7 +14,7 @@ genereg_vs_met2(data, condition, gene)
 \item{gene}{vector of levels coresponding to order of samples in data.}
 }
 \value{
-A plot.
+A plot of class ggplot.
 }
 \description{
 Function \code{genereg_vs_met2} ...
