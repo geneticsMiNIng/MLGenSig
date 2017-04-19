@@ -175,7 +175,7 @@ Function `CpG_mean` computes methylation means of CpG islands for choosen gene. 
 
 ```{r}
 BRCA1_gene <- CpG_mean(BRCA_methylation_chr17, "BRCA1")
-head(BRCA1_gene)
+BRCA1_gene
 ```
 
 
@@ -191,16 +191,41 @@ genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1")
 
 
 
-```{r}
+```{r, echo=FALSE}
 library(gridExtra)
+library(grid)
 library(ggplot2)
 g <- genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1")
 
 conditionm <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA", "other")
 b1 <- boxplot_gene_expr2(BRCA_mRNAseq_chr17,conditionm,"BRCA1")
+v <- volcano_plot(test.expr, ngen = "BRCA1", title="expression", fold_line = 2, line=0.05)
+condition <- ifelse(BRCA_mRNAseq_chr17[,1]=="LumA","LumA","other")
+s <- tableGrob(t(sum_gen(BRCA_mRNAseq_chr17[,-1],condition , "BRCA1")))
 
-grid.arrange(g,b1, ncol = 1, 
-             layout_matrix = t(as.matrix(c(1,1,1,2))))
+title <- textGrob("Summary", vjust = 5, gp=gpar(fontsize=20))
+
+grid.arrange(g,b1,  
+             layout_matrix =rbind(c(1 ,1 ,1 ,NA),
+                                  c(1 ,1 ,1 ,2 ),
+                                  c(1 ,1 ,1 ,2 ),
+                                  c(1 ,1 ,1 ,2 ),
+                                  c(1 ,1 ,1 ,2 ),
+                                  c(1 ,1 ,1 ,NA)))
+grid.arrange(v, s, title,
+             layout_matrix =rbind(c(1, 1, 1, 3),
+                                  c(1, 1, 1, 2),
+                                  c(1, 1, 1, 2),
+                                  c(1, 1, 1, 2),
+                                  c(1, 1, 1, 2),
+                                  c(1, 1, 1, 2),
+                                  c(1, 1, 1, 2),
+                                  c(1, 1, 1, 2),
+                                  c(1, 1, 1, 2),
+                                  c(1, 1, 1, 2),
+                                  c(1, 1, 1, 2)))
+
+
 
 ```
 

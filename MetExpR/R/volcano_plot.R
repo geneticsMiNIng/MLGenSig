@@ -9,6 +9,9 @@
 #'@param log.fold logarithm of fold.
 #'@param pval p-value.
 #'@param id vector of genes symbols.
+#'@param ngen s
+#'@param fold_line s
+#'@param title s
 #'
 #'@return plot
 #'
@@ -19,17 +22,24 @@
 #'@importFrom ggplot2 aes
 #'@importFrom ggplot2 geom_hline
 #'@importFrom ggrepel geom_text_repel
+#'@importFrom ggplot2 geom_vline
 #'@importFrom grid unit
 #'
 #'@export
 
-volcano_plot <- function(data, line=NA, names= NA, log.fold,pval,id){
+volcano_plot <- function(data, line=NA, names= NA, log.fold,pval,id, ngen=NA, title=NA, fold_line=NA){
   plot <- ggplot(data, aes(log.fold, -log10(pval))) +
     geom_point() +
     scale_color_manual(values = c("red", "grey")) +
-    theme_bw(base_size = 12) +
-    ggtitle(paste0("Volcano plot of ",deparse(substitute(data))))
-
+    theme_bw(base_size = 12)
+  if(is.na(title)){
+    plot <- plot + ggtitle(paste0("Volcano plot of ",deparse(substitute(data))))
+  }else{
+    plot <- plot + ggtitle(paste0("Volcano plot of ",title) )
+  }
+  if(!is.na(fold_line)){
+    plot <- plot+ geom_vline(xintercept=c(-fold_line,fold_line), col="red")
+  }
   if(!is.na(line)) plot <- plot + geom_hline(yintercept = -log10(line), col="red")
   if(!is.na(names) & names < 1) plot <- plot +     geom_text_repel(
                                           data = subset(data, pval < names),
@@ -45,5 +55,16 @@ volcano_plot <- function(data, line=NA, names= NA, log.fold,pval,id){
     box.padding = unit(0.35, "lines"),
     point.padding = unit(0.3, "lines")
   )
+  if(!is.na(ngen)){
+    plot <- plot +  geom_text_repel(
+      data = subset(data, id==ngen),
+      aes(label = id),
+      size = 3,
+      col = "red",
+      box.padding = unit(0.35, "lines"),
+      point.padding = unit(0.3, "lines")
+    )+
+      geom_point(data = subset(data, id==ngen), aes(log.fold, -log10(pval)), col="red")
+  }
   return(plot)
 }

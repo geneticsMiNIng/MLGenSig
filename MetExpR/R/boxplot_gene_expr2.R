@@ -28,8 +28,9 @@ boxplot_gene_expr2 <- function(data, condition, gene){
   colnames(x)[1] <- "expression"
   x$gene <- paste0(gene)
   colnames(x)[2] <- paste0(gene)
-  plot1 <- ggplot(x,aes(condition,expression))+
+  plot1 <- ggplot(x,aes(condition,expression, col=condition))+
     geom_boxplot()+
-    theme_bw()
+    theme_bw()+
+    theme(legend.position="none")
   return(plot1)
 }
