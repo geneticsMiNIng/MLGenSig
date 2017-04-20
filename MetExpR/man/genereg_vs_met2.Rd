@@ -4,7 +4,7 @@
 \alias{genereg_vs_met2}
 \title{genereg_vs_met2}
 \usage{
-genereg_vs_met2(data, condition, gene)
+genereg_vs_met2(data, condition, gene, show_gen = FALSE)
 }
 \arguments{
 \item{data}{data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.}

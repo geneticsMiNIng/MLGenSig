@@ -186,7 +186,7 @@ Two subtype groups of cancer in one plot.
 condition <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
 genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1")
 
-
+genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1", show_gen=TRUE)
 ```
 
 

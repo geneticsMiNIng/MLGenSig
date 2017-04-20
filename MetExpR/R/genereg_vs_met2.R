@@ -19,7 +19,7 @@
 #'@importFrom ggplot2 ylim
 #' @export
 
-genereg_vs_met2 <-function(data,condition, gene){
+genereg_vs_met2 <-function(data,condition, gene, show_gen=FALSE){
   dataA <- data[which(condition == unique(condition)[1]), ]
   dataB <- data[which(condition == unique(condition)[2]), ]
   CpG_A <- CpG_mean(dataA, gene)
@@ -40,7 +40,7 @@ genereg_vs_met2 <-function(data,condition, gene){
           axis.text.x = element_text(angle = 90, hjust = 0))+
     scale_x_continuous(breaks=data2$MapInfo, labels=data2$Name)+
     ylim(0,1)
-  if((min(data2$MapInfo) < gene_loc[1]) && (max(data2$MapInfo) > gene_loc[2]) ){
+  if(show_gen==TRUE){
     plot1 <- plot1 + geom_segment(aes(x=gene_loc[1], xend=gene_loc[2], y=0, yend=0), colour="blue", size=2)
   }
   return(plot1)
