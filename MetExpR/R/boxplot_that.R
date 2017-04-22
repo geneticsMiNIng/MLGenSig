@@ -35,7 +35,8 @@ boxplot_that <- function(data, column, condition=""){
           axis.title.y =element_blank(),
           legend.position="none")+
     ggtitle(paste(column))+
-    xlab(condition)
+    xlab(condition)+
+    scale_color_manual(values=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628")) 
 
   return(plot)
 }

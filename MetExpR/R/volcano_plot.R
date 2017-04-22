@@ -35,7 +35,6 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log.fold,pval,id, n
   }
     plot <- ggplot(data, aes(log.fold, pval)) +
       geom_point() +
-      scale_color_manual(values = c("red", "grey")) +
       theme_bw(base_size = 12)
   
   if(is.na(title)){

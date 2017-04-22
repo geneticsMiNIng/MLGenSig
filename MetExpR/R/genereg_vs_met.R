@@ -44,7 +44,8 @@ genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE){
     theme(legend.position = "top",
           axis.title.x = element_blank(),
           axis.text.x = element_text(angle = 0, hjust = 0.5))+
-    scale_y_continuous(minor_breaks =c(0.00,1))
+    scale_y_continuous(minor_breaks =c(0.00,1))+
+    scale_color_manual(values=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628"))
   if(observ==TRUE){
     genom <- illumina_humanmethylation_27_data[,c(1,4,11)]
     MapInfo <- genom[,c(1:2)]
