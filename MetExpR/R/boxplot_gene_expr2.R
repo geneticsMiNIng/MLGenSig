@@ -22,6 +22,7 @@
 boxplot_that <- function(data, column, condition=""){
   x <- data[,column]
   x<-as.data.frame(x)
+
   x$condition <- condition
   colnames(x)[1] <- "values"
   x$column <- paste0(column)
@@ -32,5 +33,6 @@ boxplot_that <- function(data, column, condition=""){
     theme(axis.title.x=element_blank())+
     ggtitle(paste("Boxplot for", column))+
     xlab(condition)
+
   return(plot1)
 }
