@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_diff.R
 \name{test_diff}
 \alias{test_diff}
-\title{test_diff: statistical computations for data from methylation or expression}
+\title{test_diff: statistical computations for data from methylation or expression.}
 \usage{
 test_diff(data, condition, test = "ttest")
 }
@@ -11,7 +11,7 @@ test_diff(data, condition, test = "ttest")
 
 \item{condition}{vector of levels coresponding to order of samples in data.}
 
-\item{test}{values: ttest, nbinom.}
+\item{test}{variable defining test. Values: ttest, nbinom.}
 }
 \value{
 A data frame with the following columns:
@@ -22,7 +22,9 @@ A data frame with the following columns:
  \item{padj}{The adjusted p-values.}
 }
 \description{
-Function \code{test_diff} computes statistics and p-values for choosen test. The function can use two test: t-test for methylation data and negative binomial test for data from gene expression. By default function \code{test_diff} calls the \code{mety_ttest} for methylation.
+Function \code{test_diff} computes statistics and p-values for choosen test.
+The function provides use two tests: t-test and negative binomial test for data from gene expression.
+By default function \code{test_diff} calls the \code{mety_ttest}.
 }
 \seealso{
 expr_binom, mety_ttest
