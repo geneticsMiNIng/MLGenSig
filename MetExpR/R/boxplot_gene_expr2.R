@@ -1,15 +1,13 @@
-#'@title boxplot_gene_expr
+#'@title boxplot_that
 #'
-#'@description Function \code{boxplot_gene_expr} generate a boxplot of expression for choosen gene.
+#'@description Function \code{boxplot_that} generates a boxplot of values from choosen data frame column.
 #'
-#'@param data data frame containing genes expression.
-#'@param gene name of gene which expression we want to visualise.
-#'@param condition vextor of subtype of cancer
+#'@param data data frame containing interesing values.
+#'@param column string containing name of column with values for boxplot.
+#'@param condition vector of length equal to numer of rows of data,
+#'\code{condition} should contains names of groups corresponding to rows.
 #'
-#'@return boxplot of expression.
-#'
-#'@seealso genereg_vs_met
-#'
+#'@return Object of class ggplot containing boxplot for values from choosen column.
 #'
 #'@importFrom ggplot2 ggplot
 #'@importFrom ggplot2 geom_boxplot
@@ -21,16 +19,20 @@
 #'
 #'@export
 
-boxplot_gene_expr2 <- function(data, condition, gene){
-  x <- data[,gene]
+boxplot_that <- function(data, column, condition=""){
+  x <- data[,column]
   x<-as.data.frame(x)
-  x$condition <-condition
-  colnames(x)[1] <- "expression"
-  x$gene <- paste0(gene)
-  colnames(x)[2] <- paste0(gene)
-  plot1 <- ggplot(x,aes(condition,expression, col=condition))+
+
+  x$condition <- condition
+  colnames(x)[1] <- "values"
+  x$column <- paste0(column)
+  colnames(x)[2] <- paste0(column)
+  plot1 <- ggplot(x,aes(condition,values))+
     geom_boxplot()+
     theme_bw()+
-    theme(legend.position="none")
+    theme(axis.title.x=element_blank())+
+    ggtitle(paste("Boxplot for", column))+
+    xlab(condition)
+
   return(plot1)
 }
