@@ -13,9 +13,9 @@ genereg_vs_met(data, condition, gene, show_gen = FALSE, observ = FALSE)
 
 \item{gene}{vector of levels coresponding to order of samples in data.}
 
-\item{observ}{s}
+\item{show_gen}{s}
 
-\item{show_gene}{s}
+\item{observ}{s}
 }
 \value{
 A plot of class ggplot.

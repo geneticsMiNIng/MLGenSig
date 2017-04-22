@@ -210,18 +210,14 @@ s <- tableGrob(t(sum_gen(BRCA_mRNAseq_chr17[,-1],condition.e , "BRCA1")))
 
 title <- textGrob("Summary", vjust = 5, gp=gpar(fontsize=20))
 
-grid.arrange(g,b1,  
+grid.arrange(g,b1,v.e, v.m,  
              layout_matrix =rbind(c(1 ,1 ,1 ,NA),
                                   c(1 ,1 ,1 ,2 ),
                                   c(1 ,1 ,1 ,2 ),
-                                  c(1 ,1 ,1 ,2 ),
-                                  c(1 ,1 ,1 ,2 ),
-                                  c(1 ,1 ,1 ,NA)))
-grid.arrange(v.e, v.m,
-             layout_matrix =rbind(c(1, 1, 2, 2),
-                                  c(1, 1, 2, 2),
-                                  c(1, 1, 2, 2),
-                                  c(1, 1, 2, 2)))
+                                  c(3 ,3 ,4 ,4 ),
+                                  c(3 ,3 ,4 ,4 ),
+                                  c(3 ,3 ,4 ,4 )))
+
 
 
 

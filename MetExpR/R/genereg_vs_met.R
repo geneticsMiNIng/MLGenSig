@@ -5,7 +5,7 @@
 #' @param data data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.
 #' @param gene vector of levels coresponding to order of samples in data.
 #' @param condition vextor of subtype of cancer
-#' @param show_gene s
+#' @param show_gen s
 #' @param observ s
 #'
 #' @return A plot of class ggplot.
@@ -37,7 +37,6 @@ genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE){
 
   plot1 <- ggplot(data2, aes(MapInfo, mean, group=condition, colour=condition))+
     geom_line()+
-    geom_point(size=2)+
   theme_bw()+
     ggtitle(paste0("Methylation of gene ",gene))+
     xlab(paste0("Gene ",gene))+
@@ -55,8 +54,12 @@ genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE){
     melted_val <- genom_data_2 %>% melt(id.vars="condition")
     colnames(melted_val) <- c("condition","Name","value")
     melted_val <- merge(melted_val,MapInfo, by="Name")
-    plot1<- plot1+geom_point(data=melted_val, aes(MapInfo,value),size=0.7)
+    plot1<- plot1+geom_point(data=melted_val, aes(MapInfo,value),size=0.5)
   }
+
+  #Means over observations
+  plot1 <- plot1 + geom_point(size=2.5)
+
   if(show_gen==TRUE){
     plot1 <- plot1 + geom_segment(aes(x=gene_loc[1], xend=gene_loc[2], y=0, yend=0), colour="blue", size=2)
   }
