@@ -28,11 +28,13 @@ boxplot_that <- function(data, column, condition=""){
   x$column <- paste0(column)
   colnames(x)[2] <- paste0(column)
   
-  plot <- ggplot(x,aes(condition,values))+
+  plot <- ggplot(x,aes(condition,values,col=condition))+
     geom_boxplot()+
     theme_bw()+
-    theme(axis.title.x=element_blank())+
-    ggtitle(paste("Boxplot for", column))+
+    theme(axis.title.x=element_blank(),
+          axis.title.y =element_blank(),
+          legend.position="none")+
+    ggtitle(paste(column))+
     xlab(condition)
 
   return(plot)

@@ -184,9 +184,9 @@ BRCA1_gene
 Two subtype groups of cancer in one plot.
 ```{r}
 condition <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
-genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1")
+genereg_vs_met(BRCA_methylation_chr17, condition, "BRCA1")
 
-genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1", show_gen=TRUE)
+genereg_vs_met(BRCA_methylation_chr17, condition, "BRCA1", show_gen=TRUE)
 ```
 
 
@@ -195,16 +195,16 @@ genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1", show_gen=TRUE)
 library(gridExtra)
 library(grid)
 library(ggplot2)
-g <- genereg_vs_met2(BRCA_methylation_chr17, condition, "BRCA1")
 condition.e <- ifelse(BRCA_mRNAseq_chr17[,1]=="LumA","LumA","other")
 condition.m <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
-b1 <- boxplot_gene_expr2(BRCA_mRNAseq_chr17,condition.e,"BRCA1")
-v.e <- volcano_plot(test.expr, ngen = "BRCA1", title="expression", fold_line = 2, line=0.05)
+g <- genereg_vs_met(BRCA_methylation_chr17, condition.m, "BRCA1", observ = TRUE)
+b1 <- boxplot_that(BRCA_mRNAseq_chr17,"BRCA1",condition.e)
+v.e <- volcano_plot(test.expr, ngen = "BRCA1",ylog=FALSE, title="expression", fold_line = 2, line=0.05)
 
 
 BRCA_methylation_chr17_gen <- map_to_gene(BRCA_methylation_chr17[,-1])
 test.mety <- test_diff(BRCA_methylation_chr17_gen, condition.m, test="ttest")
-v.m <- volcano_plot(test.mety,ngen = "BRCA1",title="methylation")
+v.m <- volcano_plot(test.mety,ngen = "BRCA1",ylog=FALSE,title="methylation",line=0.05)
 
 s <- tableGrob(t(sum_gen(BRCA_mRNAseq_chr17[,-1],condition.e , "BRCA1")))
 

@@ -12,6 +12,7 @@
 #'@param ngen s
 #'@param fold_line s
 #'@param title s
+#'@param ylog s
 #'
 #'@return plot
 #'
@@ -27,11 +28,16 @@
 #'
 #'@export
 
-volcano_plot <- function(data, line=NA, names= NA, log.fold,pval,id, ngen=NA, title=NA, fold_line=NA){
-  plot <- ggplot(data, aes(log.fold, -log10(pval))) +
-    geom_point() +
-    scale_color_manual(values = c("red", "grey")) +
-    theme_bw(base_size = 12)
+volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log.fold,pval,id, ngen=NA, title=NA, fold_line=NA){
+  
+  if(ylog==TRUE){
+    data$pval <- -log10(data$pval)
+  }
+    plot <- ggplot(data, aes(log.fold, pval)) +
+      geom_point() +
+      scale_color_manual(values = c("red", "grey")) +
+      theme_bw(base_size = 12)
+  
   if(is.na(title)){
     plot <- plot + ggtitle(paste0("Volcano plot of ",deparse(substitute(data))))
   }else{
@@ -40,7 +46,10 @@ volcano_plot <- function(data, line=NA, names= NA, log.fold,pval,id, ngen=NA, ti
   if(!is.na(fold_line)){
     plot <- plot+ geom_vline(xintercept=c(-fold_line,fold_line), col="red")
   }
-  if(!is.na(line)) plot <- plot + geom_hline(yintercept = -log10(line), col="red")
+  if(!is.na(line)){
+    if(ylog==TRUE){plot <- plot + geom_hline(yintercept = -log10(line), col="red")+ylab("-log10(pval)")
+    }else{
+    plot <- plot + geom_hline(yintercept = line, col="red")}}
   if(!is.na(names) & names < 1) plot <- plot +     geom_text_repel(
                                           data = subset(data, pval < names),
                                           aes(label = id),
@@ -64,7 +73,8 @@ volcano_plot <- function(data, line=NA, names= NA, log.fold,pval,id, ngen=NA, ti
       box.padding = unit(0.35, "lines"),
       point.padding = unit(0.3, "lines")
     )+
-      geom_point(data = subset(data, id==ngen), aes(log.fold, -log10(pval)), col="red")
+      geom_point(data = subset(data, id==ngen), aes(log.fold, pval), col="red")
   }
+  
   return(plot)
 }

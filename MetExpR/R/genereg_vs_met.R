@@ -5,6 +5,8 @@
 #' @param data data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.
 #' @param gene vector of levels coresponding to order of samples in data.
 #' @param condition vextor of subtype of cancer
+#' @param show_gene s
+#' @param observ s
 #'
 #' @return A plot of class ggplot.
 #'
@@ -17,11 +19,14 @@
 #'@importFrom ggplot2 scale_y_continuous
 #'@importFrom ggplot2 geom_segment
 #'@importFrom ggplot2 ylim
+#'@importFrom reshape melt
+#'@importFrom dplyr %>%
 #' @export
 
-genereg_vs_met2 <-function(data,condition, gene, show_gen=FALSE){
+genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE){
   dataA <- data[which(condition == unique(condition)[1]), ]
   dataB <- data[which(condition == unique(condition)[2]), ]
+  data_gen <-map_to_gene(data)
   CpG_A <- CpG_mean(dataA, gene)
   CpG_A$condition <- unique(condition)[1]
   CpG_B <- CpG_mean(dataB, gene)
@@ -40,6 +45,17 @@ genereg_vs_met2 <-function(data,condition, gene, show_gen=FALSE){
           axis.title.x = element_blank(),
           axis.text.x = element_text(angle = 0, hjust = 0.5))+
     scale_y_continuous(minor_breaks =c(0.00,1))
+  if(observ==TRUE){
+    genom <- illumina_humanmethylation_27_data[,c(1,4,11)]
+    MapInfo <- genom[,c(1:2)]
+    genom_data <- genom[genom$Symbol==gene,]
+    genom_data_2<- data[,which(colnames(data)%in% genom_data$Name)]
+    genom_data_2 <- cbind(genom_data_2,condition)
+    melted_val <- genom_data_2 %>% melt(id.vars="condition")
+    colnames(melted_val) <- c("condition","Name","value")
+    melted_val <- merge(melted_val,MapInfo, by="Name")
+    plot1<- plot1+geom_point(data=melted_val, aes(MapInfo,value),size=0.7)
+  }
   if(show_gen==TRUE){
     plot1 <- plot1 + geom_segment(aes(x=gene_loc[1], xend=gene_loc[2], y=0, yend=0), colour="blue", size=2)
   }
