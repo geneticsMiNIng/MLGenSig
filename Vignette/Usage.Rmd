@@ -198,7 +198,9 @@ library(ggplot2)
 condition.e <- ifelse(BRCA_mRNAseq_chr17[,1]=="LumA","LumA","other")
 condition.m <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
 g <- genereg_vs_met(BRCA_methylation_chr17, condition.m, "BRCA1", observ = TRUE)
-b1 <- boxplot_that(BRCA_mRNAseq_chr17,"BRCA1",condition.e)
+#normalization * 10000
+BRCA_mRNAseq_chr17_norm <- 10000 * BRCA_mRNAseq_chr17$BRCA1/(max(BRCA_mRNAseq_chr17$BRCA1)-min(BRCA_mRNAseq_chr17$BRCA1)) 
+b1 <- boxplot_that(BRCA_mRNAseq_chr17_norm,"BRCA1",condition.e)
 v.e <- volcano_plot(test.expr, ngen = "BRCA1",ylog=FALSE, title="expression", fold_line = 2, line=0.05)
 
 
