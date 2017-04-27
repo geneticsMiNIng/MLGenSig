@@ -1,4 +1,4 @@
-#' @title genereg_vs_met
+#' @title genereg_vs_met (tylko w układzie współrzędnych HG18 a nie HG19)
 #'
 #' @description Function \code{genereg_vs_met} ...
 #'
@@ -19,6 +19,7 @@
 #'@importFrom ggplot2 scale_y_continuous
 #'@importFrom ggplot2 geom_segment
 #'@importFrom ggplot2 ylim
+#'@importFrom grid arrow
 #'@importFrom reshape melt
 #'@importFrom dplyr %>%
 #' @export
@@ -33,7 +34,6 @@ genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE){
   CpG_B$condition <- unique(condition)[2]
   data2 <- rbind(CpG_A, CpG_B)
   data2$Name_loc <- paste(data2$MapInfo, "\n",data2$Name)
-  gene_loc <- gen_loc(gene)
 
   plot1 <- ggplot(data2, aes(MapInfo, mean, group=condition, colour=condition))+
     geom_line()+
@@ -59,9 +59,19 @@ genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE){
 
   #Means over observations
   plot1 <- plot1 + geom_point(size=2.5)
+  
+  gene_loc <- gene_loc(gene)
 
   if(show_gen==TRUE){
-    plot1 <- plot1 + geom_segment(aes(x=gene_loc[1], xend=gene_loc[2], y=0, yend=0), colour="blue", size=2)
+    if(gene_loc[1] < min(data2$MapInfo)){
+      plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$MapInfo))-1000, xend=min(gene_loc[2],max(data2$MapInfo)), y=0, yend=0), colour="blue", size=1, arrow=arrow(length = unit(0.3,"cm"),ends="first"))
+    }
+    if(gene_loc[2]> max(data2$MapInfo)){
+      plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$MapInfo)), xend=min(gene_loc[2],max(data2$MapInfo))+1000, y=0, yend=0), colour="blue", size=1, arrow=arrow(length = unit(0.3,"cm"),ends="last"))
+    }
+    if((gene_loc[1] > min(data2$MapInfo))&&(gene_loc[2]> max(data2$MapInfo))){
+      plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$MapInfo)), xend=min(gene_loc[2],max(data2$MapInfo)), y=0, yend=0), colour="blue", size=1)
+    }
   }
   return(plot1)
 
