@@ -7,7 +7,7 @@
 gene_loc(gene)
 }
 \arguments{
-\item{gen}{s}
+\item{gene}{s}
 }
 \value{
 loacation of gene.

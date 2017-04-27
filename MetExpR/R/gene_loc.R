@@ -2,7 +2,7 @@
 #'
 #' @description Function \code{gene_loc} ...
 #'
-#' @param gen s
+#' @param gene s
 #'
 #' @return loacation of gene.
 #' @importFrom AnnotationDbi select
@@ -24,7 +24,7 @@ gene_loc <-function(gene){
   names(b) <- c('ENTREZID', 'TXCHROM', 'TXSTART', 'TXEND')
   c <- merge(a, b, 'ENTREZID')
   c
-  
+
   data_gene_position <- c
   gene_loc <- c(min(data_gene_position$TXSTART),max(data_gene_position$TXEND))
   return(gene_loc)
