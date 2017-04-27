@@ -20,13 +20,9 @@
 #'@export
 
 boxplot_that <- function(data, column, condition=""){
-  if(is.vector(data)) {
-    x <- as.data.frame(data)
-    colnames(x) <- column
-  }else{
   x <- data[,column]
   x<-as.data.frame(x)
-  }
+
   x$condition <- condition
   colnames(x)[1] <- "values"
   x$column <- paste0(column)

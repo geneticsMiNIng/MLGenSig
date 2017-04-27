@@ -2,7 +2,7 @@
 % Please edit documentation in R/genereg_vs_met.R
 \name{genereg_vs_met}
 \alias{genereg_vs_met}
-\title{genereg_vs_met}
+\title{genereg_vs_met (tylko w układzie współrzędnych HG18 a nie HG19)}
 \usage{
 genereg_vs_met(data, condition, gene, show_gen = FALSE, observ = FALSE)
 }
