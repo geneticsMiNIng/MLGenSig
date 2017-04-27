@@ -4,8 +4,8 @@
 \alias{volcano_plot}
 \title{Visualise the p-values of expression and methylation for genes.}
 \usage{
-volcano_plot(data, line = NA, names = NA, ylog = TRUE, log.fold, pval, id,
-  ngen = NA, title = NA, fold_line = NA)
+volcano_plot(data, line = NA, names = NA, ylog = TRUE, log2.fold, pval,
+  id, ngen = NA, title = NA, fold_line = NA)
 }
 \arguments{
 \item{data}{data.frame, a result of `expr_nbinom` function.}
@@ -16,7 +16,7 @@ volcano_plot(data, line = NA, names = NA, ylog = TRUE, log.fold, pval, id,
 
 \item{ylog}{s}
 
-\item{log.fold}{logarithm of fold.}
+\item{log2.fold}{logarithm of fold.}
 
 \item{pval}{p-value.}
 
