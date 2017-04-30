@@ -24,18 +24,30 @@
 #'@importFrom ggplot2 geom_hline
 #'@importFrom ggrepel geom_text_repel
 #'@importFrom ggplot2 geom_vline
+#'@importFrom ggplot2 scale_x_continuous
+#'@importFrom ggplot2 scale_y_continuous
 #'@importFrom grid unit
-#'
+#'@importFrom scales trans_breaks
+#'@importFrom scales trans_format
+#'@importFrom ggthemes extended_range_breaks
+#'@importFrom scales math_format
 #'@export
 
 volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, ngen=NA, title=NA, fold_line=NA){
 
   if(ylog==TRUE){
-    data$pval <- -log10(data$pval)
+    #data$pval <- log10(data$pval)
+    data$pval <- data$pval
   }
     plot <- ggplot(data, aes(log2.fold, pval)) +
-      geom_point() +
-      theme_bw(base_size = 12)
+      geom_point(size = 0.5) +
+      theme_bw(base_size = 12)+
+      theme(panel.border = element_blank())+
+      scale_y_continuous(trans= reverselog_trans(10),
+                         breaks = trans_breaks("log10", function(x) 10^x),
+                         labels = trans_format("identity", math_format(10^.x)))+
+      scale_x_continuous(breaks = extended_range_breaks()(data$log2.fold),
+                         labels = function(x) sprintf("%.1f", x))
 
   if(is.na(title)){
     plot <- plot + ggtitle(paste0("Volcano plot of ",deparse(substitute(data))))
@@ -46,9 +58,9 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, 
     plot <- plot+ geom_vline(xintercept=c(-fold_line,fold_line), col="red")
   }
   if(!is.na(line)){
-    if(ylog==TRUE){plot <- plot + geom_hline(yintercept = -log10(line), col="red")+ylab("-log10(pval)")
+    if(ylog==TRUE){plot <- plot + geom_hline(yintercept = line, col="red")+ylab("-log10(pval)")
     }else{
-    plot <- plot + geom_hline(yintercept = line, col="red")}}
+    plot <- plot + geom_hline(yintercept = 10^(line), col="red")}}
   if(!is.na(names) & names < 1) plot <- plot +     geom_text_repel(
                                           data = subset(data, pval < names),
                                           aes(label = id),
@@ -64,15 +76,7 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, 
     point.padding = unit(0.3, "lines")
   )
   if(!is.na(ngen)){
-    plot <- plot +  geom_text_repel(
-      data = subset(data, id==ngen),
-      aes(label = id),
-      size = 3,
-      col = "red",
-      box.padding = unit(0.35, "lines"),
-      point.padding = unit(0.3, "lines")
-    )+
-      geom_point(data = subset(data, id==ngen), aes(log2.fold, pval), col="red")
+    plot <- plot +  geom_point(data = subset(data, id==ngen), aes(log2.fold, pval), col="red", size=0.5)
   }
 
   return(plot)
