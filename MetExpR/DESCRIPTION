@@ -21,7 +21,8 @@ Imports: dplyr,
     reshape,
     TxDb.Hsapiens.UCSC.hg18.knownGene,
     org.Hs.eg.db,
-    AnnotationDbi
+    AnnotationDbi,
+    gridExtra
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,

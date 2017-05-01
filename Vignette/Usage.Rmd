@@ -226,3 +226,11 @@ grid.arrange(g,b1,v.e, v.m,
 
 ```
 
+
+
+```{r, message=FALSE, warning=FALSE}
+
+visual(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17, "BRCA1", test.expr, test.mety)
+
+
+```
