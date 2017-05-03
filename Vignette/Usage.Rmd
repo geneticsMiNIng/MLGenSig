@@ -212,7 +212,7 @@ s <- tableGrob(t(sum_gen(BRCA_mRNAseq_chr17[,-1],condition.e , "BRCA1")))
 
 title <- textGrob("Summary", vjust = 5, gp=gpar(fontsize=20))
 
-grid.arrange(g,b1,v.e, v.m,  
+grid.arrange(g,b1,v.m, v.e,  
              layout_matrix =rbind(c(1 ,1 ,1 ,NA),
                                   c(1 ,1 ,1 ,2 ),
                                   c(1 ,1 ,1 ,2 ),
@@ -226,3 +226,11 @@ grid.arrange(g,b1,v.e, v.m,
 
 ```
 
+
+
+```{r, message=FALSE, warning=FALSE}
+
+visual(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17, "BRCA1", test.expr, test.mety)
+
+
+```
