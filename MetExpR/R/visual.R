@@ -32,7 +32,7 @@ visual <- function(condition.e, condition.m, data.m, data.e, gene, test.e, test.
 
   title <- textGrob("Summary", vjust = 5, gp=gpar(fontsize=20))
 
-  grid.arrange(g,b1,v.e, v.m,
+  grid.arrange(g,b1,v.m, v.e,
                layout_matrix =rbind(c(1 ,1 ,1 ,NA),
                                     c(1 ,1 ,1 ,2 ),
                                     c(1 ,1 ,1 ,2 ),
