@@ -39,7 +39,7 @@ genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE){
   plot1 <- ggplot(data2, aes(MapInfo, mean, group=condition, colour=condition))+
 #    geom_line()+
     theme_bw()+
-    ggtitle(paste0("Methylation of gene ",gene))+
+#    ggtitle(paste0("Methylation of gene ",gene))+
     xlab(paste0("Gene ",gene))+
     theme(legend.position = "top",
           axis.title.x = element_blank(),

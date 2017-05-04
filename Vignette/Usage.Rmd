@@ -190,16 +190,17 @@ genereg_vs_met(BRCA_methylation_chr17, condition, "BRCA1", show_gen=TRUE)
 
 
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 library(gridExtra)
 library(grid)
 library(ggplot2)
+library(edgeR)
 condition.e <- ifelse(BRCA_mRNAseq_chr17[,1]=="LumA","LumA","other")
 condition.m <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
 g <- genereg_vs_met(BRCA_methylation_chr17, condition.m, "BRCA1", observ = TRUE, show_gen = TRUE)
 #normalization * 10000
-BRCA_mRNAseq_chr17_norm <- 10000 * BRCA_mRNAseq_chr17$BRCA1/(max(BRCA_mRNAseq_chr17$BRCA1)-min(BRCA_mRNAseq_chr17$BRCA1)) 
-b1 <- boxplot_that(BRCA_mRNAseq_chr17_norm,"BRCA1",condition.e)
+BRCA_mRNAseq_chr17_cpm <- cpm(BRCA_mRNAseq_chr17[,-1]) 
+b1 <- boxplot_that(BRCA_mRNAseq_chr17_cpm,"BRCA1",condition.e)
 v.e <- volcano_plot(test.expr, ngen = "BRCA1",ylog=TRUE, title="expression", fold_line = 2, line=0.05)
 
 
@@ -229,7 +230,7 @@ grid.arrange(g,b1,v.m, v.e,
 
 ```{r, message=FALSE, warning=FALSE}
 
-visual(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17, "BRCA1", test.expr, test.mety)
+visual(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1], "BRCA1", test.expr, test.mety)
 
 
 ```
