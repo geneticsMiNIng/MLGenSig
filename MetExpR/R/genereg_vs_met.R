@@ -20,12 +20,12 @@
 #'@importFrom ggplot2 geom_segment
 #'@importFrom ggplot2 ylim
 #'@importFrom grid arrow
-#'@importFrom reshape melt
+#'@importFrom reshape2 melt
 #'@importFrom dplyr %>%
 #'@importFrom scales percent
 #' @export
 
-genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE){
+genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE, islands = TRUE){
   dataA <- data[which(condition == unique(condition)[1]), ]
   dataB <- data[which(condition == unique(condition)[2]), ]
   data_gen <-map_to_gene(data)
@@ -75,6 +75,29 @@ genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE){
     if((gene_loc[1] > min(data2$MapInfo))&&(gene_loc[2]> max(data2$MapInfo))){
       plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$MapInfo)), xend=min(gene_loc[2],max(data2$MapInfo)), y=-0.025, yend=-0.025), colour="blue", size=1)
     }
+  }
+
+  if(islands==TRUE){
+    CpG_A_isl <- aggregate(CpG_A[,6], list(CpG_A$CPG_ISLAND_LOCATIONS), mean)
+    colnames(CpG_A_isl) <- c("CPG_ISLAND_LOCATIONS","mean")
+    CpG_A_isl$START <- sub(".*:", "", CpG_A_isl$CPG_ISLAND_LOCATIONS)
+    CpG_A_isl$START <- sub("-.*", "", CpG_A_isl$START)
+    CpG_A_isl$END <- sub(".*-", "", CpG_A_isl$CPG_ISLAND_LOCATIONS)
+    CpG_A_isl_melt <- melt(CpG_A_isl, id.vars=c("CPG_ISLAND_LOCATIONS", "mean"))
+    CpG_A_isl_melt$value <- as.numeric(as.character(CpG_A_isl_melt$value))
+    CpG_A_isl_melt$condition <- unique(condition)[1]
+    CpG_B_isl <- aggregate(CpG_B[,6], list(CpG_B$CPG_ISLAND_LOCATIONS), mean)
+    colnames(CpG_B_isl) <- c("CPG_ISLAND_LOCATIONS","mean")
+    CpG_B_isl$START <- sub(".*:", "", CpG_B_isl$CPG_ISLAND_LOCATIONS)
+    CpG_B_isl$START <- sub("-.*", "", CpG_B_isl$START)
+    CpG_B_isl$END <- sub(".*-", "", CpG_B_isl$CPG_ISLAND_LOCATIONS)
+    CpG_B_isl_melt <- melt(CpG_B_isl, id.vars=c("CPG_ISLAND_LOCATIONS", "mean"))
+    CpG_B_isl_melt$value <- as.numeric(as.character(CpG_B_isl_melt$value))
+    CpG_B_isl_melt$condition <- unique(condition)[2]
+    data3 <- rbind(CpG_A_isl_melt, CpG_B_isl_melt)
+    data3$island_cond <- paste(data3$CPG_ISLAND_LOCATIONS, "\n",data3$condition)
+
+    plot1 <- plot1 + geom_line(data=data3, aes(x=value, y=mean, group=island_cond, colour=condition))
   }
   return(plot1)
 
