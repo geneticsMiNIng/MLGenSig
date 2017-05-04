@@ -101,14 +101,13 @@ condition<-ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
 head(condition,8)
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 load("testexpr.rda")
 ```
 
-For using negative binomial test, in function `test_diff` we set value "nbinom" for parameter `test`.
-Evaluation for nbinorm may take a few minutes.
-```{r,eval=FALSE}
-test.expr <- test_diff(BRCA_mRNAseq_chr17[,-1], condition, test="nbinom")
+For using negative binomial test, in function `test_diff` we set value "nbinom2" for parameter `test`. (negative binomial test from DESeq2 package)
+```{r}
+test.expr <- test_diff(BRCA_mRNAseq_chr17[,-1], condition, test="nbinom2")
 ```
 
 As a result we obtain the following data frame:

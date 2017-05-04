@@ -27,5 +27,10 @@ test_diff <- function(data, condition, test="ttest"){
     res <- res[,c(1,2,3,4,5)]
     colnames(res) <- c("id","mean","log2.fold","pval","padj")
   }
+  if(test=="nbinom2"){
+    res <- expr_nbinom2(data, condition)
+    res <- res[,c(7,1,2,5,6)]
+    colnames(res) <- c("id","mean","log2.fold","pval","padj")
+  }
   return(res)
 }
