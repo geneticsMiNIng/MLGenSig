@@ -10,7 +10,7 @@
 #'@export
 
 CpG_mean <-function(data, gene){
-  CpG <- illumina_humanmethylation_27_data[which(illumina_humanmethylation_27_data$Symbol==gene), c(1,4,11)]
+  CpG <- illumina_humanmethylation_27_data[which(illumina_humanmethylation_27_data$Symbol==gene), c(1,4,11,18,19)]
   methy <- data[ ,which(colnames(data) %in% CpG$Name)]
   methy.mean <- sapply(methy, mean, na.rm=TRUE)
   names(methy.mean) <- colnames(methy)

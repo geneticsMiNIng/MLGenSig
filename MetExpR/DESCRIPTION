@@ -22,7 +22,9 @@ Imports: dplyr,
     TxDb.Hsapiens.UCSC.hg18.knownGene,
     org.Hs.eg.db,
     AnnotationDbi,
-    gridExtra
+    gridExtra,
+    ggthemes,
+    DESeq2
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,

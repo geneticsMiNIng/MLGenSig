@@ -16,12 +16,15 @@
 #'@importFrom grid textGrob
 #'@importFrom grid gpar
 #'@importFrom gridExtra grid.arrange
+#'@importFrom edgeR cpm
+#'
 #' @export
 
 visual <- function(condition.e, condition.m, data.m, data.e, gene, test.e, test.m){
   g <- genereg_vs_met(data.m, condition.m, gene, observ = TRUE, show_gen = TRUE)
 
-  b1 <- boxplot_that(data.e,gene,condition.e)
+  data.e.cpm <- cpm(data.e)
+  b1 <- boxplot_that(data.e.cpm,gene,condition.e)
   v.e <- volcano_plot(test.e, ngen = gene,ylog=TRUE, title="expression", fold_line = 2, line=0.05)
 
 
