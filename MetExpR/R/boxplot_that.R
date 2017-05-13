@@ -20,23 +20,27 @@
 #'@export
 
 boxplot_that <- function(data, column, condition=""){
-  x <- data[,column]
-  x<-as.data.frame(x)
-
+  if(is.vector(data)) {
+    x <- as.data.frame(data)
+    colnames(x) <- column
+  }else{
+    x <- data[,column]
+    x<-as.data.frame(x)
+  }
   x$condition <- condition
   colnames(x)[1] <- "values"
   x$column <- paste0(column)
   colnames(x)[2] <- paste0(column)
-  
+
   plot <- ggplot(x,aes(condition,values,col=condition))+
-    geom_boxplot()+
+    geom_boxplot(outlier.size = 0.5)+
     theme_bw()+
     theme(axis.title.x=element_blank(),
           axis.title.y =element_blank(),
-          legend.position="none")+
-    ggtitle(paste(column))+
+          legend.position="none",
+          panel.border     = element_blank())+
     xlab(condition)+
-    scale_color_manual(values=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628")) 
+    scale_color_manual(values=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628"))
 
   return(plot)
 }
