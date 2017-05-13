@@ -23,5 +23,6 @@ sum_gen <-function(data, condition, gen){
   colnames(result_df) <- c( "min", "1st Q", "med", "mean", "3rd Q",  "max")
   result_df$count <- table(condition)
   rownames(result_df) <- names(result)
-  return(result_df)
+  result_df <- round(result_df, 1)
+  return(t(result_df))
 }

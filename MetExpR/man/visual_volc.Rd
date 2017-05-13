@@ -17,9 +17,9 @@ visual_volc(condition.e, condition.m, data.m, data.e, gene, test.e, test.m)
 
 \item{gene}{gene name}
 
-\item{test.e}{test results for expression}
+\item{list.test.e}{list of tests results for expression}
 
-\item{test.m}{test results for methylation}
+\item{list.test.m}{list of tests results for methylation}
 }
 \value{
 A plot of class ggplot.
