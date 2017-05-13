@@ -4,7 +4,7 @@
 \alias{genereg_vs_met}
 \title{genereg_vs_met}
 \usage{
-genereg_vs_met(data, condition, gene, show_gen = FALSE, observ = FALSE)
+genereg_vs_met(data, condition, gene, show_gene = FALSE, observ = FALSE)
 }
 \arguments{
 \item{data}{data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.}
@@ -13,9 +13,9 @@ genereg_vs_met(data, condition, gene, show_gen = FALSE, observ = FALSE)
 
 \item{gene}{vector of levels coresponding to order of samples in data.}
 
-\item{observ}{s}
-
 \item{show_gene}{s}
+
+\item{observ}{s}
 }
 \value{
 A plot of class ggplot.

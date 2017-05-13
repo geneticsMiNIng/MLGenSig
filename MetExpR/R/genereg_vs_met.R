@@ -23,7 +23,7 @@
 #'@importFrom dplyr %>%
 #' @export
 
-genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE){
+genereg_vs_met <-function(data,condition, gene, show_gene=FALSE,observ=FALSE){
   dataA <- data[which(condition == unique(condition)[1]), ]
   dataB <- data[which(condition == unique(condition)[2]), ]
   data_gen <-map_to_gene(data)
