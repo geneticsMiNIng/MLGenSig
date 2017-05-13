@@ -22,9 +22,7 @@ A data frame with the following columns:
  \item{padj}{The adjusted p-values.}
 }
 \description{
-Function \code{test_diff} computes statistics and p-values for choosen test.
-The function provides use two tests: t-test and negative binomial test for data from gene expression.
-By default function \code{test_diff} calls the \code{mety_ttest}.
+Function \code{test_diff} computes statistics and p-values for choosen test. The function can use two test: t-test for methylation data and negative binomial test for data from gene expression. By default function \code{test_diff} calls the \code{mety_ttest} for methylation.
 }
 \seealso{
 expr_binom, mety_ttest
