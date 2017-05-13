@@ -43,7 +43,9 @@ devtools::install_github("geneticsMiNIng/MLGenSig/MetExpR")
 * [Usage](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Vignette/Usage.pdf)
 
 
-## Scripts
+## Scripts and datasets
 
 * [Full BRCA mRNAseq data](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Scripts/BRCA_mRNAseq/downloadBRCA.R)
 * [Full BRCA mRNAseq data with subtypes](https://github.com/geneticsMiNIng/MLGenSig/tree/master/Scripts/BRCA_mRNAseq_with_SUBTYPES)
+* [BRCA clinical data with parameters](https://raw.githubusercontent.com/geneticsMiNIng/MLGenSig/master/SubTypes/BRCA_clinical_parameters.csv)
+* [BRCA clinical data w/o parameters](https://raw.githubusercontent.com/geneticsMiNIng/MLGenSig/master/SubTypes/BRCA_clinical_2.csv)
