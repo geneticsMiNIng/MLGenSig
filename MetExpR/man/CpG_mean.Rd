@@ -9,11 +9,11 @@ CpG_mean(data, gene)
 \arguments{
 \item{data}{data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.}
 
-\item{gene}{vector of levels coresponding to order of samples in data.}
+\item{gene}{name of choosen gene.}
 }
 \value{
-A plot.
+Data frame containing
 }
 \description{
-Function \code{CpG_mean} ...
+Function \code{CpG_mean} computes methylation means of CpG islands for choosen gene. In this case: “BRCA1”
 }

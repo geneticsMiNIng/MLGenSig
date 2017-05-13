@@ -1,11 +1,11 @@
 #' @title CpG_mean
 #'
-#' @description Function \code{CpG_mean} ...
+#' @description Function \code{CpG_mean} computes methylation means of CpG islands for choosen gene. In this case: “BRCA1”
 #'
 #' @param data data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.
-#' @param gene vector of levels coresponding to order of samples in data.
+#' @param gene name of choosen gene.
 #'
-#' @return A plot.
+#' @return Data frame containing
 #'
 #'@export
 

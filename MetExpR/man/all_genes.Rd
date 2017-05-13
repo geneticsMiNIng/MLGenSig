@@ -3,8 +3,18 @@
 \docType{data}
 \name{all_genes}
 \alias{all_genes}
-\title{all_genes}
+\title{Locations of a particular genes on a chromosome form biomaRt base.}
 \format{data.frame}
 \description{
-all_genes
+A dataset containing the locations of almost 34 000 genes.
+The variables are as follows:
+}
+\details{
+\itemize{
+  \item ensembl_gene_id. ensembl_gene_id
+  \item hgnc_symbol. HGNC symbol
+  \item chromosome_name. Chromosome name
+  \item start_position. Start position
+  \item end_position. End position
+}
 }
