@@ -229,8 +229,10 @@ grid.arrange(g,b1,v.m, v.e,
 
 
 ```{r, message=FALSE, warning=FALSE}
+visual_gene(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1], "BRCA1", test.expr, test.mety)
 
-visual(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1], "BRCA1", test.expr, test.mety)
+
+visual_volc(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1], "BRCA1", test.expr, test.mety)
 
 
 ```
