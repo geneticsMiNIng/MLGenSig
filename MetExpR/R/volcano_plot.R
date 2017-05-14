@@ -76,7 +76,7 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, 
     point.padding = unit(0.3, "lines")
   )
   if(!is.na(ngen)){
-    plot <- plot +  geom_point(data = subset(data, id==ngen), aes(log2.fold, pval), col="red", size=0.5)
+    plot <- plot +  geom_point(data = subset(data, id==ngen), aes(log2.fold, pval), col="red", size=1)
   }
 
   return(plot)
