@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_diff.R
 \name{test_diff}
 \alias{test_diff}
-\title{test_diff: statistical computations for data from methylation or expression}
+\title{test_diff: statistical computations for data from methylation or expression.}
 \usage{
 test_diff(data, condition, test = "ttest")
 }
@@ -11,7 +11,7 @@ test_diff(data, condition, test = "ttest")
 
 \item{condition}{vector of levels coresponding to order of samples in data.}
 
-\item{test}{values: ttest, nbinom.}
+\item{test}{variable defining test. Values: ttest, nbinom.}
 }
 \value{
 A data frame with the following columns:

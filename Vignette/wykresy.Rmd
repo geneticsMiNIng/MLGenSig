@@ -1,0 +1,46 @@
+---
+title: "Wykresy - volcanoplots"
+author: "Aleksandra Dąbrowska"
+date: "17 May 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Weźmy pierwsze 500 genów o najbardziej zróżnicowanej ekspresji i metylacji.
+```{r,echo=FALSE}
+library(MetExpR)
+library(plyr)
+
+ekspresja_500 <-test_expr_brca[order(test_expr_brca$pval, decreasing= F),]
+ekspresja_500 <- ekspresja_500[c(1:500),]
+
+
+metylacja_500 <-test_met_brca[order(test_met_brca$pval, decreasing= F),]
+metylacja_500 <- metylacja_500[c(1:500),]
+
+x <- ekspresja_500[which(ekspresja_500$id %in% metylacja_500$id),]
+
+genes <- x$id
+
+
+```
+
+W obu zbiorach danych powtarza się 19 genów.
+
+
+
+```{r,fig.height=15,fig.width=30,echo=FALSE}
+library(MetExpR)
+
+
+condition.m <-ifelse(BRCA_methylation_all$SUBTYPE=="LumA","LumA","other")
+condition.e <-ifelse(BRCA_mRNAseq_all$SUBTYPE=="LumA","LumA","other")
+
+for (i in 1:length(genes)){
+  visual_volc(condition.e, condition.m,BRCA_methylation_all[,-1],BRCA_mRNAseq_all[,-1],genes[i],test.e=list(test_expr_brca),test.m=list(test_met_brca))
+}
+
+```

@@ -5,7 +5,7 @@
 #' @param data data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.
 #' @param gene vector of levels coresponding to order of samples in data.
 #' @param condition vextor of subtype of cancer
-#' @param show_gen s
+#' @param show_gene s
 #' @param observ s
 #'
 #' @return A plot of class ggplot.
@@ -25,7 +25,9 @@
 #'@importFrom scales percent
 #' @export
 
-genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE, islands = TRUE){
+
+genereg_vs_met <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, islands = TRUE){
+
   dataA <- data[which(condition == unique(condition)[1]), ]
   dataB <- data[which(condition == unique(condition)[2]), ]
   data_gen <-map_to_gene(data)
@@ -65,7 +67,7 @@ genereg_vs_met <-function(data,condition, gene, show_gen=FALSE,observ=FALSE, isl
 
   gene_loc <- gene_loc(gene)
 
-  if(show_gen==TRUE){
+  if(show_gene==TRUE){
     if(gene_loc[1] < min(data2$MapInfo)){
       plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$MapInfo))-1000, xend=min(gene_loc[2],max(data2$MapInfo)), y=-0.025, yend=-0.025), colour="blue", size=1, arrow=arrow(length = unit(0.3,"cm"),ends="first"))
     }
