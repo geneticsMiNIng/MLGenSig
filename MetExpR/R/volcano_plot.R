@@ -50,9 +50,9 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, 
                          labels = function(x) sprintf("%.1f", x))
 
   if(is.na(title)){
-    plot <- plot + ggtitle(paste0("Volcano plot of ",deparse(substitute(data))))
+    plot <- plot + ggtitle("")
   }else{
-    plot <- plot + ggtitle(paste0("Volcano plot of ",title) )
+    plot <- plot + ggtitle(paste0(title) )
   }
   if(!is.na(fold_line)){
     plot <- plot+ geom_vline(xintercept=c(-fold_line,fold_line), col="red")
@@ -76,7 +76,7 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, 
     point.padding = unit(0.3, "lines")
   )
   if(!is.na(ngen)){
-    plot <- plot +  geom_point(data = subset(data, id==ngen), aes(log2.fold, pval), col="red", size=1)
+    plot <- plot +  geom_point(data = subset(data, id==ngen), aes(log2.fold, pval), col="red", size=2)
   }
 
   return(plot)
