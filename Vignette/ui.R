@@ -13,7 +13,8 @@ shinyUI(fluidPage(
                   selected = "BRCA1")
     ),
     mainPanel(
-      plotOutput("plot"),
+      plotOutput("road", height = "700px"),
+      plotOutput("plot", height = "500px"),
       width = 20
     )
   )
