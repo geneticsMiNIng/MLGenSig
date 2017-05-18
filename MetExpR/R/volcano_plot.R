@@ -9,7 +9,7 @@
 #'@param log2.fold logarithm of fold.
 #'@param pval p-value.
 #'@param id vector of genes symbols.
-#'@param ngen s
+#'@param ngen symol or vector of gene names
 #'@param fold_line s
 #'@param title s
 #'@param ylog s
@@ -42,7 +42,9 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, 
     plot <- ggplot(data, aes(log2.fold, pval)) +
       geom_point(size = 0.5) +
       theme_bw(base_size = 12)+
-      theme(panel.border = element_blank())+
+      theme(panel.border = element_blank(),
+            axis.text.x = element_text(size=15),
+            axis.text.y = element_text(size=15))+
       scale_y_continuous(trans= reverselog_trans(10),
                          breaks = trans_breaks("log10", function(x) 10^x),
                          labels = trans_format("identity", math_format(10^.x)))+
@@ -76,7 +78,8 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, 
     point.padding = unit(0.3, "lines")
   )
   if(!is.na(ngen)){
-    plot <- plot +  geom_point(data = subset(data, id==ngen), aes(log2.fold, pval), col="red", size=2)
+    data2 <- data[which(data$id %in% ngen),]
+    plot <- plot +  geom_point(data=data2, aes(log2.fold, pval), col="red", size=2)
   }
 
   return(plot)

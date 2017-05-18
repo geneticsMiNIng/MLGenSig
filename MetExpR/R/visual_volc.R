@@ -66,8 +66,8 @@ visual_volc <- function(condition.e, condition.m, data.m, data.e, gene, test.e, 
     
   }
   
-  heights.plots <- rep(100,max(length(test.e), length(test.m)))
-  heights.g <- unit(c(20,50, heights.plots), "mm")
+  heights.plots <- rep(130,max(length(test.e), length(test.m)))
+  heights.g <- unit(c(10,30, heights.plots), "mm")
   grid.arrange(grobs = plist, ncol=2, heights=heights.g)
   
 }
