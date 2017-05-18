@@ -5,7 +5,7 @@
 \title{genereg_vs_met (tylko w układzie współrzędnych HG18 a nie HG19)}
 \usage{
 genereg_vs_met(data, condition, gene, show_gene = FALSE, observ = FALSE,
-  islands = TRUE)
+  islands = TRUE, title = FALSE)
 }
 \arguments{
 \item{data}{data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.}
@@ -17,6 +17,8 @@ genereg_vs_met(data, condition, gene, show_gene = FALSE, observ = FALSE,
 \item{show_gene}{s}
 
 \item{observ}{s}
+
+\item{title}{g}
 }
 \value{
 A plot of class ggplot.

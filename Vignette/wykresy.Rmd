@@ -32,15 +32,22 @@ W obu zbiorach danych powtarza się 19 genów.
 
 
 
-```{r,fig.height=15,fig.width=30,echo=FALSE}
+```{r,fig.height=15,fig.width=30,echo=FALSE,warning=FALSE}
 library(MetExpR)
 
-
+genes <- c("BRCA1","BRCA2")
 condition.m <-ifelse(BRCA_methylation_all$SUBTYPE=="LumA","LumA","other")
 condition.e <-ifelse(BRCA_mRNAseq_all$SUBTYPE=="LumA","LumA","other")
 
-for (i in 1:length(genes)){
-  visual_volc(condition.e, condition.m,BRCA_methylation_all[,-1],BRCA_mRNAseq_all[,-1],genes[i],test.e=list(test_expr_brca),test.m=list(test_met_brca))
-}
+volcano_plot(test_expr_brca, ngen=genes)
+volcano_plot(test_met_brca, ngen=genes)
 
+plot <- list()
+for (i in 1:length(genes)){
+  plot[[i]] <- genereg_vs_met(BRCA_methylation_all[,-1], condition.m, gene=genes[i])
+  }
+
+
+plot[[1]]
+plot[[2]]
 ```

@@ -7,6 +7,7 @@
 #' @param condition vextor of subtype of cancer
 #' @param show_gene s
 #' @param observ s
+#' @param title g
 #'
 #' @return A plot of class ggplot.
 #'
@@ -26,7 +27,7 @@
 #' @export
 
 
-genereg_vs_met <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, islands = TRUE){
+genereg_vs_met <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, islands = TRUE, title=FALSE){
 
   dataA <- data[which(condition == unique(condition)[1]), ]
   dataB <- data[which(condition == unique(condition)[2]), ]
@@ -36,30 +37,31 @@ genereg_vs_met <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, is
   CpG_B <- CpG_mean(dataB, gene)
   CpG_B$condition <- unique(condition)[2]
   data2 <- rbind(CpG_A, CpG_B)
-  data2$Name_loc <- paste(data2$MapInfo, "\n",data2$Name)
+  data2$Name_loc <- paste(data2$HG18_coord, "\n",data2$Name)
 
-  plot1 <- ggplot(data2, aes(MapInfo, mean, group=condition, colour=condition))+
+  plot1 <- ggplot(data2, aes(HG18_coord, mean, group=condition, colour=condition))+
 #    geom_line()+
     theme_bw()+
 #    ggtitle(paste0("Methylation of gene ",gene))+
     xlab(paste0("Gene ",gene))+
     theme(legend.position = "top",
           axis.title.x = element_blank(),
-          axis.text.x = element_text(angle = 0, hjust = 0.5),
+          axis.text.x = element_text(size=15,angle = 0, hjust = 0.5),
+          axis.text.y = element_text(size=15),
           panel.border     = element_blank())+
     scale_y_continuous(limits =c(-0.05,1), expand = c(0.05, -0.05), labels=percent)+
     scale_color_manual(values=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628"))+
     ylab("")
   if(observ==TRUE){
     genom <- illumina_humanmethylation_27_data[,c(1,4,11)]
-    MapInfo <- genom[,c(1:2)]
+    HG18_coord <- genom[,c(1:2)]
     genom_data <- genom[genom$Symbol==gene,]
     genom_data_2<- data[,which(colnames(data)%in% genom_data$Name)]
     genom_data_2 <- cbind(genom_data_2,condition)
     melted_val <- genom_data_2 %>% melt(id.vars="condition")
     colnames(melted_val) <- c("condition","Name","value")
-    melted_val <- merge(melted_val,MapInfo, by="Name")
-    plot1<- plot1+geom_point(data=melted_val, aes(MapInfo,value),size=0.5, alpha=0.35)
+    melted_val <- merge(melted_val,HG18_coord, by="Name")
+    plot1<- plot1+geom_point(data=melted_val, aes(HG18_coord,value),size=0.5, alpha=0.35)
   }
 
   #Means over observations
@@ -68,14 +70,14 @@ genereg_vs_met <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, is
   gene_loc <- gene_loc(gene)
 
   if(show_gene==TRUE){
-    if(gene_loc[1] < min(data2$MapInfo)){
-      plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$MapInfo))-1000, xend=min(gene_loc[2],max(data2$MapInfo)), y=-0.025, yend=-0.025), colour="blue", size=1, arrow=arrow(length = unit(0.3,"cm"),ends="first"))
+    if(gene_loc[1] < min(data2$HG18_coord)){
+      plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$HG18_coord))-1000, xend=min(gene_loc[2],max(data2$HG18_coord)), y=-0.025, yend=-0.025), colour="blue", size=1, arrow=arrow(length = unit(0.3,"cm"),ends="first"))
     }
-    if(gene_loc[2]> max(data2$MapInfo)){
-      plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$MapInfo)), xend=min(gene_loc[2],max(data2$MapInfo))+1000, y=-0.025, yend=-0.025), colour="blue", size=1, arrow=arrow(length = unit(0.3,"cm"),ends="last"))
+    if(gene_loc[2]> max(data2$HG18_coord)){
+      plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$HG18_coord)), xend=min(gene_loc[2],max(data2$HG18_coord))+1000, y=-0.025, yend=-0.025), colour="blue", size=1, arrow=arrow(length = unit(0.3,"cm"),ends="last"))
     }
-    if((gene_loc[1] > min(data2$MapInfo))&&(gene_loc[2]> max(data2$MapInfo))){
-      plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$MapInfo)), xend=min(gene_loc[2],max(data2$MapInfo)), y=-0.025, yend=-0.025), colour="blue", size=1)
+    if((gene_loc[1] > min(data2$HG18_coord))&&(gene_loc[2]> max(data2$HG18_coord))){
+      plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$HG18_coord)), xend=min(gene_loc[2],max(data2$HG18_coord)), y=-0.025, yend=-0.025), colour="blue", size=1)
     }
   }
 
@@ -101,6 +103,10 @@ genereg_vs_met <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, is
 
     plot1 <- plot1 + geom_line(data=data3, aes(x=value, y=mean, group=island_cond, colour=condition))
   }
+  if(title==TRUE){
+    plot1 <- plot1+ggtitle(paste0("Gene ",gene))
+  }
+    
   return(plot1)
 
 }
