@@ -22,7 +22,7 @@ volcano_plot(data, line = NA, names = NA, ylog = TRUE, log2.fold, pval,
 
 \item{id}{vector of genes symbols.}
 
-\item{ngen}{s}
+\item{ngen}{symol or vector of gene names}
 
 \item{title}{s}
 
