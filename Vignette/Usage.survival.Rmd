@@ -39,13 +39,15 @@ Other columns correspond to CpG islands.
 Values inside the table indicate the methylation level of CpG island for specified sample.
 ```{r}
 library(MetExpR)
-head(BRCA_methylation_all_surv)[1:5,1:4]
+head(BRCA_methylation_all_surv[1:4,1:5])
 ```
 
 #### Data preparation
 
 In this analysis we would like to find genes with different methylation level. At first we need to use function `map_to_gene`, which generates new data frame with CpG islands mapped to genes.
-
+```{r, include=FALSE}
+BRCA_methylation_all_surv <- chromosome_data(BRCA_methylation_all_surv,17)
+```
 ```{r mapping}
 BRCA_methylation_gen <- map_to_gene(BRCA_methylation_all_surv[,-c(1,2)]) 
 head(BRCA_methylation_gen[,-1])[1:5,1:4]
@@ -65,23 +67,7 @@ condition <- ifelse(BRCA_methylation_all_surv$survival_status==1, "Dead","Alive"
 #  The levels must by syntactically valid names in R, see help(make.names).  Non-valid names: 0,1
 ```
 
-```{r, include=FALSE}
-#dla szybszych obliczen - wezmiemy jakies 100 genow
-x <- colnames(BRCA_methylation_all_surv[,-c(1,2)])
-wyspy <- sample(x,200)
-xxx <- BRCA_methylation_all_surv[,which(colnames(BRCA_methylation_all)%in% wyspy)]
-BRCA_methylation_gen <- map_to_gene(xxx)
-BRCA_methylation_gen <- BRCA_methylation_gen[,-1]
-BRCA_methylation_gen <- cbind(BRCA_methylation_all_surv[,c(1,2)],BRCA_methylation_gen)
-BRCA_methylation_all_surv <- cbind(BRCA_methylation_all_surv,xxx)
 
-geny <- colnames(BRCA_methylation_gen)
-
-gen <- geny[10]
-
-
-condition <- ifelse(BRCA_methylation_all_surv$survival_status==1, "Dead","Alive")
-```
 
 #### T-test
 
@@ -120,7 +106,8 @@ As in the t-test we also need a description of the samples, which we keep in a v
 In our example we will test for differential expression between groups with LumA breast cancer subtype and other subtypes of that cancer.
 Again we will use vector `conditions`, which consist of two values corresponds to subtype of breast cancer: LumA and other.
 ```{r, include=FALSE}
-BRCA_mRNAseq_all_surv <- BRCA_mRNAseq_all_surv[,which(colnames(BRCA_mRNAseq_all_surv)%in%geny)]
+names <- as.factor(colnames(BRCA_methylation_gen))
+BRCA_mRNAseq_all_surv <- BRCA_mRNAseq_all_surv[,names]
 ```
 
 ```{r, message=FALSE}
@@ -192,9 +179,10 @@ In the end we want to present the distribution of methylation and expression for
 
 ```
 
-Function `CpG_mean` computes methylation means of CpG islands for choosen gene. In this case: "BRCA1"
+Function `CpG_mean` computes methylation means of CpG islands for choosen gene.
 
 ```{r}
+gen <- colnames(BRCA_methylation_gen)[10]
 BRCA1_gene <- CpG_mean(BRCA_methylation_all_surv, gen)
 BRCA1_gene
 ```
@@ -258,3 +246,50 @@ visual_volc(condition.e, condition.m, BRCA_methylation_all_surv[,-c(1,2)],BRCA_m
 
 
 ```
+
+#Other data set
+
+We consider a data set from lung cancer - `LUSC`
+
+##`LUSC_methylation_all_surv` data set
+
+Like in a BRCA case we have a data set containig methylation level for CpG islands.
+
+We compute the `t-test` for this dataset
+```{r, include=FALSE}
+LUSC_methylation_all_surv <- chromosome_data(LUSC_methylation_all_surv,17)
+ 
+```
+
+```{r}
+condition <- ifelse(LUSC_methylation_all_surv$survival_status==1,"Dead","Alive")
+
+LUSC_methylation_gen <- map_to_gene(LUSC_methylation_all_surv[,-c(1,2)])
+
+test.mety.lusc <- test_diff(LUSC_methylation_gen,condition,"ttest")
+
+head(test.mety.lusc)
+```
+
+##`LUSC_mRNAseq_all_surv` data set
+
+Like in a BRCA case we have a data set containig expression for genes.
+
+We compute the `nbinom` for this dataset
+
+```{r, include=FALSE}
+names <- colnames(LUSC_methylation_gen)
+names <- as.factor(names)
+LUSC_mRNAseq_all_surv <- LUSC_mRNAseq_all_surv[,names]
+```
+
+```{r}
+condition <- ifelse(LUSC_mRNAseq_all_surv$survival_status==1,"Dead","Alive")
+#tutaj krzyczy ze ma ujemne wartości
+test.nbinom.lusc <- test_diff(LUSC_mRNAseq_all_surv,condition,"nbinom2")
+
+head(test.nbinom.lusc)
+```
+
+
+
