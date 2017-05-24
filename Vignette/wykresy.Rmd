@@ -1,12 +1,17 @@
 ---
 title: "Wykresy - volcanoplots"
-author: "Aleksandra Dąbrowska"
+author: "Aleksandra Dąbrowska, Alicja Gosiewska"
 date: "17 May 2017"
-output: pdf_document
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
 Weźmy pierwsze 500 genów o najbardziej zróżnicowanej ekspresji i metylacji.
@@ -30,7 +35,7 @@ genes <- x$id
 
 W obu zbiorach danych powtarza się 19 genów.
 
-
+# Volcanoploty
 
 ```{r,echo=FALSE,warning=FALSE, message=FALSE}
 
@@ -41,23 +46,36 @@ condition.e <-ifelse(BRCA_mRNAseq_all$SUBTYPE=="LumA","LumA","other")
 
 volcano_plot(test_expr_brca, ngen=genes)
 volcano_plot(test_met_brca, ngen=genes)
+```
 
+# Dane dla genów z volcanoplotów
+
+```{r,echo=FALSE, message=FALSE, fig.width=19, fig.height=5}
+genes<- sort(genes)
 plot <- list()
 for (i in 1:length(genes)){
   #plot[[i]] <- genereg_vs_met(BRCA_methylation_all[,-1], condition.m, gene="BRCA2")
-  plot[[i]] <- visual_gene(condition.e, condition.m, BRCA_methylation_all[,-1],BRCA_mRNAseq_all[,-1], gene=genes[i], test_expr_brca, test_met_brca)
+
+   plot[[i]] <- visual_volc(condition.e, condition.m, BRCA_methylation_all[,-1],BRCA_mRNAseq_all[,-1], genes[i])
+
   
   }
 
 
-for(i in 1:length(plot)){
-p <- plot[[i]]
+```
 
-cat('\n')  
-print(p)
-cat('\n') 
+# Wizytówki dla metylacji
 
-}
+```{r,echo=FALSE,warning=FALSE, message=FALSE}
+
+plot <- list()
+for (i in 1:length(genes)){
+  #plot[[i]] <- genereg_vs_met(BRCA_methylation_all[,-1], condition.m, gene="BRCA2")
+
+   plot[[i]] <- visual_gene(condition.e, condition.m, BRCA_methylation_all[,-1],BRCA_mRNAseq_all[,-1], gene=genes[i], test_expr_brca, test_met_brca)
+
+  
+  }
 
 
 ```

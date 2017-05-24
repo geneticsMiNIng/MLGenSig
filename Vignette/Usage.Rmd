@@ -1,6 +1,6 @@
 ---
 title: "Vignette Title"
-author: "Aleksandra DĂ„â€¦browska, Alicja Gosiewska"
+author: "Aleksandra Dąbrowska, Alicja Gosiewska"
 date: '`r Sys.Date()`'
 output:
   pdf_document: default
@@ -242,8 +242,7 @@ visual_volc(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_c
 ```
 
 
- ```{r, message=FALSE, fig.width=19, fig.height=20}
-# visual_volc(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1], "BRCA1", list(nbinom=test.expr,nbinom2=test.expr), list())
-# 
-# 
+```{r, message=FALSE, fig.width=19, fig.height=20}
+visual_volc(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1], "BRCA1")
+
  ```

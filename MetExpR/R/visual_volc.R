@@ -20,7 +20,7 @@
 #'
 #' @export
 
-visual_volc <- function(condition.e, condition.m, data.m, data.e, gene, test.e, test.m){
+visual_volc <- function(condition.e, condition.m, data.m, data.e, gene, test.e=list(), test.m=list()){
   names.e <- names(test.e)
   names.m <- names(test.m)
   if(length(names.e)==0){
@@ -49,7 +49,7 @@ visual_volc <- function(condition.e, condition.m, data.m, data.e, gene, test.e, 
   blank <- textGrob("", h = .9, gp=gpar(fontsize = 25))
 
   plist <- list(title, blank, title.e, title.m, s.e, s.m)
-
+  if((length(test.e) + length(test.m)) > 0 ){
   l.e <- length(test.e)
   l.m <- length(test.m)
 
@@ -67,6 +67,7 @@ visual_volc <- function(condition.e, condition.m, data.m, data.e, gene, test.e, 
       plist[[length(plist)+1]] <- volcano_plot(test.m[[i]], ngen = gene, title=names.m[i], ylog=TRUE, line=0.05)
     }
 
+  }
   }
   heights.plots <- rep(130,max(length(test.e), length(test.m)))
   heights.g <- unit(c(20,10,30, heights.plots), "mm")
