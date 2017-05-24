@@ -240,3 +240,10 @@ visual_volc(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_c
 
 
 ```
+
+
+ ```{r, message=FALSE, fig.width=19, fig.height=20}
+# visual_volc(condition.e, condition.m, BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1], "BRCA1", list(nbinom=test.expr,nbinom2=test.expr), list())
+# 
+# 
+ ```
