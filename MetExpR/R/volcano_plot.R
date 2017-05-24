@@ -79,7 +79,15 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, 
   )
   if(!is.na(ngen)){
     data2 <- data[which(data$id %in% ngen),]
-    plot <- plot +  geom_point(data=data2, aes(log2.fold, pval), col="red", size=2)
+    plot <- plot +
+      geom_point(data=data2, aes(log2.fold, pval), col="red", size=2)+
+      geom_text_repel(
+        data = data[which(data$id %in% ngen),],
+        aes(label = id),
+        size = 3,
+        box.padding = unit(0.35, "lines"),
+        point.padding = unit(0.3, "lines")
+      )
   }
 
   return(plot)

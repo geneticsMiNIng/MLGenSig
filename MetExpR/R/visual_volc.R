@@ -20,7 +20,7 @@
 #'
 #' @export
 
-visual_volc <- function(condition.e, condition.m, data.m, data.e, gene, test.e, test.m){
+visual_volc <- function(condition.e, condition.m, data.m, data.e, gene, test.e=list(), test.m=list()){
   names.e <- names(test.e)
   names.m <- names(test.m)
   if(length(names.e)==0){
@@ -28,46 +28,49 @@ visual_volc <- function(condition.e, condition.m, data.m, data.e, gene, test.e, 
   }
   if(length(names.m)==0){
     names.m <- rep("",times=length(test.m))
-    
+
   }
   mytheme <- gridExtra::ttheme_default(
     core = list(fg_params=list(cex = 1.8),
                 bg_params = list(fill = c("white"))),
     colhead = list(fg_params=list(cex = 1.8)),
     rowhead = list(fg_params=list(cex = 1.8, fontface = "bold")))
-  
-  
+
+
   data.e.cpm <- as.data.frame(cpm(data.e))
   s.e <- tableGrob(t(sum_gen(data.e.cpm ,condition.e , gene)), theme = mytheme)
   data.m.map <- map_to_gene(data.m)
   s.m <- tableGrob(t(sum_gen(data.m.map,condition.m , gene)), theme = mytheme)
-  
+
   title.e <- textGrob("Expression (cpm)", h = .9, gp=gpar(fontsize = 25))
   title.m <- textGrob("Methylation", h = .9, gp=gpar(fontsize = 25))
-  
-  plist <- list(title.e, title.m, s.e, s.m)
-  
+
+  title <- textGrob(gene, h = .9, gp=gpar(fontsize = 25), x = unit(1.1, "npc"))
+  blank <- textGrob("", h = .9, gp=gpar(fontsize = 25))
+
+  plist <- list(title, blank, title.e, title.m, s.e, s.m)
+  if((length(test.e) + length(test.m)) > 0 ){
   l.e <- length(test.e)
   l.m <- length(test.m)
-  
+
   for(i in 1:max(l.e, l.m)){
     if(i>l.e){
       plist[[length(plist)+1]] <- grid.rect(gp=gpar(col="white"))
     }else{
       plist[[length(plist)+1]] <- volcano_plot(test.e[[i]], ngen = gene,ylog=TRUE,title=names.e[i],fold_line = 2, line=0.05)
     }
-    
+
     if(i>l.m){
       plist[[length(plist)+1]] <- grid.rect(gp=gpar(col="white"))
     }
     else{
       plist[[length(plist)+1]] <- volcano_plot(test.m[[i]], ngen = gene, title=names.m[i], ylog=TRUE, line=0.05)
     }
-    
+
   }
-  
+  }
   heights.plots <- rep(130,max(length(test.e), length(test.m)))
-  heights.g <- unit(c(10,30, heights.plots), "mm")
+  heights.g <- unit(c(20,10,30, heights.plots), "mm")
   grid.arrange(grobs = plist, ncol=2, heights=heights.g)
-  
+
 }
