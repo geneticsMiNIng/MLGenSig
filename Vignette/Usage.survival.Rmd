@@ -286,9 +286,8 @@ LUSC_mRNAseq_all_surv <- LUSC_mRNAseq_all_surv[,names]
 ```{r}
 condition <- ifelse(LUSC_mRNAseq_all_surv$survival_status==1,"Dead","Alive")
 #tutaj krzyczy ze ma ujemne wartości
-test.nbinom.lusc <- test_diff(LUSC_mRNAseq_all_surv,condition,"nbinom2")
+test.nbinom.lusc <- test_diff(LUSC_mRNAseq_all_surv[,-c(1,2)],condition,"nbinom2")
 
-head(test.nbinom.lusc)
 ```
 
 
