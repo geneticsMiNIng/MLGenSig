@@ -1,12 +1,12 @@
-#'@title Visualise the p-values of expression and methylation for genes.
+#'@title Visualise the p-values for genes.
 #'
-#'@description Function \code{p_values_plot} draws a plot with p-values from methylation and expression when we use the t-test. In this case we testing the hypothesis that the means in both groups of "cancer type" are equal.
+#'@description Function \code{means_plot} draws a plot with p-values from methylation when we use the t-test. We testing the equality of means in given two groups.
 #'
-#'@param data1 data.frame
-#'@param condition condition for groups
-#'@param names condition for groups
+#'@param data1 data frame consisting the data from methylation or expresion 
+#'@param condition condition for groups 
+#'@param names number of values we want to mark on plot; in this case we decide to mark values with the smallest differences between means in groups.
 #'
-#'@return plot
+#'@return plot of p-values
 #'
 #'@importFrom ggplot2 geom_point
 #'@importFrom ggplot2 theme_bw

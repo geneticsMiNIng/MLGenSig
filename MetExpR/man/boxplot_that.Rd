@@ -2,7 +2,7 @@
 % Please edit documentation in R/boxplot_that.R
 \name{boxplot_that}
 \alias{boxplot_that}
-\title{boxplot_that}
+\title{Boxplot for expression in groups}
 \usage{
 boxplot_that(data, column, condition = "")
 }
@@ -18,5 +18,5 @@ boxplot_that(data, column, condition = "")
 Object of class ggplot containing boxplot for values from choosen column.
 }
 \description{
-Function \code{boxplot_that} generates a boxplot of values from choosen data frame column.
+Function \code{boxplot_that} generates a boxplot of values from choosen data frame column with division in groups.
 }

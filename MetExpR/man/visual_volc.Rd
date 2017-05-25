@@ -4,7 +4,8 @@
 \alias{visual_volc}
 \title{visual}
 \usage{
-visual_volc(condition.e, condition.m, data.m, data.e, gene, test.e, test.m)
+visual_volc(condition.e, condition.m, data.m, data.e, gene, test.e = list(),
+  test.m = list())
 }
 \arguments{
 \item{condition.e}{condition for  expression}
