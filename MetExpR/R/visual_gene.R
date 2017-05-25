@@ -24,7 +24,7 @@ visual_gene <- function(condition.e, condition.m, data.m, data.e, gene, test.e, 
   title <- textGrob(gene, gp=gpar(fontsize = 25))
   g <- genereg_vs_met(data.m, condition.m, gene, observ = TRUE, show_gen = TRUE) +theme(legend.position = "none")
   data.e.cpm <- cpm(data.e)
-  b1 <- boxplot_that(data.e.cpm, gene, condition.e) +theme(legend.position = c(1,1), legend.justification=c(1,1))
+  b1 <- boxplot_that(log(data.e.cpm), gene, condition.e) +theme(legend.position = c(1,1), legend.justification=c(1,1))
 
   grid.arrange(title,g,b1,heights=unit(c(20,100),"mm"),
                layout_matrix =rbind(c(1 ,1 ,1 ,1),
