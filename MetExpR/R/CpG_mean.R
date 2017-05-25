@@ -12,6 +12,14 @@
 CpG_mean <-function(data, gene){
   CpG <- illumina_humanmethylation_27_data[which(illumina_humanmethylation_27_data$Symbol==gene), c(1,4,11,18,19)]
   methy <- data[ ,which(colnames(data) %in% CpG$Name)]
+  if(class(methy)!="data.frame"){
+      methy <- as.data.frame(methy)
+      names <- CpG$Name
+      logical <- (CpG$Name %in% colnames(data))
+      x <- names[logical]
+      x <- as.data.frame(x)
+      colnames(methy) <- x[1,1]
+    }
   methy.mean <- sapply(methy, mean, na.rm=TRUE)
   names(methy.mean) <- colnames(methy)
   CpG$mean <- methy.mean[as.character(CpG$Name)]

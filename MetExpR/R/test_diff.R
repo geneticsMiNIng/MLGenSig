@@ -37,7 +37,7 @@ test_diff <- function(data, condition, test="ttest"){
   }
 
   res <- res[,c(1,2,3,4,5)]
-  colnames(res) <- c("id","mean","log.fold","pval","padj")
+  colnames(res) <- c("id","mean","log2.fold","pval","padj")
 
   return(res)
 }
