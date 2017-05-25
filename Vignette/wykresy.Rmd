@@ -53,29 +53,35 @@ volcano_plot(test_met_brca, ngen=genes)
 ```{r,echo=FALSE, message=FALSE, fig.width=19, fig.height=5}
 genes<- sort(genes)
 plot <- list()
+plot2<-list()
 for (i in 1:length(genes)){
   #plot[[i]] <- genereg_vs_met(BRCA_methylation_all[,-1], condition.m, gene="BRCA2")
 
    plot[[i]] <- visual_volc(condition.e, condition.m, BRCA_methylation_all[,-1],BRCA_mRNAseq_all[,-1], genes[i])
-
+  plot2[[i]] <- visual_gene(condition.e, condition.m, BRCA_methylation_all[,-1],BRCA_mRNAseq_all[,-1], gene=genes[i], test_expr_brca, test_met_brca)
   
   }
 
 
 ```
 
-# Wizytówki dla metylacji
 
-```{r,echo=FALSE,warning=FALSE, message=FALSE}
+# Dużo sond
+
+```{r,echo=FALSE, message=FALSE, fig.width=19, fig.height=5}
+genes <- c("BRCA1", "CACNA1G", "ERBB2", "HOXB4", "MRPL12")
+genes <- sort(genes)
+
 
 plot <- list()
+plot2<-list()
 for (i in 1:length(genes)){
   #plot[[i]] <- genereg_vs_met(BRCA_methylation_all[,-1], condition.m, gene="BRCA2")
 
-   plot[[i]] <- visual_gene(condition.e, condition.m, BRCA_methylation_all[,-1],BRCA_mRNAseq_all[,-1], gene=genes[i], test_expr_brca, test_met_brca)
-
+   plot[[i]] <- visual_volc(condition.e, condition.m, BRCA_methylation_all[,-1],BRCA_mRNAseq_all[,-1], genes[i])
+  plot2[[i]] <- visual_gene(condition.e, condition.m, BRCA_methylation_all[,-1],BRCA_mRNAseq_all[,-1], gene=genes[i], test_expr_brca, test_met_brca)
   
   }
 
-
 ```
+
