@@ -24,10 +24,11 @@ Imports: dplyr,
     AnnotationDbi,
     gridExtra,
     ggthemes,
-    DESeq2
+    DESeq2,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.0.1
-Suggests: knitr,
-    rmarkdown,
+Suggests: 
     gridExtra,
     testthat
 VignetteBuilder: knitr
