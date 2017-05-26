@@ -7,11 +7,11 @@
 p_values_plot(dt_expr, dt_met, names = NA, exp.pval, met.pval, id)
 }
 \arguments{
-\item{dt_expr}{data.frame, a result of `expr_nbinom` function.}
+\item{dt_expr}{data.frame, a result of computing test for methylation.}
 
-\item{dt_met}{data.frame, a result of `mety_ttest` function.}
+\item{dt_met}{data.frame, a result of computing test for expression.}
 
-\item{names}{p-value below which...}
+\item{names}{p-value below which value we want to mark genes.}
 
 \item{exp.pval}{p-value for expression.}
 
@@ -20,11 +20,11 @@ p_values_plot(dt_expr, dt_met, names = NA, exp.pval, met.pval, id)
 \item{id}{vector of genes symbols.}
 }
 \value{
-plot
+plot of class ggplot.
 }
 \description{
-Function \code{p_values_plot} draws a plot with p-values from methylation and expression when we use the t-test. In this case we testing the hypothesis that the means in both groups of "cancer type" are equal.
+Function \code{p_values_plot} draws a plot with p-values from tests for methylation and expression.
 }
 \seealso{
-volcano_plot
+volcano_plot, means_plot
 }

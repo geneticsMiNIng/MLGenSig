@@ -1,6 +1,6 @@
-#' @title visual
+#' @title Visualisations for genes.
 #'
-#' @description Function ...
+#' @description Function \code{visual_gene} generates a dashboard with methylation_path for methylation and boxplots for groups.
 #'
 #' @param condition.e condition for  expression
 #' @param condition.m condition for methylation
@@ -20,11 +20,12 @@
 #'
 #' @export
 
-visual_gene <- function(condition.e, condition.m, data.m, data.e, gene, test.e, test.m){
+visual_gene <- function(condition.e, condition.m, data.e, data.m, gene, test.e, test.m){
   title <- textGrob(gene, gp=gpar(fontsize = 25))
-  g <- genereg_vs_met(data.m, condition.m, gene, observ = TRUE, show_gen = TRUE) +theme(legend.position = "none")
+  g <- methylation_path(data.m, condition.m, gene, observ = TRUE, show_gen = TRUE) +theme(legend.position = "none")
   data.e.cpm <- cpm(data.e)
-  b1 <- boxplot_that(log(data.e.cpm), gene, condition.e) +theme(legend.position = c(1,1), legend.justification=c(1,1))
+  b1 <- group_boxplot(data.e.cpm, gene, condition.e) +theme(legend.position = c(1,1), legend.justification=c(1,1))
+
 
   grid.arrange(title,g,b1,heights=unit(c(20,100),"mm"),
                layout_matrix =rbind(c(1 ,1 ,1 ,1),

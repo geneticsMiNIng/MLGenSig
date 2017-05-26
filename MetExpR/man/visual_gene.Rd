@@ -2,18 +2,18 @@
 % Please edit documentation in R/visual_gene.R
 \name{visual_gene}
 \alias{visual_gene}
-\title{visual}
+\title{Visualisations for genes.}
 \usage{
-visual_gene(condition.e, condition.m, data.m, data.e, gene, test.e, test.m)
+visual_gene(condition.e, condition.m, data.e, data.m, gene, test.e, test.m)
 }
 \arguments{
 \item{condition.e}{condition for  expression}
 
 \item{condition.m}{condition for methylation}
 
-\item{data.m}{data for methylation}
-
 \item{data.e}{data for expression}
+
+\item{data.m}{data for methylation}
 
 \item{gene}{gene name}
 
@@ -25,5 +25,5 @@ visual_gene(condition.e, condition.m, data.m, data.e, gene, test.e, test.m)
 A plot of class ggplot.
 }
 \description{
-Function ...
+Function \code{visual_gene} generates a dashboard with methylation_path for methylation and boxplots for groups.
 }

@@ -1,13 +1,15 @@
-#' @title mapping CpG islands to genes
+#' @title Mapping CpG probes to genes
 #'
-#' @description Function \code{map_to_gene} maps CpG islands to corresponding genes.
+#' @description Function \code{map_to_gene} maps CpG probes to corresponding genes.
 #'
-#' @param data data frame ... Columns corresponds to genes, rows to samples.
+#' @param data data frame  containing methylation values for CpG probes. Columns corresponds to probes, rows to samples.
 #'
-#' @return A data frame with CpG islands mapped to genes. If there were more than one island corresponding to a gene, 
-#' value is a mean of those islands.
-#'   
+#' @return A data frame with CpG probes mapped to genes. If there were more than one probe corresponding to a gene, value is a mean of those probes.
 #'
+#'@examples
+#'\dontrun{
+#'BRCA_genes <- map_to_gene(BRCA_methylation_all)
+#'}
 #' @export
  
 map_to_gene <- function(data){

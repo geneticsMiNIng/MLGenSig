@@ -2,7 +2,7 @@
 % Please edit documentation in R/expr_nbinom.R
 \name{expr_nbinom}
 \alias{expr_nbinom}
-\title{expr_nbinom: negative binomial test for gene expression}
+\title{Negative binomial test for gene expression}
 \usage{
 expr_nbinom(data, condition)
 }

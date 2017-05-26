@@ -31,6 +31,7 @@
 #'@importFrom scales trans_format
 #'@importFrom ggthemes extended_range_breaks
 #'@importFrom scales math_format
+#'@importFrom scales trans_new
 #'@export
 
 volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, ngen=NA, title=NA, fold_line=NA){

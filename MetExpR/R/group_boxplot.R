@@ -1,6 +1,6 @@
-#'@title boxplot_that
+#'@title Boxplot for expression in groups
 #'
-#'@description Function \code{boxplot_that} generates a boxplot of values from choosen data frame column.
+#'@description Function \code{group_boxplot} generates a boxplot of values from choosen data frame column with division in groups.
 #'
 #'@param data data frame containing interesing values.
 #'@param column string containing name of column with values for boxplot.
@@ -19,26 +19,26 @@
 #'
 #'@export
 
-boxplot_that <- function(data, column, condition=""){
+group_boxplot <- function(data, column, condition=""){
   if(is.vector(data)) {
-    x <- as.data.frame(data)
-    colnames(x) <- column
+    dt <- as.data.frame(data)
+    colnames(dt) <- column
   }else{
-    x <- data[,column]
-    x<-as.data.frame(x)
+    dt <- data[,column]
+    dt<-as.data.frame(dt)
   }
-  x$condition <- condition
-  colnames(x)[1] <- "values"
-  x$column <- paste0(column)
-  colnames(x)[2] <- paste0(column)
+  dt$condition <- condition
+  colnames(dt)[1] <- "values"
+  dt$column <- paste0(column)
+  colnames(dt)[2] <- paste0(column)
 
-  plot <- ggplot(x,aes(condition,values,col=condition))+
+  plot <- ggplot(dt,aes(condition,values,col=condition))+
     geom_boxplot(outlier.size = 0.5)+
     theme_bw()+
     theme(axis.title.x=element_blank(),
           axis.title.y =element_blank(),
           legend.position="none",
-          panel.border     = element_blank())+
+          panel.border = element_blank())+
     xlab(condition)+
     scale_color_manual(values=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628"))
 
