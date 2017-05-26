@@ -1,5 +1,5 @@
 ---
-title: "Generating_raports"
+title: "Generating_reports"
 output:
   pdf_document: default
   html_document: default
@@ -28,10 +28,10 @@ condition.m <-ifelse(BRCA_methylation_all$SUBTYPE=="LumA","LumA","other")
 condition.e <-ifelse(BRCA_mRNAseq_all$SUBTYPE=="LumA","LumA","other")
 ```
 
-Function `raport_generate` for generating raports:
+Function `report_generate` for generating reports:
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
-raport_generate(BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], condition.e, condition.m,
+report_generate(BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], condition.e, condition.m,
                 test_expr_brca, test_met_brca, genes)
 
 

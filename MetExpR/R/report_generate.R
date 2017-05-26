@@ -15,7 +15,7 @@
 #'
 #' @export
 
-raport_generate <- function(data.e, data.m, condition.e, condition.m, test.e, test.m, genes){
+report_generate <- function(data.e, data.m, condition.e, condition.m, test.e, test.m, genes){
 
   directory <- getwd()
 
