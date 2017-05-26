@@ -2,8 +2,10 @@
 #'
 #'@description Function \code{tools} crate a logarithm transformation for y-axis..
 #'
-#'@param base d
 #'
+#'@param base d
+#'@importFrom scales trans_new
+#'@importFrom scales log_breaks
 
 
 reverselog_trans <- function(base = exp(1)) {

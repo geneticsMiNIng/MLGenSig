@@ -1,6 +1,6 @@
 #'@title Boxplot for expression in groups
 #'
-#'@description Function \code{boxplot_that} generates a boxplot of values from choosen data frame column with division in groups.
+#'@description Function \code{group_boxplot} generates a boxplot of values from choosen data frame column with division in groups.
 #'
 #'@param data data frame containing interesing values.
 #'@param column string containing name of column with values for boxplot.
@@ -19,7 +19,7 @@
 #'
 #'@export
 
-boxplot_that <- function(data, column, condition=""){
+group_boxplot <- function(data, column, condition=""){
   if(is.vector(data)) {
     dt <- as.data.frame(data)
     colnames(dt) <- column

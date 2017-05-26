@@ -22,7 +22,7 @@
 #'
 #'@export
 
-em_plot <- function(data1, condition, names=NA){
+means_plot <- function(data1, condition, names=NA){
   dataA <- data1[which(condition == unique(condition)[1]), ]
   dataB <- data1[which(condition == unique(condition)[2]), ]
   meanA <- sapply(dataA, mean)

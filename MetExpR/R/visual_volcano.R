@@ -1,11 +1,11 @@
-#' @title visual
+#' @title Visulisations for methylation and expression.
 #'
-#' @description Function ...
+#' @description Function \code{visual_volcano} generate a dashboard with volcano plots for expression and methylation. Also it adds a tables with basic statistics.
 #'
 #' @param condition.e condition for  expression
 #' @param condition.m condition for methylation
-#' @param data.m data for methylation
 #' @param data.e data for expression
+#' @param data.m data for methylation
 #' @param gene gene name
 #' @param list.test.e list of tests results for expression
 #' @param list.test.m list of tests results for methylation
@@ -18,9 +18,10 @@
 #'@importFrom gridExtra grid.arrange
 #'@importFrom edgeR cpm
 #'
-#' @export
+#'@seealso volcano_plot, gene_stats
+#'@export
 
-visual_volc <- function(condition.e, condition.m, data.m, data.e, gene, test.e=list(), test.m=list()){
+visual_volcano <- function(condition.e, condition.m, data.e,data.m, gene, test.e=list(), test.m=list()){
   names.e <- names(test.e)
   names.m <- names(test.m)
   if(length(names.e)==0){
@@ -38,9 +39,9 @@ visual_volc <- function(condition.e, condition.m, data.m, data.e, gene, test.e=l
 
 
   data.e.cpm <- as.data.frame(cpm(data.e))
-  s.e <- tableGrob(t(sum_gen(data.e.cpm ,condition.e , gene)), theme = mytheme)
+  s.e <- tableGrob(t(gene_stats(data.e.cpm ,condition.e , gene)), theme = mytheme)
   data.m.map <- map_to_gene(data.m)
-  s.m <- tableGrob(t(sum_gen(data.m.map,condition.m , gene)), theme = mytheme)
+  s.m <- tableGrob(t(gene_stats(data.m.map,condition.m , gene)), theme = mytheme)
 
   title.e <- textGrob("Expression (cpm)", h = .9, gp=gpar(fontsize = 25))
   title.m <- textGrob("Methylation", h = .9, gp=gpar(fontsize = 25))

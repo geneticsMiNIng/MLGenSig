@@ -24,6 +24,14 @@ chromosome_data <- function(data, number){
   names <-new$cols
   names<- droplevels(names)
   cols <- data[,names]
+  cols <- as.data.frame(cols)
+  if(dim(cols)[2]==1){
+    colnames(cols)[1] <- "SUBTYPE"
+  }
+  if(dim(cols)[2]==2){
+    colnames(cols)<- c("id","survival_status")
+  }
   data2 <- cbind(cols,data2)
+
   return(data2)
 }
