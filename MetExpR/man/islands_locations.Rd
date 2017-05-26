@@ -4,7 +4,7 @@
 \alias{islands_locations}
 \title{Locations of CpG islands}
 \usage{
-islands_locations(data_A, data_B)
+islands_locations(data_A, data_B, condition)
 }
 \arguments{
 \item{data_A}{d}

@@ -1,0 +1,39 @@
+---
+title: "Generating_raports"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r, message=FALSE, warning=FALSE}
+library(MetExpR)
+library(plyr)
+```
+
+Blah Blah datasets descriptions
+
+```{r}
+expression_500 <-test_expr_brca[order(test_expr_brca$pval, decreasing= F),]
+expression_500 <- expression_500[c(1:500),]
+
+
+methylation_500 <-test_met_brca[order(test_met_brca$pval, decreasing= F),]
+methylation_500 <- methylation_500[c(1:500),]
+
+x <- expression_500[which(expression_500$id %in% methylation_500$id),]
+
+genes <- x$id
+
+condition.m <-ifelse(BRCA_methylation_all$SUBTYPE=="LumA","LumA","other")
+condition.e <-ifelse(BRCA_mRNAseq_all$SUBTYPE=="LumA","LumA","other")
+```
+
+Function `raport_generate` for generating raports:
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+raport_generate(BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], condition.e, condition.m,
+                test_expr_brca, test_met_brca, genes)
+
+
+```
+
