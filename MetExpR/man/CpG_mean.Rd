@@ -7,13 +7,24 @@
 CpG_mean(data, gene)
 }
 \arguments{
-\item{data}{data frame containing values of methylation: columns coresponds to CpG islands, rows to samples.}
+\item{data}{data frame containing values of methylation: columns coresponds to CpG probes, rows to samples.}
 
-\item{gene}{name of choosen gene.}
+\item{gene}{name of chosen gene.}
 }
 \value{
-Data frame containing
+Data frame containing following columns:
+ \item{Name}{The name of CpG probe.}
+ \item{HG18_coord}{Probes coordinates from human build GRC36(hg18).}
+ \item{Symbols}{Name of chosen gene.}
+ \item{CPG_ISLANDS}{Logical value if probe belongs to some CpG Island.}
+ \item{CPG_ISLANDS_LOCATIONS}{Location of CpG island to which probe belongs .}
+ \item{mean}{Mean methylation level compute for all samples of data.}
 }
 \description{
-Function \code{CpG_mean} computes methylation means of CpG islands for choosen gene. In this case: “BRCA1”
+Function \code{CpG_mean} computes methylation means of CpG probes for chosen gene.
+}
+\examples{
+\dontrun{
+mean_brca1 <-CpG_mean(BRCA_methylation_all, "BRCA1")
+}
 }

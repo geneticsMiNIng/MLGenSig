@@ -2,7 +2,7 @@
 % Please edit documentation in R/mety_ttest.R
 \name{mety_ttest}
 \alias{mety_ttest}
-\title{mety_ttest: t test for methylation per each gene.}
+\title{t test for methylation per each gene}
 \usage{
 mety_ttest(data, condition)
 }

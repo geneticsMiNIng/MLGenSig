@@ -1,4 +1,4 @@
-#' @title mety_ttest: t test for methylation per each gene.
+#' @title t test for methylation per each gene
 #'
 #' @description Function \code{mety_ttest} computes statistics and p-values for methylation data mapped to genes.
 #'

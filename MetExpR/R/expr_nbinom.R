@@ -1,4 +1,4 @@
-#' @title expr_nbinom: negative binomial test for gene expression
+#' @title Negative binomial test for gene expression
 #'
 #' @description Function \code{expr_nbinom} computes statistics and p-values for negative binomial test.
 #'
