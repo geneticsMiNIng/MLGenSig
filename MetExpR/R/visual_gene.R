@@ -26,6 +26,7 @@ visual_gene <- function(condition.e, condition.m, data.e, data.m, gene, test.e, 
   data.e.cpm <- cpm(data.e)
   b1 <- group_boxplot(data.e.cpm, gene, condition.e) +theme(legend.position = c(1,1), legend.justification=c(1,1))
 
+
   grid.arrange(title,g,b1,heights=unit(c(20,100),"mm"),
                layout_matrix =rbind(c(1 ,1 ,1 ,1),
                                     c(2 ,2 ,2 ,3)))
