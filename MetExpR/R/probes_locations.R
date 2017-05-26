@@ -10,7 +10,7 @@
 #'@importFrom dplyr %>%
 
 
-probes_locations <- function(data, gene){
+probes_locations <- function(data, gene, condition){
   genom <- illumina_humanmethylation_27_data[,c(1,4,11)]
   HG18_coord <- genom[,c(1:2)]
   genom_data <- genom[genom$Symbol==gene,]

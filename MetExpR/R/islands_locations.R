@@ -9,7 +9,7 @@
 #'@return data frame
 #'
 
-islands_locations <- function(data_A,data_B){
+islands_locations <- function(data_A,data_B,condition){
   CpG_A_isl <- aggregate(data_A[,6], list(data_A$CPG_ISLAND_LOCATIONS), mean)
   colnames(CpG_A_isl) <- c("CPG_ISLAND_LOCATIONS","mean")
   CpG_A_isl$START <- sub(".*:", "", CpG_A_isl$CPG_ISLAND_LOCATIONS)

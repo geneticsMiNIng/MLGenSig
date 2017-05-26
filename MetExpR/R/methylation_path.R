@@ -51,7 +51,7 @@ methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, 
     scale_color_manual(values=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628"))+
     ylab("")
   if(observ==TRUE){
-    observations_coord <- probes_locations(data,gene)
+    observations_coord <- probes_locations(data,gene, condition)
     plot1<- plot1+geom_point(data=observations_coord, aes(HG18_coord,value),size=0.5, alpha=0.35)
   }
 
@@ -73,7 +73,7 @@ methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, 
   }
 
   if(islands==TRUE){
-    data_islands <- islands_locations(CpG_A,CpG_B)
+    data_islands <- islands_locations(CpG_A,CpG_B, condition)
     plot1 <- plot1 + geom_line(data=data_islands, aes(x=value, y=mean, group=island_cond, colour=condition))
   }
   if(title==TRUE){
