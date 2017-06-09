@@ -16,7 +16,7 @@
 #'
 #'@export
 
-gene_stats <-function(data, condition, gene){
+gene_stats <-function(data, condition, gene, round=2){
   data_n <- cbind(data,condition)
   result <- tapply(data_n[[gene]],data_n$condition, summary)
   result_df <- data.frame()
@@ -26,6 +26,6 @@ gene_stats <-function(data, condition, gene){
   colnames(result_df) <- c( "min", "1st Q", "med", "mean", "3rd Q",  "max")
   result_df$count <- table(condition)
   rownames(result_df) <- names(result)
-  result_df <- round(result_df, 1)
+  result_df <- round(result_df, round)
   return(t(result_df))
 }

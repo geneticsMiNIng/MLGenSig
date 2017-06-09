@@ -68,6 +68,7 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, 
                                           data = subset(data, pval < names),
                                           aes(label = id),
                                           size = 3,
+                                          col = "grey",
                                           box.padding = unit(0.35, "lines"),
                                           point.padding = unit(0.3, "lines")
                                         )
@@ -81,14 +82,18 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, 
   if(!is.na(ngen)){
     data2 <- data[which(data$id %in% ngen),]
     plot <- plot +
-      geom_point(data=data2, aes(log2.fold, pval), col="red", size=2)+
+      geom_point(data=data2, aes(log2.fold, pval), col="red", size=2)
+    if(length(ngen)>1){
+    plot <- plot +
       geom_text_repel(
         data = data[which(data$id %in% ngen),],
         aes(label = id),
         size = 3,
+        col="grey",
         box.padding = unit(0.35, "lines"),
         point.padding = unit(0.3, "lines")
       )
+    }
   }
 
   return(plot)

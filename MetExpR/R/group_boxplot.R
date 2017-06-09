@@ -16,6 +16,7 @@
 #'@importFrom ggplot2 ggtitle
 #'@importFrom ggplot2 element_blank
 #'@importFrom ggplot2 xlab
+#'@importFrom ggplot2 coord_trans
 #'
 #'@export
 
@@ -37,10 +38,13 @@ group_boxplot <- function(data, column, condition="", sqrt.trans=FALSE){
     theme_bw()+
     theme(axis.title.x=element_blank(),
           axis.title.y =element_blank(),
+          axis.text.x = element_text(size=15,angle = 0, hjust = 0.5),
+          axis.text.y = element_text(size=15),
           legend.position="none",
           panel.border = element_blank())+
     xlab(condition)+
-    scale_color_manual(values=c("#fbb4ae","#b3cde3","#ccebc5","#decbe4","#fed9a6","#ffffcc"))
+    scale_color_manual(values=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628","#f781bf")
+)
 
   if(sqrt.trans==TRUE) plot <- plot + coord_trans(y="sqrt")
 

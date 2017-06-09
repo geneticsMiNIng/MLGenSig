@@ -4,7 +4,7 @@
 \alias{gene_stats}
 \title{Basic statistics for gene.}
 \usage{
-gene_stats(data, condition, gene)
+gene_stats(data, condition, gene, round = 2)
 }
 \arguments{
 \item{data}{data frame containing genes expression or methylation mapped to gene.}

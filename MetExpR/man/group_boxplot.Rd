@@ -4,7 +4,7 @@
 \alias{group_boxplot}
 \title{Boxplot for expression in groups}
 \usage{
-group_boxplot(data, column, condition = "")
+group_boxplot(data, column, condition = "", sqrt.trans = FALSE)
 }
 \arguments{
 \item{data}{data frame containing interesing values.}

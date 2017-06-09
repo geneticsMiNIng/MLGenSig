@@ -37,3 +37,11 @@ report_generate(BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], condition.e, c
 
 ```
 
+```{r}
+visual_gene(condition.e, condition.m, BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], "IGFALS", test_expr_brca, test_met_brca)
+```
+
+```{r}
+visual_volcano(condition.e, condition.m, BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], "BRCA1", list(test_expr_brca), list(test_met_brca))
+
+```
