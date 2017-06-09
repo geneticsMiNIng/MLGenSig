@@ -2,16 +2,13 @@
 % Please edit documentation in R/tools.R
 \name{reverselog_trans}
 \alias{reverselog_trans}
-\title{Visualise the p-values of expression and methylation for genes.}
+\title{Scales for volcano plots}
 \usage{
 reverselog_trans(base = exp(1))
 }
 \arguments{
-\item{base}{data.fra}
-}
-\value{
-plot
+\item{base}{d}
 }
 \description{
-Function \code{volcano_plot} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.
+Function \code{tools} crate a logarithm transformation for y-axis..
 }

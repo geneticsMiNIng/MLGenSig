@@ -2,23 +2,23 @@
 % Please edit documentation in R/full_data.R
 \name{full_data}
 \alias{full_data}
-\title{Function creates a full set for metylation and expression which contains values from functions `mety_ttest` i `expr_nbinom`}
+\title{Full dataset}
 \usage{
 full_data(dt_expr, dt_met)
 }
 \arguments{
-\item{dt_expr}{data.frame, a result of `expr_nbinom` function}
+\item{dt_expr}{data frame, a result of nbinom test}
 
-\item{dt_met}{data.frame, a result of `mety_ttest` function}
+\item{dt_met}{data frame, a result of t-test}
 }
 \value{
 A data frame with the following columns from both functions:
  \item{id}{The ID of the observable, taken from the row names of the counts slots.}
  \item{mean}{The base mean.}
  \item{log.fold}{The log of the fold change.}
- \item{pval}{The p-values for rejecting the null hypothesis about the means equality.}
- \item{padj}{The adjusted p-values.}
+ \item{pval}{The p-values for rejecting the null hypothesis about the groups means equality.}
+ \item{padj}{The adjusted p-values (Benjamini-Hochberg correction).}
 }
 \description{
-Function creates a full set for metylation and expression which contains values from functions `mety_ttest` i `expr_nbinom`
+Function \code{full_data} creates a full set for metylation and expression which contains values from nbinom test and t-test.
 }

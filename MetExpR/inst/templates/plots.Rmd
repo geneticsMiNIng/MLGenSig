@@ -1,0 +1,64 @@
+---
+title: "Visualization of interesting genes"
+output:
+  pdf_document: default
+geometry: margin=0.5in
+---
+```{r,echo=FALSE,warning=FALSE, message=FALSE}
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+```
+
+# Basic informations about dataset
+
+## Expression
+```{r,echo=FALSE,warning=FALSE, message=FALSE}
+kable(data_stats(data.e,condition.e))
+```
+
+## Methylation
+```{r,echo=FALSE,warning=FALSE, message=FALSE}
+kable(data_stats(data.m,condition.m))
+```
+
+
+Chosen genes with small p-values for expression and methylation:
+```{r,echo=FALSE,warning=FALSE, message=FALSE, comment=NA}
+n <- length(genes)
+
+for (i in 1:n) {
+  cat(genes[i],"\n")
+}
+```
+
+
+\newpage
+
+# Volcanoplots
+
+```{r,echo=FALSE,warning=FALSE, message=FALSE, fig.height=3.5}
+volcano_plot(test.e, ngen=genes) + ggtitle("Expression") + theme(plot.title = element_text(size = 10))
+```
+
+```{r,echo=FALSE,warning=FALSE, message=FALSE, fig.height=3.5}
+volcano_plot(test.m, ngen=genes) + ggtitle("Methylation")+ theme(plot.title = element_text(size = 10))
+```
+
+\newpage
+
+# Methylation paths
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE, fig.width=19, fig.height=5.5}
+genes<- sort(genes)
+plot <- list()
+plot2<-list()
+for (i in 1:length(genes)){
+   plot[[i]] <- visual_volcano(condition.e, condition.m, data.e, data.m, genes[i])
+  plot2[[i]] <- visual_gene(condition.e, condition.m, data.e, data.m, gene=genes[i], test.e, test.m)
+  
+  }
+
+
+```
+
