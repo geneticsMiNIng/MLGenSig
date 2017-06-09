@@ -19,7 +19,7 @@
 #'
 #'@export
 
-group_boxplot <- function(data, column, condition=""){
+group_boxplot <- function(data, column, condition="", sqrt.trans=FALSE){
   if(is.vector(data)) {
     dt <- as.data.frame(data)
     colnames(dt) <- column
@@ -40,7 +40,9 @@ group_boxplot <- function(data, column, condition=""){
           legend.position="none",
           panel.border = element_blank())+
     xlab(condition)+
-    scale_color_manual(values=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628"))
+    scale_color_manual(values=c("#fbb4ae","#b3cde3","#ccebc5","#decbe4","#fed9a6","#ffffcc"))
+
+  if(sqrt.trans==TRUE) plot <- plot + coord_trans(y="sqrt")
 
   return(plot)
 }
