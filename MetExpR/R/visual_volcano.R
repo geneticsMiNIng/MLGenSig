@@ -33,8 +33,8 @@ visual_volcano <- function(condition.e, condition.m, data.e,data.m, gene, test.e
   }
   mytheme <- gridExtra::ttheme_default(
     core = list(fg_params=list(cex = 1.8),
-                bg_params = list(fill = c("white"))),
-    colhead = list(fg_params=list(cex = 1.8)),
+                bg_params = list(fill = c("#fbb4ae","#b3cde3","#ccebc5","#decbe4","#fed9a6","#ffffcc"))),
+    colhead = list(fg_params=list(cex = 1.8), bg_params=list(fill=c("white"))),
     rowhead = list(fg_params=list(cex = 1.8, fontface = "bold")))
 
 
@@ -49,7 +49,7 @@ visual_volcano <- function(condition.e, condition.m, data.e,data.m, gene, test.e
   title <- textGrob(gene, h = .9, gp=gpar(fontsize = 25), x = unit(1.1, "npc"))
   blank <- textGrob("", h = .9, gp=gpar(fontsize = 25))
 
-  plist <- list(title, blank, title.e, title.m, s.e, s.m)
+  plist <- list(title, blank, title.m, title.e, s.m, s.e)
   if((length(test.e) + length(test.m)) > 0 ){
   l.e <- length(test.e)
   l.m <- length(test.m)

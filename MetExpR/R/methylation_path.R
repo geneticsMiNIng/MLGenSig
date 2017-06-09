@@ -48,7 +48,7 @@ methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, 
           axis.text.y = element_text(size=15),
           panel.border = element_blank())+
     scale_y_continuous(limits =c(-0.05,1), expand = c(0.05, -0.05), labels=percent)+
-    scale_color_manual(values=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628"))+
+    scale_color_manual(values=c("#fbb4ae","#b3cde3","#ccebc5","#decbe4","#fed9a6","#ffffcc"))+
     ylab("")
   if(observ==TRUE){
     observations_coord <- probes_locations(data,gene, condition)

@@ -24,7 +24,8 @@ Imports: dplyr,
     AnnotationDbi,
     gridExtra,
     ggthemes,
-    DESeq2
+    DESeq2,
+    kableExtra
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,
