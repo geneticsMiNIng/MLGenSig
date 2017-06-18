@@ -45,7 +45,8 @@ To install this package, start R and enter:
 devtools::install_github("geneticsMiNIng/MLGenSig/MetExpR")
 ```
 
-## Vignette
+
+## Vignettes
 
 * [Usage](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Vignette/Usage.pdf)
 * [Automatically created report](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Reports/plots.pdf) and [Instruction](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Reports/generating_reports.pdf)
@@ -58,3 +59,8 @@ devtools::install_github("geneticsMiNIng/MLGenSig/MetExpR")
 * [Full BRCA mRNAseq data with subtypes](https://github.com/geneticsMiNIng/MLGenSig/tree/master/Scripts/BRCA_mRNAseq_with_SUBTYPES)
 * [BRCA clinical data with parameters](https://raw.githubusercontent.com/geneticsMiNIng/MLGenSig/master/SubTypes/BRCA_clinical_parameters.csv)
 * [BRCA clinical data w/o parameters](https://raw.githubusercontent.com/geneticsMiNIng/MLGenSig/master/SubTypes/BRCA_clinical_2.csv)
+
+
+## Example dashboard
+
+![Dashboard](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Images/CACNA1G.png)
