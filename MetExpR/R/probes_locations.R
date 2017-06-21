@@ -4,6 +4,7 @@
 #'
 #'@param data d
 #'@param gene d
+#'@param condition d
 #'
 #'@return data frame
 #'@importFrom reshape2 melt
@@ -20,5 +21,5 @@ probes_locations <- function(data, gene, condition){
   colnames(melted_val) <- c("condition","Name","value")
   melted_val <- merge(melted_val,HG18_coord, by="Name")
   return(melted_val)
-  
+
 }

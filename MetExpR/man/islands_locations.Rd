@@ -10,6 +10,8 @@ islands_locations(data_A, data_B, condition)
 \item{data_A}{d}
 
 \item{data_B}{d}
+
+\item{condition}{vector with conditions}
 }
 \value{
 data frame

@@ -10,6 +10,8 @@ probes_locations(data, gene, condition)
 \item{data}{d}
 
 \item{gene}{d}
+
+\item{condition}{d}
 }
 \value{
 data frame

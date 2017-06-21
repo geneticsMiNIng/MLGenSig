@@ -8,8 +8,6 @@
 #'@return dataset containing CpG islands from all methylation data.
 #'@importFrom dplyr filter
 #'
-#'@examples
-#'chromosome_17 <- chromosome_data(BRCA_methylation_data_all, 17)
 #'
 #'@export
 

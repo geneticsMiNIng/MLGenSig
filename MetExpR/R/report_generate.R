@@ -8,7 +8,7 @@
 #' @param condition.m condition for methylation
 #' @param test.e test results for expression
 #' @param test.m test results for methylation
-#' @param gene gene name
+#' @param genes gene name
 #'
 #' @return pdf
 #'

@@ -4,8 +4,10 @@
 #'
 #'@param  data_A d
 #'@param data_B d
+#'@param condition vector with conditions
 #'
 #'@importFrom reshape2 melt
+#'@importFrom stats aggregate
 #'@return data frame
 #'
 

@@ -18,9 +18,9 @@ visual_volcano(condition.e, condition.m, data.e, data.m, gene,
 
 \item{gene}{gene name}
 
-\item{list.test.e}{list of tests results for expression}
+\item{test.e}{list of tests results for expression}
 
-\item{list.test.m}{list of tests results for methylation}
+\item{test.m}{list of tests results for methylation}
 }
 \value{
 A plot of class ggplot.

@@ -7,8 +7,8 @@
 #' @param data.e data for expression
 #' @param data.m data for methylation
 #' @param gene gene name
-#' @param list.test.e list of tests results for expression
-#' @param list.test.m list of tests results for methylation
+#' @param test.e list of tests results for expression
+#' @param test.m list of tests results for methylation
 #'
 #' @return A plot of class ggplot.
 #'
@@ -17,6 +17,7 @@
 #'@importFrom grid gpar
 #'@importFrom gridExtra grid.arrange
 #'@importFrom edgeR cpm
+#'@importFrom grid grid.rect
 #'
 #'@seealso volcano_plot, gene_stats
 #'@export

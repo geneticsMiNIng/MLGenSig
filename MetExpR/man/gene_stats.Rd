@@ -12,6 +12,8 @@ gene_stats(data, condition, gene, round = 2)
 \item{condition}{vector of levels of groups coresponding to order of samples in data.}
 
 \item{gene}{symbol of chosen gene.}
+
+\item{round}{num}
 }
 \value{
 data frame with following columns:

@@ -19,7 +19,7 @@ report_generate(data.e, data.m, condition.e, condition.m, test.e, test.m, genes)
 
 \item{test.m}{test results for methylation}
 
-\item{gene}{gene name}
+\item{genes}{gene name}
 }
 \value{
 pdf

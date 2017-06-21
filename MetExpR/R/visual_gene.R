@@ -22,7 +22,7 @@
 
 visual_gene <- function(condition.e, condition.m, data.e, data.m, gene, test.e, test.m){
   title <- textGrob(gene, gp=gpar(fontsize = 25))
-  g <- methylation_path(data.m, condition.m, gene, observ = TRUE, show_gen = TRUE) +theme(legend.position = "none")
+  g <- methylation_path(data.m, condition.m, gene, observ = TRUE, show_gene = TRUE) +theme(legend.position = "none")
   data.e.cpm <- cpm(data.e)
   b1 <- group_boxplot(data.e.cpm, gene, condition.e, sqrt.trans=TRUE) +theme(legend.position = c(1,1), legend.justification=c(1,1))
 

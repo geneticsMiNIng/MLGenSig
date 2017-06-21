@@ -13,6 +13,8 @@ group_boxplot(data, column, condition = "", sqrt.trans = FALSE)
 
 \item{condition}{vector of length equal to numer of rows of data,
 \code{condition} should contains names of groups corresponding to rows.}
+
+\item{sqrt.trans}{root square transformation}
 }
 \value{
 Object of class ggplot containing boxplot for values from choosen column.

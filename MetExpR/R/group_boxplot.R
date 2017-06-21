@@ -6,6 +6,7 @@
 #'@param column string containing name of column with values for boxplot.
 #'@param condition vector of length equal to numer of rows of data,
 #'\code{condition} should contains names of groups corresponding to rows.
+#'@param sqrt.trans root square transformation
 #'
 #'@return Object of class ggplot containing boxplot for values from choosen column.
 #'
@@ -33,7 +34,7 @@ group_boxplot <- function(data, column, condition="", sqrt.trans=FALSE){
   dt$column <- paste0(column)
   colnames(dt)[2] <- paste0(column)
 
-  plot <- ggplot(dt,aes(condition,values,col=condition))+
+  plot <- ggplot(dt,aes(condition,y=values,col=condition))+
     geom_boxplot(outlier.size = 0.5)+
     theme_bw()+
     theme(axis.title.x=element_blank(),
