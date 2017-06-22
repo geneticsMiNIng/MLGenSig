@@ -28,6 +28,7 @@
 
 
 methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, islands = TRUE, title=FALSE){
+  HG18_coord <- value <- island_cond <- NULL
 
   dataA <- data[which(condition == unique(condition)[1]), ]
   dataB <- data[which(condition == unique(condition)[2]), ]

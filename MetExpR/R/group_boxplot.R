@@ -22,6 +22,8 @@
 #'@export
 
 group_boxplot <- function(data, column, condition="", sqrt.trans=FALSE){
+  values <- NULL
+
   if(is.vector(data)) {
     dt <- as.data.frame(data)
     colnames(dt) <- column

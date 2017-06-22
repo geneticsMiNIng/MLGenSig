@@ -2,8 +2,8 @@
 #'
 #'@description Function \code{means_plot} draws a plot with p-values from methylation when we use the t-test. We testing the equality of means in given two groups.
 #'
-#'@param data1 data frame consisting the data from methylation or expresion 
-#'@param condition condition for groups 
+#'@param data1 data frame consisting the data from methylation or expresion
+#'@param condition condition for groups
 #'@param names number of values we want to mark on plot; in this case we decide to mark values with the smallest differences between means in groups.
 #'
 #'@return plot of p-values
@@ -23,6 +23,7 @@
 #'@export
 
 means_plot <- function(data1, condition, names=NA){
+  id <- NULL
   dataA <- data1[which(condition == unique(condition)[1]), ]
   dataB <- data1[which(condition == unique(condition)[2]), ]
   meanA <- sapply(dataA, mean)

@@ -6,9 +6,6 @@
 #'@param data data.frame, a result of `expr_nbinom` function.
 #'@param line p-value on which we draw a line.
 #'@param names p-value below which...
-#'@param log2.fold logarithm of fold.
-#'@param pval p-value.
-#'@param id vector of genes symbols.
 #'@param ngen symol or vector of gene names
 #'@param fold_line s
 #'@param title s
@@ -34,8 +31,10 @@
 #'@importFrom scales trans_new
 #'@export
 
-volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, log2.fold,pval,id, ngen=NA, title=NA, fold_line=NA){
+volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, fold_line=NA){
+  .x <- NULL
 
+  log2.fold <- pval <- id <- NULL
   if(ylog==TRUE){
     #data$pval <- log10(data$pval)
     data$pval <- data$pval
