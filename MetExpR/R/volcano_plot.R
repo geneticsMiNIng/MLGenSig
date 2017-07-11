@@ -3,13 +3,14 @@
 #'@description Function \code{volcano_plot} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.
 #'
 #'
-#'@param data data.frame, a result of `expr_nbinom` function.
+#'@param data data.frame consisting result of chosen test
 #'@param line p-value on which we draw a line.
 #'@param names p-value below which...
 #'@param ngen symol or vector of gene names
 #'@param fold_line s
 #'@param title s
 #'@param ylog s
+#'@param values logical value, TRUE if we want p-values and log fold for chosen gene
 #'
 #'@return plot
 #'
@@ -23,18 +24,24 @@
 #'@importFrom ggplot2 geom_vline
 #'@importFrom ggplot2 scale_x_continuous
 #'@importFrom ggplot2 scale_y_continuous
+#'@importFrom ggplot2 annotate
 #'@importFrom grid unit
 #'@importFrom scales trans_breaks
 #'@importFrom scales trans_format
 #'@importFrom ggthemes extended_range_breaks
 #'@importFrom scales math_format
 #'@importFrom scales trans_new
+#'@importFrom stringr str_sub
+#'@importFrom stringr str_length
 #'@export
 
-volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, fold_line=NA){
+volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, fold_line=NA, values=FALSE){
   .x <- NULL
 
   log2.fold <- pval <- id <- NULL
+  colnames(data) <- ifelse(str_sub(colnames(data), str_length(colnames(data))-3, str_length(colnames(data)))=="pval", "pval", colnames(data))
+  colnames(data) <- ifelse(str_sub(colnames(data), str_length(colnames(data))-3, str_length(colnames(data)))=="log2.fold", "log2.fold", colnames(data))  
+  
   if(ylog==TRUE){
     #data$pval <- log10(data$pval)
     data$pval <- data$pval
@@ -93,6 +100,12 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
         point.padding = unit(0.3, "lines")
       )
     }
+  }
+  if(values==TRUE && length(ngen)==1){
+    values_for_gene <- data[which(data$id==ngen),]
+    plot <- plot+#annotate("text",x=(max(data$log2.fold)-0.01), y=(min(data$pval)), label=ngen, colour="red")+
+      annotate("text",x=(max(data$log2.fold)-0.01), y=(min(data$pval)+10^(-15)), label=paste("pval:",round(values_for_gene$pval,4)), colour="red")+
+      annotate("text",x=(max(data$log2.fold)-0.01), y=(min(data$pval)+10^(-14)), label=paste("log2.fold:",round(values_for_gene$log2.fold,4)), colour="red")
   }
 
   return(plot)

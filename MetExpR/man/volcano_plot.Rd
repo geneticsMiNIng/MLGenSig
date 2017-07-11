@@ -5,10 +5,10 @@
 \title{Visualise the p-values of expression and methylation for genes.}
 \usage{
 volcano_plot(data, line = NA, names = NA, ylog = TRUE, ngen = NA,
-  title = NA, fold_line = NA)
+  title = NA, fold_line = NA, values = FALSE)
 }
 \arguments{
-\item{data}{data.frame, a result of `expr_nbinom` function.}
+\item{data}{data.frame consisting result of chosen test}
 
 \item{line}{p-value on which we draw a line.}
 
@@ -21,6 +21,8 @@ volcano_plot(data, line = NA, names = NA, ylog = TRUE, ngen = NA,
 \item{title}{s}
 
 \item{fold_line}{s}
+
+\item{values}{logical value, TRUE if we want p-values and log fold for chosen gene}
 }
 \value{
 plot

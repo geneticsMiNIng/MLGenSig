@@ -27,7 +27,8 @@ Imports: dplyr,
     DESeq2,
     edgeR,
     reshape2,
-    kableExtra
+    kableExtra,
+    stringr
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,

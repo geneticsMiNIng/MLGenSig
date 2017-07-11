@@ -12,8 +12,6 @@
 #'
 #'@return data.frame containing logatithm of fold and p-values from chosen tests
 #'
-#'@importFrom dplyr left_join
-#'
 #'@export
 
 comparison_table <- function(data1, data2, cond1, cond2, test1, test2){
@@ -25,7 +23,7 @@ colnames(result1)[c(2,3)] <- paste(test1,colnames(result1)[c(2,3)], sep=".")
 colnames(result2)[c(2,3)] <- paste(test2,colnames(result2)[c(2,3)], sep=".")  
 
 
-result <- left_join(result1, result2, by="id")
+result <- merge(result1, result2, by="id")
 
 return(result)
 }

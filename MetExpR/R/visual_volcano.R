@@ -23,6 +23,13 @@
 #'@export
 
 visual_volcano <- function(condition.e, condition.m, data.e,data.m, gene, test.e=list(), test.m=list()){
+  if(class(test.e)!="list"){
+    test.e <- list(test.e)
+  }
+  if(class(test.m)!="list"){
+    test.m <- list(test.m)
+  }
+  
   names.e <- names(test.e)
   names.m <- names(test.m)
   if(length(names.e)==0){
