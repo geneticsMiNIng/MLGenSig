@@ -38,6 +38,12 @@ test_diff <- function(data, condition, test="ttest"){
 
   res <- res[,c(1,2,3,4,5)]
   colnames(res) <- c("id","mean","log2.fold","pval","padj")
+  if(test=="lrt"){
+    res<- test_edger(data, condition, type="lrt")
+  }
+  if(test=="qlf"){
+    res <- test_edger(data, condition, type="qlf")
+  }
 
   return(res)
 }
