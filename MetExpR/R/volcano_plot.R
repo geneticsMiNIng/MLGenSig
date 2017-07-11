@@ -40,7 +40,7 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
 
   log2.fold <- pval <- id <- NULL
   colnames(data) <- ifelse(str_sub(colnames(data), str_length(colnames(data))-3, str_length(colnames(data)))=="pval", "pval", colnames(data))
-  colnames(data) <- ifelse(str_sub(colnames(data), str_length(colnames(data))-3, str_length(colnames(data)))=="log2.fold", "log2.fold", colnames(data))  
+  colnames(data) <- ifelse(str_sub(colnames(data), str_length(colnames(data))-8, str_length(colnames(data)))=="log2.fold", "log2.fold", colnames(data))  
   
   if(ylog==TRUE){
     #data$pval <- log10(data$pval)
