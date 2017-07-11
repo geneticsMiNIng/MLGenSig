@@ -24,7 +24,7 @@ source("https://bioconductor.org/biocLite.R")
 biocLite("limma")
 ```
 
--`methyAnalysis`
+- `methyAnalysis`
 ```
 ## try http:// if https:// URLs are not supported
 source("https://bioconductor.org/biocLite.R")
