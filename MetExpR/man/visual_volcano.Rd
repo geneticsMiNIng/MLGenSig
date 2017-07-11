@@ -5,7 +5,7 @@
 \title{Visulisations for methylation and expression.}
 \usage{
 visual_volcano(condition.e, condition.m, data.e, data.m, gene,
-  test.e = list(), test.m = list())
+  test.e = list(), test.m = list(), values = FALSE)
 }
 \arguments{
 \item{condition.e}{condition for  expression}
@@ -21,6 +21,8 @@ visual_volcano(condition.e, condition.m, data.e, data.m, gene,
 \item{test.e}{list of tests results for expression}
 
 \item{test.m}{list of tests results for methylation}
+
+\item{values}{logical value, TRUE if we want p-values and log fold for chosen gene}
 }
 \value{
 A plot of class ggplot.
