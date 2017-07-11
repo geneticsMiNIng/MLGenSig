@@ -1,0 +1,114 @@
+---
+title: "MExpResso: differential expression and methylation analysis"
+subtitle: "Case study using RTCGA data"
+author: "Aleksandra Dąbrowska, Alicja Gosiewska"
+output: 
+  pdf_document:
+    number_sections: true
+toc: TRUE
+---
+
+# Package (Abstract?)
+It is considered that the result of increased methylation is decreased gene expression. While, recent studies suggest that the relationship between methylation and expression is more complex than was previously thought.
+The package `MExpResso` provides methods to test for differential expression and methylation by use of the negative binonial distribution and t-test. Additionaly `MExpResso allows to visualize results in a simple way.
+
+# Standard Workflow
+
+In this vignette we will work with the data sets containing information about gene expression and methylation for patients with breast cancer. We will analyze differences in methylation and expression for patients with different subtypes of BRCA cancer.
+
+#### `BRCA_methylation_chr17` data set
+In this section, we will work with the methylation level data from TCGA database. 
+Package contains `BRCA_methylation_all` dataset. `BRCA_methylation_all` contains information about methylation of CpG islands for patients with breast cancer. 
+Rows of this data set correspond to patients, more precisely, to samples taken from patients.
+First column `SUBTYPE`corresponds to a subtype of BRCA cancer, next columns correspond to CpG islands.
+Values inside the table indicate the methylation level of CpG island for specified sample.
+```{r}
+library(MetExpR)
+head(BRCA_methylation_all)[1:5,1:4]
+```
+
+In this analysis we would like to find genes with different methylation and expression. At first we need to use function `map_to_gene`, which generates new data frame with CpG islands mapped to genes.
+
+```{r mapping}
+BRCA_methylation_gen <- map_to_gene(BRCA_methylation_all[,-1]) 
+head(BRCA_methylation_gen)[1:5,1:4]
+```
+
+In this case we have two conditions, connected with subtypes of breast cancer.
+
+Before we go to the testing, we need to define condition values for each sample. We would like to test for differences between `LumA` subtype and `other` subtypes of breast cancer, so we create a vector, which each element corresponds to a sample. Our division into this two groups relies on numbers of occurences of each subtype. The `LumA` subtype is the most common, in case of breast cancer.
+
+```{r}
+condition_met <- ifelse(BRCA_methylation_all$SUBTYPE=="LumA","LumA", "other")
+head(condition_met, 8)
+```
+
+#### `BRCA_mRNAseq_all` data set
+
+Data set `BRCA_mRNAseq_all` contains information about gene expression.
+This data set contains per-gene read counts computed for genes for 736 patients with breast cancer.
+Rows of this data set correspond to samples taken from patients.
+First column `SUBTYPE`corresponds to a subtype of BRCA cancer, next columns correspond to genes.
+
+```{r}
+BRCA_mRNAseq_all[1:5,1:5]
+```
+
+In our example we will test for differential expression between groups with LumA breast cancer subtype and other subtypes of that cancer.
+Again we will use vector `conditions`, which consist of two values corresponds to subtype of breast cancer: `LumA` and `other`.
+```{r, message=FALSE}
+condition_exp <- ifelse(BRCA_mRNAseq_all$SUBTYPE=="LumA","LumA","other")
+head(condition_exp, 8)
+```
+
+# Testing
+
+```{r, eval=FALSE}
+genes_comparison <- comparison_table(BRCA_mRNAseq_all[ ,-1], BRCA_methylation_gen, condition_exp, condition_met, test1="nbinom2", test2="ttest")
+head(genes_comparison)
+```
+
+```{r, echo=FALSE}
+load("genes_comparison.rda")
+head(genes_comparison)
+```
+
+## Choosing most different genes
+
+Sorting ...
+
+
+```{r}
+genes_comparison_sorted <- genes_comparison[order(genes_comparison$ttest.pval), ]
+head(genes_comparison_sorted)
+```
+
+IGFALS!
+
+# Visualization
+
+Visualizing chosen gene - IGFALS.
+```{r}
+test_exp <- genes_comparison[ ,c(1,2,3)]
+test_met <- genes_comparison[ ,c(1,4,5)]
+```
+  
+  
+```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=6}
+visual_volcano(condition_exp, condition_met, 
+               BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], 
+               "IGFALS", 
+               list(test_exp), list(test_met),
+               values=TRUE)
+
+```
+
+Note that `visual_gene` methylation require data frame with cpg islands, not genes.
+
+```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=5.5}
+visual_gene(condition_exp, condition_met, 
+            BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], 
+            "IGFALS")
+```
+
+

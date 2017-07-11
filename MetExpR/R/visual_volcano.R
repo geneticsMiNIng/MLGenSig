@@ -66,20 +66,14 @@ visual_volcano <- function(condition.e, condition.m, data.e,data.m, gene, test.e
     if(i>l.e){
       plist[[length(plist)+1]] <- grid.rect(gp=gpar(col="white"))
     }else{
-      if(values==TRUE){
-      plist[[length(plist)+1]] <- volcano_plot(test.e[[i]], ngen = gene,ylog=TRUE,title=names.e[i], line=0.05, values=TRUE)
-      }
-      plist[[length(plist)+1]] <- volcano_plot(test.e[[i]], ngen = gene,ylog=TRUE,title=names.e[i], line=0.05)
+      plist[[length(plist)+1]] <- volcano_plot(test.e[[i]], ngen = gene,ylog=TRUE,title=names.e[i], line=0.05, values=values)
     }
 
     if(i>l.m){
       plist[[length(plist)+1]] <- grid.rect(gp=gpar(col="white"))
     }
     else{
-      if(values==TRUE){
-        plist[[length(plist)+1]] <- volcano_plot(test.m[[i]], ngen = gene, title=names.m[i], ylog=TRUE, line=0.05, values=TRUE)
-      }
-      plist[[length(plist)+1]] <- volcano_plot(test.m[[i]], ngen = gene, title=names.m[i], ylog=TRUE, line=0.05)
+      plist[[length(plist)+1]] <- volcano_plot(test.m[[i]], ngen = gene, title=names.m[i], ylog=TRUE, line=0.05, values=values)
     }
 
   }
@@ -89,3 +83,4 @@ visual_volcano <- function(condition.e, condition.m, data.e,data.m, gene, test.e
   grid.arrange(grobs = plist, ncol=2, heights=heights.g)
 
 }
+
