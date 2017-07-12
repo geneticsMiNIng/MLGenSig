@@ -4,7 +4,7 @@
 \alias{plot_gene}
 \title{Visualisations for genes.}
 \usage{
-plot_gene(condition.e, condition.m, data.e, data.m, gene, test.e, test.m)
+plot_gene(condition.e, condition.m, data.e, data.m, gene)
 }
 \arguments{
 \item{condition.e}{condition for  expression}
@@ -16,10 +16,6 @@ plot_gene(condition.e, condition.m, data.e, data.m, gene, test.e, test.m)
 \item{data.m}{data for methylation}
 
 \item{gene}{gene name}
-
-\item{test.e}{test results for expression}
-
-\item{test.m}{test results for methylation}
 }
 \value{
 A plot of class ggplot.

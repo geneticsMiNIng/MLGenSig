@@ -18,13 +18,17 @@
 #'@importFrom ggplot2 element_blank
 #'@importFrom ggplot2 xlab
 #'@importFrom ggplot2 coord_trans
+#'@importFrom edgeR cpm
 #'
 #'@export
 
 plot_diff_boxplot <- function(data, column, condition="", sqrt.trans=FALSE){
   values <- NULL
+  
+  data <-data[,column]
+  data <- cpm(data)
 
-  if(is.vector(data)) {
+  if(is.numeric(data)) {
     dt <- as.data.frame(data)
     colnames(dt) <- column
   }else{

@@ -7,8 +7,6 @@
 #' @param data.m data for methylation
 #' @param data.e data for expression
 #' @param gene gene name
-#' @param test.e test results for expression
-#' @param test.m test results for methylation
 #'
 #' @return A plot of class ggplot.
 #'
@@ -16,20 +14,24 @@
 #'@importFrom grid textGrob
 #'@importFrom grid gpar
 #'@importFrom gridExtra grid.arrange
-#'@importFrom edgeR cpm
+#'@importFrom ggplot2 ggplot_gtable
+#'@importFrom ggplot2 ggplot_build
 #'
 #' @export
 
-plot_gene <- function(condition.e, condition.m, data.e, data.m, gene, test.e, test.m){
+plot_gene <- function(condition.e, condition.m, data.e, data.m, gene){
   title <- textGrob(gene, gp=gpar(fontsize = 25))
   g <- plot_methylation_path(data.m, condition.m, gene, observ = TRUE, show_gene = TRUE) +theme(legend.position = "none")
-  data.e.cpm <- cpm(data.e)
-  b1 <- plot_diff_boxplot(data.e.cpm, gene, condition.e, sqrt.trans=TRUE) +theme(legend.position = c(1,1), legend.justification=c(1,1))
+  b1 <- plot_diff_boxplot(data.e, gene, condition.e, sqrt.trans=TRUE) +theme(legend.position = c(1,1), legend.justification=c(1,1))
+  
+  tmp <- ggplot_gtable(ggplot_build(b1))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) ==  "guide-box")
+  legend <- tmp$grobs[[leg]]
+  
 
-
-  grid.arrange(title,g,b1,heights=unit(c(20,100),"mm"),
-               layout_matrix =rbind(c(1 ,1 ,1 ,1),
-                                    c(2 ,2 ,2 ,3)))
+  grid.arrange(title,legend,g,b1+ theme(legend.position = "none"),heights=unit(c(20,100),"mm"),
+               layout_matrix =rbind(c(1 ,1 ,2 ,2),
+                                    c(3 ,3 ,3 ,4)))
 
 }
 

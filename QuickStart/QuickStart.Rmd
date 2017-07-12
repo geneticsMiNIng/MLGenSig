@@ -106,9 +106,7 @@ plot_volcanoes(condition_exp, condition_met,
 Note that `plot_gene` methylation require data frame with cpg islands, not genes.
 
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=5.5}
-plot_gene(condition_exp, condition_met, 
-            BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], 
-            "IGFALS")
+plot_gene(condition_exp, condition_met, BRCA_mRNAseq_all, BRCA_methylation_all, "IGFALS")
 ```
 
 
