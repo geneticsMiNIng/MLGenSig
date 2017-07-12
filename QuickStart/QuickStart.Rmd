@@ -30,7 +30,7 @@ head(BRCA_methylation_all)[1:5,1:4]
 In this analysis we would like to find genes with different methylation and expression. At first we need to use function `map_to_gene`, which generates new data frame with CpG islands mapped to genes.
 
 ```{r mapping}
-BRCA_methylation_gen <- map_to_gene(BRCA_methylation_all[,-1]) 
+BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_all[,-1]) 
 head(BRCA_methylation_gen)[1:5,1:4]
 ```
 
@@ -64,7 +64,7 @@ head(condition_exp, 8)
 # Testing
 
 ```{r, eval=FALSE}
-genes_comparison <- comparison_table(BRCA_mRNAseq_all[ ,-1], BRCA_methylation_gen, condition_exp, condition_met, test1="nbinom2", test2="ttest")
+genes_comparison <- calculate_comparison_table(BRCA_mRNAseq_all[ ,-1], BRCA_methylation_gen, condition_exp, condition_met, test1="nbinom2", test2="ttest")
 head(genes_comparison)
 ```
 
@@ -95,7 +95,7 @@ test_met <- genes_comparison[ ,c(1,4,5)]
   
   
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=6}
-visual_volcano(condition_exp, condition_met, 
+plot_volcanoes(condition_exp, condition_met, 
                BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], 
                "IGFALS", 
                list(test_exp), list(test_met),
@@ -103,10 +103,10 @@ visual_volcano(condition_exp, condition_met,
 
 ```
 
-Note that `visual_gene` methylation require data frame with cpg islands, not genes.
+Note that `plot_gene` methylation require data frame with cpg islands, not genes.
 
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=5.5}
-visual_gene(condition_exp, condition_met, 
+plot_gene(condition_exp, condition_met, 
             BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], 
             "IGFALS")
 ```

@@ -9,7 +9,6 @@
 #' @importFrom org.Hs.eg.db org.Hs.eg.db
 #' @importFrom TxDb.Hsapiens.UCSC.hg18.knownGene TxDb.Hsapiens.UCSC.hg18.knownGene
 #'
-#' @export
 
 gene_location <-function(gene){
 
