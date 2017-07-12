@@ -17,6 +17,7 @@
 calculate_comparison_table <- function(data1, data2, cond1, cond2, test1, test2){
 result1 <- calculate_test(data1, cond1,test1)
 result2 <- calculate_test(data2, cond2,test2)
+
 result1 <- result1[,c(1,3,4)]
 result2 <- result2[,c(1,3,4)]
 colnames(result1)[c(2,3)] <- paste(test1,colnames(result1)[c(2,3)], sep=".")  
@@ -24,6 +25,7 @@ colnames(result2)[c(2,3)] <- paste(test2,colnames(result2)[c(2,3)], sep=".")
 
 
 result <- merge(result1, result2, by="id")
+result$genes_rank <- sqrt(result[,3]*result[,5])
 
 return(result)
 }
