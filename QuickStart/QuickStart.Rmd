@@ -1,5 +1,5 @@
 ---
-title: "MExpResso: differential expression and methylation analysis"
+title: "MLExpResso: differential expression and methylation analysis"
 subtitle: "Case study using RTCGA data"
 author: "Aleksandra Dąbrowska, Alicja Gosiewska"
 output: 
@@ -10,7 +10,7 @@ toc: TRUE
 
 # Package (Abstract?)
 It is considered that the result of increased methylation is decreased gene expression. While, recent studies suggest that the relationship between methylation and expression is more complex than was previously thought.
-The package `MExpResso` provides methods to test for differential expression and methylation by use of the negative binonial distribution and t-test. Additionaly `MExpResso allows to visualize results in a simple way.
+The package `MLExpResso` provides methods to test for differential expression and methylation by use of the negative binonial distribution and t-test. Additionaly `MExpResso allows to visualize results in a simple way.
 
 # Standard Workflow
 
@@ -23,7 +23,7 @@ Rows of this data set correspond to patients, more precisely, to samples taken f
 First column `SUBTYPE`corresponds to a subtype of BRCA cancer, next columns correspond to CpG islands.
 Values inside the table indicate the methylation level of CpG island for specified sample.
 ```{r}
-library(MetExpR)
+library(MLExpResso)
 head(BRCA_methylation_all)[1:5,1:4]
 ```
 

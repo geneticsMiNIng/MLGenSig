@@ -1,4 +1,4 @@
-Package: MetExpR
+Package: MLExpResso
 Title: Package for analysing genes expression and CpG islands metylation
 Version: 0.1.5.0
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
