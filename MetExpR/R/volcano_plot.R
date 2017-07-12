@@ -25,6 +25,7 @@
 #'@importFrom ggplot2 scale_x_continuous
 #'@importFrom ggplot2 scale_y_continuous
 #'@importFrom ggplot2 annotate
+#'@importFrom ggplot2 ggplot_build
 #'@importFrom grid unit
 #'@importFrom scales trans_breaks
 #'@importFrom scales trans_format
@@ -41,6 +42,7 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
   log2.fold <- pval <- id <- NULL
   colnames(data) <- ifelse(str_sub(colnames(data), str_length(colnames(data))-3, str_length(colnames(data)))=="pval", "pval", colnames(data))
   colnames(data) <- ifelse(str_sub(colnames(data), str_length(colnames(data))-8, str_length(colnames(data)))=="log2.fold", "log2.fold", colnames(data))  
+  
   
   if(ylog==TRUE){
     #data$pval <- log10(data$pval)
@@ -101,12 +103,15 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
       )
     }
   }
-  if(values==TRUE && length(ngen)==1){
-    values_for_gene <- data[which(data$id==ngen),]
-    plot <- plot+#annotate("text",x=(max(data$log2.fold)-0.01), y=(min(data$pval)), label=ngen, colour="red")+
-      annotate("text",x=(max(data$log2.fold)-0.01), y=(min(data$pval)+10^(-15)), label=paste("pval:",round(values_for_gene$pval,4)), colour="red")+
-      annotate("text",x=(max(data$log2.fold)-0.01), y=(min(data$pval)+10^(-14)), label=paste("log2.fold:",round(values_for_gene$log2.fold,4)), colour="red")
-  }
+    
+    if(values==TRUE && length(ngen)==1){
+      values_for_gene <- data[which(data$id==ngen),]
+      breaks <- ggplot_build(plot)$layout$panel_ranges[[1]]$y.major_source 
+      plot <- plot+#annotate("text",x=(max(data$log2.fold) - 0.01), y=(min(data$pval)), label=ngen, colour="red")+
+        annotate("text",x=(max(data$log2.fold)-0.01), y=(min(data$pval)+10^(-breaks[1])), label=paste("pval:",round(values_for_gene$pval,4)), colour="red")+
+        annotate("text",x=(max(data$log2.fold)-0.01), y=(min(data$pval)+10^(-(breaks[1]-1))), label=paste("log2.fold:",round(values_for_gene$log2.fold,4)), colour="red")
+    }
+  
 
   return(plot)
 }
