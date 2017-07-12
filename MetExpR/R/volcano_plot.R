@@ -108,9 +108,16 @@ volcano_plot <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
       values_for_gene <- data[which(data$id==ngen),]
       breaks <- ggplot_build(plot)$layout$panel_ranges[[1]]$y.major_source 
       diff <- (breaks[1]-breaks[2])/5
+      label_pvalue <- NULL
+      if(values_for_gene$pval < 10^(-4)){
+        label_pvalue <- paste("pval < 0.0001")
+      }else{
+        label_pvalue <- paste("pval:",round(values_for_gene$pval,4))
+      }
+      
       plot <- plot+#annotate("text",x=(max(data$log2.fold) - 0.01), y=(min(data$pval)), label=ngen, colour="red")+
-        annotate("text",x=(max(data$log2.fold)-0.01), y=(min(data$pval)+10^(-breaks[1])), label=paste("pval:",round(values_for_gene$pval,4)), colour="red")+
-        annotate("text",x=(max(data$log2.fold)-0.01), y=(min(data$pval)+10^(-breaks[1]+diff)), label=paste("log2.fold:",round(values_for_gene$log2.fold,4)), colour="red")
+        annotate("text",x=(min(data$log2.fold)+0.01), y=(min(data$pval)+10^(-breaks[1])), label=label_pvalue, colour="red")+
+        annotate("text",x=(min(data$log2.fold)+0.01), y=(min(data$pval)+10^(-breaks[1]+diff)), label=paste("log2.fold:",round(values_for_gene$log2.fold,4)), colour="red")
     }
   
 
