@@ -2,25 +2,54 @@
 % Please edit documentation in R/calculate_test.R
 \name{calculate_test}
 \alias{calculate_test}
-\title{test_diff: statistical computations for data from methylation or expression.}
+\title{Statistical computations for methylation or expression data.}
 \usage{
 calculate_test(data, condition, test = "ttest")
 }
 \arguments{
-\item{data}{data frame containing values of methylation or the raw counts of sequencing reads. Columns corresponds to genes, rows to samples.}
+\item{data}{Object of the class appropriate for the given test. More in \code{details} section.}
 
-\item{condition}{vector of levels coresponding to order of samples in data.}
+\item{condition}{factor of levels coresponding to order of samples in data.}
 
-\item{test}{variable defining test. Values: ttest, nbinom.}
+\item{test}{variable defining test. Values: ttest, nbinom, nbinom2, lrt, qlf. More in \code{details} section.}
 }
 \value{
 A data frame with the following columns:
- \item{id}{The ID of the observable, taken from the row names of the counts slots.}
+ \item{id}{The id of the observable, taken from the row names of the counts slots.}
  \item{mean}{The base mean.}
  \item{log.fold}{The log2 of the fold change.}
  \item{pval}{The p-values for rejecting the null hypothesis about the means equality.}
  \item{padj}{The adjusted p-values.}
 }
 \description{
-Function \code{calculate_test} computes statistics and p-values for choosen test. The function can use two test: t-test for methylation data and negative binomial test for data from gene expression. By default function \code{test_diff} calls the \code{mety_ttest} for methylation.
+Function \code{calculate_test} computes log folds and p-values for choosen test.
+The function uses: t-test, negative binomial test, likelihood-ratio test(LRT), quasi-likelihood F-test(QLF).
+By default function calls the \code{ttest}.
+}
+\details{
+Each test may require different data. In this section we will describe details for each availible test:
+\describe{
+  \item{ttest}{
+  Student's t-test
+  \code{\link[limma]{lmFit}}
+  }
+  \item{nbinom}{
+   negative binomial test
+  Based on function \code{\link[DESeq]{nbinomTest} from DESeq package.}
+ Calculations may take some time. It is suggested to use \code{nbinom2} parameter.
+  }
+  \item{nbinom2}{
+   negative binomial test
+  Based on \code{\link[DESeq2]{DESeq} from DESeq2 package.}
+  }
+  \item{lrt}{
+  likelihood-ratio test(LRT)
+  based on function \code{\link[edgeR]{glmLRT}}
+  }
+  \item{qlf}{
+  quasi-likelihood F-test(QLF)
+  based on functions \code{\link[edgeR]{glmQLFit}} and \code{\link[edgeR]{glmQLFTest}}
+  }
+}
+more about data classes, references to Bioconductor packages
 }
