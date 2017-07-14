@@ -40,6 +40,7 @@ devtools::install_github("geneticsMiNIng/MLGenSig/MLExpResso")
 
 ## Vignettes
 
+* [Quick start](https://github.com/geneticsMiNIng/MLGenSig/blob/master/QuickStart/QuickStart.pdf)
 * [Usage](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Vignette/Usage.pdf)
 * [Automatically created report](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Reports/plots.pdf) and [Instruction](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Reports/generating_reports.pdf)
 
