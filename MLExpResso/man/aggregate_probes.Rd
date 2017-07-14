@@ -4,10 +4,12 @@
 \alias{aggregate_probes}
 \title{Mapping CpG probes to genes}
 \usage{
-aggregate_probes(data, keep = "")
+aggregate_probes(data, keep = NULL)
 }
 \arguments{
 \item{data}{data frame  containing methylation values for CpG probes. Columns corresponds to probes, rows to samples.}
+
+\item{keep}{the name of the column we want to keep}
 }
 \value{
 A data frame with CpG probes mapped to genes. If there were more than one probe corresponding to a gene, value is a mean of those probes.
