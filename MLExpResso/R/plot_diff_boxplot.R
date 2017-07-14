@@ -3,12 +3,13 @@
 #'@description Function \code{plot_diff_boxplot} generates a boxplot of values from choosen data frame column with division in groups.
 #'
 #'@param data data frame containing interesing values.
-#'@param column string containing name of column with values for boxplot.
+#'@param gene string containing name of gene with values for boxplot.
 #'@param condition vector of length equal to numer of rows of data,
 #'\code{condition} should contains names of groups corresponding to rows.
-#'@param sqrt.trans root square transformation
+#'@param sqrt.trans root square y-axis transformation
+#'@param title plot title, by default id of gene
 #'
-#'@return Object of class ggplot containing boxplot for values from choosen column.
+#'@return Object of class ggplot containing boxplot for values from choosen gene.
 #'
 #'@importFrom ggplot2 ggplot
 #'@importFrom ggplot2 geom_boxplot
@@ -18,27 +19,28 @@
 #'@importFrom ggplot2 element_blank
 #'@importFrom ggplot2 xlab
 #'@importFrom ggplot2 coord_trans
+#'@importFrom ggplot2 ggtitle 
 #'@importFrom edgeR cpm
 #'
 #'@export
 
-plot_diff_boxplot <- function(data, column, condition="", sqrt.trans=FALSE){
+plot_diff_boxplot <- function(data, gene, condition="", sqrt.trans=FALSE, title=TRUE){
   values <- NULL
   
-  data <-data[,column]
+  data <-data[,gene]
   data <- cpm(data)
 
   if(is.numeric(data)) {
     dt <- as.data.frame(data)
-    colnames(dt) <- column
+    colnames(dt) <- gene
   }else{
-    dt <- data[,column]
+    dt <- data[,gene]
     dt<-as.data.frame(dt)
   }
   dt$condition <- condition
   colnames(dt)[1] <- "values"
-  dt$column <- paste0(column)
-  colnames(dt)[2] <- paste0(column)
+  dt$gene <- paste0(gene)
+  colnames(dt)[2] <- paste0(gene)
 
   plot <- ggplot(dt,aes(condition,y=values,col=condition))+
     geom_boxplot(outlier.size = 0.5)+
@@ -54,6 +56,9 @@ plot_diff_boxplot <- function(data, column, condition="", sqrt.trans=FALSE){
 )
 
   if(sqrt.trans==TRUE) plot <- plot + coord_trans(y="sqrt")
+  if(title==TRUE){
+    plot <- plot + ggtitle(gene)
+  }
 
   return(plot)
 }

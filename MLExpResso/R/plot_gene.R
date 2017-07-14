@@ -22,7 +22,7 @@
 plot_gene <- function(condition.e, condition.m, data.e, data.m, gene){
   title <- textGrob(gene, gp=gpar(fontsize = 25))
   g <- plot_methylation_path(data.m, condition.m, gene, observ = TRUE, show_gene = TRUE) +theme(legend.position = "none")
-  b1 <- plot_diff_boxplot(data.e, gene, condition.e, sqrt.trans=TRUE) +theme(legend.position = c(1,1), legend.justification=c(1,1))
+  b1 <- plot_diff_boxplot(data.e, gene, condition.e, sqrt.trans=TRUE, title=FALSE) +theme(legend.position = c(1,1), legend.justification=c(1,1))
   
   tmp <- ggplot_gtable(ggplot_build(b1))
   leg <- which(sapply(tmp$grobs, function(x) x$name) ==  "guide-box")

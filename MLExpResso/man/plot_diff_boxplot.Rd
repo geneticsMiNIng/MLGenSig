@@ -4,20 +4,23 @@
 \alias{plot_diff_boxplot}
 \title{Boxplot for expression in groups}
 \usage{
-plot_diff_boxplot(data, column, condition = "", sqrt.trans = FALSE)
+plot_diff_boxplot(data, gene, condition = "", sqrt.trans = FALSE,
+  title = TRUE)
 }
 \arguments{
 \item{data}{data frame containing interesing values.}
 
-\item{column}{string containing name of column with values for boxplot.}
+\item{gene}{string containing name of gene with values for boxplot.}
 
 \item{condition}{vector of length equal to numer of rows of data,
 \code{condition} should contains names of groups corresponding to rows.}
 
-\item{sqrt.trans}{root square transformation}
+\item{sqrt.trans}{root square y-axis transformation}
+
+\item{title}{plot title, by default id of gene}
 }
 \value{
-Object of class ggplot containing boxplot for values from choosen column.
+Object of class ggplot containing boxplot for values from choosen gene.
 }
 \description{
 Function \code{plot_diff_boxplot} generates a boxplot of values from choosen data frame column with division in groups.
