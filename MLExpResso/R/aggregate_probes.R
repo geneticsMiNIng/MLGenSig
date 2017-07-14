@@ -8,17 +8,20 @@
 #'
 #'@examples
 #'\dontrun{
-#'BRCA_genes <- map_to_gene(BRCA_methylation_all)
+#'BRCA_genes <- aggregate_probes(BRCA_methylation_all)
 #'}
 #' @export
  
-aggregate_probes <- function(data){
+aggregate_probes <- function(data, keep=""){
   genom <- illumina_humanmethylation_27_data[,c(1,11)]
   dict_cg <- as.vector(genom$Symbol)
   names(dict_cg) <- genom$Name
   rnames<-rownames(data)
+  keep_column <- as.data.frame(data[,keep])
+  colnames(keep_column) <- keep
   colnames(data) <- dict_cg[colnames(data)]
   data<-as.data.frame(lapply(split(as.list(data),f = colnames(data)),function(x) Reduce(`+`,x) / length(x)))
   rownames(data) <- rnames
+  data <- cbind(keep_column, data)
   return(data)
 } 

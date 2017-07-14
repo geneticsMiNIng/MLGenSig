@@ -4,7 +4,7 @@
 \alias{aggregate_probes}
 \title{Mapping CpG probes to genes}
 \usage{
-aggregate_probes(data)
+aggregate_probes(data, keep = "")
 }
 \arguments{
 \item{data}{data frame  containing methylation values for CpG probes. Columns corresponds to probes, rows to samples.}
@@ -17,6 +17,6 @@ Function \code{aggregate_probes} aggregates CpG probes to corresponding genes.
 }
 \examples{
 \dontrun{
-BRCA_genes <- map_to_gene(BRCA_methylation_all)
+BRCA_genes <- aggregate_probes(BRCA_methylation_all)
 }
 }
