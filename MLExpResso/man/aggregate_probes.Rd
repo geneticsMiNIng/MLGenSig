@@ -2,7 +2,7 @@
 % Please edit documentation in R/aggregate_probes.R
 \name{aggregate_probes}
 \alias{aggregate_probes}
-\title{Mapping CpG probes to genes}
+\title{Aggregating CpG probes to genes}
 \usage{
 aggregate_probes(data, keep = NULL)
 }

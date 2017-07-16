@@ -4,7 +4,7 @@
 \alias{test_edger}
 \title{test_edger}
 \usage{
-test_edger(data, condition, type = "lrt")
+test_edger(data, condition, type = "lrt", ...)
 }
 \arguments{
 \item{data}{data frame containing the raw counts of sequencing reads. Columns corresponds to genes, rows to samples.}

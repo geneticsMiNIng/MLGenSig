@@ -20,18 +20,18 @@
 #'@importFrom edgeR glmQLFTest
 
 
-test_edger <- function(data, condition, type="lrt"){
+test_edger <- function(data, condition, type="lrt", ...){
   y <- DGEList(counts=data,group=condition)
   y <- calcNormFactors(y)
   design <- model.matrix(~condition)
   y <- estimateDisp(y,design)
   if(type=="lrt"){
-    fit <- glmFit(y,design)
+    fit <- glmFit(y,design, ...)
     lrt <- glmLRT(fit,coef=2)
     result <- lrt@.Data[[14]]
   }
   if(type=="qlf"){
-    fit <- glmQLFit(y,design)
+    fit <- glmQLFit(y,design, ...)
     qlf <- glmQLFTest(fit,coef=2)
     result <- qlf@.Data[[17]]
   }

@@ -14,7 +14,7 @@
 #'  \item{exp.mean.gr1}{The base mean for the counts for the first condition.}
 #'  \item{exp.mean.gr2}{The base mean for the counts for the second condition.}
 #'  \item{exp.fold}{The ratio mean.gr1/mean.gr2.}
-#'   
+#'
 #' @importFrom DESeq estimateDispersions
 #' @importFrom DESeq estimateSizeFactors
 #' @importFrom DESeq nbinomTest
@@ -23,7 +23,7 @@
 #'@seealso mety_t
 
 
-test_nbinom <- function(data, condition){
+test_nbinom <- function(data, condition, ...){
   data<-t(data)
   levels <- unique(condition)
   cds <- newCountDataSet( data, condition )
@@ -32,7 +32,7 @@ test_nbinom <- function(data, condition){
   #variance
   cds <- estimateDispersions( cds )
   #negative binomial test
-  res <- nbinomTest( cds, levels[1], levels[2])
+  res <- nbinomTest( cds, levels[1], levels[2], ...)
   colnames(res) <- c("id","mean","mean.gr1","mean.gr2","fold","log.fold","pval","padj")
   res <- res[,c(1,2,6,7,8,3,4,5)]
   return(res)

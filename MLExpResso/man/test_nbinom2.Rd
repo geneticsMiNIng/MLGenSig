@@ -4,7 +4,7 @@
 \alias{test_nbinom2}
 \title{expr_nbinom2: negative binomial test for gene expression}
 \usage{
-test_nbinom2(data, condition)
+test_nbinom2(data, condition, ...)
 }
 \arguments{
 \item{data}{data frame containing the raw counts of sequencing reads. Columns corresponds to genes, rows to samples.}

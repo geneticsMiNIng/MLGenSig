@@ -33,7 +33,8 @@ Each test may require different data. In this section we will describe details f
 \describe{
   \item{ttest}{
   Student's t-test
-  \code{\link[limma]{lmFit}}
+  \code{\link[limma]{lmFit} \\
+  Methylation - CpG islands to genes: \link{aggregate_probes}}
   }
   \item{nbinom}{
    negative binomial test
@@ -53,11 +54,13 @@ Each test may require different data. In this section we will describe details f
   based on functions \code{\link[edgeR]{glmQLFit}} and \code{\link[edgeR]{glmQLFTest}}
   }
 }
-more about data classes, references to Bioconductor packages
 }
 \examples{
 \dontrun{
 test_methylation <- calculate_test(BRCA_methylation_gene, condition.m, "ttest")
 }
 
+}
+\seealso{
+\code{\link{calculate_comparison_table}, \link{aggregate_probes}}
 }

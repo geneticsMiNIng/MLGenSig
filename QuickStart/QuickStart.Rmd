@@ -26,6 +26,7 @@ First column `SUBTYPE`corresponds to a subtype of BRCA cancer, next columns corr
 Values inside the table indicate the methylation level of CpG island for specified sample.
 ```{r}
 library(MLExpResso)
+library(MLExpRessodata)
 head(BRCA_methylation_chr17)[1:5,1:4]
 ```
 

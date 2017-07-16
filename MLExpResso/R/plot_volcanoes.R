@@ -20,7 +20,7 @@
 #'@importFrom edgeR cpm
 #'@importFrom grid grid.rect
 #'
-#'@seealso volcano_plot, gene_stats
+#'@seealso \code{\link{plot_volcano}
 #'
 #'@examples
 #'\dontrun{
@@ -38,7 +38,7 @@ plot_volcanoes <- function(condition.e, condition.m, data.e,data.m, gene, test.e
   if(class(test.m)!="list"){
     test.m <- list(test.m)
   }
-  
+
   names.e <- names(test.e)
   names.m <- names(test.m)
   if(length(names.e)==0){

@@ -38,6 +38,3 @@ plot_volcanoes(condition_exp, condition_met, BRCA_mRNAseq_chr17, BRCA_methylatio
 }
 
 }
-\seealso{
-volcano_plot, gene_stats
-}

@@ -13,7 +13,6 @@
 #'chr_17 <- calculate_chromosome_data(BRCA_methylation_all, 17)
 #'}
 #'
-#'@export
 
 calculate_chromosome_data <- function(data, number){
   islands <- illumina_humanmethylation_27_data[which(illumina_humanmethylation_27_data$Chr==number),]

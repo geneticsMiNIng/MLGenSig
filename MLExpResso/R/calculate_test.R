@@ -20,7 +20,8 @@
 #' \describe{
 #'   \item{ttest}{
 #'   Student's t-test
-#'   \code{\link[limma]{lmFit}}
+#'   \code{\link[limma]{lmFit} \\
+#'   Methylation - CpG islands to genes: \link{aggregate_probes}}
 #'   }
 #'   \item{nbinom}{
 #'    negative binomial test
@@ -40,7 +41,9 @@
 #'   based on functions \code{\link[edgeR]{glmQLFit}} and \code{\link[edgeR]{glmQLFTest}}
 #'   }
 #' }
-#'more about data classes, references to Bioconductor packages
+#'
+#'@seealso \code{\link{calculate_comparison_table}, \link{aggregate_probes}}
+#'
 #'
 #'@examples
 #'\dontrun{
@@ -57,12 +60,12 @@ calculate_test <- function(data, condition, test="ttest",...){
      colnames(res) <- c("id","mean","log2.fold","pval","padj")
  }
   if(test=="nbinom"){
-    res <- test_nbinom(data, condition)
+    res <- test_nbinom(data, condition, ...)
     res <- res[,c(1,2,3,4,5)]
     colnames(res) <- c("id","mean","log2.fold","pval","padj")
   }
   if(test=="nbinom2"){
-    res <- test_nbinom2(data, condition)
+    res <- test_nbinom2(data, condition, ...)
     res <- res[,c(7,1,2,5,6)]
     colnames(res) <- c("id","mean","log2.fold","pval","padj")
 
@@ -71,10 +74,10 @@ calculate_test <- function(data, condition, test="ttest",...){
   res <- res[,c(1,2,3,4,5)]
   colnames(res) <- c("id","mean","log2.fold","pval","padj")
   if(test=="lrt"){
-    res<- test_edger(data, condition, type="lrt")
+    res<- test_edger(data, condition, type="lrt", ...)
   }
   if(test=="qlf"){
-    res <- test_edger(data, condition, type="qlf")
+    res <- test_edger(data, condition, type="qlf", ...)
   }
 
   return(res)
