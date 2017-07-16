@@ -8,7 +8,7 @@
 #' @param data.e data for expression
 #' @param gene gene name
 #'
-#' @return A plot of class ggplot.
+#' @return Object of class ggplot containing visualisation of methylation on gene and boxplot for values from choosen gene broken down to groups.
 #'
 #'@importFrom gridExtra tableGrob
 #'@importFrom grid textGrob

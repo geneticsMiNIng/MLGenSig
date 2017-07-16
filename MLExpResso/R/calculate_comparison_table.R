@@ -10,7 +10,7 @@
 #'@param test1 type of test for first dataset
 #'@param test2 type of test for second dataset
 #'
-#'@return data.frame containing logatithm of fold and p-values from chosen tests
+#'@return data frame containing logatithm of fold and p-values from chosen tests
 #'
 #'@examples
 #'\dontrun{

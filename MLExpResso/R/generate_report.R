@@ -10,7 +10,7 @@
 #' @param test.m test results for methylation
 #' @param genes gene name
 #'
-#' @return pdf
+#' @return pdf with report consisting information about MLExpResso package
 #' @examples
 #'\dontrun{
 #'condition.met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")

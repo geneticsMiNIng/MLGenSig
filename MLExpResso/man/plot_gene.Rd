@@ -18,7 +18,7 @@ plot_gene(condition.e, condition.m, data.e, data.m, gene)
 \item{gene}{gene name}
 }
 \value{
-A plot of class ggplot.
+Object of class ggplot containing visualisation of methylation on gene and boxplot for values from choosen gene broken down to groups.
 }
 \description{
 Function \code{plot_gene} generates a dashboard with methylation_path for methylation and boxplots for groups.

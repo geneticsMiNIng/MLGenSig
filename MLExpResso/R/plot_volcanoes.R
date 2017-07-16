@@ -11,7 +11,7 @@
 #' @param test.m list of tests results for methylation
 #' @param values logical value, TRUE if we want p-values and log fold for chosen gene
 #'
-#' @return A plot of class ggplot.
+#' @return Object of class ggplot containing volcano plots of p-values versus log2.fold for each gene for chosen number of tests.
 #'
 #'@importFrom gridExtra tableGrob
 #'@importFrom grid textGrob

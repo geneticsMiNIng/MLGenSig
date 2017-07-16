@@ -25,7 +25,7 @@ plot_volcano(data, line = NA, names = NA, ylog = TRUE, ngen = NA,
 \item{values}{logical value, TRUE if we want p-values and log fold for chosen gene}
 }
 \value{
-plot
+Object of class ggplot containing volcano plot of p-values versus log2.fold for each gene
 }
 \description{
 Function \code{plot_volcano} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.

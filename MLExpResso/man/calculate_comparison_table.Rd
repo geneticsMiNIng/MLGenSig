@@ -20,7 +20,7 @@ calculate_comparison_table(data1, data2, cond1, cond2, test1, test2)
 \item{test2}{type of test for second dataset}
 }
 \value{
-data.frame containing logatithm of fold and p-values from chosen tests
+data frame containing logatithm of fold and p-values from chosen tests
 }
 \description{
 Function \code{calculate_comparison_table} produces a dataset containing p-values and folds from tests evaluaetes on two datasets e.g methylation or expression.

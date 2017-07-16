@@ -12,7 +12,7 @@
 #'@param ylog s
 #'@param values logical value, TRUE if we want p-values and log fold for chosen gene
 #'
-#'@return plot
+#'@return Object of class ggplot containing volcano plot of p-values versus log2.fold for each gene
 #'
 #'@importFrom ggplot2 geom_point
 #'@importFrom ggplot2 theme_bw

@@ -22,7 +22,7 @@ generate_report(data.e, data.m, condition.e, condition.m, test.e, test.m, genes)
 \item{genes}{gene name}
 }
 \value{
-pdf
+pdf with report consisting information about MLExpResso package
 }
 \description{
 Function \code{G}

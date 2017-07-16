@@ -25,7 +25,7 @@ plot_volcanoes(condition.e, condition.m, data.e, data.m, gene,
 \item{values}{logical value, TRUE if we want p-values and log fold for chosen gene}
 }
 \value{
-A plot of class ggplot.
+Object of class ggplot containing volcano plots of p-values versus log2.fold for each gene for chosen number of tests.
 }
 \description{
 Function \code{plot_volcanoes} generate a dashboard with volcano plots for expression and methylation. Also it adds a tables with basic statistics.

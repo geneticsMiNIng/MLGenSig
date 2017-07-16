@@ -20,7 +20,7 @@ plot_diff_boxplot(data, gene, condition = "", sqrt.trans = FALSE,
 \item{title}{plot title, by default id of gene}
 }
 \value{
-Object of class ggplot containing boxplot for values from choosen gene.
+Object of class ggplot containing boxplot for values from choosen gene broken down to groups.
 }
 \description{
 Function \code{plot_diff_boxplot} generates a boxplot of values from choosen data frame column with division in groups.

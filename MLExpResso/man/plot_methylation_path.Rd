@@ -23,7 +23,7 @@ plot_methylation_path(data, condition, gene, show_gene = FALSE,
 \item{title}{logical parameter saying whether we should add title saying what gene we visualise.}
 }
 \value{
-A plot of class ggplot.
+Object of class ggplot containing visualisation of methylation on gene.
 }
 \description{
 Function \code{plot_methylation_path} visualise a chosen gene with marked CpG probes. It shows the mean methylation level for each probe in group. Also we can exact the line corresonding to gene. In this case we see what are the locations of probes on gene in HG18 coordinates. We can as well draw a locations of CpG islands.

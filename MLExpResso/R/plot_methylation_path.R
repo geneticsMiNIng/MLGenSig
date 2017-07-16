@@ -10,7 +10,7 @@
 #' @param islands logical parameter saying whether line corresopnding to islands should be draw or not.
 #' @param title logical parameter saying whether we should add title saying what gene we visualise.
 #'
-#' @return A plot of class ggplot.
+#' @return Object of class ggplot containing visualisation of methylation on gene.
 #'
 #'@importFrom ggplot2 geom_point
 #'@importFrom ggplot2 ggplot

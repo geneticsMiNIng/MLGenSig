@@ -9,7 +9,7 @@
 #'@param sqrt.trans root square y-axis transformation
 #'@param title plot title, by default id of gene
 #'
-#'@return Object of class ggplot containing boxplot for values from choosen gene.
+#'@return Object of class ggplot containing boxplot for values from choosen gene broken down to groups.
 #'
 #'@importFrom ggplot2 ggplot
 #'@importFrom ggplot2 geom_boxplot
