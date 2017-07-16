@@ -4,7 +4,7 @@
 \alias{test_tstudent}
 \title{t test for methylation per each gene}
 \usage{
-test_tstudent(data, condition)
+test_tstudent(data, condition, ...)
 }
 \arguments{
 \item{data}{data frame containing values of methylation: columns coresponds to genes, rows to samples.}

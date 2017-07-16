@@ -4,7 +4,7 @@
 \alias{calculate_test}
 \title{Statistical computations for methylation or expression data.}
 \usage{
-calculate_test(data, condition, test = "ttest")
+calculate_test(data, condition, test = "ttest", ...)
 }
 \arguments{
 \item{data}{Object of the class appropriate for the given test. More in \code{details} section.}
@@ -12,6 +12,8 @@ calculate_test(data, condition, test = "ttest")
 \item{condition}{factor of levels coresponding to order of samples in data.}
 
 \item{test}{variable defining test. Values: ttest, nbinom, nbinom2, lrt, qlf. More in \code{details} section.}
+
+\item{...}{other parameters e.g. `adjust.method` for argument `ttest`}
 }
 \value{
 A data frame with the following columns:

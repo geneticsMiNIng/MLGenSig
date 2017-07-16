@@ -7,6 +7,7 @@
 #' @param data Object of the class appropriate for the given test. More in \code{details} section.
 #' @param condition factor of levels coresponding to order of samples in data.
 #' @param test variable defining test. Values: ttest, nbinom, nbinom2, lrt, qlf. More in \code{details} section.
+#' @param ... other parameters e.g. `adjust.method` for argument `ttest`
 #'
 #' @return A data frame with the following columns:
 #'  \item{id}{The id of the observable, taken from the row names of the counts slots.}
@@ -48,9 +49,9 @@
 #'
 #' @export
 
-calculate_test <- function(data, condition, test="ttest"){
+calculate_test <- function(data, condition, test="ttest",...){
   if(test=="ttest"){
-     res <- test_tstudent(data, condition)
+     res <- test_tstudent(data, condition,...)
 
      res <- res[,c(1,2,3,4,5)]
      colnames(res) <- c("id","mean","log2.fold","pval","padj")
