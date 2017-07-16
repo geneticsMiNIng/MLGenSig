@@ -28,3 +28,10 @@ A plot of class ggplot.
 \description{
 Function \code{plot_methylation_path} visualise a chosen gene with marked CpG probes. It shows the mean methylation level for each probe in group. Also we can exact the line corresonding to gene. In this case we see what are the locations of probes on gene in HG18 coordinates. We can as well draw a locations of CpG islands.
 }
+\examples{
+\dontrun{
+condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
+plot_methylation_path(BRCA_methylation_chr17, condition_met, "BRCA2")
+}
+
+}

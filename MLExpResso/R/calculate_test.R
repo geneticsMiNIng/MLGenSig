@@ -41,6 +41,11 @@
 #' }
 #'more about data classes, references to Bioconductor packages
 #'
+#'@examples
+#'\dontrun{
+#'test_methylation <- calculate_test(BRCA_methylation_gene, condition.m, "ttest")
+#'}
+#'
 #' @export
 
 calculate_test <- function(data, condition, test="ttest"){

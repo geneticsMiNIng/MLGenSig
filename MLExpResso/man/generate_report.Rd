@@ -27,3 +27,11 @@ pdf
 \description{
 Function \code{G}
 }
+\examples{
+\dontrun{
+condition.met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
+condition.exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+report <- generate_report(BRCA_mRNAseq_chr17,BRCA_methylation_chr17, condition.exp, condition.met, test.nbinom, test.tstudent, "BRCA2")
+}
+
+}

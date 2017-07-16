@@ -25,3 +25,9 @@ data.frame containing logatithm of fold and p-values from chosen tests
 \description{
 Function \code{calculate_comparison_table} produces a dataset containing p-values and folds from tests evaluaetes on two datasets e.g methylation or expression.
 }
+\examples{
+\dontrun{
+compare <- calculate_comparison_table(BRCA_mRNAseq_chr17, BRCA_methylation_gen_17, condition_exp, condition_met, test1="nbinom2", test2="ttest")
+}
+
+}

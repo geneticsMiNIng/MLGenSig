@@ -30,6 +30,14 @@ A plot of class ggplot.
 \description{
 Function \code{plot_volcanoes} generate a dashboard with volcano plots for expression and methylation. Also it adds a tables with basic statistics.
 }
+\examples{
+\dontrun{
+condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
+plot_volcanoes(condition_exp, condition_met, BRCA_mRNAseq_chr17, BRCA_methylation_chr17, "ICAM2", test.nbinom, test.tstudent, values=TRUE)
+}
+
+}
 \seealso{
 volcano_plot, gene_stats
 }

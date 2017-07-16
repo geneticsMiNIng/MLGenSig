@@ -12,6 +12,11 @@
 #'
 #'@return data.frame containing logatithm of fold and p-values from chosen tests
 #'
+#'@examples
+#'\dontrun{
+#'compare <- calculate_comparison_table(BRCA_mRNAseq_chr17, BRCA_methylation_gen_17, condition_exp, condition_met, test1="nbinom2", test2="ttest")
+#'}
+#'
 #'@export
 
 calculate_comparison_table <- function(data1, data2, cond1, cond2, test1, test2){

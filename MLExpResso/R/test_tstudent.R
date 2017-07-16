@@ -21,8 +21,6 @@
 #' @importFrom limma makeContrasts
 #'
 #'@seealso expr_nbinom
-#'
-#' @export
 
 test_tstudent <-function(data, condition){
   data<-t(data)

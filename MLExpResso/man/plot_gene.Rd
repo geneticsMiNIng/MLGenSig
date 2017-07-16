@@ -23,3 +23,10 @@ A plot of class ggplot.
 \description{
 Function \code{plot_gene} generates a dashboard with methylation_path for methylation and boxplots for groups.
 }
+\examples{
+\dontrun{
+condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
+plot_gene(condition_exp, condition_met, BRCA_mRNAseq_chr17, BRCA_methylation_chr17, "ICAM2")
+}
+}

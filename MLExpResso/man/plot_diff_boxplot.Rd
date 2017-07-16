@@ -25,3 +25,9 @@ Object of class ggplot containing boxplot for values from choosen gene.
 \description{
 Function \code{plot_diff_boxplot} generates a boxplot of values from choosen data frame column with division in groups.
 }
+\examples{
+\dontrun{
+condition.expr <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+plot_diff_boxplot(BRCA_mRNAseq_chr17, "BRCA2", condition.expr, sqrt.trans=TRUE)
+}
+}

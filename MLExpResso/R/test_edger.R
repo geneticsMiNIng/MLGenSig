@@ -18,8 +18,7 @@
 #'@importFrom edgeR glmLRT
 #'@importFrom edgeR glmQLFit
 #'@importFrom edgeR glmQLFTest
-#'
-#'@export
+
 
 test_edger <- function(data, condition, type="lrt"){
   y <- DGEList(counts=data,group=condition)

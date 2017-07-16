@@ -17,6 +17,12 @@
 #'@importFrom ggplot2 ggplot_gtable
 #'@importFrom ggplot2 ggplot_build
 #'
+#'@examples
+#'\dontrun{
+#'condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+#'condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
+#'plot_gene(condition_exp, condition_met, BRCA_mRNAseq_chr17, BRCA_methylation_chr17, "ICAM2")
+#'}
 #' @export
 
 plot_gene <- function(condition.e, condition.m, data.e, data.m, gene){

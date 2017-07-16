@@ -30,3 +30,8 @@ plot
 \description{
 Function \code{plot_volcano} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.
 }
+\examples{
+\dontrun{
+plot_volcano(BRCA_mRNAseq_chr17, values=TRUE)
+}
+}

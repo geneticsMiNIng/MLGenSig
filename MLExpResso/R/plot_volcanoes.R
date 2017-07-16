@@ -21,6 +21,14 @@
 #'@importFrom grid grid.rect
 #'
 #'@seealso volcano_plot, gene_stats
+#'
+#'@examples
+#'\dontrun{
+#'condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+#'condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
+#'plot_volcanoes(condition_exp, condition_met, BRCA_mRNAseq_chr17, BRCA_methylation_chr17, "ICAM2", test.nbinom, test.tstudent, values=TRUE)
+#'}
+#'
 #'@export
 
 plot_volcanoes <- function(condition.e, condition.m, data.e,data.m, gene, test.e=list(), test.m=list(), values=FALSE){

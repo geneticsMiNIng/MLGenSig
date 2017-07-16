@@ -17,3 +17,9 @@ dataset containing CpG islands from all methylation data.
 \description{
 Function \code{calculate_chromosome_data} produces a dataset for chosen chromosome from methylation data.
 }
+\examples{
+\dontrun{
+chr_17 <- calculate_chromosome_data(BRCA_methylation_all, 17)
+}
+
+}

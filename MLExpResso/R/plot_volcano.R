@@ -34,6 +34,11 @@
 #'@importFrom scales trans_new
 #'@importFrom stringr str_sub
 #'@importFrom stringr str_length
+#'
+#'@examples
+#'\dontrun{
+#'plot_volcano(BRCA_mRNAseq_chr17, values=TRUE)
+#'}
 #'@export
 
 plot_volcano <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, fold_line=NA, values=FALSE){
