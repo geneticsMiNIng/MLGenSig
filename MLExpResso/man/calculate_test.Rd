@@ -2,7 +2,7 @@
 % Please edit documentation in R/calculate_test.R
 \name{calculate_test}
 \alias{calculate_test}
-\title{Statistical computations for methylation or expression data.}
+\title{Statistical computations for methylation and expression data.}
 \usage{
 calculate_test(data, condition, test = "ttest", ...)
 }

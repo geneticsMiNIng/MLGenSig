@@ -1,4 +1,4 @@
-#' @title Statistical computations for methylation or expression data.
+#' @title Statistical computations for methylation and expression data.
 #'
 #' @description Function \code{calculate_test} computes log folds and p-values for choosen test.
 #' The function uses: t-test, negative binomial test, likelihood-ratio test(LRT), quasi-likelihood F-test(QLF).
@@ -56,28 +56,26 @@ calculate_test <- function(data, condition, test="ttest",...){
   if(test=="ttest"){
      res <- test_tstudent(data, condition,...)
 
-     res <- res[,c(1,2,3,4,5)]
-     colnames(res) <- c("id","mean","log2.fold","pval","padj")
+     res <- res[,c(1,2,3,4)]
+     colnames(res) <- c("id","mean","log2.fold","pval")
  }
   if(test=="nbinom"){
     res <- test_nbinom(data, condition, ...)
-    res <- res[,c(1,2,3,4,5)]
-    colnames(res) <- c("id","mean","log2.fold","pval","padj")
+    res <- res[,c(1,2,3,4)]
+    colnames(res) <- c("id","mean","log2.fold","pval")
   }
   if(test=="nbinom2"){
     res <- test_nbinom2(data, condition, ...)
-    res <- res[,c(7,1,2,5,6)]
-    colnames(res) <- c("id","mean","log2.fold","pval","padj")
-
+    res <- res[,c(7,1,2,5)]
+    colnames(res) <- c("id","mean","log2.fold","pval")
   }
-
-  res <- res[,c(1,2,3,4,5)]
-  colnames(res) <- c("id","mean","log2.fold","pval","padj")
-  if(test=="lrt"){
-    res<- test_edger(data, condition, type="lrt", ...)
-  }
-  if(test=="qlf"){
-    res <- test_edger(data, condition, type="qlf", ...)
+  if(test=="lrt" || test=="qlf"){
+    res<- test_edger(t(data), condition, type=test, ...)
+    mean <- colMeans(data)
+    mean <- as.data.frame(mean)
+    mean$id <- rownames(mean)
+    res <- merge(res, mean, by="id")
+    res <- res[, c(1,4,2,3)]
   }
 
   return(res)

@@ -24,13 +24,19 @@ Package contains `BRCA_methylation_chr17` dataset. `BRCA_methylation_chr17` cont
 Rows of this data set correspond to patients, more precisely, to samples taken from patients.
 First column `SUBTYPE`corresponds to a subtype of BRCA cancer, next columns correspond to CpG islands.
 Values inside the table indicate the methylation level of CpG island for specified sample.
-```{r}
+```{r MLExpResso}
 library(MLExpResso)
+```
+
+```{r MLExpRessodata}
 library(MLExpRessodata)
+```
+
+```{r}
 head(BRCA_methylation_chr17)[1:5,1:4]
 ```
 
-In this analysis we would like to find genes with different methylation and expression. At first we need to use function `map_to_gene`, which generates new data frame with CpG islands mapped to genes.
+In this analysis we would like to find genes with different methylation and expression. At first we need to use function `aggregate_probes`, which generates new data frame with CpG islands mapped to genes.
 
 ```{r mapping}
 BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17[,-1]) 
@@ -75,7 +81,7 @@ head(condition_exp, 8)
 
 ### Testing
 ```{r}
-res_exp <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="ttest")
+res_exp <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt")
 head(res_exp)
 ```
 

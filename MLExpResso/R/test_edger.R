@@ -21,7 +21,7 @@
 
 
 test_edger <- function(data, condition, type="lrt", ...){
-  y <- DGEList(counts=data,group=condition)
+  y <- DGEList(counts=data, group=condition)
   y <- calcNormFactors(y)
   design <- model.matrix(~condition)
   y <- estimateDisp(y,design)
