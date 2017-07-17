@@ -40,7 +40,7 @@ devtools::install_github("geneticsMiNIng/MLGenSig/MLExpResso")
 In order to run examples you shall install also `MLGenSigdata`.
 
 ```
-devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpResso")
+devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpResso/MLExpRessodata")
 ```
 
 
