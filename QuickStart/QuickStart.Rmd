@@ -24,11 +24,11 @@ Package contains `BRCA_methylation_chr17` dataset. `BRCA_methylation_chr17` cont
 Rows of this data set correspond to patients, more precisely, to samples taken from patients.
 First column `SUBTYPE`corresponds to a subtype of BRCA cancer, next columns correspond to CpG islands.
 Values inside the table indicate the methylation level of CpG island for specified sample.
-```{r MLExpResso}
+```{r MLExpResso, message=FALSE, warning=FALSE}
 library(MLExpResso)
 ```
 
-```{r MLExpRessodata}
+```{r MLExpRessodata, message=FALSE, warning=FALSE}
 library(MLExpRessodata)
 ```
 

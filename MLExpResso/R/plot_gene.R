@@ -28,7 +28,7 @@
 #' @export
 
 plot_gene <- function(condition.e, condition.m, data.e, data.m, gene){
-  title <- textGrob(gene, gp=gpar(fontsize = 25))
+  title <- textGrob(gene, gp=gpar(fontsize = 25), just="left")
   g <- plot_methylation_path(data.m, condition.m, gene, observ = TRUE, show_gene = TRUE) +theme(legend.position = "none")
   b1 <- plot_diff_boxplot(data.e, gene, condition.e, sqrt.trans=TRUE, title=FALSE) +theme(legend.position = c(1,1), legend.justification=c(1,1))
 
