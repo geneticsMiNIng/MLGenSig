@@ -111,8 +111,10 @@ plot_volcano <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
     
     if(values==TRUE && length(ngen)==1){
       values_for_gene <- data[which(data$id==ngen),]
-      breaks <- ggplot_build(plot)$layout$panel_ranges[[1]]$y.major_source 
-      diff <- (breaks[1]-breaks[2])/5
+      breaks_y <- ggplot_build(plot)$layout$panel_ranges[[1]]$y.major_source 
+      diff_y <- (breaks_y[1]-breaks_y[2])/5
+      breaks_x <- ggplot_build(plot)$layout$panel_ranges[[1]]$y.major_source
+      diff_x <- (breaks_x[1]-breaks_x[2])/5
       label_pvalue <- NULL
       if(values_for_gene$pval < 10^(-4)){
         label_pvalue <- paste("pval < 0.0001")
@@ -121,8 +123,8 @@ plot_volcano <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
       }
       
       plot <- plot+#annotate("text",x=(max(data$log2.fold) - 0.01), y=(min(data$pval)), label=ngen, colour="red")+
-        annotate("text",x=(min(data$log2.fold)+0.01), y=(min(data$pval)+10^(-breaks[1])), label=label_pvalue, colour="red")+
-        annotate("text",x=(min(data$log2.fold)+0.01), y=(min(data$pval)+10^(-breaks[1]+diff)), label=paste("log2.fold:",round(values_for_gene$log2.fold,4)), colour="red")
+        annotate("text",x=(min(data$log2.fold)+diff_x), y=(min(data$pval)+10^(-breaks_y[1])), label=label_pvalue, colour="red")+
+        annotate("text",x=(min(data$log2.fold)+diff_x), y=(min(data$pval)+10^(-breaks_y[1]+diff_y)), label=paste("log2.fold:",round(values_for_gene$log2.fold,4)), colour="red")
     }
   
 

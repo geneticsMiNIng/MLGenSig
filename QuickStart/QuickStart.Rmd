@@ -117,8 +117,7 @@ test_met <- genes_comparison[ ,c(1,4,5)]
   
   
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=6}
-plot_volcanoes(condition_exp, condition_met, 
-               BRCA_mRNAseq_chr17[,-1], BRCA_methylation_chr17[,-1], 
+plot_volcanoes(BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1],condition_met, condition_exp, 
                "ICAM2", 
                test_exp, test_met,
                values=TRUE)
@@ -128,7 +127,7 @@ plot_volcanoes(condition_exp, condition_met,
 Note that `plot_gene` methylation require data frame with cpg islands, not genes.
 
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=5.5}
-plot_gene(condition_exp, condition_met, BRCA_mRNAseq_chr17, BRCA_methylation_chr17, "ICAM2")
+plot_gene(BRCA_methylation_chr17,BRCA_mRNAseq_chr17,condition_met, condition_exp, "ICAM2")
 ```
 
 
