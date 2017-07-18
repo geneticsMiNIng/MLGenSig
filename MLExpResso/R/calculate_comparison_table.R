@@ -12,7 +12,7 @@
 #'
 #'@return data frame containing logatithm of fold and p-values from chosen tests
 #'
-#'@seealso \code{\link{calculate_test}
+#'@seealso \code{\link{calculate_test}}
 #'
 #'@examples
 #'\dontrun{

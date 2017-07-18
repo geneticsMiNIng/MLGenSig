@@ -4,16 +4,16 @@
 \alias{plot_gene}
 \title{Visualisations for genes.}
 \usage{
-plot_gene(condition.e, condition.m, data.e, data.m, gene)
+plot_gene(data.m, data.e, condition.m, condition.e, gene)
 }
 \arguments{
-\item{condition.e}{condition for  expression}
-
-\item{condition.m}{condition for methylation}
+\item{data.m}{data for methylation}
 
 \item{data.e}{data for expression}
 
-\item{data.m}{data for methylation}
+\item{condition.m}{condition for methylation}
+
+\item{condition.e}{condition for  expression}
 
 \item{gene}{gene name}
 }
@@ -27,6 +27,9 @@ Function \code{plot_gene} generates a dashboard with methylation_path for methyl
 \dontrun{
 condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
 condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
-plot_gene(condition_exp, condition_met, BRCA_mRNAseq_chr17, BRCA_methylation_chr17, "ICAM2")
+plot_gene(BRCA_methylation_chr17,BRCA_mRNAseq_chr17,condition_met, condition_exp, "ICAM2")
 }
+}
+\seealso{
+\code{\link{plot_methylation_path}}, \code{\link{plot_diff_boxplot}}
 }

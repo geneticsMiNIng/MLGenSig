@@ -4,17 +4,17 @@
 \alias{plot_volcanoes}
 \title{Visulisations for methylation and expression.}
 \usage{
-plot_volcanoes(condition.e, condition.m, data.e, data.m, gene,
+plot_volcanoes(data.m, data.e, condition.m, condition.e, gene,
   test.e = list(), test.m = list(), values = FALSE)
 }
 \arguments{
-\item{condition.e}{condition for  expression}
-
-\item{condition.m}{condition for methylation}
+\item{data.m}{data for methylation}
 
 \item{data.e}{data for expression}
 
-\item{data.m}{data for methylation}
+\item{condition.m}{condition for methylation}
+
+\item{condition.e}{condition for  expression}
 
 \item{gene}{gene name}
 
@@ -34,7 +34,10 @@ Function \code{plot_volcanoes} generate a dashboard with volcano plots for expre
 \dontrun{
 condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
 condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
-plot_volcanoes(condition_exp, condition_met, BRCA_mRNAseq_chr17, BRCA_methylation_chr17, "ICAM2", test.nbinom, test.tstudent, values=TRUE)
+plot_volcanoes(BRCA_methylation_chr17,BRCA_mRNAseq_chr17,condition_met, condition_exp, "ICAM2", test.nbinom, test.tstudent, values=TRUE)
 }
 
+}
+\seealso{
+\code{\link{plot_volcano}}
 }

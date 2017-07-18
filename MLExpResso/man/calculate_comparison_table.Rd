@@ -31,3 +31,6 @@ compare <- calculate_comparison_table(BRCA_mRNAseq_chr17, BRCA_methylation_gen_1
 }
 
 }
+\seealso{
+\code{\link{calculate_test}}
+}

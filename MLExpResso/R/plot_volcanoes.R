@@ -2,10 +2,10 @@
 #'
 #' @description Function \code{plot_volcanoes} generate a dashboard with volcano plots for expression and methylation. Also it adds a tables with basic statistics.
 #'
-#' @param condition.e condition for  expression
-#' @param condition.m condition for methylation
-#' @param data.e data for expression
 #' @param data.m data for methylation
+#' @param data.e data for expression
+#' @param condition.m condition for methylation
+#' @param condition.e condition for  expression
 #' @param gene gene name
 #' @param test.e list of tests results for expression
 #' @param test.m list of tests results for methylation
@@ -20,18 +20,18 @@
 #'@importFrom edgeR cpm
 #'@importFrom grid grid.rect
 #'
-#'@seealso \code{\link{plot_volcano}
+#'@seealso \code{\link{plot_volcano}}
 #'
 #'@examples
 #'\dontrun{
 #'condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
 #'condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
-#'plot_volcanoes(condition_exp, condition_met, BRCA_mRNAseq_chr17, BRCA_methylation_chr17, "ICAM2", test.nbinom, test.tstudent, values=TRUE)
+#'plot_volcanoes(BRCA_methylation_chr17,BRCA_mRNAseq_chr17,condition_met, condition_exp, "ICAM2", test.nbinom, test.tstudent, values=TRUE)
 #'}
 #'
 #'@export
 
-plot_volcanoes <- function(condition.e, condition.m, data.e,data.m, gene, test.e=list(), test.m=list(), values=FALSE){
+plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene, test.e=list(), test.m=list(), values=FALSE){
   if(class(test.e)!="list"){
     test.e <- list(test.e)
   }
