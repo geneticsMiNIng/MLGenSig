@@ -1,3 +1,5 @@
+![](https://travis-ci.org/geneticsMiNIng/MLGenSig.svg?branch=master)
+
 # MLGenSig
 Machine Learning for Genetic Signatures
 
