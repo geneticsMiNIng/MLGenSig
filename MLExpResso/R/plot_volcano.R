@@ -112,12 +112,12 @@ plot_volcano <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
     }
   }
     
-    if(values==TRUE && length(ngen)==1){
+    if(values==TRUE && !is.na(ngen)){
       values_for_gene <- data[which(data$id==ngen),]
       breaks_y <- ggplot_build(plot)$layout$panel_ranges[[1]]$y.major_source 
       diff_y <- (breaks_y[1]-breaks_y[2])/5
-      breaks_x <- ggplot_build(plot)$layout$panel_ranges[[1]]$y.major_source
-      diff_x <- (breaks_x[1]-breaks_x[2])/5
+      breaks_x <- ggplot_build(plot)$layout$panel_ranges[[1]]$x.major_source
+      diff_x <- (breaks_x[1]-breaks_x[2])
       label_pvalue <- NULL
       if(values_for_gene$pval < 10^(-4)){
         label_pvalue <- paste("pval < 0.0001")

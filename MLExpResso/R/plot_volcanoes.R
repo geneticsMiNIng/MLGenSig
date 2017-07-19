@@ -38,7 +38,7 @@
 #'
 #'@export
 
-plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene, test.e=list(), test.m=list(), values=FALSE){
+plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, test.e=list(), test.m=list(), values=FALSE){
   if(class(test.e)!="list"){
     test.e <- list(test.e)
   }
@@ -60,7 +60,7 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene, test.
     colhead = list(fg_params=list(cex = 1.8), bg_params=list(fill=c("white"))),
     rowhead = list(fg_params=list(cex = 1.8, fontface = "bold")))
 
-
+  if(!is.na(gene)){
   data.e.cpm <- as.data.frame(cpm(data.e))
   s.e <- tableGrob(t(gene_stats(data.e.cpm ,condition.e , gene, 0)), theme = mytheme)
   data.m.map <- aggregate_probes(data.m)
@@ -68,11 +68,15 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene, test.
 
   title.e <- textGrob("Expression (cpm)", just = "centre", gp=gpar(fontsize = 25))
   title.m <- textGrob("Methylation",  just = "centre", gp=gpar(fontsize = 25))
+  
 
   title <- textGrob(gene, gp=gpar(fontsize = 25), x = unit(1.1, "npc"))
   blank <- textGrob("", gp=gpar(fontsize = 25))
 
   plist <- list(title, blank, title.m, title.e, s.m, s.e)
+  }else{
+    plist <- list()
+  }
   if((length(test.e) + length(test.m)) > 0 ){
   l.e <- length(test.e)
   l.m <- length(test.m)
@@ -93,7 +97,12 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene, test.
   }
   }
   heights.plots <- rep(130,max(length(test.e), length(test.m)))
-  heights.g <- unit(c(20,10,30, heights.plots), "mm")
-  grid.arrange(grobs = plist, ncol=2, heights=heights.g)
+  if(!is.na(gene)){
+    heights.g <- unit(c(20,10,30, heights.plots), "mm")
+    grid.arrange(grobs = plist, ncol=2, heights=heights.g)
+  }else{
+    grid.arrange(grobs = plist, ncol=2, heights=heights.plots)
+  }
+  
 }
 
