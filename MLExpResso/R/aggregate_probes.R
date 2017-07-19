@@ -3,7 +3,10 @@
 #' @description Function \code{aggregate_probes} aggregates CpG probes to corresponding genes.
 #'
 #' @param data data frame  containing methylation values for CpG probes. Columns corresponds to probes, rows to samples.
-#' @param keep the name of the column we want to keep
+#' @param keep the name of the column or vector of columns names we want to keep
+#' @param genom.data data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}} 
+#' @param genes.col number of column in genom.data containing informations about genes (genes symbols)
+#' @param probs.col number of column in genom.data containing informations about probes (probes symbols)
 #'
 #' @return A data frame with CpG probes mapped to genes. If there were more than one probe corresponding to a gene, value is a mean of those probes.
 #'
@@ -14,21 +17,25 @@
 #'}
 #' @export
 
-aggregate_probes <- function(data, keep=NULL){
+aggregate_probes <- function(data, keep=NULL, genom.data= illumina_humanmethylation_27_data, genes.col=11, probes.col=1){
   if(!is.null(keep)){
-    keep_column <- as.data.frame(data[,keep])
-    colnames(keep_column) <- keep
+    if(length(keep)==1){
+    keep_col <- as.data.frame(data[,keep])
+    colnames(keep_col) <- keep
+    }else{
+    keep_col <- data[, which(colnames(data) %in% keep)]
+    }
   }
-  genom <- illumina_humanmethylation_27_data[,c(1,11)]
-  dict_cg <- as.vector(genom$Symbol)
-  names(dict_cg) <- genom$Name
+  
+  dict_cg <- as.vector(genom.data[,genes.col])
+  names(dict_cg) <- genom.data[,probes.col]
   rnames<-rownames(data)
 
   colnames(data) <- dict_cg[colnames(data)]
   data<-as.data.frame(lapply(split(as.list(data),f = colnames(data)),function(x) Reduce(`+`,x) / length(x)))
   rownames(data) <- rnames
   if(!is.null(keep)){
-  data <- cbind(keep_column, data)
+  data <- cbind(keep_col, data)
   }
   return(data)
 }

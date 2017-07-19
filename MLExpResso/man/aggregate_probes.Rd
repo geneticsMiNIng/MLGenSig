@@ -4,12 +4,20 @@
 \alias{aggregate_probes}
 \title{Aggregating CpG probes to genes}
 \usage{
-aggregate_probes(data, keep = NULL)
+aggregate_probes(data, keep = NULL,
+  genom.data = illumina_humanmethylation_27_data, genes.col = 11,
+  probes.col = 1)
 }
 \arguments{
 \item{data}{data frame  containing methylation values for CpG probes. Columns corresponds to probes, rows to samples.}
 
-\item{keep}{the name of the column we want to keep}
+\item{keep}{the name of the column or vector of columns names we want to keep}
+
+\item{genom.data}{data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}}
+
+\item{genes.col}{number of column in genom.data containing informations about genes (genes symbols)}
+
+\item{probs.col}{number of column in genom.data containing informations about probes (probes symbols)}
 }
 \value{
 A data frame with CpG probes mapped to genes. If there were more than one probe corresponding to a gene, value is a mean of those probes.
