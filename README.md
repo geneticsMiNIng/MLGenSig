@@ -4,6 +4,11 @@
 # MLGenSig
 Machine Learning for Genetic Signatures
 
+# MLExpResso
+Package for analysing genes expression and CpG islands metylation.
+
+### [News](https://github.com/geneticsMiNIng/MLGenSig/blob/master/NEWS.md)
+
 ## Imports installation
 Our package uses a few packages from Bioconductor. To install them, start R and enter
 
@@ -40,7 +45,7 @@ To install this package, start R and enter:
 devtools::install_github("geneticsMiNIng/MLGenSig/MLExpResso")
 ```
 
-In order to run examples you shall install `MLGenSigdata`.
+In order to run examples you shall install [`MLGenSigdata`](https://github.com/geneticsMiNIng/MLGenSigdata).
 
 ```
 devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")
@@ -50,9 +55,6 @@ devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")
 ## Vignettes
 
 * [Quick start](https://github.com/geneticsMiNIng/MLGenSig/blob/master/QuickStart/QuickStart.pdf)
-* [Usage](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Vignette/Usage.pdf)
-* [Automatically created report](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Reports/plots.pdf) and [Instruction](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Reports/generating_reports.pdf)
-
 
 
 ## Scripts and datasets
