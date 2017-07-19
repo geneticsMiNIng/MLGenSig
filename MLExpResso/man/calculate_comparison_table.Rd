@@ -4,7 +4,8 @@
 \alias{calculate_comparison_table}
 \title{Results from test for two datasets.}
 \usage{
-calculate_comparison_table(data1, data2, cond1, cond2, test1, test2)
+calculate_comparison_table(data1, data2, cond1, cond2, test1, test2,
+  data.probes = illumina_humanmethylation_27_data, aggregate.col = 11)
 }
 \arguments{
 \item{data1}{first dataset, suitable for \code{test1}}
@@ -18,6 +19,10 @@ calculate_comparison_table(data1, data2, cond1, cond2, test1, test2)
 \item{test1}{type of test for first dataset}
 
 \item{test2}{type of test for second dataset}
+
+\item{data.probes}{data frame which contains information about CpG probes and corresponding genes, by default in our package we use `illumina human methylation`}
+
+\item{aggregate.col}{number of column in data.probes containing informations about genes (genes symbols)}
 }
 \value{
 data frame containing logatithm of fold and p-values from chosen tests
@@ -27,6 +32,12 @@ Function \code{calculate_comparison_table} produces a dataset containing p-value
 }
 \examples{
 \dontrun{
+library(MLExpRessodata)
+condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA", "other")
+condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
+
+BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17)
+
 compare <- calculate_comparison_table(BRCA_mRNAseq_chr17, BRCA_methylation_gen_17, condition_exp, condition_met, test1="nbinom2", test2="ttest")
 }
 
