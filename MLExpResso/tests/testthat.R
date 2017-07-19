@@ -1,4 +1,4 @@
 library(testthat)
-library(MetExpR)
+library(MLExpResso)
 
-test_check("MetExpR")
+test_check("MLExpResso")
