@@ -24,9 +24,12 @@
 #'
 #'@examples
 #'\dontrun{
-#'condition.expr <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
-#'plot_diff_boxplot(BRCA_mRNAseq_chr17, "BRCA2", condition.expr, sqrt.trans=TRUE)
+#'library(MLExpRessodata)
+#'condition_expr <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+#'plot_diff_boxplot(BRCA_mRNAseq_chr17, "BRCA2", condition_expr, sqrt.trans=TRUE)
 #'}
+#'
+#'@seealso \code{\link{plot_gene}}
 #'@export
 
 plot_diff_boxplot <- function(data, gene, condition="", sqrt.trans=FALSE, title=TRUE){

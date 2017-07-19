@@ -29,9 +29,19 @@ Function \code{G}
 }
 \examples{
 \dontrun{
-condition.met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
-condition.exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+library(MLExpRessodata)
+condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
+condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+
+BRCA_methylation_gene <- aggregate_probes(BRCA_methylation_chr17, keep="SUBTYPE")
+
+test.nbinom  <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt")
+test.tstudent  <- calculate_test(BRCA_methylation_gene[,-1], condition_met, test="ttest")
+
 report <- generate_report(BRCA_mRNAseq_chr17,BRCA_methylation_chr17, condition.exp, condition.met, test.nbinom, test.tstudent, "BRCA2")
 }
 
+}
+\seealso{
+\code{\link{calculate_test}}, \code{\link{aggregate_probes}}
 }

@@ -9,6 +9,7 @@
 #'
 #'@examples
 #'\dontrun{
+#'library(MLExpRessodata)
 #'BRCA_genes <- aggregate_probes(BRCA_methylation_all, keep="SUBTYPE")
 #'}
 #' @export

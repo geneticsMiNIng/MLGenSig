@@ -25,6 +25,8 @@
 #'condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
 #'plot_gene(BRCA_methylation_chr17,BRCA_mRNAseq_chr17,condition_met, condition_exp, "ICAM2")
 #'}
+#'
+#'@seealso \code{\link{plot_methylation_path}}, \code{\link{plot_diff_boxplot}}
 #' @export
 
 plot_gene <- function(data.m, data.e, condition.m, condition.e, gene){

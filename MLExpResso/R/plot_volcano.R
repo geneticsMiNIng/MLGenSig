@@ -37,8 +37,11 @@
 #'
 #'@examples
 #'\dontrun{
+#'library(MLExpRessodata)
 #'plot_volcano(BRCA_mRNAseq_chr17, values=TRUE)
 #'}
+#'
+#'@seealso \code{\link{plot_volcanoes}}
 #'@export
 
 plot_volcano <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, fold_line=NA, values=FALSE){
