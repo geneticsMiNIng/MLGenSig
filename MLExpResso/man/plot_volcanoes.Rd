@@ -4,7 +4,7 @@
 \alias{plot_volcanoes}
 \title{Visulisations for methylation and expression.}
 \usage{
-plot_volcanoes(data.m, data.e, condition.m, condition.e, gene,
+plot_volcanoes(data.m, data.e, condition.m, condition.e, gene = NA,
   test.e = list(), test.m = list(), values = FALSE)
 }
 \arguments{
