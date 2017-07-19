@@ -18,5 +18,4 @@ test <- data.frame(id = c("AANAT", "AATK", "AATF", "AARSD1"),
 
 #!!!!!!!!!!!!!!!
 # NIe działa ;(
-plot_volcanoes(data_m, data_e, cond , cond, "AANAT",
-               test[ ,c(1,2,3)], test[,c(1,4,5)])
+#plot_volcanoes(data_m, data_e, cond , cond, "AANAT", test[ ,c(1,2,3)], test[,c(1,4,5)])
