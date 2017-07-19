@@ -4,6 +4,9 @@
 #'
 #' @param data object of class MehtyGenoSet, consisting methylation for each CpG island.
 #' @param condition vector of levels coresponding to order of samples in data.
+#' @param genom.data data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}} 
+#' @param genes.col number of column in genom.data containing informations about genes (genes symbols)
+#' @param probs.col number of column in genom.data containing informations about probes (probes symbols)
 #'
 #' @return A data frame with the following columns:
 #'  \item{id}{The ID of the observable, taken from the row names of the counts slots.}
@@ -20,16 +23,18 @@
 #'
 
 
-test_methyanalysis <- function(data, condition){
+test_methyanalysis <- function(data, condition, genom.data= illumina_humanmethylation_27_data, genes.col=11, probes.col=1){
 
   result <- detectDMR.slideWin(data, sampleType=condition)
   result <- result@elementMetadata@listData
   result2 <- data.frame(result$PROBEID, result$difference, result$p.value, result$p.adjust, result$mean_Type1)
   colnames(result2)[1] <- "Name"
-  genes <- illumina_humanmethylation_27_data[,c(1,11)]
+  genes <- genom.data[,c(probes.col,genes.col)]
   genes2 <- genes[result2$Name,]
+  colnames(genes2) <- c("Name", "Symbol")
 
   result2$Name <- as.character(result2$Name)
+  genes2$Name <- as.character(genes2$Name)
   genes2$Symbol <- as.character(genes2$Symbol)
 
   result3 <- left_join(result2, genes2, by="Name")

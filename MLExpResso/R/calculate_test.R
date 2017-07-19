@@ -44,6 +44,12 @@
 #'   Test for expression.\cr
 #'   based on functions \code{\link[edgeR]{glmQLFit}} and \code{\link[edgeR]{glmQLFTest}} from \code{edgeR} package.
 #'   }
+#'   \item{methyanalysis}{
+#'   Slide window smoothing\cr
+#'   Test for methylation.\cr
+#'   based on function \code{\link[methyAnalysis]{detectDMR.slideWin}} from \code{methyAnalysis} package.
+#'   This test requires a special class of argument data - \code{MethyGenoSet}. For more details see \code{\link{[methyAnalysis]{MethyGenoSet-class}}}
+#'   }
 #' }
 #'
 #'@seealso \code{\link{calculate_comparison_table}, \link{aggregate_probes}}
@@ -71,6 +77,10 @@ calculate_test <- function(data, condition, test="ttest",...){
   }
   if(test=="lrt" || test=="qlf"){
     res<- test_edger(t(data), condition, type=test, ...)
+  }
+  if(test=="methyanalysis"){
+    res <- test_methyanalysis(data, condition, ...)
+    res <- res[,c(1,4,5)]
   }
   colnames(res) <- c("id","log2.fold","pval")
 

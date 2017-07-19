@@ -57,6 +57,12 @@ Each test may require different data. In this section we will describe details f
   Test for expression.\cr
   based on functions \code{\link[edgeR]{glmQLFit}} and \code{\link[edgeR]{glmQLFTest}} from \code{edgeR} package.
   }
+  \item{methyanalysis}{
+  Slide window smoothing\cr
+  Test for methylation.\cr
+  based on function \code{\link[methyAnalysis]{detectDMR.slideWin}} from \code{methyAnalysis} package.
+  This test requires a special class of argument data - \code{MethyGenoSet}. For more details see \code{\link{[methyAnalysis]{MethyGenoSet-class}}}
+  }
 }
 }
 \examples{

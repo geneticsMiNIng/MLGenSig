@@ -4,12 +4,20 @@
 \alias{test_methyanalysis}
 \title{t test for methylation per each gene from methyAnalysis package}
 \usage{
-test_methyanalysis(data, condition)
+test_methyanalysis(data, condition,
+  genom.data = illumina_humanmethylation_27_data, genes.col = 11,
+  probes.col = 1)
 }
 \arguments{
 \item{data}{object of class MehtyGenoSet, consisting methylation for each CpG island.}
 
 \item{condition}{vector of levels coresponding to order of samples in data.}
+
+\item{genom.data}{data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}}
+
+\item{genes.col}{number of column in genom.data containing informations about genes (genes symbols)}
+
+\item{probs.col}{number of column in genom.data containing informations about probes (probes symbols)}
 }
 \value{
 A data frame with the following columns:
