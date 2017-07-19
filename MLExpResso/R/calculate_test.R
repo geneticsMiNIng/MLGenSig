@@ -19,26 +19,31 @@
 #'@details Each test may require different data. In this section we will describe details for each availible test:
 #' \describe{
 #'   \item{ttest}{
-#'   Student's t-test
-#'   \code{\link[limma]{lmFit} \\
-#'   Methylation - CpG islands to genes: \link{aggregate_probes}}
+#'   Student's t-test \\
+#'   Test for expression and methylation.\\
+#'   Based on function \code{\link[limma]{lmFit}} from \code{limma} package. \\
+#'   Methylation - CpG islands to genes: \code{\link{aggregate_probes}}
 #'   }
 #'   \item{nbinom}{
-#'    negative binomial test
-#'   Based on function \code{\link[DESeq]{nbinomTest} from DESeq package.}
+#'    Negative binomial test\\
+#'    Test for expression.\\
+#'   Based on function \code{\link[DESeq]{nbinomTest}} from \code{DESeq} package.
 #'  Calculations may take some time. It is suggested to use \code{nbinom2} parameter.
 #'   }
 #'   \item{nbinom2}{
-#'    negative binomial test
-#'   Based on \code{\link[DESeq2]{DESeq} from DESeq2 package.}
+#'    Negative binomial test\\
+#'    Test for expression.\\
+#'   Based on \code{\link[DESeq2]{DESeq}} from \code{DESeq2} package.
 #'   }
 #'   \item{lrt}{
-#'   likelihood-ratio test(LRT)
-#'   based on function \code{\link[edgeR]{glmLRT}}
+#'   Likelihood-ratio test (LRT)\\
+#'   Test for expression.\\
+#'   based on function \code{\link[edgeR]{glmLRT}} from \code{edgeR} package.
 #'   }
 #'   \item{qlf}{
-#'   quasi-likelihood F-test(QLF)
-#'   based on functions \code{\link[edgeR]{glmQLFit}} and \code{\link[edgeR]{glmQLFTest}}
+#'   Quasi-likelihood F-test (QLF)\\
+#'   Test for expression.\\
+#'   based on functions \code{\link[edgeR]{glmQLFit}} and \code{\link[edgeR]{glmQLFTest}} from \code{edgeR} package.
 #'   }
 #' }
 #'
@@ -55,19 +60,15 @@
 calculate_test <- function(data, condition, test="ttest",...){
   if(test=="ttest"){
      res <- test_tstudent(data, condition,...)
-
      res <- res[,c(1,2,3,4)]
-     colnames(res) <- c("id","mean","log2.fold","pval")
  }
   if(test=="nbinom"){
     res <- test_nbinom(data, condition, ...)
     res <- res[,c(1,2,3,4)]
-    colnames(res) <- c("id","mean","log2.fold","pval")
   }
   if(test=="nbinom2"){
     res <- test_nbinom2(data, condition, ...)
     res <- res[,c(7,1,2,5)]
-    colnames(res) <- c("id","mean","log2.fold","pval")
   }
   if(test=="lrt" || test=="qlf"){
     res<- test_edger(t(data), condition, type=test, ...)
@@ -77,6 +78,8 @@ calculate_test <- function(data, condition, test="ttest",...){
     res <- merge(res, mean, by="id")
     res <- res[, c(1,4,2,3)]
   }
-
+  colnames(res) <- c("id","mean","log2.fold","pval")
+  rownames(res) <- NULL
+  res <- res[order(res$pval),]
   return(res)
 }
