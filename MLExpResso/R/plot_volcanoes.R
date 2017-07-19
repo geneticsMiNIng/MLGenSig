@@ -65,7 +65,7 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene, test.
   title <- textGrob(gene, gp=gpar(fontsize = 25), x = unit(1.1, "npc"))
   blank <- textGrob("", gp=gpar(fontsize = 25))
 
-  plist <- list(title, blank, title.m, title.e, s.e, s.m)
+  plist <- list(title, blank, title.m, title.e, s.m, s.e)
   if((length(test.e) + length(test.m)) > 0 ){
   l.e <- length(test.e)
   l.m <- length(test.m)
