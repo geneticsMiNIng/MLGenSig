@@ -71,12 +71,6 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene, test.
   l.m <- length(test.m)
 
   for(i in 1:max(l.e, l.m)){
-    if(i>l.e){
-      plist[[length(plist)+1]] <- grid.rect(gp=gpar(col="white"))
-    }else{
-      plist[[length(plist)+1]] <- plot_volcano(test.e[[i]], ngen = gene,ylog=TRUE,title=names.e[i], line=0.05, values=values)
-    }
-
     if(i>l.m){
       plist[[length(plist)+1]] <- grid.rect(gp=gpar(col="white"))
     }
@@ -84,11 +78,15 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene, test.
       plist[[length(plist)+1]] <- plot_volcano(test.m[[i]], ngen = gene, title=names.m[i], ylog=TRUE, line=0.05, values=values)
     }
 
+    if(i>l.e){
+      plist[[length(plist)+1]] <- grid.rect(gp=gpar(col="white"))
+    }else{
+      plist[[length(plist)+1]] <- plot_volcano(test.e[[i]], ngen = gene,ylog=TRUE,title=names.e[i], line=0.05, values=values)
+    }
   }
   }
   heights.plots <- rep(130,max(length(test.e), length(test.m)))
   heights.g <- unit(c(20,10,30, heights.plots), "mm")
   grid.arrange(grobs = plist, ncol=2, heights=heights.g)
-
 }
 
