@@ -9,7 +9,7 @@
 #'@param cond2 condition for second dataset
 #'@param test1 type of test for first dataset
 #'@param test2 type of test for second dataset
-#'@param data.probes data frame which contains information about CpG probes and corresponding genes, by default in our package we use `illumina human methylation` 
+#'@param data.probes data frame which contains information about CpG probes and corresponding genes, by default in our package we use `illumina human methylation`
 #'@param aggregate.col number of column in data.probes containing informations about genes (genes symbols)
 #'
 #'@return data frame containing logatithm of fold and p-values from chosen tests
@@ -35,8 +35,8 @@ calculate_comparison_table <- function(data1, data2, cond1, cond2, test1, test2,
 result1 <- calculate_test(data1, cond1,test1)
 result2 <- calculate_test(data2, cond2,test2)
 
-result1 <- result1[,c(1,3,4)]
-result2 <- result2[,c(1,3,4)]
+result1 <- result1[,c(1,2,3)]
+result2 <- result2[,c(1,2,3)]
 colnames(result1)[c(2,3)] <- paste(test1,colnames(result1)[c(2,3)], sep=".")
 colnames(result2)[c(2,3)] <- paste(test2,colnames(result2)[c(2,3)], sep=".")
 

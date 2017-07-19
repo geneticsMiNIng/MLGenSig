@@ -11,38 +11,37 @@
 #'
 #' @return A data frame with the following columns:
 #'  \item{id}{The id of the observable, taken from the row names of the counts slots.}
-#'  \item{mean}{The base mean.}
 #'  \item{log.fold}{The log2 of the fold change.}
 #'  \item{pval}{The p-values for rejecting the null hypothesis about the means equality.}
-#'  \item{padj}{The adjusted p-values.}
+#'  \item{means}{Columns correspond to means in each group defined by the condition and the base mean.}
 #'
 #'@details Each test may require different data. In this section we will describe details for each availible test:
 #' \describe{
 #'   \item{ttest}{
-#'   Student's t-test \\
-#'   Test for expression and methylation.\\
-#'   Based on function \code{\link[limma]{lmFit}} from \code{limma} package. \\
+#'   Student's t-test \cr
+#'   Test for expression and methylation.\cr
+#'   Based on function \code{\link[limma]{lmFit}} from \code{limma} package. \cr
 #'   Methylation - CpG islands to genes: \code{\link{aggregate_probes}}
 #'   }
 #'   \item{nbinom}{
-#'    Negative binomial test\\
-#'    Test for expression.\\
+#'    Negative binomial test\cr
+#'    Test for expression.\cr
 #'   Based on function \code{\link[DESeq]{nbinomTest}} from \code{DESeq} package.
 #'  Calculations may take some time. It is suggested to use \code{nbinom2} parameter.
 #'   }
 #'   \item{nbinom2}{
-#'    Negative binomial test\\
-#'    Test for expression.\\
+#'    Negative binomial test\cr
+#'    Test for expression.\cr
 #'   Based on \code{\link[DESeq2]{DESeq}} from \code{DESeq2} package.
 #'   }
 #'   \item{lrt}{
-#'   Likelihood-ratio test (LRT)\\
-#'   Test for expression.\\
+#'   Likelihood-ratio test (LRT)\cr
+#'   Test for expression.\cr
 #'   based on function \code{\link[edgeR]{glmLRT}} from \code{edgeR} package.
 #'   }
 #'   \item{qlf}{
-#'   Quasi-likelihood F-test (QLF)\\
-#'   Test for expression.\\
+#'   Quasi-likelihood F-test (QLF)\cr
+#'   Test for expression.\cr
 #'   based on functions \code{\link[edgeR]{glmQLFit}} and \code{\link[edgeR]{glmQLFTest}} from \code{edgeR} package.
 #'   }
 #' }
@@ -60,26 +59,24 @@
 calculate_test <- function(data, condition, test="ttest",...){
   if(test=="ttest"){
      res <- test_tstudent(data, condition,...)
-     res <- res[,c(1,2,3,4)]
+     res <- res[,c(1,3,4)]
  }
   if(test=="nbinom"){
     res <- test_nbinom(data, condition, ...)
-    res <- res[,c(1,2,3,4)]
+    res <- res[,c(1,3,4)]
   }
   if(test=="nbinom2"){
     res <- test_nbinom2(data, condition, ...)
-    res <- res[,c(7,1,2,5)]
+    res <- res[,c(7,2,5)]
   }
   if(test=="lrt" || test=="qlf"){
     res<- test_edger(t(data), condition, type=test, ...)
-    mean <- colMeans(data)
-    mean <- as.data.frame(mean)
-    mean$id <- rownames(mean)
-    res <- merge(res, mean, by="id")
-    res <- res[, c(1,4,2,3)]
   }
-  colnames(res) <- c("id","mean","log2.fold","pval")
-  rownames(res) <- NULL
+  colnames(res) <- c("id","log2.fold","pval")
+
+  means <- calculate_condition_means(data, condition)
+  res <- merge(res, means, by="id")
   res <- res[order(res$pval),]
+  rownames(res) <- NULL
   return(res)
 }
