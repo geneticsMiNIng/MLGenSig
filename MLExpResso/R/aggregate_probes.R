@@ -8,7 +8,7 @@
 #' @param genes.col number of column in genom.data containing informations about genes (genes symbols)
 #' @param probs.col number of column in genom.data containing informations about probes (probes symbols)
 #'
-#' @return A data frame with CpG probes mapped to genes. If there were more than one probe corresponding to a gene, value is a mean of those probes.
+#' @return A data frame with CpG probes aggregated  to genes. If there were more than one probe corresponding to a gene, value is a mean of those probes.
 #'
 #'@examples
 #'\dontrun{

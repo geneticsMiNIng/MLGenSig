@@ -6,6 +6,16 @@
 #'@param condition vector of conditions
 #'
 #'@return data frame
+#'
+#'@examples
+#'\dontrun{
+#'library(MLExpRessodata)
+#'
+#'condition_m <- ifelse(BRCA_methylation_all=="LumA", "LumA", "other")
+#'
+#'stats <- calculate_stats(BRCA_methylation_all, condition_m)
+#'}
+#'@export 
 
 calculate_data_stats<-function(data, condition){
   nvar <- as.data.frame(ncol(data))

@@ -61,13 +61,17 @@ Each test may require different data. In this section we will describe details f
   Slide window smoothing\cr
   Test for methylation.\cr
   based on function \code{\link[methyAnalysis]{detectDMR.slideWin}} from \code{methyAnalysis} package.
-  This test requires a special class of argument data - \code{MethyGenoSet}. For more details see \code{\link{[methyAnalysis]{MethyGenoSet-class}}}
+  This test requires a special class of argument data - \code{MethyGenoSet}.
   }
 }
 }
 \examples{
 \dontrun{
-test_methylation <- calculate_test(BRCA_methylation_gene, condition.m, "ttest")
+library(MLExpRessodata)
+BRCA_methylation_gene <- aggregate_probes(BRCA_methylation_all)
+
+condition_m <- ifelse(BRCA_methylation_gene=="LumA", "LumA", "other")
+test_methylation <- calculate_test(BRCA_methylation_gene, condition_m, "ttest")
 }
 
 }

@@ -6,42 +6,55 @@ output:
 ---
 
 ```{r, message=FALSE, warning=FALSE}
-library(MetExpR)
+library(MLExpResso)
+library(MLExpRessodata)
 library(plyr)
 ```
 
 Blah Blah datasets descriptions
 
 ```{r}
-expression_500 <-test_expr_brca[order(test_expr_brca$pval, decreasing= F),]
-expression_500 <- expression_500[c(1:500),]
+condition.m <-ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
+condition.e <-ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+
+BRCA_methylation_chr17_gene <- aggregate_probes(BRCA_methylation_chr17)
+test_met_brca <- calculate_test(BRCA_methylation_chr17_gene,  condition.m, "ttest")
+test_expr_brca <- calculate_test(BRCA_mRNAseq_chr17[,-1],  condition.e, "lrt")
 
 
-methylation_500 <-test_met_brca[order(test_met_brca$pval, decreasing= F),]
-methylation_500 <- methylation_500[c(1:500),]
+```
 
-x <- expression_500[which(expression_500$id %in% methylation_500$id),]
+```{r}
+
+
+expression_100 <-test_expr_brca[order(test_expr_brca$pval, decreasing= F),]
+expression_100 <- expression_100[c(1:100),]
+
+
+methylation_100 <-test_met_brca[order(test_met_brca$pval, decreasing= F),]
+methylation_100 <- methylation_100[c(1:100),]
+
+x <- expression_100[which(expression_100$id %in% methylation_100$id),]
 
 genes <- x$id
 
-condition.m <-ifelse(BRCA_methylation_all$SUBTYPE=="LumA","LumA","other")
-condition.e <-ifelse(BRCA_mRNAseq_all$SUBTYPE=="LumA","LumA","other")
+
 ```
 
 Function `report_generate` for generating reports:
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
-report_generate(BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], condition.e, condition.m,
+report_generate(BRCA_mRNAseq_chr17[,-1], BRCA_methylation_chr17[,-1], condition.e, condition.m,
                 test_expr_brca, test_met_brca, genes)
 
 
 ```
 
-```{r}
-visual_gene(condition.e, condition.m, BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], "IGFALS", test_expr_brca, test_met_brca)
+```{r, message=FALSE, warning=FALSE}
+plot_gene(BRCA_methylation_chr17[,-1], BRCA_mRNAseq_chr17[,-1],condition.m, condition.e,"CBX2")
 ```
 
-```{r}
-visual_volcano(condition.e, condition.m, BRCA_mRNAseq_all[,-1], BRCA_methylation_all[,-1], "BRCA1", list(test_expr_brca), list(test_met_brca))
+```{r, message=FALSE, warning=FALSE}
+plot_volcanoes(BRCA_methylation_chr17[,-1], BRCA_mRNAseq_chr17[,-1], condition.m, condition.e , "CBX2", list(test_expr_brca), list(test_met_brca), values=TRUE)
 
 ```

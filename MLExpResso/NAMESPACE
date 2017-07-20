@@ -2,6 +2,7 @@
 
 export(aggregate_probes)
 export(calculate_comparison_table)
+export(calculate_data_stats)
 export(calculate_test)
 export(generate_report)
 export(plot_diff_boxplot)

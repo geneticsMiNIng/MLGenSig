@@ -46,7 +46,7 @@ generate_report <- function(data.e, data.m, condition.e, condition.m, test.e, te
 
   environment$genes <- genes
 
-  rmarkdown::render(paste0(path.package("MetExpR"), "/templates/plots.Rmd"),
+  rmarkdown::render(paste0(path.package("MLExpResso"), "/templates/plots.Rmd"),
                     "pdf_document", output_file = paste0(directory, "/plots.pdf"),
                     envir = environment)
 }
