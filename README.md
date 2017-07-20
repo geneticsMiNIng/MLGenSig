@@ -52,10 +52,11 @@ devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")
 ```
 
 
-## Vignettes
+## User Guide
 
 * [Quick start](https://github.com/geneticsMiNIng/MLGenSig/blob/master/QuickStart/QuickStart.pdf)
-
+* [Automatically created report](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Reports/plots.pdf) and [Instruction](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Reports/generating_reports.pdf)
+* Cheatsheet
 
 ## Scripts and datasets
 
@@ -65,6 +66,6 @@ devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")
 * [BRCA clinical data w/o parameters](https://raw.githubusercontent.com/geneticsMiNIng/MLGenSig/master/SubTypes/BRCA_clinical_2.csv)
 
 
-## Example dashboard
-
-![Dashboard](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Images/CACNA1G.png)
+## Example dashboards
+![plot_volcanoes](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Images/plot_gene_volcanoes.png)
+![plot_gene](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Images/plot_gene_CACNA1G.png)
