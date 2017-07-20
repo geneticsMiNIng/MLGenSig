@@ -3,9 +3,9 @@
 #'@description Function \code{plot_diff_boxplot} generates a boxplot of values from choosen data frame column with division in groups.
 #'
 #'@param data data frame containing interesing values.
-#'@param gene string containing name of gene with values for boxplot.
 #'@param condition vector of length equal to numer of rows of data,
 #'\code{condition} should contains names of groups corresponding to rows.
+#'@param gene string containing name of gene with values for boxplot.
 #'@param sqrt.trans root square y-axis transformation
 #'@param title plot title, by default id of gene
 #'
@@ -19,7 +19,7 @@
 #'@importFrom ggplot2 element_blank
 #'@importFrom ggplot2 xlab
 #'@importFrom ggplot2 coord_trans
-#'@importFrom ggplot2 ggtitle 
+#'@importFrom ggplot2 ggtitle
 #'@importFrom edgeR cpm
 #'
 #'@examples
@@ -32,9 +32,9 @@
 #'@seealso \code{\link{plot_gene}}
 #'@export
 
-plot_diff_boxplot <- function(data, gene, condition="", sqrt.trans=FALSE, title=TRUE){
+plot_diff_boxplot <- function(data, condition="", gene, sqrt.trans=FALSE, title=TRUE){
   values <- NULL
-  
+
   data <-data[,gene]
   data <- cpm(data)
 

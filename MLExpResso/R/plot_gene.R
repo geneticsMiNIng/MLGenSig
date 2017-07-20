@@ -32,7 +32,7 @@
 plot_gene <- function(data.m, data.e, condition.m, condition.e, gene){
   title <- textGrob(gene, gp=gpar(fontsize = 25), just="left")
   g <- plot_methylation_path(data.m, condition.m, gene, observ = TRUE, show_gene = TRUE) +theme(legend.position = "none")
-  b1 <- plot_diff_boxplot(data.e, gene, condition.e, sqrt.trans=TRUE, title=FALSE) 
+  b1 <- plot_diff_boxplot(data.e, condition.e, gene, sqrt.trans=TRUE, title=FALSE)
 
 
 
