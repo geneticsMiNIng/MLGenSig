@@ -3,11 +3,10 @@
 #'@description Function \code{plot_diff_boxplot} generates a boxplot of values from choosen data frame column with division in groups.
 #'
 #'@param data data frame containing interesing values.
-#'@param condition vector of length equal to numer of rows of data,
-#'\code{condition} should contains names of groups corresponding to rows.
+#'@param condition vector of length equal to numer of rows of data. Vector \code{condition} should contains names of groups corresponding to rows.
 #'@param gene string containing name of gene with values for boxplot.
-#'@param sqrt.trans root square y-axis transformation
-#'@param title plot title, by default id of gene
+#'@param sqrt.trans root square y-axis transformation.
+#'@param title plot title, by default id of gene.
 #'
 #'@return Object of class ggplot containing boxplot for values from choosen gene broken down to groups.
 #'

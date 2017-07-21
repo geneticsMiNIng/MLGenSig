@@ -2,19 +2,21 @@
 #'
 #' @description Function \code{aggregate_probes} aggregates CpG probes to corresponding genes.
 #'
-#' @param data data frame  containing methylation values for CpG probes. Columns corresponds to probes, rows to samples.
-#' @param keep the name of the column or vector of columns names we want to keep
-#' @param genom.data data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}} 
-#' @param genes.col number of column in genom.data containing informations about genes (genes symbols)
-#' @param probs.col number of column in genom.data containing informations about probes (probes symbols)
+#' @param data data frame containing methylation values for CpG probes. Columns correspond to probes, rows to samples.
+#' @param keep the name of the column or vector of columns names we want to keep.
+#' @param genom.data data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}. 
+#' @param genes.col number of column in genom.data containing informations about genes (genes symbols).
+#' @param probs.col number of column in genom.data containing informations about probes (probes symbols).
 #'
-#' @return A data frame with CpG probes aggregated  to genes. If there were more than one probe corresponding to a gene, value is a mean of those probes.
+#' @return A data frame with CpG probes aggregated to genes. If there were more than one probe corresponding to a gene, value is a mean of those probes.
 #'
 #'@examples
+#'
 #'\dontrun{
 #'library(MLExpRessodata)
 #'BRCA_genes <- aggregate_probes(BRCA_methylation_all, keep="SUBTYPE")
 #'}
+#'
 #' @export
 
 aggregate_probes <- function(data, keep=NULL, genom.data= illumina_humanmethylation_27_data, genes.col=11, probes.col=1){

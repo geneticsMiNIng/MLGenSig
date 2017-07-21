@@ -3,16 +3,16 @@
 #'@description Function \code{plot_volcano} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.
 #'
 #'
-#'@param data data.frame consisting result of chosen test
+#'@param data data frame containing result of chosen test.
 #'@param line p-value on which we draw a line.
-#'@param names p-value below which...
-#'@param ngen symol or vector of gene names
-#'@param fold_line s
-#'@param title s
-#'@param ylog s
-#'@param values logical value, TRUE if we want p-values and log fold for chosen gene
+#'@param names p-value below which we want to draw genes names.
+#'@param ngen character symbol or vector of gene names.
+#'@param fold_line value on which we want to draw a vertical line on both sides of zero.
+#'@param title character containing title for plot.
+#'@param ylog logical. If TRUE values on y-axis will be logarithmized.
+#'@param values logical. If TRUE p-values and log fold for chosen gene will be add to a plot. By default we use FALSE.
 #'
-#'@return Object of class ggplot containing volcano plot of p-values versus log2.fold for each gene
+#'@return Object of class ggplot containing volcano plot of p-values versus log2.fold for each gene.
 #'
 #'@importFrom ggplot2 geom_point
 #'@importFrom ggplot2 theme_bw
@@ -117,7 +117,8 @@ plot_volcano <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
       breaks_y <- ggplot_build(plot)$layout$panel_ranges[[1]]$y.major_source 
       diff_y <- (breaks_y[1]-breaks_y[2])/5
       breaks_x <- ggplot_build(plot)$layout$panel_ranges[[1]]$x.major_source
-      diff_x <- (breaks_x[1]-breaks_x[2])
+      len <- length(breaks_x)
+      diff_x <- breaks_x[len]
       label_pvalue <- NULL
       if(values_for_gene$pval < 10^(-4)){
         label_pvalue <- paste("pval < 0.0001")
@@ -126,8 +127,8 @@ plot_volcano <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
       }
       
       plot <- plot+#annotate("text",x=(max(data$log2.fold) - 0.01), y=(min(data$pval)), label=ngen, colour="red")+
-        annotate("text",x=(min(data$log2.fold)+diff_x), y=(min(data$pval)+10^(-breaks_y[1])), label=label_pvalue, colour="red")+
-        annotate("text",x=(min(data$log2.fold)+diff_x), y=(min(data$pval)+10^(-breaks_y[1]+diff_y)), label=paste("log2.fold:",round(values_for_gene$log2.fold,4)), colour="red")
+        annotate("text",x=0, y=(min(data$pval)+10^(-breaks_y[1])), label=label_pvalue, colour="red")+
+        annotate("text",x=0, y=(min(data$pval)+10^(-breaks_y[1]+diff_y)), label=paste("log2.fold:",round(values_for_gene$log2.fold,4)), colour="red")
     }
   
 

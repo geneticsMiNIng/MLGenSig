@@ -24,5 +24,5 @@ test <- data.frame(id = c("AANAT", "AATK", "AATF", "AARSD1"),
 
 
 test_that("Input", {
-  expect_error(generate_report(data.e=data_e , condition.e=cond, condition.m=cond, test[ ,c(1,2,3)], test[,c(1,4,5)],"AANAT"))
+  expect_error(generate_report(data.m=data_m,data.e=data_e , condition.m=cond, condition.e=cond, test[ ,c(1,2,3)], test[,c(1,4,5)],"AANAT"))
 })

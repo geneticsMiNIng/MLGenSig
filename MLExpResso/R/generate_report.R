@@ -1,17 +1,18 @@
-#' @title G
+#' @title Generate report for MLExpResso package.
 #'
-#' @description Function \code{G}
+#' @description Function \code{generate_report} produces a pdf report containing information about functionalities of package MLExpResso. 
 #' 
-#' @param data.e data for expression
-#' @param data.m data for methylation
-#' @param condition.e condition for  expression
-#' @param condition.m condition for methylation
-#' @param test.e test results for expression
-#' @param test.m test results for methylation
-#' @param genes gene name
+#' @param data.m data frame containing information for methylation.
+#' @param data.e data frame containing information for expression.
+#' @param condition.m condition for methylation.
+#' @param condition.e condition for expression.
+#' @param test.m test results for methylation.
+#' @param test.e test results for expression.
+#' @param genes the name of the gene or vector of genes names we want to visualise.
 #'
-#' @return pdf with report consisting information about MLExpResso package
+#' @return pdf with report containing information about MLExpResso package.
 #' @examples
+#' 
 #'\dontrun{
 #'library(MLExpRessodata)
 #'condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
@@ -23,13 +24,14 @@
 #'test.tstudent  <- calculate_test(BRCA_methylation_gene[,-1], condition_met, test="ttest")
 #'
 #'report <- generate_report(BRCA_mRNAseq_chr17,BRCA_methylation_chr17, condition.exp, condition.met, test.nbinom, test.tstudent, "BRCA2")
+#'
 #'}
 #'
 #'@seealso \code{\link{calculate_test}}, \code{\link{aggregate_probes}}
 #'
 #' @export
 
-generate_report <- function(data.e, data.m, condition.e, condition.m, test.e, test.m, genes){
+generate_report <- function(data.m, data.e, condition.m, condition.e, test.m, test.e, genes){
 
   directory <- getwd()
 

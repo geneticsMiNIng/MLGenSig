@@ -3,14 +3,14 @@
 #'@description Function \code{calculate_comparison_table} produces a dataset containing p-values and folds from tests evaluaetes on two datasets e.g methylation or expression.
 #'
 #'
-#'@param data1 first dataset, suitable for \code{test1}
-#'@param data2 second dataset, suitable for \code{test2}
-#'@param cond1 condition for first dataset
-#'@param cond2 condition for second dataset
-#'@param test1 type of test for first dataset
-#'@param test2 type of test for second dataset
-#'@param genom.data data frame which contains information about CpG probes and corresponding genes, by default in our package we use `illumina human methylation`
-#'@param genes.col number of column in genom.data containing informations about genes (genes symbols)
+#'@param data1 first dataset, suitable for \code{test1}.
+#'@param data2 second dataset, suitable for \code{test2}.
+#'@param cond1 condition for first dataset.
+#'@param cond2 condition for second dataset.
+#'@param test1 type of test for first dataset.
+#'@param test2 type of test for second dataset.
+#'@param genom.data data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}.
+#'@param genes.col number of column in genom.data containing informations about genes (genes symbols).
 #'
 #'@return data frame containing logatithm of fold and p-values from chosen tests
 #'

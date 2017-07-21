@@ -2,13 +2,13 @@
 #'
 #' @description Function \code{plot_methylation_path} visualise a chosen gene with marked CpG probes. It shows the mean methylation level for each probe in group. Also we can exact the line corresonding to gene. In this case we see what are the locations of probes on gene in HG18 coordinates. We can as well draw a locations of CpG islands.
 #'
-#' @param data data frame containing values of methylation: columns coresponds to CpG probes, rows to samples.
+#' @param data data frame containing values from methylation: columns corespond to CpG probes, rows to samples.
 #' @param condition vector of levels corresponding to order of samples in data.
 #' @param gene name of chosen gene.
-#' @param show_gene logical parameter saying whether line corresopnding to gene should be draw or not.
-#' @param observ logical parameter saying whether dots corresponding to CpG probes should be draw or not.
-#' @param islands logical parameter saying whether line corresopnding to islands should be draw or not.
-#' @param title logical parameter saying whether we should add title saying what gene we visualise.
+#' @param show_gene logical. If TRUE line corresopnding to gene will be draw.
+#' @param observ logical. If TRUE dots corresponding to CpG probes will be draw.
+#' @param islands logical. If TRUE line corresopnding to islands should be draw.
+#' @param title logical. If TRUE title saying what gene we visualise will be add.
 #'
 #' @return Object of class ggplot containing visualisation of methylation on gene.
 #'
@@ -36,7 +36,7 @@
 #'@export
 
 
-plot_methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, islands = TRUE, title=FALSE){
+plot_methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, islands = TRUE, title=TRUE){
   HG18_coord <- value <- island_cond <- NULL
 
   dataA <- data[which(condition == unique(condition)[1]), ]
@@ -87,7 +87,7 @@ plot_methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FA
     plot1 <- plot1 + geom_line(data=data_islands, aes(x=value, y=mean, group=island_cond, colour=condition))
   }
   if(title==TRUE){
-    plot1 <- plot1+ggtitle(paste0("Gene ",gene))
+    plot1 <- plot1+ggtitle(paste(gene))
   }
 
   return(plot1)

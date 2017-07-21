@@ -2,16 +2,16 @@
 #'
 #' @description Function \code{plot_volcanoes} generate a dashboard with volcano plots for expression and methylation. Also it adds a tables with basic statistics.
 #'
-#' @param data.m data for methylation
-#' @param data.e data for expression
-#' @param condition.m condition for methylation
-#' @param condition.e condition for  expression
-#' @param gene gene name
+#' @param data.m data frame containing information for methylation.
+#' @param data.e data frame containing information for expression.
+#' @param condition.m condition for methylation data (data.m).
+#' @param condition.e condition for expression methylation (data.e).
+#' @param gene gene name.
+#' @param test.m list of tests results for methylation.
 #' @param test.e list of tests results for expression
-#' @param test.m list of tests results for methylation
-#' @param values logical value, TRUE if we want p-values and log fold for chosen gene
+#' @param values logical. If TRUE p-values and log fold for chosen gene will be add to a plot. By default we use FALSE.
 #'
-#' @return Object of class ggplot containing volcano plots of p-values versus log2.fold for each gene for chosen number of tests.
+#' @return Object of class ggplot containing volcano plots of p-values versus log2.fold for gene for chosen number of tests. Also there are added simple statistisc about chosen gene.
 #'
 #'@importFrom gridExtra tableGrob
 #'@importFrom grid textGrob
@@ -40,8 +40,7 @@
 #'
 #'@export
 
-plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, test.e=list(), test.m=list(), values=FALSE){
-  par(fin=c(width, height))
+plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, test.m=list(), test.e=list(), values=FALSE){
   if(class(test.e)!="list"){
     test.e <- list(test.e)
   }
