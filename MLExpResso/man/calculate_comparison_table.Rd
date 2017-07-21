@@ -8,21 +8,21 @@ calculate_comparison_table(data1, data2, cond1, cond2, test1, test2,
   genom.data = illumina_humanmethylation_27_data, genes.col = 11)
 }
 \arguments{
-\item{data1}{first dataset, suitable for \code{test1}}
+\item{data1}{first dataset, suitable for \code{test1}.}
 
-\item{data2}{second dataset, suitable for \code{test2}}
+\item{data2}{second dataset, suitable for \code{test2}.}
 
-\item{cond1}{condition for first dataset}
+\item{cond1}{condition for first dataset.}
 
-\item{cond2}{condition for second dataset}
+\item{cond2}{condition for second dataset.}
 
-\item{test1}{type of test for first dataset}
+\item{test1}{type of test for first dataset.}
 
-\item{test2}{type of test for second dataset}
+\item{test2}{type of test for second dataset.}
 
-\item{genom.data}{data frame which contains information about CpG probes and corresponding genes, by default in our package we use `illumina human methylation`}
+\item{genom.data}{data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}.}
 
-\item{genes.col}{number of column in genom.data containing informations about genes (genes symbols)}
+\item{genes.col}{number of column in genom.data containing informations about genes (genes symbols).}
 }
 \value{
 data frame containing logatithm of fold and p-values from chosen tests

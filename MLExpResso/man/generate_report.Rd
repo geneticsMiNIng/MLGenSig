@@ -2,32 +2,33 @@
 % Please edit documentation in R/generate_report.R
 \name{generate_report}
 \alias{generate_report}
-\title{G}
+\title{Generate report for MLExpResso package.}
 \usage{
-generate_report(data.e, data.m, condition.e, condition.m, test.e, test.m, genes)
+generate_report(data.m, data.e, condition.m, condition.e, test.m, test.e, genes)
 }
 \arguments{
-\item{data.e}{data for expression}
+\item{data.m}{data frame containing information for methylation.}
 
-\item{data.m}{data for methylation}
+\item{data.e}{data frame containing information for expression.}
 
-\item{condition.e}{condition for  expression}
+\item{condition.m}{condition for methylation.}
 
-\item{condition.m}{condition for methylation}
+\item{condition.e}{condition for expression.}
 
-\item{test.e}{test results for expression}
+\item{test.m}{test results for methylation.}
 
-\item{test.m}{test results for methylation}
+\item{test.e}{test results for expression.}
 
-\item{genes}{gene name}
+\item{genes}{the name of the gene or vector of genes names we want to visualise.}
 }
 \value{
-pdf with report consisting information about MLExpResso package
+pdf with report containing information about MLExpResso package.
 }
 \description{
-Function \code{G}
+Function \code{generate_report} produces a pdf report containing information about functionalities of package MLExpResso.
 }
 \examples{
+
 \dontrun{
 library(MLExpRessodata)
 condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
@@ -39,6 +40,7 @@ test.nbinom  <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt
 test.tstudent  <- calculate_test(BRCA_methylation_gene[,-1], condition_met, test="ttest")
 
 report <- generate_report(BRCA_mRNAseq_chr17,BRCA_methylation_chr17, condition.exp, condition.met, test.nbinom, test.tstudent, "BRCA2")
+
 }
 
 }

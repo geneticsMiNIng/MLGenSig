@@ -8,24 +8,24 @@ plot_volcano(data, line = NA, names = NA, ylog = TRUE, ngen = NA,
   title = NA, fold_line = NA, values = FALSE)
 }
 \arguments{
-\item{data}{data.frame consisting result of chosen test}
+\item{data}{data frame containing result of chosen test.}
 
 \item{line}{p-value on which we draw a line.}
 
-\item{names}{p-value below which...}
+\item{names}{p-value below which we want to draw genes names.}
 
-\item{ylog}{s}
+\item{ylog}{logical. If TRUE values on y-axis will be logarithmized.}
 
-\item{ngen}{symol or vector of gene names}
+\item{ngen}{character symbol or vector of gene names.}
 
-\item{title}{s}
+\item{title}{character containing title for plot.}
 
-\item{fold_line}{s}
+\item{fold_line}{value on which we want to draw a vertical line on both sides of zero.}
 
-\item{values}{logical value, TRUE if we want p-values and log fold for chosen gene}
+\item{values}{logical. If TRUE p-values and log fold for chosen gene will be add to a plot. By default we use FALSE.}
 }
 \value{
-Object of class ggplot containing volcano plot of p-values versus log2.fold for each gene
+Object of class ggplot containing volcano plot of p-values versus log2.fold for each gene.
 }
 \description{
 Function \code{plot_volcano} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.
