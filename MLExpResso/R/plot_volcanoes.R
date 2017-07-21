@@ -28,10 +28,12 @@
 #'condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
 #'condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
 #'
-#'test.nbinom  <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt")
-#'test.tstudent  <- calculate_test(BRCA_methylation_gene[,-1], condition_met, test="ttest")
+#'BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17[,-1]) 
 #'
-#'plot_volcanoes(BRCA_methylation_chr17,BRCA_mRNAseq_chr17,condition_met, condition_exp, "ICAM2", test.nbinom, test.tstudent, values=TRUE)
+#'test.lrt  <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt")
+#'test.tstudent  <- calculate_test(BRCA_methylation_gen, condition_met, test="ttest")
+#'
+#'plot_volcanoes(BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1],condition_met, condition_exp, "ICAM2", test.lrt, test.tstudent, values=TRUE)
 #'}
 #'
 #'@seealso \code{\link{plot_volcano}}
@@ -39,6 +41,7 @@
 #'@export
 
 plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, test.e=list(), test.m=list(), values=FALSE){
+  par(fin=c(width, height))
   if(class(test.e)!="list"){
     test.e <- list(test.e)
   }

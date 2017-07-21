@@ -55,7 +55,7 @@ head(condition_met, 8)
 ### Testing
 
 ```{r}
-res_met <- calculate_test(BRCA_methylation_chr17[,-1], condition_met, test="ttest")
+res_met <- calculate_test(BRCA_methylation_gen, condition_met, test="ttest")
 head(res_met)
 ```
 

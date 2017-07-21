@@ -23,6 +23,6 @@ test <- data.frame(id = c("AANAT", "AATK", "AATF", "AARSD1"),
 
 
 
-#test_that("Output", {
-#  expect_is(generate_report(data_e, data_m, cond, cond, test[ ,c(1,2,3)], test[,c(1,4,5)],"AANAT"))
-#})
+test_that("Input", {
+  expect_error(generate_report(data.e=data_e , condition.e=cond, condition.m=cond, test[ ,c(1,2,3)], test[,c(1,4,5)],"AANAT"))
+})

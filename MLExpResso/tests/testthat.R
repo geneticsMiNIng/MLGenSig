@@ -1,5 +1,5 @@
 library(testthat)
 library(MLExpResso)
-library(methyAnalysis)
+library(MLExpRessodata)
 
 test_check("MLExpResso")
