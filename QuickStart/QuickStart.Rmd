@@ -119,7 +119,7 @@ test_met <- genes_comparison[ ,c(1,4,5)]
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=8}
 plot_volcanoes(BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1],condition_met, condition_exp, 
                "ICAM2", 
-               test_exp, test_met,
+               test_met, test_exp,
                values=TRUE)
 
 ```

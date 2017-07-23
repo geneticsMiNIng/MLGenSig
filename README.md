@@ -55,8 +55,8 @@ devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")
 ## User Guide
 
 * [Quick start](https://github.com/geneticsMiNIng/MLGenSig/blob/master/QuickStart/QuickStart.pdf)
+* [Cheatsheet](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Cheatsheet/MLExpResso-cheatsheet.pdf)
 * [Automatically created report](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Reports/plots.pdf) and [Instruction](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Reports/generating_reports.pdf)
-* Cheatsheet
 
 ## Scripts and datasets
 
