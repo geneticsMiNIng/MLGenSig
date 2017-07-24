@@ -1,4 +1,6 @@
 language: r
+sudo: false
+cache: packages
 r: bioc-devel
 install:
   - Rscript -e 'install.packages(c("devtools","roxygen2","testthat"));devtools::install_deps("MLExpResso")'
