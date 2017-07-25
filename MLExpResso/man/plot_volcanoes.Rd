@@ -5,7 +5,7 @@
 \title{Visulisations for methylation and expression.}
 \usage{
 plot_volcanoes(data.m, data.e, condition.m, condition.e, gene = NA,
-  test.m = list(), test.e = list(), values = FALSE)
+  test.m = list(), test.e = list(), values = FALSE, font.size = 6)
 }
 \arguments{
 \item{data.m}{data frame containing information for methylation.}
@@ -23,6 +23,8 @@ plot_volcanoes(data.m, data.e, condition.m, condition.e, gene = NA,
 \item{test.e}{list of tests results for expression}
 
 \item{values}{logical. If TRUE p-values and log fold for chosen gene will be add to a plot. By default we use FALSE.}
+
+\item{font.size}{font size in stats table.}
 }
 \value{
 Object of class ggplot containing volcano plots of p-values versus log2.fold for gene for chosen number of tests. Also there are added simple statistisc about chosen gene.
@@ -36,7 +38,7 @@ library(MLExpRessodata)
 condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
 condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
 
-BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17[,-1]) 
+BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17[,-1])
 
 test.lrt  <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt")
 test.tstudent  <- calculate_test(BRCA_methylation_gen, condition_met, test="ttest")

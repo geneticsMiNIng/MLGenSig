@@ -10,6 +10,7 @@
 #' @param test.m list of tests results for methylation.
 #' @param test.e list of tests results for expression
 #' @param values logical. If TRUE p-values and log fold for chosen gene will be add to a plot. By default we use FALSE.
+#' @param font.size font size in stats table.
 #'
 #' @return Object of class ggplot containing volcano plots of p-values versus log2.fold for gene for chosen number of tests. Also there are added simple statistisc about chosen gene.
 #'
@@ -28,7 +29,7 @@
 #'condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
 #'condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
 #'
-#'BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17[,-1]) 
+#'BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17[,-1])
 #'
 #'test.lrt  <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt")
 #'test.tstudent  <- calculate_test(BRCA_methylation_gen, condition_met, test="ttest")
@@ -40,7 +41,7 @@
 #'
 #'@export
 
-plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, test.m=list(), test.e=list(), values=FALSE){
+plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, test.m=list(), test.e=list(), values=FALSE, font.size=6){
   if(class(test.e)!="list"){
     test.e <- list(test.e)
   }
@@ -60,7 +61,8 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, te
   mytheme <- gridExtra::ttheme_default(
     core = list(fg_params=list(cex = 1.8,col=c("#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628","#f781bf")), bg_params=list(fill=c("white"))),
     colhead = list(fg_params=list(cex = 1.8), bg_params=list(fill=c("white"))),
-    rowhead = list(fg_params=list(cex = 1.8, fontface = "bold")))
+    rowhead = list(fg_params=list(cex = 1.8, fontface = "bold")),
+    base_size = font.size)
 
   if(!is.na(gene)){
   data.e.cpm <- as.data.frame(cpm(data.e))
@@ -70,7 +72,7 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, te
 
   title.e <- textGrob("Expression (cpm)", just = "centre", gp=gpar(fontsize = 25))
   title.m <- textGrob("Methylation",  just = "centre", gp=gpar(fontsize = 25))
-  
+
 
   title <- textGrob(gene, gp=gpar(fontsize = 25), x = unit(1.1, "npc"))
   blank <- textGrob("", gp=gpar(fontsize = 25))
@@ -105,6 +107,6 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, te
   }else{
     grid.arrange(grobs = plist, ncol=2, heights=heights.plots)
   }
-  
+
 }
 
