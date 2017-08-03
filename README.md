@@ -1,5 +1,6 @@
 [![Build status](https://travis-ci.org/geneticsMiNIng/MLGenSig.svg?branch=master)](https://travis-ci.org/geneticsMiNIng/MLGenSig)
-
+[![Pending Pull-Requests](http://githubbadges.herokuapp.com/geneticsMiNIng/MLGenSig/pulls.svg)](https://github.com/geneticsMiNIng/MLGenSig/pulls)
+[![Github Issues](http://githubbadges.herokuapp.com/geneticsMiNIng/MLGenSig/issues.svg)](https://github.com/geneticsMiNIng/MLGenSig/issues)
 
 # MLGenSig
 Machine Learning for Genetic Signatures
