@@ -8,22 +8,38 @@ output:
 toc: TRUE
 ---
 
-# Package (Abstract?)
+# Introduction
 It is considered that the result of increased methylation is decreased gene expression. While, recent studies suggest that the relationship between methylation and expression is more complex than was previously thought.
-The package `MLExpResso` provides methods to test for differential expression and methylation by use of the negative binonial distribution and t-test. Additionaly `MExpResso allows to visualize results in a simple way.
+
+`MLExpResso` is an R package for integrative analyses and visualization of gene expression and DNA methylation data.
+
+Key functions of this package are:
+
+-identification of DMR - differentially methylated regions,
+
+-identification of genes with affected expression,
+
+-identification regions with changes in expression and methylation,
+
+-visualization of identified regions.
+
+The joint modeling and visualization of genes expression and methylation improve interpretability of identified signals.
+
+The methodology is supplemented with example applications to The Cancer Genome Atlas data.
 
 # Standard Workflow
 
-In this vignette we will work with the data sets containing information about gene expression and methylation for patients with breast cancer. We will analyze differences in methylation and expression for patients with different subtypes of BRCA cancer.
+In this vignette we will work with the data sets containing information about gene expression and methylation for patients with breast cancer. We will analyze differences in methylation and expression for patients with different subtypes of BRCA cancer. To run the examples below you should install `MLExpRessodata` package.(https://github.com/geneticsMiNIng/MLGenSigdata)
 
 ## Methylation
 
 ### `BRCA_methylation_chr17` data set
 In this section, we will work with the methylation level data from TCGA database. 
-Package contains `BRCA_methylation_chr17` dataset. `BRCA_methylation_chr17` contains information about methylation of CpG islands for patients with breast cancer. 
+Package `MLExpRessodata` contains `BRCA_methylation_chr17` dataset. This data set contains information about methylation of CpG probes for patients with breast cancer. 
 Rows of this data set correspond to patients, more precisely, to samples taken from patients.
-First column `SUBTYPE`corresponds to a subtype of BRCA cancer, next columns correspond to CpG islands.
-Values inside the table indicate the methylation level of CpG island for specified sample.
+First column `SUBTYPE`corresponds to a subtype of BRCA cancer, next columns correspond to CpG probes.
+Values inside the table indicate the percentage methylation level of CpG probe for specified sample.
+
 ```{r MLExpResso, message=FALSE, warning=FALSE}
 library(MLExpResso)
 ```
@@ -36,14 +52,14 @@ library(MLExpRessodata)
 head(BRCA_methylation_chr17)[1:5,1:4]
 ```
 
-In this analysis we would like to find genes with different methylation and expression. At first we need to use function `aggregate_probes`, which generates new data frame with CpG islands mapped to genes.
+###Data preparation
+In this analysis we would like to find genes with different methylation. At first we need to use function `aggregate_probes()`, which generates new data frame with CpG probes aggregated to genes. To this aggregation we use, by default, the Illumina Human Methylation data set.
 
 ```{r mapping}
-BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17[,-1]) 
+BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17) 
 head(BRCA_methylation_gen)[1:5,1:4]
 ```
 
-In this case we have two conditions, connected with subtypes of breast cancer.
 
 Before we go to the testing, we need to define condition values for each sample. We would like to test for differences between `LumA` subtype and `other` subtypes of breast cancer, so we create a vector, which each element corresponds to a sample. Our division into this two groups relies on numbers of occurences of each subtype. The `LumA` subtype is the most common, in case of breast cancer.
 
@@ -54,6 +70,8 @@ head(condition_met, 8)
 
 ### Testing
 
+In the `MLExpResso` package we carry out the tests for identification of differentially methylated regions. To do this we use the `calculate_test()` function. Possible values of parameter `test` are described in function documentation.
+
 ```{r}
 res_met <- calculate_test(BRCA_methylation_gen, condition_met, test="ttest")
 head(res_met)
@@ -62,17 +80,16 @@ head(res_met)
 ## Expression
 
 ### `BRCA_mRNAseq_chr17` data set
-
-Data set `BRCA_mRNAseq_chr17` contains information about gene expression.
-This data set contains per-gene read counts computed for genes for 736 patients with breast cancer.
+Package `MLExpRessodata` contains `BRCA_mRNAseq_chr17` dataset. 
+This set contains information about gene expression: read counts per-gene, computed for genes for 736 patients with breast cancer.
 Rows of this data set correspond to samples taken from patients.
-First column `SUBTYPE`corresponds to a subtype of BRCA cancer, next columns correspond to genes.
+First column `SUBTYPE` corresponds to a subtype of BRCA cancer, next columns correspond to genes.
 
 ```{r}
 BRCA_mRNAseq_chr17[1:5,1:5]
 ```
 
-In our example we will test for differential expression between groups with LumA breast cancer subtype and other subtypes of that cancer.
+In our example we will test for differential expression between groups with `LumA` breast cancer subtype and `other` subtypes of that cancer.
 Again we will use vector `conditions`, which consist of two values corresponds to subtype of breast cancer: `LumA` and `other`.
 ```{r, message=FALSE}
 condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
@@ -80,6 +97,8 @@ head(condition_exp, 8)
 ```
 
 ### Testing
+In the `MLExpResso` package we carry out the tests for identification of genes with affected expression. To do this we use the `calculate_test()` function. Possible values of parameter `test` are described in function documentation.
+
 ```{r}
 res_exp <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt")
 head(res_exp)
@@ -88,34 +107,24 @@ head(res_exp)
 
 ## Comparing test results
 
+We can also create a comparison table with results of `calculate_test()` function for methylation and expression data. With thid two results we compute the ranking of the most significant changed genes in terms of both methylation and expression. The created column contains the geometric mean of p-values for expression and methylation. 
+
 ```{r, message=FALSE}
-genes_comparison <- calculate_comparison_table(BRCA_mRNAseq_chr17[ ,-1], BRCA_methylation_gen, 
-                                  condition_exp, condition_met, test1="nbinom2", test2="ttest")
+genes_comparison <- calculate_comparison_table(BRCA_mRNAseq_chr17[ ,-1], BRCA_methylation_gen, condition_exp, condition_met, test1="nbinom2", test2="ttest")
 head(genes_comparison)
 ```
 
 
-## Choosing most different genes
-
-Sorting ...
-
-
-```{r}
-genes_comparison_sorted <- genes_comparison[order(genes_comparison$ttest.pval), ]
-head(genes_comparison_sorted)
-```
-
-ICAM2!
-
 ## Visualization
 
-Visualizing chosen gene - IGFALS.
 ```{r}
 test_exp <- genes_comparison[ ,c(1,2,3)]
 test_met <- genes_comparison[ ,c(1,4,5)]
 ```
   
+The great advantage of `MLExpResso` package is the ability to perform a variety of visualizations for expression and methylation.
   
+For both, methylation and expression data, we can visualise the volcano plots for results of chosen tests and simple statistics for chosen gene. 
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=8}
 plot_volcanoes(BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1],condition_met, condition_exp, 
                "ICAM2", 
@@ -124,7 +133,7 @@ plot_volcanoes(BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1],condition_met
 
 ```
 
-Note that `plot_gene` methylation require data frame with cpg islands, not genes.
+Other function `plot_gene()` allow us to visualise the `methylation path` - placement of probes near the gene with a marked percentage of methylation for each probe in division into groups. Using this function we also get boxplots containing values from expression in division from `condition_exp` vector for chosen gene. Note that `plot_gene()` methylation require data frame with CpG probes, not genes.
 
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=5.5}
 plot_gene(BRCA_methylation_chr17,BRCA_mRNAseq_chr17,condition_met, condition_exp, "ICAM2")
