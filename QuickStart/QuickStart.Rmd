@@ -42,9 +42,6 @@ Values inside the table indicate the percentage methylation level of CpG probe f
 
 ```{r MLExpResso, message=FALSE, warning=FALSE}
 library(MLExpResso)
-```
-
-```{r MLExpRessodata, message=FALSE, warning=FALSE}
 library(MLExpRessodata)
 ```
 
@@ -110,7 +107,9 @@ head(res_exp)
 We can also create a comparison table with results of `calculate_test()` function for methylation and expression data. With thid two results we compute the ranking of the most significant changed genes in terms of both methylation and expression. The created column contains the geometric mean of p-values for expression and methylation. 
 
 ```{r, message=FALSE}
-genes_comparison <- calculate_comparison_table(BRCA_mRNAseq_chr17[ ,-1], BRCA_methylation_gen, condition_exp, condition_met, test1="nbinom2", test2="ttest")
+genes_comparison <- calculate_comparison_table(BRCA_mRNAseq_chr17[ ,-1], BRCA_methylation_gen, 
+                                               condition_exp, condition_met, 
+                                               test1="nbinom2", test2="ttest")
 head(genes_comparison)
 ```
 
@@ -126,10 +125,9 @@ The great advantage of `MLExpResso` package is the ability to perform a variety 
   
 For both, methylation and expression data, we can visualise the volcano plots for results of chosen tests and simple statistics for chosen gene. 
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=8}
-plot_volcanoes(BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1],condition_met, condition_exp, 
-               "ICAM2", 
-               test_met, test_exp,
-               values=TRUE)
+plot_volcanoes(BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1],
+               condition_met, condition_exp, "ICAM2", 
+               test_met, test_exp,values=TRUE)
 
 ```
 

@@ -1,6 +1,6 @@
 Package: MLExpResso
 Title: Package for analysing genes expression and CpG islands metylation
-Version: 0.1.5.0
+Version: 0.1.6.0
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends: R (>= 3.3.0)
@@ -28,7 +28,8 @@ Imports: dplyr,
     edgeR,
     reshape2,
     kableExtra,
-    stringr
+    stringr,
+    methyAnalysis
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,

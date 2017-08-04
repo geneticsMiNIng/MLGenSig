@@ -1,4 +1,4 @@
-# 0.1.6
+# MLExpResso 0.1.6
 - Added [Cheatsheet](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Cheatsheet/MLExpResso-cheatsheet.pdf)
 - Updated [Quick start](https://github.com/geneticsMiNIng/MLGenSig/blob/master/QuickStart/QuickStart.pdf)
 
