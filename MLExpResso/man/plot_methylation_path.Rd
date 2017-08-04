@@ -5,7 +5,7 @@
 \title{Methylation path on chosen gene.}
 \usage{
 plot_methylation_path(data, condition, gene, show_gene = FALSE,
-  observ = FALSE, islands = TRUE, title = TRUE)
+  observ = FALSE, islands = TRUE, title = TRUE, ...)
 }
 \arguments{
 \item{data}{data frame containing values from methylation: columns corespond to CpG probes, rows to samples.}
@@ -21,6 +21,8 @@ plot_methylation_path(data, condition, gene, show_gene = FALSE,
 \item{islands}{logical. If TRUE line corresopnding to islands should be draw.}
 
 \item{title}{logical. If TRUE title saying what gene we visualise will be add.}
+
+\item{...}{other parameters.}
 }
 \value{
 Object of class ggplot containing visualisation of methylation on gene.

@@ -9,6 +9,7 @@
 #' @param observ logical. If TRUE dots corresponding to CpG probes will be draw.
 #' @param islands logical. If TRUE line corresopnding to islands should be draw.
 #' @param title logical. If TRUE title saying what gene we visualise will be add.
+#' @param ... other parameters.
 #'
 #' @return Object of class ggplot containing visualisation of methylation on gene.
 #'
@@ -36,12 +37,14 @@
 #'@export
 
 
-plot_methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, islands = TRUE, title=TRUE){
+plot_methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, islands = TRUE, title=TRUE, ...){
   HG18_coord <- value <- island_cond <- NULL
+
+  err_plot_methylation_path(data, ...)
 
   dataA <- data[which(condition == unique(condition)[1]), ]
   dataB <- data[which(condition == unique(condition)[2]), ]
-  data_gen <-aggregate_probes(data)
+  data_gen <-aggregate_probes(data, ...)
   CpG_A <- calculate_CpG_mean(dataA, gene)
   CpG_A$condition <- unique(condition)[1]
   CpG_B <- calculate_CpG_mean(dataB, gene)
