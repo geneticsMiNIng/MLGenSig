@@ -1,3 +1,7 @@
+# 0.1.6
+- Added [Cheatsheet](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Cheatsheet/MLExpResso-cheatsheet.pdf)
+- Updated [Quick start](https://github.com/geneticsMiNIng/MLGenSig/blob/master/QuickStart/QuickStart.pdf)
+
 # MLExpResso 0.1.5
 - more tests for expression and methylation (based on packages `methyAnalysis` and `edgeR`)
 - adding a simple guide for the user -  `QuickStart`

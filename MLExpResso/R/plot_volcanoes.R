@@ -74,7 +74,7 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, te
   title.m <- textGrob("Methylation",  just = "centre", gp=gpar(fontsize = 25))
 
 
-  title <- textGrob(gene, gp=gpar(fontsize = 25), x = unit(1.1, "npc"))
+  title <- textGrob(gene, gp=gpar(fontsize = 25), x = unit(0, "lines"), hjust = 0, vjust = 0)
   blank <- textGrob("", gp=gpar(fontsize = 25))
 
   plist <- list(title, blank, title.m, title.e, s.m, s.e)
