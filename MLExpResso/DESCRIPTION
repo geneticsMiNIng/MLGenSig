@@ -3,7 +3,7 @@ Title: Package for analysing genes expression and CpG islands metylation
 Version: 0.1.6.0
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-Depends: R (>= 3.3.0)
+Depends: R (>= 3.0.0)
 License: GPL
 Encoding: UTF-8
 LazyData: true
@@ -15,8 +15,7 @@ Imports: dplyr,
     DESeq, 
     ggrepel, 
     limma, 
-    grid, 
-    repmis,
+    grid,
     utils, 
     reshape,
     TxDb.Hsapiens.UCSC.hg18.knownGene,
@@ -28,7 +27,6 @@ Imports: dplyr,
     edgeR,
     reshape2,
     kableExtra,
-    stringr,
     methyAnalysis
 RoxygenNote: 6.0.1
 Suggests: knitr,

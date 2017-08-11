@@ -26,7 +26,9 @@
 #'
 #'BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17)
 #'
-#'compare <- calculate_comparison_table(BRCA_mRNAseq_chr17, BRCA_methylation_gen_17, condition_exp, condition_met, test1="nbinom2", test2="ttest")
+#'data_met <- BRCA_methylation_gen
+#'data_exp <- BRCA_mRNAseq_chr17
+#'compare <- calculate_comparison_table(data_exp,data_met,cond_exp,cond_met, "nbinom2", "ttest")
 #'}
 #'
 #'@export
@@ -42,12 +44,12 @@ colnames(result2)[c(2,3)] <- paste(test2,colnames(result2)[c(2,3)], sep=".")
 
 
 result <- merge(result1, result2, by="id")
-result$geom.mean.rank <- sqrt(result[,2]*result[,4])
+result$geom.mean.rank <- sqrt(result[,3]*result[,5])
 
 #no_probes <- data.probes[, which(colnames(data.probes) %in% data.cols)]
 no_probes <- as.data.frame(table(genom.data[,genes.col]))
 colnames(no_probes)[1] <- "id"
-colnames(no_probes)[2] <- "No.probes"
+colnames(no_probes)[2] <- "no.probes"
 
 result <- left_join(result, no_probes, by="id")
 result <- result[order(result$geom.mean.rank),]

@@ -26,15 +26,15 @@
 #'@examples
 #'\dontrun{
 #'library(MLExpRessodata)
-#'condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
-#'condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
+#'cond_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA","LumA","other")
+#'cond_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA","other")
 #'
-#'BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17[,-1])
+#'BRCA_met_gen <- aggregate_probes(BRCA_met[,-1])
 #'
-#'test.lrt  <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt")
-#'test.tstudent  <- calculate_test(BRCA_methylation_gen, condition_met, test="ttest")
+#'test1  <- calculate_test(BRCA_exp[,-1], condition_exp, test="lrt")
+#'test2  <- calculate_test(BRCA_met_gen, condition_met, test="ttest")
 #'
-#'plot_volcanoes(BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1],condition_met, condition_exp, "ICAM2", test.lrt, test.tstudent, values=TRUE)
+#'plot_volcanoes(BRCA_met[,-1],BRCA_exp[,-1],cond_met, cond_exp, "ICAM2", test1, test2, values=TRUE)
 #'}
 #'
 #'@seealso \code{\link{plot_volcano}}

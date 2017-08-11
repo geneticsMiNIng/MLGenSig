@@ -10,6 +10,8 @@ test_tstudent(data, condition, ...)
 \item{data}{data frame containing values of methylation: columns coresponds to genes, rows to samples.}
 
 \item{condition}{vector of levels coresponding to order of samples in data.}
+
+\item{...}{some additional parameters}
 }
 \value{
 A data frame with the following columns:

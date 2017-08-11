@@ -4,6 +4,7 @@
 #'
 #' @param data data frame containing values of methylation: columns coresponds to genes, rows to samples.
 #' @param condition vector of levels coresponding to order of samples in data.
+#' @param ... some additional parameters
 #'
 #' @return A data frame with the following columns:
 #'  \item{id}{The ID of the observable, taken from the row names of the counts slots.}

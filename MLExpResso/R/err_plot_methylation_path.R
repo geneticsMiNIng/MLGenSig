@@ -4,7 +4,7 @@
 #'
 #' @param data data frame containing values from methylation: columns corespond to CpG probes, rows to samples.
 #' @param genom.data data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}.
-#' @param probs.col number of column in genom.data containing informations about probes (probes symbols).
+#' @param probes.col number of column in genom.data containing informations about probes (probes symbols).
 #
 #' @return Error or nothing
 #'

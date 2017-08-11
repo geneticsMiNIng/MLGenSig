@@ -10,6 +10,8 @@ test_nbinom(data, condition, ...)
 \item{data}{data frame containing the raw counts of sequencing reads. Columns corresponds to genes, rows to samples.}
 
 \item{condition}{vector of levels coresponding to order of samples in data.}
+
+\item{...}{some additional parameters}
 }
 \value{
 A data frame with the following columns:

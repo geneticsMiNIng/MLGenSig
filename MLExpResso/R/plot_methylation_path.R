@@ -28,8 +28,8 @@
 #'@examples
 #'\dontrun{
 #'library(MLExpRessodata)
-#'condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
-#'plot_methylation_path(BRCA_methylation_chr17, condition_met, "BRCA2")
+#'condition_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA", "other")
+#'plot_methylation_path(BRCA_met, condition_met, "BRCA2")
 #'}
 #'
 #'@seealso \code{\link{plot_gene}}

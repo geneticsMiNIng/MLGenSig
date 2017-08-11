@@ -15,13 +15,13 @@ It is considered that the result of increased methylation is decreased gene expr
 
 Key functions of this package are:
 
--identification of DMR - differentially methylated regions,
+- Identification of DMR - differentially methylated regions,
 
--identification of genes with affected expression,
+- Identification of differentially expressed genes,
 
--identification regions with changes in expression and methylation,
+- Identification regions with changes in expression and methylation,
 
--visualization of identified regions.
+- Visualization of identified regions.
 
 The joint modeling and visualization of genes expression and methylation improve interpretability of identified signals.
 
@@ -31,13 +31,13 @@ The methodology is supplemented with example applications to The Cancer Genome A
 
 In this vignette we will work with the data sets containing information about gene expression and methylation for patients with breast cancer. We will analyze differences in methylation and expression for patients with different subtypes of BRCA cancer. To run the examples below you should install `MLExpRessodata` package.(https://github.com/geneticsMiNIng/MLGenSigdata)
 
-## Methylation
+## Differentially methylated regions (DMR)
 
-### `BRCA_methylation_chr17` data set
+### `BRCA_met` data set
 In this section, we will work with the methylation level data from TCGA database. 
-Package `MLExpRessodata` contains `BRCA_methylation_chr17` dataset. This data set contains information about methylation of CpG probes for patients with breast cancer. 
+Package `MLExpRessodata` contains `BRCA_met` dataset. This data set contains information about methylation of CpG probes for patients with breast cancer. 
 Rows of this data set correspond to patients, more precisely, to samples taken from patients.
-First column `SUBTYPE`corresponds to a subtype of BRCA cancer, next columns correspond to CpG probes.
+First column `SUBTYPE` corresponds to a subtype of BRCA cancer, next columns correspond to CpG probes.
 Values inside the table indicate the percentage methylation level of CpG probe for specified sample.
 
 ```{r MLExpResso, message=FALSE, warning=FALSE}
@@ -46,22 +46,22 @@ library(MLExpRessodata)
 ```
 
 ```{r}
-head(BRCA_methylation_chr17)[1:5,1:4]
+head(BRCA_met)[1:5,1:4]
 ```
 
 ###Data preparation
 In this analysis we would like to find genes with different methylation. At first we need to use function `aggregate_probes()`, which generates new data frame with CpG probes aggregated to genes. To this aggregation we use, by default, the Illumina Human Methylation data set.
 
 ```{r mapping}
-BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17) 
-head(BRCA_methylation_gen)[1:5,1:4]
+BRCA_met_gen <- aggregate_probes(BRCA_met) 
+head(BRCA_met_gen)[1:5,1:4]
 ```
 
 
 Before we go to the testing, we need to define condition values for each sample. We would like to test for differences between `LumA` subtype and `other` subtypes of breast cancer, so we create a vector, which each element corresponds to a sample. Our division into this two groups relies on numbers of occurences of each subtype. The `LumA` subtype is the most common, in case of breast cancer.
 
 ```{r}
-condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
+condition_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA", "other")
 head(condition_met, 8)
 ```
 
@@ -70,26 +70,26 @@ head(condition_met, 8)
 In the `MLExpResso` package we carry out the tests for identification of differentially methylated regions. To do this we use the `calculate_test()` function. Possible values of parameter `test` are described in function documentation.
 
 ```{r}
-res_met <- calculate_test(BRCA_methylation_gen, condition_met, test="ttest")
+res_met <- calculate_test(BRCA_met_gen, condition_met, test = "ttest")
 head(res_met)
 ```
 
-## Expression
+## Differentially expressed genes
 
-### `BRCA_mRNAseq_chr17` data set
-Package `MLExpRessodata` contains `BRCA_mRNAseq_chr17` dataset. 
+### `BRCA_exp`
+Package `MLExpRessodata` contains `BRCA_exp` dataset. 
 This set contains information about gene expression: read counts per-gene, computed for genes for 736 patients with breast cancer.
 Rows of this data set correspond to samples taken from patients.
 First column `SUBTYPE` corresponds to a subtype of BRCA cancer, next columns correspond to genes.
 
 ```{r}
-BRCA_mRNAseq_chr17[1:5,1:5]
+BRCA_exp[1:5,1:5]
 ```
 
 In our example we will test for differential expression between groups with `LumA` breast cancer subtype and `other` subtypes of that cancer.
 Again we will use vector `conditions`, which consist of two values corresponds to subtype of breast cancer: `LumA` and `other`.
 ```{r, message=FALSE}
-condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+condition_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA","LumA","other")
 head(condition_exp, 8)
 ```
 
@@ -97,7 +97,7 @@ head(condition_exp, 8)
 In the `MLExpResso` package we carry out the tests for identification of genes with affected expression. To do this we use the `calculate_test()` function. Possible values of parameter `test` are described in function documentation.
 
 ```{r}
-res_exp <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt")
+res_exp <- calculate_test(BRCA_exp[,!(colnames(BRCA_exp) == "SUBTYPE")], condition_exp, test = "lrt")
 head(res_exp)
 ```
 
@@ -106,10 +106,11 @@ head(res_exp)
 
 We can also create a comparison table with results of `calculate_test()` function for methylation and expression data. With thid two results we compute the ranking of the most significant changed genes in terms of both methylation and expression. The created column contains the geometric mean of p-values for expression and methylation. 
 
-```{r, message=FALSE}
-genes_comparison <- calculate_comparison_table(BRCA_mRNAseq_chr17[ ,-1], BRCA_methylation_gen, 
-                                               condition_exp, condition_met, 
-                                               test1="nbinom2", test2="ttest")
+```{r, message=FALSE, warning=FALSE}
+genes_comparison <- calculate_comparison_table(BRCA_exp[,!(colnames(BRCA_exp) == "SUBTYPE")], BRCA_met_gen,
+condition_exp, condition_met,
+test1 = "nbinom2", test2 = "ttest")
+
 head(genes_comparison)
 ```
 
@@ -117,16 +118,17 @@ head(genes_comparison)
 ## Visualization
 
 ```{r}
-test_exp <- genes_comparison[ ,c(1,2,3)]
-test_met <- genes_comparison[ ,c(1,4,5)]
+test_exp <- genes_comparison[ ,c("id","nbinom2.log2.fold","nbinom2.pval")]
+test_met <- genes_comparison[ ,c("id","ttest.log2.fold","ttest.pval")]
 ```
   
 The great advantage of `MLExpResso` package is the ability to perform a variety of visualizations for expression and methylation.
   
 For both, methylation and expression data, we can visualise the volcano plots for results of chosen tests and simple statistics for chosen gene. 
-```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=8}
-plot_volcanoes(BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1],
-               condition_met, condition_exp, "ICAM2", 
+```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=10}
+plot_volcanoes(BRCA_met[,!(colnames(BRCA_met) == "SUBTYPE")],
+               BRCA_exp[,!(colnames(BRCA_exp) == "SUBTYPE")],
+               condition_met, condition_exp, "CACNA1G", 
                test_met, test_exp,values=TRUE)
 
 ```
@@ -134,7 +136,7 @@ plot_volcanoes(BRCA_methylation_chr17[,-1],BRCA_mRNAseq_chr17[,-1],
 Other function `plot_gene()` allow us to visualise the `methylation path` - placement of probes near the gene with a marked percentage of methylation for each probe in division into groups. Using this function we also get boxplots containing values from expression in division from `condition_exp` vector for chosen gene. Note that `plot_gene()` methylation require data frame with CpG probes, not genes.
 
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=5.5}
-plot_gene(BRCA_methylation_chr17,BRCA_mRNAseq_chr17,condition_met, condition_exp, "ICAM2")
+plot_gene(BRCA_met,BRCA_exp,condition_met, condition_exp, "CACNA1G")
 ```
 
 

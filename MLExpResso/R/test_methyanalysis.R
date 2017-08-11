@@ -6,7 +6,7 @@
 #' @param condition vector of levels coresponding to order of samples in data.
 #' @param genom.data data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}} 
 #' @param genes.col number of column in genom.data containing informations about genes (genes symbols)
-#' @param probs.col number of column in genom.data containing informations about probes (probes symbols)
+#' @param probes.col number of column in genom.data containing informations about probes (probes symbols)
 #'
 #' @return A data frame with the following columns:
 #'  \item{id}{The ID of the observable, taken from the row names of the counts slots.}
@@ -18,12 +18,17 @@
 #'
 #' @importFrom dplyr left_join
 #' @importFrom methyAnalysis detectDMR.slideWin
+#' @importFrom dplyr summarise
+#' @importFrom dplyr %>%
+#' 
 #'
 #'@seealso mety_ttest
 #'
 
 
 test_methyanalysis <- function(data, condition, genom.data= illumina_humanmethylation_27_data, genes.col=11, probes.col=1){
+  
+  Symbol<-result.p.value<-NULL
 
   result <- detectDMR.slideWin(data, sampleType=condition)
   result <- result@elementMetadata@listData
@@ -39,7 +44,7 @@ test_methyanalysis <- function(data, condition, genom.data= illumina_humanmethyl
 
   result3 <- left_join(result2, genes2, by="Name")
   result3 <- na.omit(result3)
-  result4 <- result3 %>% group_by(Symbol)%>%summarize(pval = min(result.p.value))%>%
+  result4 <- result3 %>% group_by(Symbol)%>%summarise(pval = min(result.p.value))%>%
     inner_join(result3, by='Symbol')
 
   result5 <- result4[which(result4$pval==result4$result.p.value),]

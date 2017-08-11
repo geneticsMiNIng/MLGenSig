@@ -17,7 +17,7 @@ aggregate_probes(data, keep = NULL,
 
 \item{genes.col}{number of column in genom.data containing informations about genes (genes symbols).}
 
-\item{probs.col}{number of column in genom.data containing informations about probes (probes symbols).}
+\item{probes.col}{number of column in genom.data containing informations about probes (probes symbols).}
 }
 \value{
 A data frame with CpG probes aggregated to genes. If there were more than one probe corresponding to a gene, value is a mean of those probes.

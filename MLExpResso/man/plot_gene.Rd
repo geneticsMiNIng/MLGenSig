@@ -25,9 +25,9 @@ Function \code{plot_gene} generates a dashboard with methylation_path for methyl
 }
 \examples{
 \dontrun{
-condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
-condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
-plot_gene(BRCA_methylation_chr17,BRCA_mRNAseq_chr17,condition_met, condition_exp, "ICAM2")
+condition_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA","LumA","other")
+condition_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA","other")
+plot_gene(BRCA_met,BRCA_exp,condition_met, condition_exp, "ICAM2")
 }
 
 }

@@ -17,7 +17,7 @@ test_methyanalysis(data, condition,
 
 \item{genes.col}{number of column in genom.data containing informations about genes (genes symbols)}
 
-\item{probs.col}{number of column in genom.data containing informations about probes (probes symbols)}
+\item{probes.col}{number of column in genom.data containing informations about probes (probes symbols)}
 }
 \value{
 A data frame with the following columns:

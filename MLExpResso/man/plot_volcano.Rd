@@ -33,7 +33,7 @@ Function \code{plot_volcano} draws a plot with p-values and fold logarithm from 
 \examples{
 \dontrun{
 library(MLExpRessodata)
-plot_volcano(BRCA_mRNAseq_chr17, values=TRUE)
+plot_volcano(BRCA_met, values=TRUE)
 }
 
 }

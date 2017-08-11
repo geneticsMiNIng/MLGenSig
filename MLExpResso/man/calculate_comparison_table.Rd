@@ -38,7 +38,9 @@ condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
 
 BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17)
 
-compare <- calculate_comparison_table(BRCA_mRNAseq_chr17, BRCA_methylation_gen_17, condition_exp, condition_met, test1="nbinom2", test2="ttest")
+data_met <- BRCA_methylation_gen
+data_exp <- BRCA_mRNAseq_chr17
+compare <- calculate_comparison_table(data_exp,data_met,cond_exp,cond_met, "nbinom2", "ttest")
 }
 
 }

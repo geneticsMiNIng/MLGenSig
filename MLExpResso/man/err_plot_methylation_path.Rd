@@ -12,7 +12,7 @@ err_plot_methylation_path(data,
 
 \item{genom.data}{data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}.}
 
-\item{probs.col}{number of column in genom.data containing informations about probes (probes symbols).}
+\item{probes.col}{number of column in genom.data containing informations about probes (probes symbols).}
 }
 \value{
 Error or nothing

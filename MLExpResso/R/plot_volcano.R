@@ -38,7 +38,7 @@
 #'@examples
 #'\dontrun{
 #'library(MLExpRessodata)
-#'plot_volcano(BRCA_mRNAseq_chr17, values=TRUE)
+#'plot_volcano(BRCA_met, values=TRUE)
 #'}
 #'
 #'@seealso \code{\link{plot_volcanoes}}
@@ -66,7 +66,7 @@ plot_volcano <- function(data, line=NA, names= NA,ylog=TRUE, ngen=NA, title=NA, 
                          breaks = trans_breaks("log10", function(x) 10^x),
                          labels = trans_format("identity", math_format(10^.x)))+
       scale_x_continuous(breaks = extended_range_breaks()(data$log2.fold),
-                         labels = function(x) sprintf("%.1f", x))
+                         labels = function(x) sprintf("%.2f", x))
 
   if(is.na(title)){
     plot <- plot + ggtitle("")
