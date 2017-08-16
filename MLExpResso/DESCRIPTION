@@ -1,33 +1,37 @@
 Package: MLExpResso
-Title: Package for analysing genes expression and CpG islands metylation
+Title:  Integrative analyses and visualization of gene expression and DNA methylation data
 Version: 0.1.6.0
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: c(
+  person("Aleksandra", "Dabrowska", email = "oll.dabrowska@gmail.com", role = c("aut", "cre")),
+  person("Alicja", "Gosiewska", email = "alicja.gosiewska@gmail.com", role = "aut"),
+  person("Przemyslaw", "Biecek", email = "przemyslaw.biecek@gmail.com", role = c("aut", "ths"))
+  )
+Description: Set of tools for identification of DMR - differentially methylated regions, identification of differentially expressed genes, identification regions with changes in expression and methylation, visualization of identified regions.
 Depends: R (>= 3.0.0)
 License: GPL
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr, 
-    roxygen2, 
-    ggplot2, 
-    stringr, 
-    scales, 
-    DESeq, 
-    ggrepel, 
-    limma, 
-    grid,
-    utils, 
-    reshape,
-    TxDb.Hsapiens.UCSC.hg18.knownGene,
-    org.Hs.eg.db,
-    AnnotationDbi,
-    gridExtra,
-    ggthemes,
+Imports: AnnotationDbi,
+    DESeq,
     DESeq2,
+    dplyr, 
     edgeR,
-    reshape2,
+    ggplot2, 
+    ggrepel, 
+    ggthemes,
+    grid,
+    gridExtra,
     kableExtra,
-    methyAnalysis
+    limma, 
+    methyAnalysis,
+    org.Hs.eg.db,
+    reshape,
+    reshape2,
+    roxygen2, 
+    scales, 
+    stringr, 
+    TxDb.Hsapiens.UCSC.hg18.knownGene,
+    utils, 
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,
