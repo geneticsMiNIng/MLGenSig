@@ -142,7 +142,9 @@
 
 <span class='no'>BRCA_methylation_gen</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='aggregate_probes.html'>aggregate_probes</a></span>(<span class='no'>BRCA_methylation_chr17</span>)
 
-<span class='no'>compare</span> <span class='kw'>&lt;-</span> <span class='fu'>calculate_comparison_table</span>(<span class='no'>BRCA_mRNAseq_chr17</span>, <span class='no'>BRCA_methylation_gen_17</span>, <span class='no'>condition_exp</span>, <span class='no'>condition_met</span>, <span class='kw'>test1</span><span class='kw'>=</span><span class='st'>"nbinom2"</span>, <span class='kw'>test2</span><span class='kw'>=</span><span class='st'>"ttest"</span>)
+<span class='no'>data_met</span> <span class='kw'>&lt;-</span> <span class='no'>BRCA_methylation_gen</span>
+<span class='no'>data_exp</span> <span class='kw'>&lt;-</span> <span class='no'>BRCA_mRNAseq_chr17</span>
+<span class='no'>compare</span> <span class='kw'>&lt;-</span> <span class='fu'>calculate_comparison_table</span>(<span class='no'>data_exp</span>,<span class='no'>data_met</span>,<span class='no'>cond_exp</span>,<span class='no'>cond_met</span>, <span class='st'>"nbinom2"</span>, <span class='st'>"ttest"</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
@@ -163,7 +165,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by First Last.</p>
+  <p>Developed by Aleksandra Dabrowska, Alicja Gosiewska, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">

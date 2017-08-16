@@ -142,15 +142,15 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'>library</span>(<span class='no'>MLExpRessodata</span>)
-<span class='no'>condition_exp</span> <span class='kw'>&lt;-</span> <span class='fu'>ifelse</span>(<span class='no'>BRCA_mRNAseq_chr17</span>$<span class='no'>SUBTYPE</span><span class='kw'>==</span><span class='st'>"LumA"</span>,<span class='st'>"LumA"</span>,<span class='st'>"other"</span>)
-<span class='no'>condition_met</span> <span class='kw'>&lt;-</span> <span class='fu'>ifelse</span>(<span class='no'>BRCA_methylation_chr17</span>$<span class='no'>SUBTYPE</span><span class='kw'>==</span><span class='st'>"LumA"</span>,<span class='st'>"LumA"</span>,<span class='st'>"other"</span>)
+<span class='no'>cond_exp</span> <span class='kw'>&lt;-</span> <span class='fu'>ifelse</span>(<span class='no'>BRCA_exp</span>$<span class='no'>SUBTYPE</span> <span class='kw'>==</span> <span class='st'>"LumA"</span>,<span class='st'>"LumA"</span>,<span class='st'>"other"</span>)
+<span class='no'>cond_met</span> <span class='kw'>&lt;-</span> <span class='fu'>ifelse</span>(<span class='no'>BRCA_met</span>$<span class='no'>SUBTYPE</span> <span class='kw'>==</span> <span class='st'>"LumA"</span>,<span class='st'>"LumA"</span>,<span class='st'>"other"</span>)
 
-<span class='no'>BRCA_methylation_gen</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='aggregate_probes.html'>aggregate_probes</a></span>(<span class='no'>BRCA_methylation_chr17</span>[,-<span class='fl'>1</span>])
+<span class='no'>BRCA_met_gen</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='aggregate_probes.html'>aggregate_probes</a></span>(<span class='no'>BRCA_met</span>[,-<span class='fl'>1</span>])
 
-<span class='no'>test.lrt</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='calculate_test.html'>calculate_test</a></span>(<span class='no'>BRCA_mRNAseq_chr17</span>[,-<span class='fl'>1</span>], <span class='no'>condition_exp</span>, <span class='kw'>test</span><span class='kw'>=</span><span class='st'>"lrt"</span>)
-<span class='no'>test.tstudent</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='calculate_test.html'>calculate_test</a></span>(<span class='no'>BRCA_methylation_gen</span>, <span class='no'>condition_met</span>, <span class='kw'>test</span><span class='kw'>=</span><span class='st'>"ttest"</span>)
+<span class='no'>test1</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='calculate_test.html'>calculate_test</a></span>(<span class='no'>BRCA_exp</span>[,-<span class='fl'>1</span>], <span class='no'>condition_exp</span>, <span class='kw'>test</span><span class='kw'>=</span><span class='st'>"lrt"</span>)
+<span class='no'>test2</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='calculate_test.html'>calculate_test</a></span>(<span class='no'>BRCA_met_gen</span>, <span class='no'>condition_met</span>, <span class='kw'>test</span><span class='kw'>=</span><span class='st'>"ttest"</span>)
 
-<span class='fu'>plot_volcanoes</span>(<span class='no'>BRCA_methylation_chr17</span>[,-<span class='fl'>1</span>],<span class='no'>BRCA_mRNAseq_chr17</span>[,-<span class='fl'>1</span>],<span class='no'>condition_met</span>, <span class='no'>condition_exp</span>, <span class='st'>"ICAM2"</span>, <span class='no'>test.lrt</span>, <span class='no'>test.tstudent</span>, <span class='kw'>values</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'>plot_volcanoes</span>(<span class='no'>BRCA_met</span>[,-<span class='fl'>1</span>],<span class='no'>BRCA_exp</span>[,-<span class='fl'>1</span>],<span class='no'>cond_met</span>, <span class='no'>cond_exp</span>, <span class='st'>"ICAM2"</span>, <span class='no'>test1</span>, <span class='no'>test2</span>, <span class='kw'>values</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
@@ -171,7 +171,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by First Last.</p>
+  <p>Developed by Aleksandra Dabrowska, Alicja Gosiewska, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">
