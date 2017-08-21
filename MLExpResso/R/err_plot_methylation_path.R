@@ -11,7 +11,7 @@
 
 
 
-err_plot_methylation_path <-function(data, genom.data= illumina_humanmethylation_27_data, probes.col=1){
+err_plot_methylation_path <-function(data, genom.data = MLExpResso::illumina_humanmethylation_27_data, probes.col=1){
   if( !(any(colnames(data) %in% genom.data[,1])) ) stop("Wrong colnames, check if a data set contains not aggregated values.")
   return(NULL)
 }

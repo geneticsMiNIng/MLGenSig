@@ -5,8 +5,8 @@
 \title{t test for methylation per each gene from methyAnalysis package}
 \usage{
 test_methyanalysis(data, condition,
-  genom.data = illumina_humanmethylation_27_data, genes.col = 11,
-  probes.col = 1)
+  genom.data = MLExpResso::illumina_humanmethylation_27_data,
+  genes.col = 11, probes.col = 1)
 }
 \arguments{
 \item{data}{object of class MehtyGenoSet, consisting methylation for each CpG island.}

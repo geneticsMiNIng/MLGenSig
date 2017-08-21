@@ -5,7 +5,8 @@
 \title{Results from test for two datasets.}
 \usage{
 calculate_comparison_table(data1, data2, cond1, cond2, test1, test2,
-  genom.data = illumina_humanmethylation_27_data, genes.col = 11)
+  genom.data = MLExpResso::illumina_humanmethylation_27_data,
+  genes.col = 11)
 }
 \arguments{
 \item{data1}{first dataset, suitable for \code{test1}.}

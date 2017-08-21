@@ -15,6 +15,7 @@
 #'
 
 calculate_chromosome_data <- function(data, number){
+  illumina_humanmethylation_27_data <- MLExpResso::illumina_humanmethylation_27_data
   islands <- illumina_humanmethylation_27_data[which(illumina_humanmethylation_27_data$Chr==number),]
   data2 <- data[,which(colnames(data) %in% islands$Name)]
   cols <- colnames(data)

@@ -33,7 +33,7 @@
 #'
 #'@export
 
-calculate_comparison_table <- function(data1, data2, cond1, cond2, test1, test2, genom.data = illumina_humanmethylation_27_data, genes.col=11){
+calculate_comparison_table <- function(data1, data2, cond1, cond2, test1, test2, genom.data =  MLExpResso::illumina_humanmethylation_27_data, genes.col=11){
 result1 <- calculate_test(data1, cond1,test1)
 result2 <- calculate_test(data2, cond2,test2)
 

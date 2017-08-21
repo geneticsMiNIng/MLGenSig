@@ -20,13 +20,15 @@
 #' @importFrom methyAnalysis detectDMR.slideWin
 #' @importFrom dplyr summarise
 #' @importFrom dplyr %>%
-#' 
+#' @importFrom dplyr group_by
+#' @importFrom dplyr inner_join
+#' @importFrom stats na.omit
 #'
 #'@seealso mety_ttest
 #'
 
 
-test_methyanalysis <- function(data, condition, genom.data= illumina_humanmethylation_27_data, genes.col=11, probes.col=1){
+test_methyanalysis <- function(data, condition, genom.data = MLExpResso::illumina_humanmethylation_27_data, genes.col=11, probes.col=1){
   
   Symbol<-result.p.value<-NULL
 
