@@ -3,6 +3,7 @@ sudo: false
 cache: packages
 warnings_are_errors: false
 r: bioc-devel
+before_script: cd MLExpResso
 install:
   - Rscript -e 'install.packages(c("devtools","roxygen2","testthat"));devtools::install_deps("MLExpResso")'
 
