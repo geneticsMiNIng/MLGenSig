@@ -28,7 +28,7 @@ Function \code{aggregate_probes} aggregates CpG probes to corresponding genes.
 \examples{
 
 \dontrun{
-library(MLExpRessodata)
+library(MLExpRessoData)
 BRCA_genes <- aggregate_probes(BRCA_methylation_all, keep="SUBTYPE")
 }
 

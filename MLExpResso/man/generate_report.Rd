@@ -30,18 +30,18 @@ Function \code{generate_report} produces a pdf report containing information abo
 \examples{
 
 \dontrun{
-library(MLExpRessodata)
-cond_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA","other")
-cond_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
+library(MLExpRessoData)
+cond_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA","other")
+cond_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA","LumA","other")
 
-BRCA_methylation_gene <- aggregate_probes(BRCA_methylation_chr17, keep="SUBTYPE")
+BRCA_methylation_gene <- aggregate_probes(BRCA_met, keep = "SUBTYPE")
 
-test1  <- calculate_test(BRCA_mRNAseq_chr17[,-1], condition_exp, test="lrt")
-test2  <- calculate_test(BRCA_methylation_gene[,-1], condition_met, test="ttest")
-data_met <- BRCA_methylation_chr17
-data_exp <- BRCA_mRNAseq_chr17
+test1  <- calculate_test(BRCA_exp[,-1], condition_exp, test = "lrt")
+test2  <- calculate_test(BRCA_methylation_gene[,-1], condition_met, test = "ttest")
+data_met <- BRCA_met
+data_exp <- BRCA_exp
 
-report <- generate_report(data_exp,data_met, cond_exp, cond_met, test1, test2, "BRCA2")
+report <- generate_report(data_exp, data_met, cond_exp, cond_met, test1, test2, "BRCA2")
 
 }
 

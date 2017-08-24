@@ -26,9 +26,9 @@ Function \code{plot_diff_boxplot} generates a boxplot of values from choosen dat
 }
 \examples{
 \dontrun{
-library(MLExpRessodata)
-condition_expr <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA","other")
-plot_diff_boxplot(BRCA_mRNAseq_chr17, "BRCA2", condition_expr, sqrt.trans=TRUE)
+library(MLExpRessoData)
+condition_expr <- ifelse(BRCA_exp7$SUBTYPE == "LumA","LumA","other")
+plot_diff_boxplot(BRCA_exp, "BRCA2", condition_expr, sqrt.trans=TRUE)
 }
 
 }

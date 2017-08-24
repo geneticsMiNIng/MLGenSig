@@ -25,6 +25,7 @@ Function \code{plot_gene} generates a dashboard with methylation_path for methyl
 }
 \examples{
 \dontrun{
+library(MLExpRessoData)
 condition_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA","LumA","other")
 condition_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA","other")
 plot_gene(BRCA_met,BRCA_exp,condition_met, condition_exp, "ICAM2")

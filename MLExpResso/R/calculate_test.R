@@ -63,10 +63,10 @@
 #'@examples
 #'\dontrun{
 #'
-#'library(MLExpRessodata)
+#'library(MLExpRessoData)
 #'BRCA_methylation_gene <- aggregate_probes(BRCA_methylation_all)
 #'
-#'condition_m <- ifelse(BRCA_methylation_all$SUBTYPE=="LumA", "LumA", "other")
+#'condition_m <- ifelse(BRCA_methylation_all$SUBTYPE == "LumA", "LumA", "other")
 #'test_methylation <- calculate_test(BRCA_methylation_gene, condition_m, "ttest")
 #'
 #'}

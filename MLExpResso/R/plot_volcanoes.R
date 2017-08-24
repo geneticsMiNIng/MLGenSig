@@ -25,7 +25,7 @@
 #'
 #'@examples
 #'\dontrun{
-#'library(MLExpRessodata)
+#'library(MLExpRessoData)
 #'cond_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA","LumA","other")
 #'cond_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA","other")
 #'

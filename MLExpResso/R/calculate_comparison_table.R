@@ -20,14 +20,14 @@
 #'
 #'@examples
 #'\dontrun{
-#'library(MLExpRessodata)
-#'condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA", "other")
-#'condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
+#'library(MLExpRessoData)
+#'condition_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA","LumA", "other")
+#'condition_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA", "other")
 #'
-#'BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17)
+#'BRCA_methylation_gen <- aggregate_probes(BRCA_met)
 #'
 #'data_met <- BRCA_methylation_gen
-#'data_exp <- BRCA_mRNAseq_chr17
+#'data_exp <- BRCA_exp
 #'compare <- calculate_comparison_table(data_exp,data_met,cond_exp,cond_met, "nbinom2", "ttest")
 #'}
 #'
