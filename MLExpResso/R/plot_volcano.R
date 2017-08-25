@@ -37,7 +37,7 @@
 #'
 #'@examples
 #'\dontrun{
-#'library(MLExpRessodata)
+#'library(MLExpRessoData)
 #'plot_volcano(BRCA_met, values=TRUE)
 #'}
 #'

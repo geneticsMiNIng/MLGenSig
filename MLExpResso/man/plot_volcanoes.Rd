@@ -34,7 +34,7 @@ Function \code{plot_volcanoes} generate a dashboard with volcano plots for expre
 }
 \examples{
 \dontrun{
-library(MLExpRessodata)
+library(MLExpRessoData)
 cond_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA","LumA","other")
 cond_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA","other")
 

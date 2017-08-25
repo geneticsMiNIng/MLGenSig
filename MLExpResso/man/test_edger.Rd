@@ -12,6 +12,8 @@ test_edger(data, condition, type = "lrt", ...)
 \item{condition}{vector of levels coresponding to order of samples in data.}
 
 \item{type}{type of test "lrt" for likelihood ratio tests, "qlf" for quasi-likelihood F-tests.}
+
+\item{...}{other arguments}
 }
 \value{
 A data frame with the following columns:

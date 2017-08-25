@@ -5,8 +5,8 @@
 \title{Aggregating CpG probes to genes}
 \usage{
 aggregate_probes(data, keep = NULL,
-  genom.data = illumina_humanmethylation_27_data, genes.col = 11,
-  probes.col = 1)
+  genom.data = MLExpResso::illumina_humanmethylation_27_data,
+  genes.col = 11, probes.col = 1)
 }
 \arguments{
 \item{data}{data frame containing methylation values for CpG probes. Columns correspond to probes, rows to samples.}
@@ -28,7 +28,7 @@ Function \code{aggregate_probes} aggregates CpG probes to corresponding genes.
 \examples{
 
 \dontrun{
-library(MLExpRessodata)
+library(MLExpRessoData)
 BRCA_genes <- aggregate_probes(BRCA_methylation_all, keep="SUBTYPE")
 }
 

@@ -27,7 +27,7 @@
 #'
 #'@examples
 #'\dontrun{
-#'library(MLExpRessodata)
+#'library(MLExpRessoData)
 #'condition_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA", "other")
 #'plot_methylation_path(BRCA_met, condition_met, "BRCA2")
 #'}

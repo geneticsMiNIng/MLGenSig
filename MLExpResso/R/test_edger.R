@@ -5,6 +5,7 @@
 #' @param data data frame containing the raw counts of sequencing reads. Columns corresponds to genes, rows to samples.
 #' @param condition vector of levels coresponding to order of samples in data.
 #' @param type type of test "lrt" for likelihood ratio tests, "qlf" for quasi-likelihood F-tests.
+#' @param ... other arguments
 #'
 #' @return A data frame with the following columns:
 #'  \item{id}{The ID of the observable, taken from the row names of the counts slots.}
@@ -18,6 +19,7 @@
 #'@importFrom edgeR glmLRT
 #'@importFrom edgeR glmQLFit
 #'@importFrom edgeR glmQLFTest
+#'@importFrom stats model.matrix
 
 
 test_edger <- function(data, condition, type="lrt", ...){

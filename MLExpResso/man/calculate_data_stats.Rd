@@ -19,9 +19,9 @@ bla
 }
 \examples{
 \dontrun{
-library(MLExpRessodata)
+library(MLExpRessoData)
 
-condition_m <- ifelse(BRCA_methylation_all=="LumA", "LumA", "other")
+condition_m <- ifelse(BRCA_methylation_all == "LumA", "LumA", "other")
 
 stats <- calculate_stats(BRCA_methylation_all, condition_m)
 }

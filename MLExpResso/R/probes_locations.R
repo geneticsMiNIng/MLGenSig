@@ -12,6 +12,7 @@
 
 
 probes_locations <- function(data, gene, condition){
+  illumina_humanmethylation_27_data <- MLExpResso::illumina_humanmethylation_27_data
   genom <- illumina_humanmethylation_27_data[,c(1,4,11)]
   HG18_coord <- genom[,c(1:2)]
   genom_data <- genom[genom$Symbol==gene,]

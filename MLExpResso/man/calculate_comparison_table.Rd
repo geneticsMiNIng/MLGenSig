@@ -5,7 +5,8 @@
 \title{Results from test for two datasets.}
 \usage{
 calculate_comparison_table(data1, data2, cond1, cond2, test1, test2,
-  genom.data = illumina_humanmethylation_27_data, genes.col = 11)
+  genom.data = MLExpResso::illumina_humanmethylation_27_data,
+  genes.col = 11)
 }
 \arguments{
 \item{data1}{first dataset, suitable for \code{test1}.}
@@ -32,14 +33,14 @@ Function \code{calculate_comparison_table} produces a dataset containing p-value
 }
 \examples{
 \dontrun{
-library(MLExpRessodata)
-condition_exp <- ifelse(BRCA_mRNAseq_chr17$SUBTYPE=="LumA","LumA", "other")
-condition_met <- ifelse(BRCA_methylation_chr17$SUBTYPE=="LumA","LumA", "other")
+library(MLExpRessoData)
+condition_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA","LumA", "other")
+condition_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA", "other")
 
-BRCA_methylation_gen <- aggregate_probes(BRCA_methylation_chr17)
+BRCA_methylation_gen <- aggregate_probes(BRCA_met)
 
 data_met <- BRCA_methylation_gen
-data_exp <- BRCA_mRNAseq_chr17
+data_exp <- BRCA_exp
 compare <- calculate_comparison_table(data_exp,data_met,cond_exp,cond_met, "nbinom2", "ttest")
 }
 

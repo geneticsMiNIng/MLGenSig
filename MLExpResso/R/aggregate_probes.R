@@ -13,13 +13,13 @@
 #'@examples
 #'
 #'\dontrun{
-#'library(MLExpRessodata)
+#'library(MLExpRessoData)
 #'BRCA_genes <- aggregate_probes(BRCA_methylation_all, keep="SUBTYPE")
 #'}
 #'
 #' @export
 
-aggregate_probes <- function(data, keep=NULL, genom.data= illumina_humanmethylation_27_data, genes.col=11, probes.col=1){
+aggregate_probes <- function(data, keep=NULL, genom.data= MLExpResso::illumina_humanmethylation_27_data, genes.col=11, probes.col=1){
   if(!is.null(keep)){
     if(length(keep)==1){
     keep_col <- as.data.frame(data[,keep])
