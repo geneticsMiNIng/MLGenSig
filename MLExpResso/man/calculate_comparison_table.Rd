@@ -29,7 +29,7 @@ calculate_comparison_table(data1, data2, condition1, condition2, test1, test2,
 data frame containing logatithm of fold and p-values from chosen tests
 }
 \description{
-Function \code{calculate_comparison_table} produces a dataset containing p-values and folds from tests evaluaetes on two datasets e.g methylation or expression.
+Function \code{calculate_comparison_table} produces a dataset containing p-values and folds from tests evaluated on two datasets e.g methylation or expression. In addition, it produces an importance ranking column, which is the geometric mean of p-values from both tests and a column with a number of probes related to the gene.
 }
 \examples{
 \dontrun{
