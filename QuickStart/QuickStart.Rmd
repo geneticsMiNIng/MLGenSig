@@ -42,7 +42,7 @@ Values inside the table indicate the percentage methylation level of CpG probe f
 
 ```{r MLExpResso, message=FALSE, warning=FALSE}
 library(MLExpResso)
-library(MLExpRessodata)
+library(MLExpRessoData)
 ```
 
 ```{r}
