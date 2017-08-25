@@ -6,7 +6,7 @@ Authors@R: c(
   person("Alicja", "Gosiewska", email = "alicja.gosiewska@gmail.com", role = "aut"),
   person("Przemyslaw", "Biecek", email = "przemyslaw.biecek@gmail.com", role = c("aut", "ths"))
   )
-Description: MLExpResso is an R package for integrative analyses and visualization of gene expression and DNA methylation data. Key functions of this package are: identification of genes with affected expression, identification of DMR - differentially methylated regions, identification regions with changes in expression and methylation, visualization of identified regions. The joint modeling and visualization of genes expression and methylation improve interpretability of identified signals. The methodology is supplemented with example applications to The Cancer Genome Atlas data.  
+Description: MLExpResso is an R package for integrative analyses and visualization of gene expression and DNA methylation data. Key functions of this package are: identification of genes with affected expression, identification of DMR - differentially methylated regions, identification of regions with changes in expression and methylation, visualization of identified regions. The joint modeling and visualization of genes expression and methylation improve interpretability of identified signals. The methodology is supplemented with example applications to The Cancer Genome Atlas data.  
 Depends: R (>= 3.0.0)
 License: GPL
 Encoding: UTF-8

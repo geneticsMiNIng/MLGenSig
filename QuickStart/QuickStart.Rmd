@@ -107,9 +107,19 @@ head(res_exp)
 We can also create a comparison table with results of `calculate_test()` function for methylation and expression data. With thid two results we compute the ranking of the most significant changed genes in terms of both methylation and expression. The created column contains the geometric mean of p-values for expression and methylation. 
 
 ```{r, message=FALSE, warning=FALSE}
+<<<<<<< HEAD
+genes_comparison<-calculate_comparison_table(data1 = BRCA_exp[,!(colnames(BRCA_exp) == "SUBTYPE")], 
+                                               data2 = BRCA_met_gen, 
+                                               condition1 = condition_exp, 
+                                               condition2 = condition_met,
+
+                                               test1 = "nbinom2", 
+                                               test2 = "ttest")
+=======
 genes_comparison <- calculate_comparison_table(BRCA_exp[,!(colnames(BRCA_exp) == "SUBTYPE")], BRCA_met_gen,
 condition_exp, condition_met,
 test1 = "nbinom2", test2 = "ttest")
+>>>>>>> origin/master
 
 head(genes_comparison)
 ```
@@ -136,7 +146,18 @@ plot_volcanoes(BRCA_met[,!(colnames(BRCA_met) == "SUBTYPE")],
 Other function `plot_gene()` allow us to visualise the `methylation path` - placement of probes near the gene with a marked percentage of methylation for each probe in division into groups. Using this function we also get boxplots containing values from expression in division from `condition_exp` vector for chosen gene. Note that `plot_gene()` methylation require data frame with CpG probes, not genes.
 
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=5.5}
+<<<<<<< HEAD
+plot_gene(data.m = BRCA_met, 
+          data.e = BRCA_exp, 
+          condition.m = condition_met, 
+          condition.e = condition_exp, 
+          gene = "CACNA1G",
+          show.gene = TRUE,
+          observ = TRUE,
+          islands = TRUE)
+=======
 plot_gene(BRCA_met,BRCA_exp,condition_met, condition_exp, "CACNA1G")
+>>>>>>> origin/master
 ```
 
 

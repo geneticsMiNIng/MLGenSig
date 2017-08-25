@@ -4,7 +4,7 @@
 \alias{calculate_comparison_table}
 \title{Results from test for two datasets.}
 \usage{
-calculate_comparison_table(data1, data2, cond1, cond2, test1, test2,
+calculate_comparison_table(data1, data2, condition1, condition2, test1, test2,
   genom.data = MLExpResso::illumina_humanmethylation_27_data,
   genes.col = 11)
 }
@@ -13,9 +13,9 @@ calculate_comparison_table(data1, data2, cond1, cond2, test1, test2,
 
 \item{data2}{second dataset, suitable for \code{test2}.}
 
-\item{cond1}{condition for first dataset.}
+\item{condition1}{condition for first dataset.}
 
-\item{cond2}{condition for second dataset.}
+\item{condition2}{condition for second dataset.}
 
 \item{test1}{type of test for first dataset.}
 

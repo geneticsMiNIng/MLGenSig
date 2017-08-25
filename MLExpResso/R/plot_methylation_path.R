@@ -1,11 +1,11 @@
 #' @title Methylation path on chosen gene.
 #'
-#' @description Function \code{plot_methylation_path} visualise a chosen gene with marked CpG probes. It shows the mean methylation level for each probe in group. Also we can exact the line corresonding to gene. In this case we see what are the locations of probes on gene in HG18 coordinates. We can as well draw a locations of CpG islands.
+#' @description Function \code{plot_methylation_path} visualizes a chosen gene with marked CpG probes. Y axis describes methylation level. X axis describes a location of the probe on the chromosome. Horizontal lines show the mean methylation level for each Island in a division to groups. Groups are defined by colors. Large dots symbolize means of methylation level for CpG probes, small dots symbolize methylation levels for each observation. Also, we can exact the line corresponding to a gene. In this case, we see what are the locations of probes on a gene in HG18 coordinates. We can as well draw locations of CpG islands.
 #'
 #' @param data data frame containing values from methylation: columns corespond to CpG probes, rows to samples.
 #' @param condition vector of levels corresponding to order of samples in data.
 #' @param gene name of chosen gene.
-#' @param show_gene logical. If TRUE line corresopnding to gene will be draw.
+#' @param show.gene logical. If TRUE line corresopnding to gene will be draw.
 #' @param observ logical. If TRUE dots corresponding to CpG probes will be draw.
 #' @param islands logical. If TRUE line corresopnding to islands should be draw.
 #' @param title logical. If TRUE title saying what gene we visualise will be add.
@@ -37,7 +37,7 @@
 #'@export
 
 
-plot_methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FALSE, islands = TRUE, title=TRUE, ...){
+plot_methylation_path <-function(data,condition, gene, show.gene=FALSE,observ=FALSE, islands = TRUE, title=TRUE, ...){
   HG18_coord <- value <- island_cond <- NULL
 
   err_plot_methylation_path(data, ...)
@@ -73,7 +73,7 @@ plot_methylation_path <-function(data,condition, gene, show_gene=FALSE,observ=FA
 
   gene_loc <- gene_location(gene)
 
-  if(show_gene==TRUE){
+  if(show.gene==TRUE){
     if(gene_loc[1] < min(data2$HG18_coord)){
       plot1 <- plot1 + geom_segment(aes(x=max(gene_loc[1],min(data2$HG18_coord))-1000, xend=min(gene_loc[2],max(data2$HG18_coord)), y=-0.025, yend=-0.025), colour="blue", size=1, arrow=arrow(length = unit(0.3,"cm"),ends="first"))
     }

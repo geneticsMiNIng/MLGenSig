@@ -7,6 +7,7 @@
 #' @param condition.m condition for methylation data (data.m).
 #' @param condition.e condition for expression data (data.e).
 #' @param gene gene name.
+#' @param ... optional arguments (e.g from \code{plot_methylation_path} or \code{plot_diff_boxplot} functions)
 #'
 #' @return Object of class ggplot containing visualisation of methylation on gene and boxplot for values from choosen gene broken down to groups.
 #'
@@ -30,9 +31,9 @@
 #'@seealso \code{\link{plot_methylation_path}}, \code{\link{plot_diff_boxplot}}
 #' @export
 
-plot_gene <- function(data.m, data.e, condition.m, condition.e, gene){
+plot_gene <- function(data.m, data.e, condition.m, condition.e, gene, ...){
   title <- textGrob("", gp=gpar(fontsize = 25))
-  g <- plot_methylation_path(data.m, condition.m, gene, observ = TRUE, show_gene = TRUE, title=TRUE) +theme(legend.position = "none")
+  g <- plot_methylation_path(data.m, condition.m, gene, title=TRUE) +theme(legend.position = "none")
   b1 <- plot_diff_boxplot(data.e, condition.e, gene, sqrt.trans=TRUE, title=FALSE)
   #blank <- textGrob("", gp=gpar(fontsize = 25))
 

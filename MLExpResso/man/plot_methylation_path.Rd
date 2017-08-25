@@ -4,7 +4,7 @@
 \alias{plot_methylation_path}
 \title{Methylation path on chosen gene.}
 \usage{
-plot_methylation_path(data, condition, gene, show_gene = FALSE,
+plot_methylation_path(data, condition, gene, show.gene = FALSE,
   observ = FALSE, islands = TRUE, title = TRUE, ...)
 }
 \arguments{
@@ -14,7 +14,7 @@ plot_methylation_path(data, condition, gene, show_gene = FALSE,
 
 \item{gene}{name of chosen gene.}
 
-\item{show_gene}{logical. If TRUE line corresopnding to gene will be draw.}
+\item{show.gene}{logical. If TRUE line corresopnding to gene will be draw.}
 
 \item{observ}{logical. If TRUE dots corresponding to CpG probes will be draw.}
 
@@ -28,7 +28,7 @@ plot_methylation_path(data, condition, gene, show_gene = FALSE,
 Object of class ggplot containing visualisation of methylation on gene.
 }
 \description{
-Function \code{plot_methylation_path} visualise a chosen gene with marked CpG probes. It shows the mean methylation level for each probe in group. Also we can exact the line corresonding to gene. In this case we see what are the locations of probes on gene in HG18 coordinates. We can as well draw a locations of CpG islands.
+Function \code{plot_methylation_path} visualizes a chosen gene with marked CpG probes. Y axis describes methylation level. X axis describes a location of the probe on the chromosome. Horizontal lines show the mean methylation level for each Island in a division to groups. Groups are defined by colors. Large dots symbolize means of methylation level for CpG probes, small dots symbolize methylation levels for each observation. Also, we can exact the line corresponding to a gene. In this case, we see what are the locations of probes on a gene in HG18 coordinates. We can as well draw locations of CpG islands.
 }
 \examples{
 \dontrun{
