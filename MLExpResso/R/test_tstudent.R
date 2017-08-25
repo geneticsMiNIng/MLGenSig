@@ -21,19 +21,19 @@
 #' @importFrom limma topTable
 #' @importFrom limma makeContrasts
 #'
-#'@seealso expr_nbinom
+#' @seealso expr_nbinom
 
-test_tstudent <-function(data, condition,...){
-  data<-t(data)
-  design <- con_to_des(condition=condition)
+test_tstudent <- function(data, condition, ...) {
+  data <- t(data)
+  design <- con_to_des(condition = condition)
   fit <- lmFit(data, design)
-  forms <- paste0(colnames(design)[1],"-",colnames(design)[2])
-  contMatrix <- makeContrasts(contrasts=forms, levels=design)
+  forms <- paste0(colnames(design)[1], "-", colnames(design)[2])
+  contMatrix <- makeContrasts(contrasts = forms, levels = design)
   fit2 <- contrasts.fit(fit, contMatrix)
   fit2 <- eBayes(fit2)
-  DMPs <- topTable(fit2, number=Inf, coef=1,...)
+  DMPs <- topTable(fit2, number = Inf, coef = 1, ...)
   DMPs$id <- rownames(DMPs)
-  colnames(DMPs) <- c("log.fold","mean","t.stat","pval","padj","B","id")
-  DMPs <- DMPs[,c(7,2,1,4,5,3,6)]
+  colnames(DMPs) <- c("log.fold", "mean", "t.stat", "pval", "padj", "B", "id")
+  DMPs <- DMPs[, c(7, 2, 1, 4, 5, 3, 6)]
   return(DMPs)
 }

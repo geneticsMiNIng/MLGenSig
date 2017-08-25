@@ -20,18 +20,18 @@
 #' @importFrom DESeq2 DESeq
 #' @importFrom DESeq2 results
 #'
-#'@seealso mety_t
+#' @seealso mety_t
 #'
 
 
-test_nbinom2 <- function(data, condition, ...){
+test_nbinom2 <- function(data, condition, ...) {
   data <- t(data)
   condition <- as.data.frame(condition)
   rownames(condition) <- colnames(data)
 
   datamx <- DESeqDataSetFromMatrix(countData = data,
-                                   colData = condition,
-                                   design = ~ condition)
+    colData = condition,
+    design = ~ condition)
   dds <- DESeq(datamx, ...)
   res <- results(dds)
   res2 <- as.data.frame(res@listData)

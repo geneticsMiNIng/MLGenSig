@@ -21,20 +21,20 @@
 #' @importFrom DESeq nbinomTest
 #' @importFrom DESeq newCountDataSet
 #'
-#'@seealso mety_t
+#' @seealso mety_t
 
 
-test_nbinom <- function(data, condition, ...){
-  data<-t(data)
+test_nbinom <- function(data, condition, ...) {
+  data <- t(data)
   levels <- unique(condition)
-  cds <- newCountDataSet( data, condition )
-  #normalisation
-  cds <- estimateSizeFactors( cds )
-  #variance
-  cds <- estimateDispersions( cds )
-  #negative binomial test
-  res <- nbinomTest( cds, levels[1], levels[2], ...)
-  colnames(res) <- c("id","mean","mean.gr1","mean.gr2","fold","log.fold","pval","padj")
-  res <- res[,c(1,2,6,7,8,3,4,5)]
+  cds <- newCountDataSet(data, condition)
+  # normalisation
+  cds <- estimateSizeFactors(cds)
+  # variance
+  cds <- estimateDispersions(cds)
+  # negative binomial test
+  res <- nbinomTest(cds, levels[1], levels[2], ...)
+  colnames(res) <- c("id", "mean", "mean.gr1", "mean.gr2", "fold", "log.fold", "pval", "padj")
+  res <- res[, c(1, 2, 6, 7, 8, 3, 4, 5)]
   return(res)
 }

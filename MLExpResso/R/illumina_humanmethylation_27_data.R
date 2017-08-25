@@ -1,4 +1,4 @@
-#'Illumina_humanmethylation_27_data
+#' Illumina_humanmethylation_27_data
 #'
 #' The variables are as follows:
 #' \itemize{
@@ -25,7 +25,7 @@
 #'   \item MIR_NAMES. Name of micro RNA near locus.
 #' }
 #'
-#'@docType data
-#'@name illumina_humanmethylation_27_data
-#'@format data.frame
+#' @docType data
+#' @name illumina_humanmethylation_27_data
+#' @format data.frame
 NULL

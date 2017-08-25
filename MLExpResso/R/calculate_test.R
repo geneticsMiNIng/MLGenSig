@@ -15,7 +15,7 @@
 #'  \item{pval}{The p-values for rejecting the null hypothesis about the means equality.}
 #'  \item{mean}{Column correspond to means for each gene defined by condition and mean for all probes.}
 #'
-#'@details Each test may require different data. In this section we will describe details for each availible test:
+#' @details Each test may require different data. In this section we will describe details for each availible test:
 #' \describe{
 #'   \item{ttest}{
 #'   Student's t-test \cr
@@ -57,48 +57,48 @@
 #'   }
 #' }
 #'
-#'@seealso \code{\link{calculate_comparison_table}, \link{aggregate_probes}}
+#' @seealso \code{\link{calculate_comparison_table}, \link{aggregate_probes}}
 #'
 #'
-#'@examples
-#'\dontrun{
+#' @examples
+#' \dontrun{
 #'
-#'library(MLExpRessoData)
-#'BRCA_methylation_gene <- aggregate_probes(BRCA_methylation_all)
+#' library(MLExpRessoData)
+#' BRCA_methylation_gene <- aggregate_probes(BRCA_methylation_all)
 #'
-#'condition_m <- ifelse(BRCA_methylation_all$SUBTYPE == "LumA", "LumA", "other")
-#'test_methylation <- calculate_test(BRCA_methylation_gene, condition_m, "ttest")
+#' condition_m <- ifelse(BRCA_methylation_all$SUBTYPE == "LumA", "LumA", "other")
+#' test_methylation <- calculate_test(BRCA_methylation_gene, condition_m, "ttest")
 #'
-#'}
+#' }
 #'
 #' @export
 
-calculate_test <- function(data, condition, test="ttest",...){
+calculate_test <- function(data, condition, test="ttest", ...) {
   condition <- make.names(condition)
-  if(test=="ttest"){
-     res <- test_tstudent(data, condition,...)
-     res <- res[,c(1,3,4)]
- }
-  if(test=="nbinom"){
+  if (test == "ttest") {
+    res <- test_tstudent(data, condition, ...)
+    res <- res[, c(1, 3, 4)]
+  }
+  if (test == "nbinom") {
     res <- test_nbinom(data, condition, ...)
-    res <- res[,c(1,3,4)]
+    res <- res[, c(1, 3, 4)]
   }
-  if(test=="nbinom2"){
+  if (test == "nbinom2") {
     res <- test_nbinom2(data, condition, ...)
-    res <- res[,c(7,2,5)]
+    res <- res[, c(7, 2, 5)]
   }
-  if(test=="lrt" || test=="qlf"){
-    res<- test_edger(t(data), condition, type=test, ...)
+  if (test == "lrt" || test == "qlf") {
+    res <- test_edger(t(data), condition, type = test, ...)
   }
-  if(test=="methyanalysis"){
+  if (test == "methyanalysis") {
     res <- test_methyanalysis(data, condition, ...)
-    res <- res[,c(1,4,5)]
+    res <- res[, c(1, 4, 5)]
   }
-  colnames(res) <- c("id","log2.fold","pval")
+  colnames(res) <- c("id", "log2.fold", "pval")
 
   means <- calculate_condition_means(data, condition)
-  res <- merge(res, means, by="id")
-  res <- res[order(res$pval),]
+  res <- merge(res, means, by = "id")
+  res <- res[order(res$pval), ]
   rownames(res) <- NULL
   return(res)
 }

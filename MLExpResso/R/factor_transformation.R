@@ -1,10 +1,10 @@
-#'Function converts vector of class factor to numeric
+#' Function converts vector of class factor to numeric
 #'
-#'@param x factor vector
+#' @param x factor vector
 #'
 
 
-factor_transformation <- function(x){
+factor_transformation <- function(x) {
   y <- as.numeric(levels(x))[x]
   return(y)
 }

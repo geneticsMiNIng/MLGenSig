@@ -1,17 +1,17 @@
-#'@title Scales for volcano plots
+#' @title Scales for volcano plots
 #'
-#'@description Function \code{tools} crate a logarithm transformation for y-axis..
+#' @description Function \code{tools} crate a logarithm transformation for y-axis..
 #'
 #'
-#'@param base d
-#'@importFrom scales trans_new
-#'@importFrom scales log_breaks
+#' @param base d
+#' @importFrom scales trans_new
+#' @importFrom scales log_breaks
 
 
 reverselog_trans <- function(base = exp(1)) {
   trans <- function(x) -log(x, base)
-  inv <- function(x) base^(-x)
+  inv <- function(x) base ^ (-x)
   trans_new(paste0("reverselog-", format(base)), trans, inv,
-            log_breaks(base = base),
-            domain = c(1e-100, Inf))
+    log_breaks(base = base),
+    domain = c(1e-100, Inf))
 }
