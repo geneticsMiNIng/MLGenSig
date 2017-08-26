@@ -14,13 +14,13 @@ plot_methylation_path(data, condition, gene, show.gene = FALSE,
 
 \item{gene}{name of chosen gene.}
 
-\item{show.gene}{logical. If TRUE line corresopnding to gene will be draw.}
+\item{show.gene}{logical. If TRUE line corresopnding to gene will be drawn.}
 
-\item{observ}{logical. If TRUE dots corresponding to CpG probes will be draw.}
+\item{observ}{logical. If TRUE dots corresponding to CpG probes will be drawn.}
 
-\item{islands}{logical. If TRUE line corresopnding to islands should be draw.}
+\item{islands}{logical. If TRUE line corresopnding to islands should be drawn.}
 
-\item{title}{logical. If TRUE title saying what gene we visualise will be add.}
+\item{title}{logical. If TRUE title saying what gene we visualise will be added.}
 
 \item{...}{other parameters.}
 }

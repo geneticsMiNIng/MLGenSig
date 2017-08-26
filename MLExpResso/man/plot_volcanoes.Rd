@@ -22,7 +22,7 @@ plot_volcanoes(data.m, data.e, condition.m, condition.e, gene = NA,
 
 \item{test.e}{list of tests results for expression}
 
-\item{values}{logical. If TRUE p-values and log fold for chosen gene will be add to a plot. By default we use FALSE.}
+\item{values}{logical. If TRUE p-values and log fold for chosen gene will be added to a plot. By default we use FALSE.}
 
 \item{font.size}{font size in stats table.}
 }

@@ -9,7 +9,7 @@
 #' @param gene gene name.
 #' @param test.m list of tests results for methylation.
 #' @param test.e list of tests results for expression
-#' @param values logical. If TRUE p-values and log fold for chosen gene will be add to a plot. By default we use FALSE.
+#' @param values logical. If TRUE p-values and log fold for chosen gene will be added to a plot. By default we use FALSE.
 #' @param font.size font size in stats table.
 #'
 #' @return Object of class ggplot containing volcano plots of p-values versus log2.fold for gene for chosen number of tests. Also there are added simple statistisc about chosen gene.
