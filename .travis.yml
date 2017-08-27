@@ -4,30 +4,7 @@ cache: packages
 warnings_are_errors: true
 r: bioc-devel
 before_script: cd MLExpResso
-
-r_binary_packages:
-  - dplyr
-  - ggplot2 
-  - ggrepel 
-  - ggthemes
-  - grid
-  - gridExtra
-  - kableExtra
-  - reshape
-  - reshape2
-  - roxygen2 
-  - scales
-  - stringr 
-  - utils
-  - AnnotationDbi
-  - DESeq
-  - DESeq2
-  - edgeR
-  - limma 
-  - methyAnalysis
-  - org.Hs.eg.db
-  - TxDb.Hsapiens.UCSC.hg18.knownGene
-
 install:
   - Rscript -e 'install.packages(c("devtools","testthat","knitr"))'
   - Rscript -e 'devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")'
+  - Rscript -e 'devtools::install_deps("MLExpResso")'
