@@ -22,3 +22,4 @@ A data frame with the following columns from both functions:
 \description{
 Function \code{full_data} creates a full set for metylation and expression which contains values from nbinom test and t-test.
 }
+\keyword{internal}

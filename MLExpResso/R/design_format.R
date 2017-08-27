@@ -5,6 +5,7 @@
 #' @param condition vector of levels values
 #'
 #' @return data frame of zeros and ones with rows coresponding to sample and columns coresponding to level.
+#' @keywords internal
 
 con_to_des <- function(condition) {
   levels <- unique(condition)

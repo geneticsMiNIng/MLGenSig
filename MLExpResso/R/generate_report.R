@@ -2,15 +2,15 @@
 #'
 #' @description Function \code{generate_report} produces a pdf report containing information about functionalities of package MLExpResso.
 #'
-#' @param data.m data frame containing information for methylation.
-#' @param data.e data frame containing information for expression.
-#' @param condition.m condition for methylation.
-#' @param condition.e condition for expression.
-#' @param test.m test results for methylation.
-#' @param test.e test results for expression.
-#' @param genes the name of the gene or vector of genes names we want to visualise.
+#' @param data.m Data frame containing information for methylation.
+#' @param data.e Data frame containing information for expression.
+#' @param condition.m Condition for methylation.
+#' @param condition.e Condition for expression.
+#' @param test.m Test results for methylation.
+#' @param test.e Test results for expression.
+#' @param genes The name of the gene or vector of genes names we want to visualise.
 #'
-#' @return pdf with report containing information about MLExpResso package.
+#' @return PDF with report containing information about MLExpResso package.
 #' @examples
 #'
 #' \dontrun{

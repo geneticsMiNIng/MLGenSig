@@ -13,6 +13,7 @@
 #'  \item{CPG_ISLANDS_LOCATIONS}{Location of CpG island to which probe belongs .}
 #'  \item{mean}{Mean methylation level compute for all samples of data.}
 #'
+#' @keywords internal
 
 calculate_CpG_mean <- function(data, gene) {
   illumina_humanmethylation_27_data <- MLExpResso::illumina_humanmethylation_27_data

@@ -30,3 +30,4 @@ Function \code{test_nbinom} computes statistics and p-values for negative binomi
 \seealso{
 mety_t
 }
+\keyword{internal}

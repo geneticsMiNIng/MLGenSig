@@ -7,17 +7,17 @@
 plot_gene(data.m, data.e, condition.m, condition.e, gene, ...)
 }
 \arguments{
-\item{data.m}{data frame containing information from methylation.}
+\item{data.m}{Data frame containing information from methylation.}
 
-\item{data.e}{data frame containing information from expression.}
+\item{data.e}{Data frame containing information from expression.}
 
-\item{condition.m}{condition for methylation data (data.m).}
+\item{condition.m}{Condition for methylation data (data.m).}
 
-\item{condition.e}{condition for expression data (data.e).}
+\item{condition.e}{Condition for expression data (data.e).}
 
-\item{gene}{gene name.}
+\item{gene}{Gene name.}
 
-\item{...}{optional arguments (e.g from \code{plot_methylation_path} or \code{plot_diff_boxplot} functions)}
+\item{...}{Optional arguments (e.g from \code{plot_methylation_path} or \code{plot_diff_boxplot} functions)}
 }
 \value{
 Object of class ggplot containing visualisation of methylation on gene and boxplot for values from choosen gene broken down to groups.

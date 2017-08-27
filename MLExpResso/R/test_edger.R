@@ -20,7 +20,7 @@
 #' @importFrom edgeR glmQLFit
 #' @importFrom edgeR glmQLFTest
 #' @importFrom stats model.matrix
-
+#' @keywords internal
 
 test_edger <- function(data, condition, type="lrt", ...) {
   y <- DGEList(counts = data, group = condition)

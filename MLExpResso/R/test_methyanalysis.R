@@ -26,7 +26,7 @@
 #'
 #' @seealso mety_ttest
 #'
-
+#' @keywords internal
 
 test_methyanalysis <- function(data, condition, genom.data = MLExpResso::illumina_humanmethylation_27_data, genes.col=11, probes.col=1) {
   Symbol <- result.p.value <- NULL

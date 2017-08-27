@@ -3,16 +3,16 @@
 #' @description Function \code{plot_volcano} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.
 #'
 #'
-#' @param data data frame containing result of chosen test.
-#' @param line p-value on which we draw a line.
-#' @param names p-value below which we want to draw genes names.
-#' @param ngen character symbol or vector of gene names.
-#' @param fold_line value on which we want to draw a vertical line on both sides of zero.
-#' @param title character containing title for plot.
-#' @param ylog logical. If TRUE values on y-axis will be logarithmized.
-#' @param values logical. If TRUE p-values and log fold for chosen gene will be add to a plot. By default we use FALSE.
+#' @param data Data frame containing result of chosen test.
+#' @param line P-value on which we draw a line.
+#' @param names P-value below which we want to draw genes names.
+#' @param ngen Character symbol or vector of gene names.
+#' @param fold_line Value on which we want to draw a vertical line on both sides of zero.
+#' @param title Character containing title for plot.
+#' @param ylog Logical. If TRUE values on y-axis will be logarithmized.
+#' @param values Logical. If TRUE p-values and log fold for chosen gene will be add to a plot. By default we use FALSE.
 #'
-#' @return Object of class ggplot containing volcano plot of p-values versus log2.fold for each gene.
+#' @return An object of class ggplot containing volcano plot of p-values versus log2.fold for each gene.
 #'
 #' @importFrom ggplot2 geom_point
 #' @importFrom ggplot2 theme_bw

@@ -7,6 +7,7 @@
 #'
 #' @return dataframe.
 #'
+#' @keywords internal
 
 calculate_condition_means <- function(data, condition) {
   means <- aggregate(data, list(condition), mean, na.rm = TRUE)

@@ -9,24 +9,24 @@ calculate_comparison_table(data1, data2, condition1, condition2, test1, test2,
   genes.col = 11)
 }
 \arguments{
-\item{data1}{first dataset, suitable for \code{test1}.}
+\item{data1}{First dataset, suitable for \code{test1}.}
 
-\item{data2}{second dataset, suitable for \code{test2}.}
+\item{data2}{Second dataset, suitable for \code{test2}.}
 
-\item{condition1}{condition for first dataset.}
+\item{condition1}{Condition for first dataset.}
 
-\item{condition2}{condition for second dataset.}
+\item{condition2}{Condition for second dataset.}
 
-\item{test1}{type of test for first dataset.}
+\item{test1}{Type of test for first dataset.}
 
-\item{test2}{type of test for second dataset.}
+\item{test2}{Type of test for second dataset.}
 
-\item{genom.data}{data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}.}
+\item{genom.data}{Data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}.}
 
-\item{genes.col}{number of column in genom.data containing informations about genes (genes symbols).}
+\item{genes.col}{Number of column in genom.data containing informations about genes (genes symbols).}
 }
 \value{
-data frame containing logatithm of fold and p-values from chosen tests
+Data frame containing logatithm of fold and p-values from chosen tests.
 }
 \description{
 Function \code{calculate_comparison_table} produces a dataset containing p-values and folds from tests evaluated on two datasets e.g methylation or expression. In addition, it produces an importance ranking column, which is the geometric mean of p-values from both tests and a column with a number of probes related to the gene.

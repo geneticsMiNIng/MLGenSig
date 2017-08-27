@@ -2,17 +2,17 @@
 #'
 #' @description Function \code{plot_volcanoes} generate a dashboard with volcano plots for expression and methylation. Also it adds a tables with basic statistics.
 #'
-#' @param data.m data frame containing information for methylation.
-#' @param data.e data frame containing information for expression.
-#' @param condition.m condition for methylation data (data.m).
-#' @param condition.e condition for expression methylation (data.e).
-#' @param gene gene name.
-#' @param test.m list of tests results for methylation.
-#' @param test.e list of tests results for expression
-#' @param values logical. If TRUE p-values and log fold for chosen gene will be added to a plot. By default we use FALSE.
-#' @param font.size font size in stats table.
+#' @param data.m Data frame containing information for methylation.
+#' @param data.e Data frame containing information for expression.
+#' @param condition.m Condition for methylation data (data.m).
+#' @param condition.e Condition for expression methylation (data.e).
+#' @param gene Gene name.
+#' @param test.m List of tests results for methylation.
+#' @param test.e List of tests results for expression
+#' @param values Logical. If TRUE p-values and log fold for chosen gene will be added to a plot. By default we use FALSE.
+#' @param font.size Font size in stats table.
 #'
-#' @return Object of class ggplot containing volcano plots of p-values versus log2.fold for gene for chosen number of tests. Also there are added simple statistisc about chosen gene.
+#' @return An object of class ggplot containing volcano plots of p-values versus log2.fold for gene for chosen number of tests. Also there are added simple statistisc about chosen gene.
 #'
 #' @importFrom gridExtra tableGrob
 #' @importFrom grid textGrob

@@ -6,7 +6,7 @@
 #' @param base d
 #' @importFrom scales trans_new
 #' @importFrom scales log_breaks
-
+#' @keywords internal
 
 reverselog_trans <- function(base = exp(1)) {
   trans <- function(x) -log(x, base)

@@ -23,3 +23,4 @@ Data frame containing following columns:
 \description{
 Function \code{calculate_CpG_mean} computes methylation means of CpG probes for chosen gene.
 }
+\keyword{internal}

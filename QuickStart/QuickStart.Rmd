@@ -52,13 +52,13 @@ to samples taken from patients. First column `SUBTYPE` corresponds to a subtype 
 columns correspond to genes.
 
 ```{r}
-BRCA_exp[1:5,1:5]
+BRCA_exp[1:5, 1:5]
 ```
 
 Before we go to the testing, we need to define condition values for each sample. We would like to test for differences between `LumA` subtype and `other` subtypes of breast cancer, so we create a vector, which each element corresponds to a sample. Our division into this two groups relies on numbers of occurences of each subtype. The `LumA` subtype is the most common, in case of breast cancer.
 
 ```{r, message=FALSE}
-condition_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA","LumA","other")
+condition_exp <- ifelse(BRCA_exp$SUBTYPE == "LumA", "LumA", "other")
 head(condition_exp, 8)
 ```
 
@@ -73,14 +73,16 @@ This function requires parameters such that:
 
 * `condition` - the factor of levels corresponding to order of samples in data. In our example, we use the `condition_exp` vector defined earlier.
 
-* `test` - character defining test. Possible values of parameter `test` are described in function documentation.
+* `test` - character defining test. Possible values of parameter `test` are described in the documentation of this function.
 
-Tests are based on the methods implemented in packages `Deseq`, `Deseq2` and `edgeR`.
+Tests are based on the methods implemented in Bioconductor packages `Deseq`, `Deseq2` and `edgeR`.
 
 ```{r}
-res_exp <- calculate_test(data = BRCA_exp[,!(colnames(BRCA_exp) == "SUBTYPE")], 
-                          condition = condition_exp, 
-                          test = "lrt")
+res_exp <- calculate_test(
+  data = BRCA_exp[,!(colnames(BRCA_exp) == "SUBTYPE")], 
+  condition = condition_exp, 
+  test = "lrt"
+)
 head(res_exp)
 ```
 
@@ -97,7 +99,7 @@ patients. First column `SUBTYPE` corresponds to a subtype of BRCA cancer, next c
 probes. Values inside the table indicate the percentage methylation level of CpG probe for specified sample.
 
 ```{r}
-head(BRCA_met)[1:5,1:4]
+head(BRCA_met)[1:5, 1:4]
 ```
 
 ###Data preparation
@@ -110,7 +112,7 @@ Function `aggregate_probes()` requires a parameter `data` -  data frame containi
 
 ```{r mapping}
 BRCA_met_gen <- aggregate_probes(data = BRCA_met) 
-head(BRCA_met_gen)[1:5,1:4]
+head(BRCA_met_gen)[1:5, 1:4]
 ```
 
 
@@ -119,7 +121,7 @@ other subtypes of that cancer. Again we will use condition vector, which consist
 to a subtype of breast cancer: `LumA` and `other`.
 
 ```{r}
-condition_met <- ifelse(BRCA_met$SUBTYPE == "LumA","LumA", "other")
+condition_met <- ifelse(BRCA_met$SUBTYPE == "LumA", "LumA", "other")
 head(condition_met, 8)
 ```
 
@@ -135,14 +137,16 @@ This function requires parameters such that:
 
 * `condition` - a factor of levels corresponding to order of samples in data. In our example, we use the `condition_met` vector defined earlier.
 
-* `test` - character defining test. Possible values of parameter `test` are described in function documentation. 
+* `test` - character defining test. Possible values of parameter `test` are described in the documentation of this function. 
 
 Methylation tests are based on the methods implemented in packages `limma` and `MethyAnalysis`.
 
 ```{r}
-res_met <- calculate_test(data = BRCA_met_gen, 
-                          condition = condition_met, 
-                          test = "ttest")
+res_met <- calculate_test(
+  data = BRCA_met_gen, 
+  condition = condition_met,
+  test = "ttest"
+)
 head(res_met)
 ```
 
@@ -160,18 +164,17 @@ Function `calculate_comparison_table()` requires parameters such that:
 
 * `condition1`, `condition2` - factors of levels coresponding to order of samples in `data1` and `data2` respectively.
 
-* `test1`, `test2` - characters defining tests. Possible values of parameter `test` are described in `calculate_test()` function documentation. 
+* `test1`, `test2` - characters defining tests coresponding to order of samples in `data1` and `data2` respectively. Possible values of parameter `test` are described in `calculate_test()` function documentation. 
 
 ```{r, message=FALSE, warning=FALSE}
-
-comparison<-calculate_comparison_table(data1 = BRCA_exp[,!(colnames(BRCA_exp)=="SUBTYPE")], 
-                                               data2 = BRCA_met_gen, 
-                                               condition1 = condition_exp, 
-                                               condition2 = condition_met,
-                                               test1 = "nbinom2", 
-                                               test2 = "ttest")
-
-
+comparison <- calculate_comparison_table(
+  data1 = BRCA_exp[,!(colnames(BRCA_exp)=="SUBTYPE")], 
+  data2 = BRCA_met_gen, 
+  condition1 = condition_exp, 
+  condition2 = condition_met,
+  test1 = "nbinom2", 
+  test2 = "ttest"
+)
 head(comparison)
 ```
 As a result, we get a data frame with columns describing the log2 of the fold change, p-value and the mean for each gene for two tests. With this two test results, we compute the ranking of the most significant changed genes in terms of both methylation and expression. The created column contains the geometric mean of p-values for expression and methylation.
@@ -184,8 +187,8 @@ All plots in our package are based on the `ggplot2` package. We use also the `sc
 for mathematical axes and repel overlapping text labels. 
 
 ```{r}
-test_exp <- comparison[ ,c("id","nbinom2.log2.fold","nbinom2.pval")]
-test_met <- comparison[ ,c("id","ttest.log2.fold","ttest.pval")]
+test_exp <- comparison[ , c("id", "nbinom2.log2.fold", "nbinom2.pval")]
+test_met <- comparison[ , c("id", "ttest.log2.fold", "ttest.pval")]
 ```
   
   
@@ -193,9 +196,9 @@ For both, methylation and expression data, we can visualise the volcano plots fo
 
 Function `plot_volcanoes()` requiers parameters such that:
 
-* `data.m`, `data.e` - data sets with informations from methylation and expression respectively. In the example below, we use the `BRCA_met` and `BRCA_exp` data without the `SUBTYPE` column.
+* `data.m`, `data.e` - data sets with information from methylation and expression respectively. In the example below, we use the `BRCA_met` and `BRCA_exp` data without the `SUBTYPE` columns.
 
-* `condition.m`, `condition.e` -  factors of levels coresponding to order of samples in `data.m` and `data.e` respectively. In our example, we use the `condition_met` and `condition_exp` vectors defined earlier.
+* `condition.m`, `condition.e` -  factors of levels coresponding to the order of samples in `data.m` and `data.e` respectively. In our example, we use the `condition_met` and `condition_exp` vectors defined earlier.
 
 * `gene` - character defining the gene name. In the example, we visualize results for `CACNA1G` gene
 
@@ -204,15 +207,16 @@ Function `plot_volcanoes()` requiers parameters such that:
 * `values` - if `TRUE` p-values and log fold for the chosen gene will be added to the plot.
 
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=10}
-plot_volcanoes(data.m = BRCA_met[,!(colnames(BRCA_met) == "SUBTYPE")],
-               data.e = BRCA_exp[,!(colnames(BRCA_exp) == "SUBTYPE")],
-               condition.m = condition_met, 
-               condition.e = condition_exp, 
-               gene = "CACNA1G", 
-               test.m = test_met, 
-               test.e = test_exp,
-               values=TRUE)
-
+plot_volcanoes(
+  data.m = BRCA_met[,!(colnames(BRCA_met) == "SUBTYPE")],
+  data.e = BRCA_exp[,!(colnames(BRCA_exp) == "SUBTYPE")],
+  condition.m = condition_met, 
+  condition.e = condition_exp, 
+  gene = "CACNA1G", 
+  test.m = test_met, 
+  test.e = test_exp,
+  values=TRUE
+)
 ```
 
 Other function `plot_gene()` allow us to visualize the `methylation path` - placement of probes near the
@@ -229,16 +233,16 @@ Function `plot_gene()` requiers parameters such that:
 * ... additional parameters. Below we use parameters `show.gene` - If `TRUE` line corresponding to the gene will be drawn, `observ` - If `TRUE` dots corresponding to CpG probes will be drawn and `islands` -If `TRUE` line corresponding to islands should be drawn.
 
 ```{r, message=FALSE, warning=FALSE, fig.width=19, fig.height=5.5}
-
-plot_gene(data.m = BRCA_met, 
-          data.e = BRCA_exp, 
-          condition.m = condition_met, 
-          condition.e = condition_exp, 
-          gene = "CACNA1G",
-          show.gene = TRUE,
-          observ = TRUE,
-          islands = TRUE)
-
+plot_gene(
+  data.m = BRCA_met, 
+  data.e = BRCA_exp, 
+  condition.m = condition_met, 
+  condition.e = condition_exp, 
+  gene = "CACNA1G",
+  show.gene = TRUE,
+  observ = TRUE,
+  islands = TRUE
+)
 ```
 
 Using this function we also get boxplots containing values of expression in division from `condition_exp` vector for chosen gene.

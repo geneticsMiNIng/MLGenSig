@@ -12,3 +12,4 @@ factor_transformation(x)
 \description{
 Function converts vector of class factor to numeric
 }
+\keyword{internal}

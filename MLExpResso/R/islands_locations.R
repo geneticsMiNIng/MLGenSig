@@ -10,6 +10,7 @@
 #' @importFrom stats aggregate
 #' @return data frame
 #'
+#' @keywords internal
 
 islands_locations <- function(data_A, data_B, condition) {
   CpG_A_isl <- aggregate(data_A[, 6], list(data_A$CPG_ISLAND_LOCATIONS), mean)

@@ -6,7 +6,7 @@
 Machine Learning for Genetic Signatures
 
 # MLExpResso
-Package for analyzing genes expression and CpG islands metylation.
+Package for analyzing genes expression and CpG probes metylation.
 
 ### [Online Manual](https://agosiewska.github.io/MLGenSig)
 
@@ -55,7 +55,7 @@ devtools::install_github("geneticsMiNIng/MLGenSig/MLExpResso")
 In order to run examples you shall install [`MLGenSigdata`](https://github.com/geneticsMiNIng/MLGenSigdata).
 
 ```
-devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")
+devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessoData")
 ```
 
 

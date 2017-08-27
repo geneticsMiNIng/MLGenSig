@@ -2,12 +2,12 @@
 #'
 #' @description Function \code{plot_gene} generates a dashboard with methylation_path for methylation and boxplots for groups.
 #'
-#' @param data.m data frame containing information from methylation.
-#' @param data.e data frame containing information from expression.
-#' @param condition.m condition for methylation data (data.m).
-#' @param condition.e condition for expression data (data.e).
-#' @param gene gene name.
-#' @param ... optional arguments (e.g from \code{plot_methylation_path} or \code{plot_diff_boxplot} functions)
+#' @param data.m Data frame containing information from methylation.
+#' @param data.e Data frame containing information from expression.
+#' @param condition.m Condition for methylation data (data.m).
+#' @param condition.e Condition for expression data (data.e).
+#' @param gene Gene name.
+#' @param ... Optional arguments (e.g from \code{plot_methylation_path} or \code{plot_diff_boxplot} functions)
 #'
 #' @return Object of class ggplot containing visualisation of methylation on gene and boxplot for values from choosen gene broken down to groups.
 #'

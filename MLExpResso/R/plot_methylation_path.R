@@ -2,14 +2,14 @@
 #'
 #' @description Function \code{plot_methylation_path} visualizes a chosen gene with marked CpG probes. Y axis describes methylation level. X axis describes a location of the probe on the chromosome. Horizontal lines show the mean methylation level for each Island in a division to groups. Groups are defined by colors. Large dots symbolize means of methylation level for CpG probes, small dots symbolize methylation levels for each observation. Also, we can exact the line corresponding to a gene. In this case, we see what are the locations of probes on a gene in HG18 coordinates. We can as well draw locations of CpG islands.
 #'
-#' @param data data frame containing values from methylation: columns corespond to CpG probes, rows to samples.
-#' @param condition vector of levels corresponding to order of samples in data.
-#' @param gene name of chosen gene.
-#' @param show.gene logical. If TRUE line corresopnding to gene will be drawn.
-#' @param observ logical. If TRUE dots corresponding to CpG probes will be drawn.
-#' @param islands logical. If TRUE line corresopnding to islands should be drawn.
-#' @param title logical. If TRUE title saying what gene we visualise will be added.
-#' @param ... other parameters.
+#' @param data Data frame containing values from methylation: columns corespond to CpG probes, rows to samples.
+#' @param condition Vector of levels corresponding to order of samples in data.
+#' @param gene Name of chosen gene.
+#' @param show.gene Logical. If TRUE line corresopnding to gene will be drawn.
+#' @param observ Logical. If TRUE dots corresponding to CpG probes will be drawn.
+#' @param islands Logical. If TRUE line corresopnding to islands should be drawn.
+#' @param title Logical. If TRUE title saying what gene we visualise will be added.
+#' @param ... Other parameters.
 #'
 #' @return Object of class ggplot containing visualisation of methylation on gene.
 #'

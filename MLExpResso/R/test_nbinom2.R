@@ -22,7 +22,7 @@
 #'
 #' @seealso mety_t
 #'
-
+#' @keywords internal
 
 test_nbinom2 <- function(data, condition, ...) {
   data <- t(data)

@@ -17,3 +17,4 @@ dataframe.
 \description{
 Function \code{calculate_condition_means} produces a data frame with columns correspond to means by condition.
 }
+\keyword{internal}

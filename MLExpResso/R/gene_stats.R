@@ -15,6 +15,7 @@
 #'  \item{3rd Q}{third quartile}
 #'  \item{max}{maximal value for chosen gene in group}
 #'
+#' @keywords internal
 
 gene_stats <- function(data, condition, gene, round=2) {
   data_n <- cbind(data, condition)

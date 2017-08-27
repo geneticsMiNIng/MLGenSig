@@ -14,6 +14,7 @@
 #' chr_17 <- calculate_chromosome_data(BRCA_methylation_all, 17)
 #' }
 #'
+#' @keywords internal
 
 calculate_chromosome_data <- function(data, number) {
   illumina_humanmethylation_27_data <- MLExpResso::illumina_humanmethylation_27_data

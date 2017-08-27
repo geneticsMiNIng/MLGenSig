@@ -22,7 +22,7 @@
 #' @importFrom DESeq newCountDataSet
 #'
 #' @seealso mety_t
-
+#' @keywords internal
 
 test_nbinom <- function(data, condition, ...) {
   data <- t(data)

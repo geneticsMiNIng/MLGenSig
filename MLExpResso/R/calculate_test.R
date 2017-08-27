@@ -4,10 +4,10 @@
 #' The function uses: t-test, negative binomial test, likelihood-ratio test(LRT), quasi-likelihood F-test(QLF).
 #' By default function calls the \code{t-test}.
 #'
-#' @param data Object of the class appropriate for the given test. More in \code{details} section.
-#' @param condition factor of levels coresponding to order of samples in data.
-#' @param test variable defining test. Values: ttest, nbinom, nbinom2, lrt, qlf, methyanalysis. More in \code{details} section.
-#' @param ... other parameters e.g. `adjust.method` for argument `ttest`
+#' @param data An object of the class appropriate for the given test. More in \code{details} section.
+#' @param condition Factor of levels coresponding to order of samples in data.
+#' @param test Variable defining test. Values: ttest, nbinom, nbinom2, lrt, qlf, methyanalysis. More in \code{details} section.
+#' @param ... Other parameters e.g. `adjust.method` for argument `ttest`.
 #'
 #' @return A data frame with the following columns:
 #'  \item{id}{The id of the observable, taken from the row names of the counts slots.}

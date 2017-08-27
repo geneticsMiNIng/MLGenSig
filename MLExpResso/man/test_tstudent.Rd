@@ -29,3 +29,4 @@ Function \code{test_tstudent} computes statistics and p-values for methylation d
 \seealso{
 expr_nbinom
 }
+\keyword{internal}

@@ -34,3 +34,4 @@ Function \code{test_methyanalysis} computes statistics and p-values for methylat
 \seealso{
 mety_ttest
 }
+\keyword{internal}

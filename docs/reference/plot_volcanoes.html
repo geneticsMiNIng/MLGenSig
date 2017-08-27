@@ -60,6 +60,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/QuickStart.html">MLExpResso: differential expression and methylation analysis</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">News</a>
 </li>
@@ -93,45 +105,45 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data.m</th>
-      <td><p>data frame containing information for methylation.</p></td>
+      <td><p>Data frame containing information for methylation.</p></td>
     </tr>
     <tr>
       <th>data.e</th>
-      <td><p>data frame containing information for expression.</p></td>
+      <td><p>Data frame containing information for expression.</p></td>
     </tr>
     <tr>
       <th>condition.m</th>
-      <td><p>condition for methylation data (data.m).</p></td>
+      <td><p>Condition for methylation data (data.m).</p></td>
     </tr>
     <tr>
       <th>condition.e</th>
-      <td><p>condition for expression methylation (data.e).</p></td>
+      <td><p>Condition for expression methylation (data.e).</p></td>
     </tr>
     <tr>
       <th>gene</th>
-      <td><p>gene name.</p></td>
+      <td><p>Gene name.</p></td>
     </tr>
     <tr>
       <th>test.m</th>
-      <td><p>list of tests results for methylation.</p></td>
+      <td><p>List of tests results for methylation.</p></td>
     </tr>
     <tr>
       <th>test.e</th>
-      <td><p>list of tests results for expression</p></td>
+      <td><p>List of tests results for expression</p></td>
     </tr>
     <tr>
       <th>values</th>
-      <td><p>logical. If TRUE p-values and log fold for chosen gene will be add to a plot. By default we use FALSE.</p></td>
+      <td><p>Logical. If TRUE p-values and log fold for chosen gene will be added to a plot. By default we use FALSE.</p></td>
     </tr>
     <tr>
       <th>font.size</th>
-      <td><p>font size in stats table.</p></td>
+      <td><p>Font size in stats table.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Object of class ggplot containing volcano plots of p-values versus log2.fold for gene for chosen number of tests. Also there are added simple statistisc about chosen gene.</p>
+    <p>An object of class ggplot containing volcano plots of p-values versus log2.fold for gene for chosen number of tests. Also there are added simple statistisc about chosen gene.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -141,7 +153,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>MLExpRessodata</span>)
+<span class='fu'>library</span>(<span class='no'>MLExpRessoData</span>)
 <span class='no'>cond_exp</span> <span class='kw'>&lt;-</span> <span class='fu'>ifelse</span>(<span class='no'>BRCA_exp</span>$<span class='no'>SUBTYPE</span> <span class='kw'>==</span> <span class='st'>"LumA"</span>,<span class='st'>"LumA"</span>,<span class='st'>"other"</span>)
 <span class='no'>cond_met</span> <span class='kw'>&lt;-</span> <span class='fu'>ifelse</span>(<span class='no'>BRCA_met</span>$<span class='no'>SUBTYPE</span> <span class='kw'>==</span> <span class='st'>"LumA"</span>,<span class='st'>"LumA"</span>,<span class='st'>"other"</span>)
 

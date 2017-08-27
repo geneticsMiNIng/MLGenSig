@@ -7,13 +7,13 @@
 calculate_test(data, condition, test = "ttest", ...)
 }
 \arguments{
-\item{data}{Object of the class appropriate for the given test. More in \code{details} section.}
+\item{data}{An object of the class appropriate for the given test. More in \code{details} section.}
 
-\item{condition}{factor of levels coresponding to order of samples in data.}
+\item{condition}{Factor of levels coresponding to order of samples in data.}
 
-\item{test}{variable defining test. Values: ttest, nbinom, nbinom2, lrt, qlf, methyanalysis. More in \code{details} section.}
+\item{test}{Variable defining test. Values: ttest, nbinom, nbinom2, lrt, qlf, methyanalysis. More in \code{details} section.}
 
-\item{...}{other parameters e.g. `adjust.method` for argument `ttest`}
+\item{...}{Other parameters e.g. `adjust.method` for argument `ttest`.}
 }
 \value{
 A data frame with the following columns:

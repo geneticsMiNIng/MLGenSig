@@ -28,3 +28,4 @@ Function \code{plot_pvalues} draws a plot with p-values from tests for methylati
 \seealso{
 volcano_plot, means_plot
 }
+\keyword{internal}

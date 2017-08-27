@@ -12,7 +12,7 @@
 #'  \item{pval}{The p-values for rejecting the null hypothesis about the groups means equality.}
 #'  \item{padj}{The adjusted p-values (Benjamini-Hochberg correction).}
 #'
-
+#' @keywords internal
 
 full_data <- function(dt_expr, dt_met) {
   test_expr <- dt_expr[which(dt_expr$id %in% rownames(dt_met)), ]

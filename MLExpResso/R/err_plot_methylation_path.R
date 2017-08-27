@@ -8,7 +8,7 @@
 #
 #' @return Error or nothing
 #'
-
+#' @keywords internal
 
 
 err_plot_methylation_path <- function(data, genom.data = MLExpResso::illumina_humanmethylation_27_data, probes.col=1) {

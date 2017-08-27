@@ -15,3 +15,4 @@ data frame of zeros and ones with rows coresponding to sample and columns coresp
 \description{
 Function \code{design_format} transforms 'condition' data format to 'design' data format. It transform vector of levels corresponding to samples.
 }
+\keyword{internal}

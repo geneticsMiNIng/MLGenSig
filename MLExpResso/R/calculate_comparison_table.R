@@ -3,16 +3,16 @@
 #' @description Function \code{calculate_comparison_table} produces a dataset containing p-values and folds from tests evaluated on two datasets e.g methylation or expression. In addition, it produces an importance ranking column, which is the geometric mean of p-values from both tests and a column with a number of probes related to the gene.
 #'
 #'
-#' @param data1 first dataset, suitable for \code{test1}.
-#' @param data2 second dataset, suitable for \code{test2}.
-#' @param condition1 condition for first dataset.
-#' @param condition2 condition for second dataset.
-#' @param test1 type of test for first dataset.
-#' @param test2 type of test for second dataset.
-#' @param genom.data data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}.
-#' @param genes.col number of column in genom.data containing informations about genes (genes symbols).
+#' @param data1 First dataset, suitable for \code{test1}.
+#' @param data2 Second dataset, suitable for \code{test2}.
+#' @param condition1 Condition for first dataset.
+#' @param condition2 Condition for second dataset.
+#' @param test1 Type of test for first dataset.
+#' @param test2 Type of test for second dataset.
+#' @param genom.data Data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}.
+#' @param genes.col Number of column in genom.data containing informations about genes (genes symbols).
 #'
-#' @return data frame containing logatithm of fold and p-values from chosen tests
+#' @return Data frame containing logatithm of fold and p-values from chosen tests.
 #'
 #' @seealso \code{\link{calculate_test}}
 #'

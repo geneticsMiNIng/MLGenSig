@@ -20,7 +20,7 @@
 #'
 #' @seealso p_values_plot
 #'
-
+#' @keywords internal
 
 plot_means <- function(data1, condition, names=NA) {
   id <- NULL

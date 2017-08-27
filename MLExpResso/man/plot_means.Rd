@@ -22,3 +22,4 @@ Function \code{plot_means} draws a plot with p-values from methylation when we u
 \seealso{
 p_values_plot
 }
+\keyword{internal}

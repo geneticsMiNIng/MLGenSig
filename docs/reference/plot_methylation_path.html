@@ -60,6 +60,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/QuickStart.html">MLExpResso: differential expression and methylation analysis</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">News</a>
 </li>
@@ -82,10 +94,10 @@
     </div>
 
     
-    <p>Function <code>plot_methylation_path</code> visualise a chosen gene with marked CpG probes. It shows the mean methylation level for each probe in group. Also we can exact the line corresonding to gene. In this case we see what are the locations of probes on gene in HG18 coordinates. We can as well draw a locations of CpG islands.</p>
+    <p>Function <code>plot_methylation_path</code> visualizes a chosen gene with marked CpG probes. Y axis describes methylation level. X axis describes a location of the probe on the chromosome. Horizontal lines show the mean methylation level for each Island in a division to groups. Groups are defined by colors. Large dots symbolize means of methylation level for CpG probes, small dots symbolize methylation levels for each observation. Also, we can exact the line corresponding to a gene. In this case, we see what are the locations of probes on a gene in HG18 coordinates. We can as well draw locations of CpG islands.</p>
     
 
-    <pre class="usage"><span class='fu'>plot_methylation_path</span>(<span class='no'>data</span>, <span class='no'>condition</span>, <span class='no'>gene</span>, <span class='kw'>show_gene</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre class="usage"><span class='fu'>plot_methylation_path</span>(<span class='no'>data</span>, <span class='no'>condition</span>, <span class='no'>gene</span>, <span class='kw'>show.gene</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>observ</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>islands</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -93,35 +105,35 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data frame containing values from methylation: columns corespond to CpG probes, rows to samples.</p></td>
+      <td><p>Data frame containing values from methylation: columns corespond to CpG probes, rows to samples.</p></td>
     </tr>
     <tr>
       <th>condition</th>
-      <td><p>vector of levels corresponding to order of samples in data.</p></td>
+      <td><p>Vector of levels corresponding to order of samples in data.</p></td>
     </tr>
     <tr>
       <th>gene</th>
-      <td><p>name of chosen gene.</p></td>
+      <td><p>Name of chosen gene.</p></td>
     </tr>
     <tr>
-      <th>show_gene</th>
-      <td><p>logical. If TRUE line corresopnding to gene will be draw.</p></td>
+      <th>show.gene</th>
+      <td><p>Logical. If TRUE line corresopnding to gene will be drawn.</p></td>
     </tr>
     <tr>
       <th>observ</th>
-      <td><p>logical. If TRUE dots corresponding to CpG probes will be draw.</p></td>
+      <td><p>Logical. If TRUE dots corresponding to CpG probes will be drawn.</p></td>
     </tr>
     <tr>
       <th>islands</th>
-      <td><p>logical. If TRUE line corresopnding to islands should be draw.</p></td>
+      <td><p>Logical. If TRUE line corresopnding to islands should be drawn.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>logical. If TRUE title saying what gene we visualise will be add.</p></td>
+      <td><p>Logical. If TRUE title saying what gene we visualise will be added.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other parameters.</p></td>
+      <td><p>Other parameters.</p></td>
     </tr>
     </table>
     
@@ -136,7 +148,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>MLExpRessodata</span>)
+<span class='fu'>library</span>(<span class='no'>MLExpRessoData</span>)
 <span class='no'>condition_met</span> <span class='kw'>&lt;-</span> <span class='fu'>ifelse</span>(<span class='no'>BRCA_met</span>$<span class='no'>SUBTYPE</span> <span class='kw'>==</span> <span class='st'>"LumA"</span>,<span class='st'>"LumA"</span>, <span class='st'>"other"</span>)
 <span class='fu'>plot_methylation_path</span>(<span class='no'>BRCA_met</span>, <span class='no'>condition_met</span>, <span class='st'>"BRCA2"</span>)
 <span class='co'># }</span><div class='input'>

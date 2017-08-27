@@ -7,22 +7,22 @@
 generate_report(data.m, data.e, condition.m, condition.e, test.m, test.e, genes)
 }
 \arguments{
-\item{data.m}{data frame containing information for methylation.}
+\item{data.m}{Data frame containing information for methylation.}
 
-\item{data.e}{data frame containing information for expression.}
+\item{data.e}{Data frame containing information for expression.}
 
-\item{condition.m}{condition for methylation.}
+\item{condition.m}{Condition for methylation.}
 
-\item{condition.e}{condition for expression.}
+\item{condition.e}{Condition for expression.}
 
-\item{test.m}{test results for methylation.}
+\item{test.m}{Test results for methylation.}
 
-\item{test.e}{test results for expression.}
+\item{test.e}{Test results for expression.}
 
-\item{genes}{the name of the gene or vector of genes names we want to visualise.}
+\item{genes}{The name of the gene or vector of genes names we want to visualise.}
 }
 \value{
-pdf with report containing information about MLExpResso package.
+PDF with report containing information about MLExpResso package.
 }
 \description{
 Function \code{generate_report} produces a pdf report containing information about functionalities of package MLExpResso.

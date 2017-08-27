@@ -25,4 +25,6 @@ condition_m <- ifelse(BRCA_methylation_all == "LumA", "LumA", "other")
 
 stats <- calculate_stats(BRCA_methylation_all, condition_m)
 }
+
 }
+\keyword{internal}

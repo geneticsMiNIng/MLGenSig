@@ -22,6 +22,7 @@
 #' @importFrom limma makeContrasts
 #'
 #' @seealso expr_nbinom
+#' @keywords internal
 
 test_tstudent <- function(data, condition, ...) {
   data <- t(data)

@@ -9,6 +9,7 @@
 #' @return data frame
 #' @importFrom reshape2 melt
 #' @importFrom dplyr %>%
+#' @keywords internal
 
 
 probes_locations <- function(data, gene, condition) {

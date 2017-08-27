@@ -21,3 +21,4 @@ Error or nothing
 \description{
 Function checks if data is correct - not aggregated to genes.
 }
+\keyword{internal}

@@ -12,3 +12,4 @@ reverselog_trans(base = exp(1))
 \description{
 Function \code{tools} crate a logarithm transformation for y-axis..
 }
+\keyword{internal}

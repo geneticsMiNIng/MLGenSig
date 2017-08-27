@@ -24,3 +24,4 @@ A data frame with the following columns:
 \description{
 Function \code{test_edger} computes the statistics for quasi-likelihood F-tests or likelihood ratio tests .
 }
+\keyword{internal}

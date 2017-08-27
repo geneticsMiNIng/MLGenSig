@@ -15,7 +15,8 @@
 #'
 #' stats <- calculate_stats(BRCA_methylation_all, condition_m)
 #' }
-#' @export
+#'
+#' @keywords internal
 
 calculate_data_stats <- function(data, condition) {
   nvar <- as.data.frame(ncol(data))

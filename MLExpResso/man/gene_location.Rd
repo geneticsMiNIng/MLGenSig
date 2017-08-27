@@ -15,3 +15,4 @@ vector containing the beging and ending of gene.
 \description{
 Function \code{gene_location} ...
 }
+\keyword{internal}

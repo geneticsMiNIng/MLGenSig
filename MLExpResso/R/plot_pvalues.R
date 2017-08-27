@@ -23,7 +23,7 @@
 #'
 #' @seealso volcano_plot, means_plot
 #'
-
+#' @keywords internal
 
 plot_pvalues <- function(dt_expr, dt_met, names=NA, exp.pval, met.pval, id) {
   dt <- full_data(dt_expr, dt_met)

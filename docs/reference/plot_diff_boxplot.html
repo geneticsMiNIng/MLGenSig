@@ -60,6 +60,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/QuickStart.html">MLExpResso: differential expression and methylation analysis</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">News</a>
 </li>
@@ -93,23 +105,23 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data frame containing interesing values.</p></td>
+      <td><p>Data frame containing interesing values.</p></td>
     </tr>
     <tr>
       <th>condition</th>
-      <td><p>vector of length equal to numer of rows of data. Vector <code>condition</code> should contains names of groups corresponding to rows.</p></td>
+      <td><p>Vector of length equal to numer of rows of data. Vector <code>condition</code> should contains names of groups corresponding to rows.</p></td>
     </tr>
     <tr>
       <th>gene</th>
-      <td><p>string containing name of gene with values for boxplot.</p></td>
+      <td><p>String containing name of gene with values for boxplot.</p></td>
     </tr>
     <tr>
       <th>sqrt.trans</th>
-      <td><p>root square y-axis transformation.</p></td>
+      <td><p>Root square y-axis transformation.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>plot title, by default id of gene.</p></td>
+      <td><p>Plot title, by default id of gene.</p></td>
     </tr>
     </table>
     
@@ -124,9 +136,9 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>MLExpRessodata</span>)
-<span class='no'>condition_expr</span> <span class='kw'>&lt;-</span> <span class='fu'>ifelse</span>(<span class='no'>BRCA_mRNAseq_chr17</span>$<span class='no'>SUBTYPE</span><span class='kw'>==</span><span class='st'>"LumA"</span>,<span class='st'>"LumA"</span>,<span class='st'>"other"</span>)
-<span class='fu'>plot_diff_boxplot</span>(<span class='no'>BRCA_mRNAseq_chr17</span>, <span class='st'>"BRCA2"</span>, <span class='no'>condition_expr</span>, <span class='kw'>sqrt.trans</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'>library</span>(<span class='no'>MLExpRessoData</span>)
+<span class='no'>condition_expr</span> <span class='kw'>&lt;-</span> <span class='fu'>ifelse</span>(<span class='no'>BRCA_exp7</span>$<span class='no'>SUBTYPE</span> <span class='kw'>==</span> <span class='st'>"LumA"</span>,<span class='st'>"LumA"</span>,<span class='st'>"other"</span>)
+<span class='fu'>plot_diff_boxplot</span>(<span class='no'>BRCA_exp</span>, <span class='st'>"BRCA2"</span>, <span class='no'>condition_expr</span>, <span class='kw'>sqrt.trans</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

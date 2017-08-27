@@ -8,26 +8,26 @@ plot_volcanoes(data.m, data.e, condition.m, condition.e, gene = NA,
   test.m = list(), test.e = list(), values = FALSE, font.size = 6)
 }
 \arguments{
-\item{data.m}{data frame containing information for methylation.}
+\item{data.m}{Data frame containing information for methylation.}
 
-\item{data.e}{data frame containing information for expression.}
+\item{data.e}{Data frame containing information for expression.}
 
-\item{condition.m}{condition for methylation data (data.m).}
+\item{condition.m}{Condition for methylation data (data.m).}
 
-\item{condition.e}{condition for expression methylation (data.e).}
+\item{condition.e}{Condition for expression methylation (data.e).}
 
-\item{gene}{gene name.}
+\item{gene}{Gene name.}
 
-\item{test.m}{list of tests results for methylation.}
+\item{test.m}{List of tests results for methylation.}
 
-\item{test.e}{list of tests results for expression}
+\item{test.e}{List of tests results for expression}
 
-\item{values}{logical. If TRUE p-values and log fold for chosen gene will be added to a plot. By default we use FALSE.}
+\item{values}{Logical. If TRUE p-values and log fold for chosen gene will be added to a plot. By default we use FALSE.}
 
-\item{font.size}{font size in stats table.}
+\item{font.size}{Font size in stats table.}
 }
 \value{
-Object of class ggplot containing volcano plots of p-values versus log2.fold for gene for chosen number of tests. Also there are added simple statistisc about chosen gene.
+An object of class ggplot containing volcano plots of p-values versus log2.fold for gene for chosen number of tests. Also there are added simple statistisc about chosen gene.
 }
 \description{
 Function \code{plot_volcanoes} generate a dashboard with volcano plots for expression and methylation. Also it adds a tables with basic statistics.

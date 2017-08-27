@@ -9,6 +9,7 @@
 #' @importFrom org.Hs.eg.db org.Hs.eg.db
 #' @importFrom TxDb.Hsapiens.UCSC.hg18.knownGene TxDb.Hsapiens.UCSC.hg18.knownGene
 #'
+#' @keywords internal
 
 gene_location <- function(gene) {
   hs.data <- AnnotationDbi::select(org.Hs.eg.db,

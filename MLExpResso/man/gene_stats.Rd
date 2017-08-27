@@ -27,3 +27,4 @@ data frame with following columns:
 \description{
 Function \code{gene_stats} generate a data frame containing basic statistics for chosen gene.
 }
+\keyword{internal}

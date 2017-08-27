@@ -8,15 +8,15 @@ plot_diff_boxplot(data, condition = "", gene, sqrt.trans = FALSE,
   title = TRUE)
 }
 \arguments{
-\item{data}{data frame containing interesing values.}
+\item{data}{Data frame containing interesing values.}
 
-\item{condition}{vector of length equal to numer of rows of data. Vector \code{condition} should contains names of groups corresponding to rows.}
+\item{condition}{Vector of length equal to numer of rows of data. Vector \code{condition} should contains names of groups corresponding to rows.}
 
-\item{gene}{string containing name of gene with values for boxplot.}
+\item{gene}{String containing name of gene with values for boxplot.}
 
-\item{sqrt.trans}{root square y-axis transformation.}
+\item{sqrt.trans}{Root square y-axis transformation.}
 
-\item{title}{plot title, by default id of gene.}
+\item{title}{Plot title, by default id of gene.}
 }
 \value{
 Object of class ggplot containing boxplot for values from choosen gene broken down to groups.

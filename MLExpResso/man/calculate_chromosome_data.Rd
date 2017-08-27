@@ -24,3 +24,4 @@ chr_17 <- calculate_chromosome_data(BRCA_methylation_all, 17)
 }
 
 }
+\keyword{internal}
