@@ -28,6 +28,6 @@ bioc_packages:
  - org.Hs.eg.db
  - TxDb.Hsapiens.UCSC.hg18.knownGene
 install:
-  - Rscript -e 'install.packages(c("devtools","testthat"))'
+  - Rscript -e 'install.packages(c("devtools","testthat","knitr))'
   - Rscript -e 'devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")'
 
