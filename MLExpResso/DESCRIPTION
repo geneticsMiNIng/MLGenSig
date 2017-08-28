@@ -34,7 +34,6 @@ Imports: AnnotationDbi,
     utils, 
 RoxygenNote: 6.0.1
 Suggests: knitr,
-    MLExpRessoData,
     rmarkdown,
     testthat
 VignetteBuilder: knitr

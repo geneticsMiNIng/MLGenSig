@@ -5,6 +5,4 @@ warnings_are_errors: true
 r: bioc-devel
 before_script: cd MLExpResso
 install:
-  - Rscript -e 'install.packages(c("devtools","testthat","knitr"))'
-  - Rscript -e 'devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")'
-  - Rscript -e 'devtools::install_deps("MLExpResso")'
+- Rscript -e 'install.packages(c("devtools","roxygen2","testthat"));devtools::install_deps("MLExpResso")'
