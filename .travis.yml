@@ -1,8 +1,19 @@
 language: r
-sudo: false
+sudo: true
 cache: packages
-warnings_are_errors: true
 r: bioc-devel
-before_script: cd MLExpResso
-install:
-- Rscript -e 'install.packages(c("devtools","roxygen2","testthat"));devtools::install_deps("MLExpResso")'
+before_install: 
+  - cd MLExpResso
+r_github_packages: geneticsMiNIng/MLGenSigdata/MLExpRessodata
+r_binary_packages:
+  - dplyr 
+  - ggplot2 
+  - ggrepel 
+  - ggthemes
+  - gridExtra
+  - reshape
+  - reshape2
+  - roxygen2 
+  - scales
+  - stringr 
+
