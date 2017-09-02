@@ -94,47 +94,31 @@
     </div>
 
     
-    <p>Function <code>plot_pvalues</code> draws a plot with p-values from tests for methylation and expression.</p>
+    <p>Function <code>plot_pvalues</code> draws a plot with p-values from 2 tests for methylation and expression.</p>
     
 
-    <pre class="usage"><span class='fu'>plot_pvalues</span>(<span class='no'>dt_expr</span>, <span class='no'>dt_met</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>exp.pval</span>, <span class='no'>met.pval</span>, <span class='no'>id</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_pvalues</span>(<span class='no'>data</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dt_expr</th>
-      <td><p>data.frame, a result of computing test for methylation.</p></td>
-    </tr>
-    <tr>
-      <th>dt_met</th>
-      <td><p>data.frame, a result of computing test for expression.</p></td>
+      <th>data</th>
+      <td><p>Data.frame - result of `calculate_comparison_table()` function for methylation and expression data.</p></td>
     </tr>
     <tr>
       <th>names</th>
-      <td><p>p-value below which value we want to mark genes.</p></td>
-    </tr>
-    <tr>
-      <th>exp.pval</th>
-      <td><p>p-value for expression.</p></td>
-    </tr>
-    <tr>
-      <th>met.pval</th>
-      <td><p>p-value for methylation.</p></td>
-    </tr>
-    <tr>
-      <th>id</th>
-      <td><p>vector of genes symbols.</p></td>
+      <td><p>Number of genes to be labeled. Genes are selected based on the ranking of the most significant changed genes in terms of both methylation and expression - geom.mean.rank column. More: <code><a href='calculate_comparison_table.html'>calculate_comparison_table</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>plot of class ggplot.</p>
+    <p>An object of class ggplot containing a plot of p-values.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>volcano_plot, means_plot</p>
+    <p>calculate_comparison_table</p>
     
 
   </div>

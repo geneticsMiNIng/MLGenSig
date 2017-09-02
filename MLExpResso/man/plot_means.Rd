@@ -4,17 +4,17 @@
 \alias{plot_means}
 \title{Visualise the p-values for genes.}
 \usage{
-plot_means(data1, condition, names = NA)
+plot_means(data, condition, names = NA)
 }
 \arguments{
-\item{data1}{data frame consisting the data from methylation or expresion}
+\item{data}{Data set with information from methylation or expression. See: \code{\link[MLExpResso]{calculate_test}}.}
 
-\item{condition}{condition for groups}
+\item{condition}{A factor of levels corresponding to order of samples in data.}
 
-\item{names}{number of values we want to mark on plot; in this case we decide to mark values with the smallest differences between means in groups.}
+\item{names}{number of genes to be labeled. On a plot are marked genes with the smallest geometric mean of means.}
 }
 \value{
-plot of p-values
+a plot of p-values
 }
 \description{
 Function \code{plot_means} draws a plot with p-values from methylation when we use the t-test. We testing the equality of means in given two groups.
@@ -22,4 +22,3 @@ Function \code{plot_means} draws a plot with p-values from methylation when we u
 \seealso{
 p_values_plot
 }
-\keyword{internal}

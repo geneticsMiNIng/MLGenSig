@@ -3,7 +3,7 @@
 #' @description Function \code{plot_pvalues} draws a plot with p-values from 2 tests for methylation and expression.
 #'
 #' @param data Data.frame - result of `calculate_comparison_table()` function for methylation and expression data.
-#' @param names Number of genes to be labeled. Gens are selected based on the ranking of the most significant changed genes in terms of both methylation and expression - geom.mean.rank column. More: \code{\link[MLExpResso]{calculate_comparison_table}}.
+#' @param names Number of genes to be labeled. Genes are selected based on the ranking of the most significant changed genes in terms of both methylation and expression - geom.mean.rank column. More: \code{\link[MLExpResso]{calculate_comparison_table}}.
 #'
 #' @return An object of class ggplot containing a plot of p-values.
 #'
@@ -23,7 +23,7 @@
 #' @export
 
 plot_pvalues <- function(data, names=NA) {
-  id <- NULL
+  id <- geom.mean.rank <- NULL
   tests <- colnames(data)[c(3, 5)]
   plot <- ggplot(data, aes(x = -log(data[ ,3]), y = -log(data[ ,5]))) +
     geom_point() +

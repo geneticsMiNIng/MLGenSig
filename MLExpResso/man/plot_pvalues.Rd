@@ -9,7 +9,7 @@ plot_pvalues(data, names = NA)
 \arguments{
 \item{data}{Data.frame - result of `calculate_comparison_table()` function for methylation and expression data.}
 
-\item{names}{Number of genes to be named. Gens are selected based on the ranking of the most significant changed genes in terms of both methylation and expression - geom.mean.rank column. More: \code{\link[MLExpResso]{calculate_comparison_table}}.}
+\item{names}{Number of genes to be labeled. Genes are selected based on the ranking of the most significant changed genes in terms of both methylation and expression - geom.mean.rank column. More: \code{\link[MLExpResso]{calculate_comparison_table}}.}
 }
 \value{
 An object of class ggplot containing a plot of p-values.

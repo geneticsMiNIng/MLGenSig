@@ -97,28 +97,28 @@
     <p>Function <code>plot_means</code> draws a plot with p-values from methylation when we use the t-test. We testing the equality of means in given two groups.</p>
     
 
-    <pre class="usage"><span class='fu'>plot_means</span>(<span class='no'>data1</span>, <span class='no'>condition</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_means</span>(<span class='no'>data</span>, <span class='no'>condition</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data1</th>
-      <td><p>data frame consisting the data from methylation or expresion</p></td>
+      <th>data</th>
+      <td><p>Data set with information from methylation or expression. See: <code><a href='calculate_test.html'>calculate_test</a></code>.</p></td>
     </tr>
     <tr>
       <th>condition</th>
-      <td><p>condition for groups</p></td>
+      <td><p>A factor of levels corresponding to order of samples in data.</p></td>
     </tr>
     <tr>
       <th>names</th>
-      <td><p>number of values we want to mark on plot; in this case we decide to mark values with the smallest differences between means in groups.</p></td>
+      <td><p>number of genes to be labeled. On a plot are marked genes with the smallest geometric mean of means.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>plot of p-values</p>
+    <p>a plot of p-values</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

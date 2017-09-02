@@ -1,4 +1,7 @@
 # MLExpResso 0.1.6
+- new functions: plot_means, plot_pvalues
+
+# MLExpResso 0.1.6
 - Added [Online Manual](https://agosiewska.github.io/MLGenSig)
 - Added [Cheatsheet](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Cheatsheet/MLExpResso-cheatsheet.pdf)
 - Updated [Quick start](https://github.com/geneticsMiNIng/MLGenSig/blob/master/QuickStart/QuickStart.pdf)

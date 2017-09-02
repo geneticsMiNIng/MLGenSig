@@ -74,5 +74,5 @@ devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessoData")
 
 
 ## Example dashboards
-![plot_volcanoes](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Images/plot_volcanoes_CACNA1G.png)
-![plot_gene](https://github.com/geneticsMiNIng/MLGenSig/blob/master/Images/plot_gene_CACNA1G.png)
+![plot_volcanoes](https://raw.githubusercontent.com/geneticsMiNIng/MLGenSig/master/Images/plot_volcanoes_CACNA1G.png)
+![plot_gene](https://raw.githubusercontent.com/geneticsMiNIng/MLGenSig/master/Images/plot_gene_CACNA1G.png)
