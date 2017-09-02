@@ -1,16 +1,13 @@
 #' @title Visualise the p-values of expression and methylation for genes.
 #'
-#' @description Function \code{plot_pvalues} draws a plot with p-values from tests for methylation and expression.
+#' @description Function \code{plot_pvalues} draws a plot with p-values from 2 tests for methylation and expression.
 #'
-#' @param dt_expr data.frame, a result of computing test for methylation.
-#' @param dt_met data.frame, a result of computing test for expression.
-#' @param names p-value below which value we want to mark genes.
-#' @param exp.pval p-value for expression.
-#' @param met.pval p-value for methylation.
-#' @param id vector of genes symbols.
+#' @param data Data.frame - result of `calculate_comparison_table()` function for methylation and expression data.
+#' @param names Number of genes to be labeled. Gens are selected based on the ranking of the most significant changed genes in terms of both methylation and expression - geom.mean.rank column. More: \code{\link[MLExpResso]{calculate_comparison_table}}.
 #'
-#' @return plot of class ggplot.
+#' @return An object of class ggplot containing a plot of p-values.
 #'
+#' @importFrom dplyr arrange
 #' @importFrom ggplot2 geom_point
 #' @importFrom ggplot2 theme_bw
 #' @importFrom ggplot2 ggplot
@@ -21,23 +18,28 @@
 #' @importFrom ggrepel geom_text_repel
 #' @importFrom grid unit
 #'
-#' @seealso volcano_plot, means_plot
+#' @seealso calculate_comparison_table
 #'
-#' @keywords internal
+#' @export
 
-plot_pvalues <- function(dt_expr, dt_met, names=NA, exp.pval, met.pval, id) {
-  dt <- full_data(dt_expr, dt_met)
-  plot <- ggplot(dt, aes(x = -log(exp.pval), y = -log(met.pval))) +
+plot_pvalues <- function(data, names=NA) {
+  id <- NULL
+  tests <- colnames(data)[c(3, 5)]
+  plot <- ggplot(data, aes(x = -log(data[ ,3]), y = -log(data[ ,5]))) +
     geom_point() +
     theme_bw() +
     ggtitle("P-values comparison") +
-    xlab(paste0("Log of p-value for ", deparse(substitute(dt_expr)))) +
-    ylab(paste0("Log of p-value for ", deparse(substitute(dt_met))))
-  if (!is.na(names) & names < 1) {
-    plot <- plot + geom_text_repel(data = subset(dt, met.pval < names | exp.pval < names), aes(label = id), size = 3, box.padding = unit(0.35, "lines"), point.padding = unit(0.3, "lines"))
-  }
-  if (!is.na(names) & names >= 1) {
-    plot <- plot + geom_text_repel(data = head(dt[order(dt$met.pval + dt$exp.pval), ], names), aes(label = id), size = 3, box.padding = unit(0.35, "lines"), point.padding = unit(0.3, "lines"))
+    xlab(paste0("- Log of ", tests[1])) +
+    ylab(paste0("- Log of ", tests[2]))
+  if (!is.na(names)) {
+    rank <- head(data.frame(arrange(data, geom.mean.rank)), names)
+    plot <- plot + geom_text_repel(
+      data = rank,
+      aes(x = -log(rank[ ,3]), y = -log(rank[ ,5]), label = id),
+      size = 3,
+      box.padding = unit(0.35, "lines"),
+      point.padding = unit(0.3, "lines")
+    )
   }
   return(plot)
 }

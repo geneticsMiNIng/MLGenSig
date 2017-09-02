@@ -4,28 +4,19 @@
 \alias{plot_pvalues}
 \title{Visualise the p-values of expression and methylation for genes.}
 \usage{
-plot_pvalues(dt_expr, dt_met, names = NA, exp.pval, met.pval, id)
+plot_pvalues(data, names = NA)
 }
 \arguments{
-\item{dt_expr}{data.frame, a result of computing test for methylation.}
+\item{data}{Data.frame - result of `calculate_comparison_table()` function for methylation and expression data.}
 
-\item{dt_met}{data.frame, a result of computing test for expression.}
-
-\item{names}{p-value below which value we want to mark genes.}
-
-\item{exp.pval}{p-value for expression.}
-
-\item{met.pval}{p-value for methylation.}
-
-\item{id}{vector of genes symbols.}
+\item{names}{Number of genes to be named. Gens are selected based on the ranking of the most significant changed genes in terms of both methylation and expression - geom.mean.rank column. More: \code{\link[MLExpResso]{calculate_comparison_table}}.}
 }
 \value{
-plot of class ggplot.
+An object of class ggplot containing a plot of p-values.
 }
 \description{
-Function \code{plot_pvalues} draws a plot with p-values from tests for methylation and expression.
+Function \code{plot_pvalues} draws a plot with p-values from 2 tests for methylation and expression.
 }
 \seealso{
-volcano_plot, means_plot
+calculate_comparison_table
 }
-\keyword{internal}
