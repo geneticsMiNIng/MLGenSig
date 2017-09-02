@@ -1,5 +1,6 @@
 # MLExpResso 0.1.6
 - new functions: plot_means, plot_pvalues
+- plot_means, plot_pvalues, plot_volcano, plot_methylation_path functions added to the QuickStart
 
 # MLExpResso 0.1.6
 - Added [Online Manual](https://agosiewska.github.io/MLGenSig)

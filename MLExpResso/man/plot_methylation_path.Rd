@@ -14,7 +14,7 @@ plot_methylation_path(data, condition, gene, show.gene = FALSE,
 
 \item{gene}{Name of chosen gene.}
 
-\item{show.gene}{Logical. If TRUE line corresopnding to gene will be drawn.}
+\item{show.gene}{Logical. If TRUE arrows corresopnding to gene will be drawn.}
 
 \item{observ}{Logical. If TRUE dots corresponding to CpG probes will be drawn.}
 

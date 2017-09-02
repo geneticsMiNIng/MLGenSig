@@ -3,10 +3,10 @@
 #' @description Function \code{plot_volcano} draws a plot with p-values and fold logarithm from methylation or expression when we use the t-test.
 #'
 #'
-#' @param data Data frame containing result of chosen test.
-#' @param line P-value on which we draw a line.
+#' @param data Data frame containing result of chosen test from \code{\link{calculate_test}} function.
+#' @param line P-value on which we draw a horizontal line.
 #' @param names P-value below which we want to draw genes names.
-#' @param ngen Character symbol or vector of gene names.
+#' @param ngen Character symbol or vector of gene names to be labeled.
 #' @param fold_line Value on which we want to draw a vertical line on both sides of zero.
 #' @param title Character containing title for plot.
 #' @param ylog Logical. If TRUE values on y-axis will be logarithmized.

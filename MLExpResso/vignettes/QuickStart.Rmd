@@ -69,7 +69,7 @@ head(condition_exp, 8)
 Now we can visualize mean expression of each gene in a division of groups Luma and other.
 To do this we use the `plot_means()` function.
 
-This function requires parameters such that:
+This function requires parameters such as:
 
 * `data` - data set with information from methylation or expression. In the example below, we use the `BRCA_exp` data without the `SUBTYPE` column. 
 
@@ -90,7 +90,7 @@ plot_means(
 In the `MLExpResso` package we carry out the tests for identification of genes with affected expression. To do
 this we use the `calculate_test()` function. 
 
-This function requires parameters such that:
+This function requires parameters such as:
 
 
 * `data` - object of the class appropriate for the given test. In the example below, we use the `BRCA_exp` data without the `SUBTYPE` column. 
@@ -112,6 +112,25 @@ head(res_exp)
 
 As a result we get a data frame with columns describing the log2 of the fold change, p-value and the mean for each gene.
 
+We can visualize the result of `calculate_test()` function by `plot_volcano()` function. 
+It draws a plot with p-values and fold logarithm from methylation or expression data.
+
+This function requires parameters such as:
+
+* `data` - data frame containing result of chosen test from `calculate_test()` function.  In the example below, we use the `res_exp` data.frame calculated earlier. 
+
+* `line` - p-value on which we draw a horizontal line. 
+
+* `names` - p-value below which we want to draw genes names.
+
+* `fold_line` - value on which we want to draw a vertical line on both sides of zero.
+
+More parameters were described in documentation of a `plot_volcano()` function.
+
+```{r}
+plot_volcano(res_exp, line = 0.05, names = 0.000000001, fold_line = 2)
+```
+
 
 ## Identification of DMR - differentially methylated regions
 
@@ -125,6 +144,7 @@ probes. Values inside the table indicate the percentage methylation level of CpG
 ```{r}
 head(BRCA_met)[1:5, 1:4]
 ```
+
 
 ###Data preparation
 In this analysis we would like to find genes with different methylation. At first we need to use
@@ -149,12 +169,31 @@ condition_met <- ifelse(BRCA_met$SUBTYPE == "LumA", "LumA", "other")
 head(condition_met, 8)
 ```
 
+Before we go to the testing, we can visualize a chosen gene with marked CpG probes.
+Function `plot_methylation_path` requires parameters such as:
+
+* `data` - data frame containing values from methylation: columns corespond to CpG probes, rows to samples. In the example below, we use the `BRCA_met`.
+
+* `condition` - a vector of levels corresponding to order of samples in data.
+
+* `gene` - name of chosen gene.
+
+* `show.gene` - logical. If TRUE arrows corresopnding to gene will be drawn.
+
+* `observ` - logical. If TRUE dots corresponding to CpG probes will be drawn.
+
+
+```{r}
+plot_methylation_path(BRCA_met, condition_met, 'CACNA1G', show.gene = TRUE, observ = TRUE)
+
+```
+
 ### Testing
 
 In the `MLExpResso` package we carry out the tests for identification of differentially methylated regions.
 To do this we use the `calculate_test()` function.
 
-This function requires parameters such that:
+This function requires parameters such as:
 
 
 * `data` - object of the class appropriate for the given test. In the example below, we use the `BRCA_met_gen` methylation data aggregated to probes. 
@@ -181,7 +220,7 @@ As a result we get a data frame with columns describing the log2 of the fold cha
 We can also create a comparison table with results of `calculate_test()` function for methylation and
 expression data.
 
-Function `calculate_comparison_table()` requires parameters such that:
+Function `calculate_comparison_table()` requires parameters such as:
 
 
 * `data1`, `data2` - objects of the class appropriate for the given tests.  
@@ -204,7 +243,7 @@ head(comparison)
 As a result, we get a data frame with columns describing the log2 of the fold change, p-value and the mean for each gene for two tests. With this two test results, we compute the ranking of the most significant changed genes in terms of both methylation and expression. The created column contains the geometric mean of p-values for expression and methylation.
 
 We can visualize results of `calculate_comparison_table()` by `plot_pvalues()` function.
-This function requires parameters such that:
+This function requires parameters such as:
 
 * `data` - data.frame - result of `calculate_comparison_table()` function.   
 

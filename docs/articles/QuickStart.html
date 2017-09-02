@@ -116,7 +116,7 @@
 <span class="kw">head</span>(condition_exp, <span class="dv">8</span>)</code></pre></div>
 <pre><code>## [1] "other" "LumA"  "LumA"  "LumA"  "LumA"  "LumA"  "other" "LumA"</code></pre>
 <p>Now we can visualize mean expression of each gene in a division of groups Luma and other. To do this we use the <code><a href="../reference/plot_means.html">plot_means()</a></code> function.</p>
-<p>This function requires parameters such that:</p>
+<p>This function requires parameters such as:</p>
 <ul>
 <li><p><code>data</code> - data set with information from methylation or expression. In the example below, we use the <code>BRCA_exp</code> data without the <code>SUBTYPE</code> column.</p></li>
 <li><p><code>condition</code> - a factor of levels corresponding to order of samples in data. In our example, we use the <code>condition_exp</code> vector defined earlier.</p></li>
@@ -133,7 +133,7 @@
 <h3 class="hasAnchor">
 <a href="#testing" class="anchor"></a>Testing</h3>
 <p>In the <code>MLExpResso</code> package we carry out the tests for identification of genes with affected expression. To do this we use the <code><a href="../reference/calculate_test.html">calculate_test()</a></code> function.</p>
-<p>This function requires parameters such that:</p>
+<p>This function requires parameters such as:</p>
 <ul>
 <li><p><code>data</code> - object of the class appropriate for the given test. In the example below, we use the <code>BRCA_exp</code> data without the <code>SUBTYPE</code> column.</p></li>
 <li><p><code>condition</code> - the factor of levels corresponding to order of samples in data. In our example, we use the <code>condition_exp</code> vector defined earlier.</p></li>
@@ -154,6 +154,17 @@
 ## 5 BIRC5  1.988998 1.953941e-21  1957.085   6658.358  4448.76
 ## 6  GSG2  1.405039 3.527773e-21  278.2128   629.3396   464.31</code></pre>
 <p>As a result we get a data frame with columns describing the log2 of the fold change, p-value and the mean for each gene.</p>
+<p>We can visualize the result of <code><a href="../reference/calculate_test.html">calculate_test()</a></code> function by <code><a href="../reference/plot_volcano.html">plot_volcano()</a></code> function. It draws a plot with p-values and fold logarithm from methylation or expression data.</p>
+<p>This function requires parameters such as:</p>
+<ul>
+<li><p><code>data</code> - data frame containing result of chosen test from <code><a href="../reference/calculate_test.html">calculate_test()</a></code> function. In the example below, we use the <code>res_exp</code> data.frame calculated earlier.</p></li>
+<li><p><code>line</code> - p-value on which we draw a horizontal line.</p></li>
+<li><p><code>names</code> - p-value below which we want to draw genes names.</p></li>
+<li><p><code>fold_line</code> - value on which we want to draw a vertical line on both sides of zero.</p></li>
+</ul>
+<p>More parameters were described in documentation of a <code><a href="../reference/plot_volcano.html">plot_volcano()</a></code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_volcano.html">plot_volcano</a></span>(res_exp, <span class="dt">line =</span> <span class="fl">0.05</span>, <span class="dt">names =</span> <span class="fl">0.000000001</span>, <span class="dt">fold_line =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="QuickStart_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
 </div>
 </div>
 <div id="identification-of-dmr---differentially-methylated-regions" class="section level2">
@@ -188,12 +199,24 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">condition_met &lt;-<span class="st"> </span><span class="kw">ifelse</span>(BRCA_met<span class="op">$</span>SUBTYPE <span class="op">==</span><span class="st"> "LumA"</span>, <span class="st">"LumA"</span>, <span class="st">"other"</span>)
 <span class="kw">head</span>(condition_met, <span class="dv">8</span>)</code></pre></div>
 <pre><code>## [1] "LumA"  "LumA"  "other" "other" "other" "other" "LumA"  "other"</code></pre>
+<p>Before we go to the testing, we can visualize a chosen gene with marked CpG probes. Function <code>plot_methylation_path</code> requires parameters such as:</p>
+<ul>
+<li><p><code>data</code> - data frame containing values from methylation: columns corespond to CpG probes, rows to samples. In the example below, we use the <code>BRCA_met</code>.</p></li>
+<li><p><code>condition</code> - a vector of levels corresponding to order of samples in data.</p></li>
+<li><p><code>gene</code> - name of chosen gene.</p></li>
+<li><p><code>show.gene</code> - logical. If TRUE arrows corresopnding to gene will be drawn.</p></li>
+<li><p><code>observ</code> - logical. If TRUE dots corresponding to CpG probes will be drawn.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_methylation_path.html">plot_methylation_path</a></span>(BRCA_met, condition_met, <span class="st">'CACNA1G'</span>, <span class="dt">show.gene =</span> <span class="ot">TRUE</span>, <span class="dt">observ =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## 'select()' returned 1:1 mapping between keys and columns</code></pre>
+<pre><code>## 'select()' returned 1:many mapping between keys and columns</code></pre>
+<p><img src="QuickStart_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
 </div>
 <div id="testing-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#testing-1" class="anchor"></a>Testing</h3>
 <p>In the <code>MLExpResso</code> package we carry out the tests for identification of differentially methylated regions. To do this we use the <code><a href="../reference/calculate_test.html">calculate_test()</a></code> function.</p>
-<p>This function requires parameters such that:</p>
+<p>This function requires parameters such as:</p>
 <ul>
 <li><p><code>data</code> - object of the class appropriate for the given test. In the example below, we use the <code>BRCA_met_gen</code> methylation data aggregated to probes.</p></li>
 <li><p><code>condition</code> - a factor of levels corresponding to order of samples in data. In our example, we use the <code>condition_met</code> vector defined earlier.</p></li>
@@ -220,7 +243,7 @@
 <h2 class="hasAnchor">
 <a href="#identification-of-regions-with-changes-in-expression-and-methylation" class="anchor"></a>Identification of regions with changes in expression and methylation</h2>
 <p>We can also create a comparison table with results of <code><a href="../reference/calculate_test.html">calculate_test()</a></code> function for methylation and expression data.</p>
-<p>Function <code><a href="../reference/calculate_comparison_table.html">calculate_comparison_table()</a></code> requires parameters such that:</p>
+<p>Function <code><a href="../reference/calculate_comparison_table.html">calculate_comparison_table()</a></code> requires parameters such as:</p>
 <ul>
 <li><p><code>data1</code>, <code>data2</code> - objects of the class appropriate for the given tests.</p></li>
 <li><p><code>condition1</code>, <code>condition2</code> - factors of levels coresponding to order of samples in <code>data1</code> and <code>data2</code> respectively.</p></li>
@@ -250,13 +273,13 @@
 ## 66    2.248153e-12         1
 ## 334   2.567093e-12         2</code></pre>
 <p>As a result, we get a data frame with columns describing the log2 of the fold change, p-value and the mean for each gene for two tests. With this two test results, we compute the ranking of the most significant changed genes in terms of both methylation and expression. The created column contains the geometric mean of p-values for expression and methylation.</p>
-<p>We can visualize results of <code><a href="../reference/calculate_comparison_table.html">calculate_comparison_table()</a></code> by <code><a href="../reference/plot_pvalues.html">plot_pvalues()</a></code> function. This function requires parameters such that:</p>
+<p>We can visualize results of <code><a href="../reference/calculate_comparison_table.html">calculate_comparison_table()</a></code> by <code><a href="../reference/plot_pvalues.html">plot_pvalues()</a></code> function. This function requires parameters such as:</p>
 <ul>
 <li><p><code>data</code> - data.frame - result of <code><a href="../reference/calculate_comparison_table.html">calculate_comparison_table()</a></code> function.</p></li>
 <li><p><code>names</code> - number of genes to be labeled. Gens are selected based on the ranking of the most significant changed genes in terms of both methylation and expression - geom.mean.rank column.</p></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_pvalues.html">plot_pvalues</a></span>(comparison, <span class="dt">names =</span> <span class="dv">10</span>)</code></pre></div>
-<p><img src="QuickStart_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
+<p><img src="QuickStart_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
 </div>
 <div id="visualization-of-identified-regions" class="section level2">
 <h2 class="hasAnchor">
@@ -283,7 +306,7 @@ test_met &lt;-<span class="st"> </span>comparison[ , <span class="kw">c</span>(<
   <span class="dt">test.e =</span> test_exp,
   <span class="dt">values=</span><span class="ot">TRUE</span>
 )</code></pre></div>
-<p><img src="QuickStart_files/figure-html/unnamed-chunk-11-1.png" width="1824"></p>
+<p><img src="QuickStart_files/figure-html/unnamed-chunk-13-1.png" width="1824"></p>
 <p>Other function <code><a href="../reference/plot_gene.html">plot_gene()</a></code> allow us to visualize the <code>methylation path</code> - placement of probes near the gene with a marked percentage of methylation for each probe in division into groups.</p>
 <p>Function <code><a href="../reference/plot_gene.html">plot_gene()</a></code> requiers parameters such that:</p>
 <ul>
@@ -302,7 +325,7 @@ test_met &lt;-<span class="st"> </span>comparison[ , <span class="kw">c</span>(<
   <span class="dt">observ =</span> <span class="ot">TRUE</span>,
   <span class="dt">islands =</span> <span class="ot">TRUE</span>
 )</code></pre></div>
-<p><img src="QuickStart_files/figure-html/unnamed-chunk-12-1.png" width="1824"></p>
+<p><img src="QuickStart_files/figure-html/unnamed-chunk-14-1.png" width="1824"></p>
 <p>Using this function we also get boxplots containing values of expression in division from <code>condition_exp</code> vector for chosen gene.</p>
 </div>
 </div>

@@ -8,15 +8,15 @@ plot_volcano(data, line = NA, names = NA, ylog = TRUE, ngen = NA,
   title = NA, fold_line = NA, values = FALSE)
 }
 \arguments{
-\item{data}{Data frame containing result of chosen test.}
+\item{data}{Data frame containing result of chosen test from \code{\link{calculate_test}} function.}
 
-\item{line}{P-value on which we draw a line.}
+\item{line}{P-value on which we draw a horizontal line.}
 
 \item{names}{P-value below which we want to draw genes names.}
 
 \item{ylog}{Logical. If TRUE values on y-axis will be logarithmized.}
 
-\item{ngen}{Character symbol or vector of gene names.}
+\item{ngen}{Character symbol or vector of gene names to be labeled.}
 
 \item{title}{Character containing title for plot.}
 

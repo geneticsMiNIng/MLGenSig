@@ -5,7 +5,7 @@
 #' @param data Data frame containing values from methylation: columns corespond to CpG probes, rows to samples.
 #' @param condition Vector of levels corresponding to order of samples in data.
 #' @param gene Name of chosen gene.
-#' @param show.gene Logical. If TRUE line corresopnding to gene will be drawn.
+#' @param show.gene Logical. If TRUE arrows corresopnding to gene will be drawn.
 #' @param observ Logical. If TRUE dots corresponding to CpG probes will be drawn.
 #' @param islands Logical. If TRUE line corresopnding to islands should be drawn.
 #' @param title Logical. If TRUE title saying what gene we visualise will be added.
