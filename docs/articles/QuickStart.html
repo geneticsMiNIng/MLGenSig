@@ -120,7 +120,7 @@
 <ul>
 <li><p><code>data</code> - data set with information from methylation or expression. In the example below, we use the <code>BRCA_exp</code> data without the <code>SUBTYPE</code> column.</p></li>
 <li><p><code>condition</code> - a factor of levels corresponding to order of samples in data. In our example, we use the <code>condition_exp</code> vector defined earlier.</p></li>
-<li><p><code>names</code> - number of genes to be labeled. On a plot are marked genes with the smallest geometric mean of means.</p></li>
+<li><p><code>names</code> - number of genes to be labeled. On a plot are marked genes with the biggest difference between the means.</p></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_means.html">plot_means</a></span>(
   <span class="dt">data =</span> BRCA_exp[,<span class="op">!</span>(<span class="kw">colnames</span>(BRCA_exp) <span class="op">==</span><span class="st"> "SUBTYPE"</span>)], 

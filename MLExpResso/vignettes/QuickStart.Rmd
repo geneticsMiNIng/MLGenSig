@@ -75,7 +75,7 @@ This function requires parameters such as:
 
 * `condition` - a factor of levels corresponding to order of samples in data. In our example, we use the `condition_exp` vector defined earlier.
 
-* `names` - number of genes to be labeled. On a plot are marked genes with the smallest geometric mean of means.
+* `names` - number of genes to be labeled. On a plot are marked genes with the biggest difference between the means.
 
 ```{r}
 plot_means(

@@ -11,7 +11,7 @@ plot_means(data, condition, names = NA)
 
 \item{condition}{A factor of levels corresponding to order of samples in data.}
 
-\item{names}{number of genes to be labeled. On a plot are marked genes with the smallest geometric mean of means.}
+\item{names}{number of genes to be labeled. On a plot are marked genes with the biggest difference between the means.}
 }
 \value{
 a plot of p-values

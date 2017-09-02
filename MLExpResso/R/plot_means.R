@@ -4,7 +4,7 @@
 #'
 #' @param data Data set with information from methylation or expression. See: \code{\link[MLExpResso]{calculate_test}}.
 #' @param condition A factor of levels corresponding to order of samples in data.
-#' @param names number of genes to be labeled. On a plot are marked genes with the smallest geometric mean of means.
+#' @param names number of genes to be labeled. On a plot are marked genes with the biggest difference between the means.
 #'
 #' @return a plot of p-values
 #'
