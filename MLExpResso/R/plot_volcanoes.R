@@ -61,7 +61,8 @@ plot_volcanoes <- function(data.m, data.e, condition.m, condition.e, gene=NA, te
     core = list(fg_params = list(cex = 1.8, col = c("#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf")), bg_params = list(fill = c("white"))),
     colhead = list(fg_params = list(cex = 1.8), bg_params = list(fill = c("white"))),
     rowhead = list(fg_params = list(cex = 1.8, fontface = "bold")),
-    base_size = font.size)
+    base_size = font.size
+  )
 
   if (!is.na(gene)) {
     data.e.cpm <- as.data.frame(cpm(data.e))

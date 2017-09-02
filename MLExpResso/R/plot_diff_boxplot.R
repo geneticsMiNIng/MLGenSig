@@ -52,15 +52,16 @@ plot_diff_boxplot <- function(data, condition="", gene, sqrt.trans=FALSE, title=
   plot <- ggplot(dt, aes(condition, y = values, col = condition)) +
     geom_boxplot(outlier.size = 0.5) +
     theme_bw() +
-    theme(axis.title.x = element_blank(),
+    theme(
+      axis.title.x = element_blank(),
       axis.title.y = element_blank(),
       axis.text.x = element_text(size = 15, angle = 0, hjust = 0.5),
       axis.text.y = element_text(size = 15),
       legend.position = "none",
-      panel.border = element_blank()) +
+      panel.border = element_blank()
+    ) +
     xlab(condition) +
-    scale_color_manual(values = c("#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf")
-    )
+    scale_color_manual(values = c("#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf"))
 
   if (sqrt.trans == TRUE) plot <- plot + coord_trans(y = "sqrt")
   if (title == TRUE) {

@@ -53,20 +53,25 @@ plot_volcano <- function(data, line=NA, names= NA, ylog=TRUE, ngen=NA, title=NA,
 
 
   if (ylog == TRUE) {
-    # data$pval <- log10(data$pval)
     data$pval <- data$pval
   }
   plot <- ggplot(data, aes(log2.fold, pval)) +
     geom_point(size = 0.5) +
     theme_bw(base_size = 12) +
-    theme(panel.border = element_blank(),
+    theme(
+      panel.border = element_blank(),
       axis.text.x = element_text(size = 15),
-      axis.text.y = element_text(size = 15)) +
-    scale_y_continuous(trans = reverselog_trans(10),
+      axis.text.y = element_text(size = 15)
+    ) +
+    scale_y_continuous(
+      trans = reverselog_trans(10),
       breaks = trans_breaks("log10", function(x) 10 ^ x),
-      labels = trans_format("identity", math_format(10 ^ .x))) +
-    scale_x_continuous(breaks = extended_range_breaks()(data$log2.fold),
-      labels = function(x) sprintf("%.2f", x))
+      labels = trans_format("identity", math_format(10 ^ .x))
+    ) +
+    scale_x_continuous(
+      breaks = extended_range_breaks()(data$log2.fold),
+      labels = function(x) sprintf("%.2f", x)
+    )
 
   if (is.na(title)) {
     plot <- plot + ggtitle("")
@@ -129,9 +134,20 @@ plot_volcano <- function(data, line=NA, names= NA, ylog=TRUE, ngen=NA, title=NA,
       label_pvalue <- paste("pval:", round(values_for_gene$pval, 4))
     }
 
-    plot <- plot + # annotate("text",x=(max(data$log2.fold) - 0.01), y=(min(data$pval)), label=ngen, colour="red")+
-      annotate("text", x = 0, y = (min(data$pval) + 10 ^ (-breaks_y[1])), label = label_pvalue, colour = "red") +
-      annotate("text", x = 0, y = (min(data$pval) + 10 ^ (-breaks_y[1] + diff_y)), label = paste("log2.fold:", round(values_for_gene$log2.fold, 4)), colour = "red")
+    plot <- plot +
+      annotate(
+        "text",
+        x = 0,
+        y = (min(data$pval) + 10 ^ (-breaks_y[1])),
+        label = label_pvalue, colour = "red"
+      ) +
+      annotate(
+        "text",
+        x = 0,
+        y = (min(data$pval) + 10 ^ (-breaks_y[1] + diff_y)),
+        label = paste("log2.fold:", round(values_for_gene$log2.fold, 4)),
+        colour = "red"
+      )
   }
 
 
