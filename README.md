@@ -52,10 +52,10 @@ To install this package, start R and enter:
 devtools::install_github("geneticsMiNIng/MLGenSig/MLExpResso")
 ```
 
-In order to run examples you shall install [`MLGenSigdata`](https://github.com/geneticsMiNIng/MLGenSigdata).
+In order to run examples you shall install [`MLExpRessoData`](https://github.com/geneticsMiNIng/MLGenSigdata).
 
 ```
-devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessoData")
+devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")
 ```
 
 
