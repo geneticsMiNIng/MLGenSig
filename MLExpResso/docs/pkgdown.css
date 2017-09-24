@@ -133,7 +133,7 @@ pre {
 }
 
 pre, code {
-  background-color: #e5e5e5;
+  background-color: #f8f8f8;
   color: #333;
 }
 
@@ -161,6 +161,3 @@ code a, pre a {
 .error   { color: orange;  font-weight: bolder;}
 .warning { color: #6A0366; font-weight: bolder;}
 
-.navbar-default {
-    background-color: #4a3c89;
-}
