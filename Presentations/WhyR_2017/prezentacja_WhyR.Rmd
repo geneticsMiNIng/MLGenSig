@@ -1,0 +1,209 @@
+---
+title: "MLExpResso – NGS, Metylacja, Expresja, R i sporo kawy"
+author: 
+- Aleksandra Dąbrowska
+- Alicja Gosiewska
+date: 29.09.2017
+output: 
+  revealjs::revealjs_presentation:
+    fig_width: 15
+    incremental: true
+    pandoc_args: [
+      "--css", "custom.css"
+    ]
+    self_contained: no
+    
+---
+
+```{r, echo = FALSE, warning = FALSE}
+library(knitr)
+opts_chunk$set(
+	comment = "",
+	fig.width = 30, 
+	message = FALSE,
+	warning = FALSE,
+	tidy.opts = list(
+		keep.blank.line = TRUE,	
+		width.cutoff = 500
+		),
+	options(width = 500),
+	eval = TRUE
+)
+```
+  
+```{r, echo = FALSE}
+library(MLExpResso)
+library(MLExpRessoData)
+load("data_pres.Rda")
+```  
+  
+# Grupa MI<sup>2</sup> i MI<sup>2</sup> DataLab {data-background="img/MI2_z_logiem.PNG"}
+  
+# "MLGenSig:                                       Machine Learning Methods for building the Integrated Genetic Signatures"                               NCN Opus grant 2016/21/B/ST6/02176
+
+#Terminologia biologiczna
+
+##Podstawowe  pojęcia {data-background="img/DNA3.PNG"}
+- Gen 
+- Ekspresja genu
+- Sonda mikromacierzy
+- Metylacja DNA
+
+# Nazwa
+## {data-background="prezentacje_biala_fioletowa/Slajd8.PNG"}
+## {data-background="prezentacje_biala_fioletowa/Slajd9.PNG"}
+## {data-background="prezentacje_biala_fioletowa/Slajd10.PNG"}
+## {data-background="prezentacje_biala_fioletowa/Slajd11.PNG"}
+## {data-background="prezentacje_biala_fioletowa/Slajd12.PNG"}
+
+
+# Ekspresja
+
+## Testowanie
+
+```{r}
+BRCA_exp[1:5, 1:5]
+```
+
+```{r, eval = FALSE}
+calculate_test(data, condition, test)
+```
+
+```{r, echo = FALSE}
+head(res_exp)
+```
+
+## Volcano plot
+
+```{r, echo=FALSE, eval=FALSE}
+plot_volcano(data = res_exp, line = 0.05, names = 0.000000001, fold_line = 2)
+```
+
+```{r, eval= FALSE}
+plot_volcano(data, line, names, fold_line)
+```
+
+<img src="img/volcano1.PNG" height='400'>
+
+# Metylacja
+
+## Agregacja sond do genów
+```{r}
+BRCA_met[1:5, 1:4]
+```
+
+```{r, echo=FALSE}
+BRCA_met_gen <- aggregate_probes(data = BRCA_met) 
+```
+
+```{r, eval=FALSE}
+BRCA_met_gen <- aggregate_probes(data) 
+```
+
+```{r}
+BRCA_met_gen[1:5, 1:4]
+```
+
+## Methylation path
+
+```{r, eval=FALSE, echo=FALSE}
+plot_methylation_path(
+  data = BRCA_met, 
+  condition = condition_met, 
+  gene = 'CACNA1G', 
+  show.gene = TRUE, 
+  observ = TRUE
+)
+```
+
+```{r,eval=FALSE}
+plot_methylation_path(data, condition, gene, show.gene, observ)
+```
+
+<img src="img/path1.PNG" height='400'>
+
+## Testowanie
+```{r, eval = FALSE, echo=FALSE}
+calculate_test(
+  data = BRCA_met_gen, 
+  condition = condition_met,
+  test = "ttest"
+)
+```
+
+```{r, eval = FALSE}
+calculate_test(data, condition, test)
+```
+
+```{r, echo = FALSE}
+head(res_met)[1:5, 1:5]
+```
+
+# Integracja ekspresji i metylacji
+
+## Tabela porównań
+
+```{r, eval = FALSE}
+comparison <- calculate_comparison_table(data1, data2, condition1, 
+  condition2, test1, test2)
+```
+
+```{r, echo = TRUE}
+head(comparison)
+```
+
+## Volcano plots
+
+```{r, eval=FALSE}
+plot_volcanoes(data.m, data.e, 
+               condition.m, condition.e, 
+               gene, test.m, test.e)
+```
+
+```{r, eval=FALSE, echo=FALSE}
+plot_volcanoes(
+  data.m = BRCA_met[,!(colnames(BRCA_met) == "SUBTYPE")],
+  data.e = BRCA_exp[,!(colnames(BRCA_exp) == "SUBTYPE")],
+  condition.m = condition_met, 
+  condition.e = condition_exp, 
+  gene = "CACNA1G", 
+  test.m = test_met, 
+  test.e = test_exp,
+  values=TRUE
+)
+```
+
+<img src="img/volcano2.png" height="400">
+
+## Informacje dla wybranego genu
+
+```{r, eval=FALSE, echo=FALSE}
+plot_gene(
+  data.m = BRCA_met, 
+  data.e = BRCA_exp, 
+  condition.m = condition_met, 
+  condition.e = condition_exp, 
+  gene = "CACNA1G",
+  show.gene = TRUE,
+  observ = TRUE,
+  islands = TRUE
+)
+```
+
+```{r, eval=FALSE}
+plot_gene(data.m, data.e, 
+               condition.m, condition.e, 
+               gene, show.gene, observ, islands)
+```
+
+<img src="img/path2.png" height="400">
+
+##{data-background="img/pomoce.PNG"}
+
+
+#Co dalej?
+
+##GitHub
+
+- https://github.com/geneticsMiNIng/MLGenSig
+- https://github.com/MI2DataLab
