@@ -31,7 +31,7 @@ Imports: AnnotationDbi,
     scales, 
     stringr, 
     TxDb.Hsapiens.UCSC.hg18.knownGene,
-    utils, 
+    utils
 RoxygenNote: 6.0.1
 Suggests: knitr,
     MLExpRessoData,
