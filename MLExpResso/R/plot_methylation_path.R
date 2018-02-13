@@ -9,6 +9,8 @@
 #' @param observ Logical. If TRUE dots corresponding to CpG probes will be drawn.
 #' @param islands Logical. If TRUE line corresopnding to islands should be drawn.
 #' @param title Logical. If TRUE title saying what gene we visualise will be added.
+#' @param genom.data Data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}. New dataset should contain 5 columns with:
+#' 1) CpG probe names, 2) CpG probe locations, 3) gene names, 4) logical value if there is a CpG island, 5) location of island.
 #' @param ... Other parameters.
 #'
 #' @return Object of class ggplot containing visualisation of methylation on gene.

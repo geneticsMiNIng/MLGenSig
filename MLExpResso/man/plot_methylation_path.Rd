@@ -22,6 +22,9 @@ plot_methylation_path(data, condition, gene, show.gene = FALSE,
 
 \item{title}{Logical. If TRUE title saying what gene we visualise will be added.}
 
+\item{genom.data}{Data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}. New dataset should contain 5 columns with:
+1) CpG probe names, 2) CpG probe locations, 3) gene names, 4) logical value if there is a CpG island, 5) location of island.}
+
 \item{...}{Other parameters.}
 }
 \value{

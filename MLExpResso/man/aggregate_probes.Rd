@@ -13,7 +13,8 @@ aggregate_probes(data, keep = NULL,
 
 \item{keep}{The name of the column or vector of columns names we want to keep.}
 
-\item{genom.data}{Data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}.}
+\item{genom.data}{#' @param genom.data Data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}. New dataset should contain 5 columns with:
+1) CpG probe names, 2) CpG probe locations, 3) gene names, 4) logical value if there is a CpG island, 5) location of island.}
 
 \item{genes.col}{Number of column in genom.data containing informations about genes (genes symbols).}
 

@@ -4,7 +4,8 @@
 #'
 #' @param data Data frame containing methylation values for CpG probes. Columns correspond to probes, rows to samples.
 #' @param keep The name of the column or vector of columns names we want to keep.
-#' @param genom.data Data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}.
+#' @param genom.data #' @param genom.data Data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}. New dataset should contain 5 columns with:
+#' 1) CpG probe names, 2) CpG probe locations, 3) gene names, 4) logical value if there is a CpG island, 5) location of island.
 #' @param genes.col Number of column in genom.data containing informations about genes (genes symbols).
 #' @param probes.col Number of column in genom.data containing informations about probes (probes symbols).
 #'

@@ -1,4 +1,9 @@
-#' @export
+#' @title transforms genome dataset
+#'
+#' @description Trensforms new genome dataset into the form used by functions in MLExpResso package.
+#'
+#' @param genom.data new genome datset
+#'
 make_dictionary_data <- function(genom.data=NULL){
 
   if(is.null(genom.data)) {

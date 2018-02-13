@@ -4,7 +4,7 @@
 \alias{err_plot_methylation_path}
 \title{Correct Data}
 \usage{
-err_plot_methylation_path(data, genom.data = NULL, probes.col = 1)
+err_plot_methylation_path(data, genom.data = NULL)
 }
 \arguments{
 \item{data}{data frame containing values from methylation: columns corespond to CpG probes, rows to samples.}
