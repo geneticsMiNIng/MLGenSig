@@ -4,14 +4,10 @@
 \alias{islands_locations}
 \title{Locations of CpG islands}
 \usage{
-islands_locations(data_A, data_B, condition)
+islands_locations(data2)
 }
 \arguments{
-\item{data_A}{d}
-
-\item{data_B}{d}
-
-\item{condition}{vector with conditions}
+\item{data2}{d}
 }
 \value{
 data frame

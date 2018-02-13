@@ -184,7 +184,7 @@ Function `plot_methylation_path` requires parameters such as:
 
 
 ```{r}
-plot_methylation_path(BRCA_met, condition = condition_met, gene = 'CACNA1G', show.gene = TRUE, observ = TRUE)
+plot_methylation_path(BRCA_met, condition = condition_met, gene = 'CACNA1G', show.gene = TRUE, observ = TRUE, islands = F)
 
 ```
 

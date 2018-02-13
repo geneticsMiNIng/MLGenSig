@@ -46,15 +46,20 @@ plot_methylation_path <- function(data, condition, gene, show.gene=FALSE, observ
   err_plot_methylation_path(data, genom.data)
 
 
-  dataA <- data[which(condition == unique(condition)[1]), ]
-  dataB <- data[which(condition == unique(condition)[2]), ]
-  CpG_A <- calculate_CpG_mean(dataA, gene, genom.data = genom.data)
-  CpG_A$condition <- unique(condition)[1]
-  CpG_B <- calculate_CpG_mean(dataB, gene, genom.data = genom.data)
-  CpG_B$condition <- unique(condition)[2]
-  data2 <- rbind(CpG_A, CpG_B)
-  data2$Name_loc <- paste(data2$HG18_coord, "\n", data2$Name)
+  groups <- unique(condition)
+  CpG_means <- list()
+  data2 <- data.frame(Name=character(), HG18_coord=character(), Symbol=character(),
+                      CPG_ISLAND=logical(), CPG_ISLAND_LOCATIONS=character(),
+                      mean=numeric(), condition = character())
 
+  for(group in groups){
+    group_data <- data[which(condition == group), ]
+    CpG_mean <- calculate_CpG_mean(group_data, gene, genom.data = genom.data)
+    CpG_mean$condition <- group
+    data2 <- rbind(data2, CpG_mean)
+  }
+
+  data2$Name_loc <- paste(data2$HG18_coord, "\n", data2$Name)
   plot1 <- ggplot(data2, aes(HG18_coord, mean, group = condition, colour = condition)) +
     theme_bw() +
     xlab(paste0("Gene ", gene)) +
@@ -89,9 +94,9 @@ plot_methylation_path <- function(data, condition, gene, show.gene=FALSE, observ
   }
 
   if (islands == TRUE) {
-    data_islands <- islands_locations(CpG_A, CpG_B, condition)
-    plot1 <- plot1 + geom_line(data = data_islands, aes(x = value, y = mean, group = island_cond, colour = condition))
-  }
+    data_islands <- islands_locations(data2)
+    plot1 <- plot1 + geom_segment(data=data_islands, aes(y = mean, yend = mean,
+                                                           x = as.numeric(START), xend = as.numeric(END)))  }
   if (title == TRUE) {
     plot1 <- plot1 + ggtitle(paste(gene))
   }
