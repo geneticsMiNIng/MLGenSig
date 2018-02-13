@@ -4,7 +4,7 @@
 \alias{probes_locations}
 \title{Locations of CpG probes}
 \usage{
-probes_locations(data, gene, condition)
+probes_locations(data, gene, condition, genom.data = NULL)
 }
 \arguments{
 \item{data}{d}

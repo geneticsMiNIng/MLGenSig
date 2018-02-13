@@ -11,7 +11,8 @@
 #' @keywords internal
 
 
-err_plot_methylation_path <- function(data, genom.data = MLExpResso::illumina_humanmethylation_27_data, probes.col=1) {
-  if (!(any(colnames(data) %in% genom.data[, 1]))) stop("Wrong colnames, check if a data set contains not aggregated values.")
+err_plot_methylation_path <- function(data, genom.data = NULL) {
+  genom.data = make_dictionary_data(genom.data)
+  if (!any(colnames(data) %in% genom.data[, 1])) stop("Wrong colnames, check if a data set contains not aggregated values.")
   return(NULL)
 }

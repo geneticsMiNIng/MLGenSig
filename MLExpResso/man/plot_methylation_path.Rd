@@ -5,7 +5,7 @@
 \title{Methylation path on chosen gene.}
 \usage{
 plot_methylation_path(data, condition, gene, show.gene = FALSE,
-  observ = FALSE, islands = TRUE, title = TRUE, ...)
+  observ = FALSE, islands = TRUE, title = TRUE, genom.data = NULL, ...)
 }
 \arguments{
 \item{data}{Data frame containing values from methylation: columns corespond to CpG probes, rows to samples.}

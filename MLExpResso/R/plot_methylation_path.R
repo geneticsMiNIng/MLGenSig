@@ -37,17 +37,18 @@
 #' @export
 
 
-plot_methylation_path <- function(data, condition, gene, show.gene=FALSE, observ=FALSE, islands = TRUE, title=TRUE, ...) {
+plot_methylation_path <- function(data, condition, gene, show.gene=FALSE, observ=FALSE, islands = TRUE, title=TRUE, genom.data = NULL, ...) {
   HG18_coord <- value <- island_cond <- NULL
 
-  err_plot_methylation_path(data, ...)
+  genom.data <- make_dictionary_data(genom.data)
+  err_plot_methylation_path(data, genom.data)
+
 
   dataA <- data[which(condition == unique(condition)[1]), ]
   dataB <- data[which(condition == unique(condition)[2]), ]
-  data_gen <- aggregate_probes(data, ...)
-  CpG_A <- calculate_CpG_mean(dataA, gene)
+  CpG_A <- calculate_CpG_mean(dataA, gene, genom.data = genom.data)
   CpG_A$condition <- unique(condition)[1]
-  CpG_B <- calculate_CpG_mean(dataB, gene)
+  CpG_B <- calculate_CpG_mean(dataB, gene, genom.data = genom.data)
   CpG_B$condition <- unique(condition)[2]
   data2 <- rbind(CpG_A, CpG_B)
   data2$Name_loc <- paste(data2$HG18_coord, "\n", data2$Name)
@@ -64,7 +65,7 @@ plot_methylation_path <- function(data, condition, gene, show.gene=FALSE, observ
     scale_color_manual(values = c("#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf")) +
     ylab("")
   if (observ == TRUE) {
-    observations_coord <- probes_locations(data, gene, condition)
+    observations_coord <- probes_locations(data, gene, condition, genom.data = genom.data)
     plot1 <- plot1 + geom_point(data = observations_coord, aes(HG18_coord, value), size = 0.5, alpha = 0.35)
   }
 

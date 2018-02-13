@@ -4,7 +4,7 @@
 \alias{calculate_CpG_mean}
 \title{CpG_mean}
 \usage{
-calculate_CpG_mean(data, gene)
+calculate_CpG_mean(data, gene, genom.data = NULL)
 }
 \arguments{
 \item{data}{data frame containing values of methylation: columns coresponds to CpG probes, rows to samples.}
