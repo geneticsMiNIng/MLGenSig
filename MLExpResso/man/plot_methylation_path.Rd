@@ -5,7 +5,8 @@
 \title{Methylation path on chosen gene.}
 \usage{
 plot_methylation_path(data, condition, gene, show.gene = FALSE,
-  observ = FALSE, islands = TRUE, title = TRUE, genom.data = NULL, ...)
+  observ = FALSE, islands = TRUE, title = TRUE, genom.data = NULL,
+  mean.size = 4, observ.size = 0.5, ...)
 }
 \arguments{
 \item{data}{Data frame containing values from methylation: columns corespond to CpG probes, rows to samples.}
@@ -24,6 +25,10 @@ plot_methylation_path(data, condition, gene, show.gene = FALSE,
 
 \item{genom.data}{Data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}. New dataset should contain 5 columns with:
 1) CpG probe names, 2) CpG probe locations, 3) gene names, 4) logical value if there is a CpG island, 5) location of island.}
+
+\item{mean.size}{size of mean dots}
+
+\item{observ.size}{size of observation dots}
 
 \item{...}{Other parameters.}
 }

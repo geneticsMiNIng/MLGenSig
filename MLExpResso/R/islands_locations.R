@@ -20,7 +20,7 @@ islands_locations <- function(data2) {
                                             START=res$START,
                                             END=res$END), mean)
   colnames(aggregated_res)[4] <- "mean"
-
+  aggregated_res <- aggregated_res[which(aggregated_res$START!=""),]
   return(aggregated_res)
 }
 

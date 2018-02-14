@@ -11,6 +11,8 @@
 #' @param title Logical. If TRUE title saying what gene we visualise will be added.
 #' @param genom.data Data frame which contains information about CpG probes and corresponding genes, by default in our package we use \code{\link{illumina_humanmethylation_27_data}}. New dataset should contain 5 columns with:
 #' 1) CpG probe names, 2) CpG probe locations, 3) gene names, 4) logical value if there is a CpG island, 5) location of island.
+#' @param mean.size size of mean dots
+#' @param observ.size size of observation dots
 #' @param ... Other parameters.
 #'
 #' @return Object of class ggplot containing visualisation of methylation on gene.
@@ -39,7 +41,9 @@
 #' @export
 
 
-plot_methylation_path <- function(data, condition, gene, show.gene=FALSE, observ=FALSE, islands = TRUE, title=TRUE, genom.data = NULL, ...) {
+plot_methylation_path <- function(data, condition, gene, show.gene=FALSE,
+                                  observ=FALSE, islands = TRUE, title=TRUE, genom.data = NULL,
+                                  mean.size=4, observ.size = 0.5, ...) {
   HG18_coord <- value <- island_cond <- NULL
 
   genom.data <- make_dictionary_data(genom.data)
@@ -73,17 +77,17 @@ plot_methylation_path <- function(data, condition, gene, show.gene=FALSE, observ
     ylab("")
   if (observ == TRUE) {
     observations_coord <- probes_locations(data, gene, condition, genom.data = genom.data)
-    plot1 <- plot1 + geom_point(data = observations_coord, aes(HG18_coord, value), size = 0.5, alpha = 0.35)
+    plot1 <- plot1 + geom_point(data = observations_coord, aes(HG18_coord, value), size = observ.size, alpha = 0.35)
   }
 
   # Means over observations
-  plot1 <- plot1 + geom_point(size = 4)
+  plot1 <- plot1 + geom_point(size = mean.size)
 
   gene_loc <- gene_location(gene)
 
   if (show.gene == TRUE) {
-    if (gene_loc[1] < min(data2$HG18_coord)) {
-      plot1 <- plot1 + geom_segment(aes(x = max(gene_loc[1], min(data2$HG18_coord)) - 1000, xend = min(gene_loc[2], max(data2$HG18_coord)), y = -0.025, yend = -0.025), colour = "blue", size = 1, arrow = arrow(length = unit(0.3, "cm"), ends = "first"))
+    if (gene_loc[2] < min(data2$HG18_coord)) {
+      plot1 <- plot1 + geom_segment(aes(x = gene_loc[1], xend = gene_loc[2], y = -0.025, yend = -0.025), colour = "blue", size = 1, arrow = arrow(length = unit(0.3, "cm"), ends = "first"))
     }
     if (gene_loc[2] > max(data2$HG18_coord)) {
       plot1 <- plot1 + geom_segment(aes(x = max(gene_loc[1], min(data2$HG18_coord)), xend = min(gene_loc[2], max(data2$HG18_coord)) + 1000, y = -0.025, yend = -0.025), colour = "blue", size = 1, arrow = arrow(length = unit(0.3, "cm"), ends = "last"))
