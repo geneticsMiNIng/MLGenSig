@@ -6,9 +6,9 @@
 Machine Learning for Genetic Signatures
 
 # MLExpResso
-Package for analyzing genes expression and CpG probes metylation.
+Package for analyzing genes expression and CpG probes methylation.
 
-### [Online Manual](https://agosiewska.github.io/MLGenSig/)
+### [Online Manual](https://geneticsmining.github.io/MLGenSig/articles/QuickStart.html)
 
 ### [News](https://github.com/geneticsMiNIng/MLGenSig/blob/master/NEWS.md)
 
@@ -76,3 +76,8 @@ devtools::install_github("geneticsMiNIng/MLGenSigdata/MLExpRessodata")
 ## Example dashboards
 ![plot_volcanoes](https://raw.githubusercontent.com/geneticsMiNIng/MLGenSig/master/Images/plot_volcanoes_CACNA1G.png)
 ![plot_gene](https://raw.githubusercontent.com/geneticsMiNIng/MLGenSig/master/Images/plot_gene_CACNA1G.png)
+
+
+
+## Acknowledgments
+Work on this package was financially supported by the 'NCN Opus grant 2016/21/B/ST6/02176'.
